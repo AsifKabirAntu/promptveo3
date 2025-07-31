@@ -13,7 +13,7 @@ export default function DashboardLayout({
         <DashboardHeader />
         <div className="flex">
           <DashboardSidebar />
-          <main className="flex-1 lg:pl-64">
+          <main className="flex-1 lg:pl-64 pt-16">
             <div className="py-6">
               {children}
             </div>

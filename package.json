@@ -9,7 +9,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "ingest": "tsx scripts/ingest-data.ts",
-    "ingest-timeline": "tsx scripts/ingest-timeline-data.ts"
+    "ingest-timeline": "tsx scripts/ingest-timeline-data.ts",
+    "create-email-table": "tsx scripts/create-email-subscriptions-table.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

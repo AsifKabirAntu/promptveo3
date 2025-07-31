@@ -7,9 +7,9 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="absolute inset-0 bg-grid-black/[0.02] bg-grid" />
       
-      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:py-24 sm:px-6 lg:px-8">
         <div className="text-center">
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-8">
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-6 sm:mb-8">
             <Sparkles className="w-4 h-4 mr-2" />
             Now available for Veo 3
           </div>
@@ -26,28 +26,29 @@ export function Hero() {
             Browse, remix, and export professional-grade cinematic prompts.
           </p>
           
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/dashboard">
-              <Button size="lg" className="px-8">
+              <Button size="lg" className="px-6 sm:px-8 w-full sm:w-auto">
                 Explore Prompts
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             
             <Link href="#pricing">
-              <Button variant="outline" size="lg" className="px-8">
+              <Button variant="outline" size="lg" className="px-6 sm:px-8 w-full sm:w-auto">
                 Join Beta
               </Button>
             </Link>
           </div>
           
-          <div className="mt-16">
+          <div className="mt-12 sm:mt-16">
             <div className="relative rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:rounded-2xl lg:p-4">
-              <div className="aspect-video rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 p-8 flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h3 className="text-2xl font-bold mb-2">Preview Coming Soon</h3>
-                  <p className="text-blue-100">Interactive prompt editor demo</p>
-                </div>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <img 
+                  src="/landing.png" 
+                  alt="PromptVeo3 Platform Preview" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
