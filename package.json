@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "ingest": "tsx scripts/ingest-data.ts",
     "ingest-timeline": "tsx scripts/ingest-timeline-data.ts",
-    "create-email-table": "tsx scripts/create-email-subscriptions-table.ts"
+    "create-email-table": "tsx scripts/create-email-subscriptions-table.ts",
+    "generate-favicons": "node scripts/generate-favicons.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
@@ -44,6 +45,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8.5.6",
+    "sharp": "^0.34.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.20.3",
     "typescript": "^5"
