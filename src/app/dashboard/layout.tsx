@@ -13,7 +13,7 @@ export default function DashboardLayout({
         <DashboardSidebar />
         <div className="lg:pl-64">
           <DashboardHeader />
-          <main className="pt-16">
+          <main>
             <div className="py-6 px-4 sm:px-6 lg:px-8">
               {children}
             </div>
