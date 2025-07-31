@@ -1,0 +1,4702 @@
+[
+  {
+    "title": "Toy Robot Cinematic Build #1",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Toy Robot set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A chrome box lies at the foot of a child\u2019s bed, glowing faintly in the dark room.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Toy Robot box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Toy Robot fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Toy Robot lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #2",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #3",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Skateboard Kit Cinematic Build #4",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Skateboard Kit set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A cardboard box rests on a graffiti-covered skatepark ramp, lit by sunset.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Skateboard Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Skateboard Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Skateboard Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #5",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #6",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #7",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #8",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Easel & Paint Set Cinematic Build #9",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Easel & Paint Set set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wrapped canvas and paint box sit on a wooden table near a window studio.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Easel & Paint Set box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Easel & Paint Set fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Easel & Paint Set lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Skateboard Kit Cinematic Build #10",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Skateboard Kit set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A cardboard box rests on a graffiti-covered skatepark ramp, lit by sunset.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Skateboard Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Skateboard Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Skateboard Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #11",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #12",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Easel & Paint Set Cinematic Build #13",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Easel & Paint Set set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wrapped canvas and paint box sit on a wooden table near a window studio.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Easel & Paint Set box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Easel & Paint Set fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Easel & Paint Set lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #14",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #15",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #16",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #17",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #18",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #19",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Skateboard Kit Cinematic Build #20",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Skateboard Kit set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A cardboard box rests on a graffiti-covered skatepark ramp, lit by sunset.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Skateboard Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Skateboard Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Skateboard Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #21",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #22",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #23",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeding Station Cinematic Build #24",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Pet Feeding Station set in a creatively staged environment.",
+    "category": "Pet & Family",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A branded Chewy box rests in a warm, sunlit kitchen with wood floors.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Pet Feeding Station box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Pet Feeding Station fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Pet Feeding Station lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #25",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Instant Tent Cinematic Build #26",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Instant Tent set in a creatively staged environment.",
+    "category": "Adventure",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A rugged tent pack is dropped in the center of a misty mountain ridge.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Instant Tent box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Instant Tent fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Instant Tent lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #27",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Cinematic Build #28",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the VR Headset set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A futuristic crate lies on a pedestal inside a glowing neon-blue tech lab.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The VR Headset box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the VR Headset fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled VR Headset lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #29",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Coffee Grinder Cinematic Build #30",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Coffee Grinder set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A matte black box sits on a polished kitchen island surrounded by mugs and coffee beans.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Coffee Grinder box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Coffee Grinder fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Coffee Grinder lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Easel & Paint Set Cinematic Build #31",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Easel & Paint Set set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wrapped canvas and paint box sit on a wooden table near a window studio.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Easel & Paint Set box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Easel & Paint Set fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Easel & Paint Set lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #32",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #33",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Toy Robot Cinematic Build #34",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Toy Robot set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A chrome box lies at the foot of a child\u2019s bed, glowing faintly in the dark room.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Toy Robot box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Toy Robot fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Toy Robot lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeding Station Cinematic Build #35",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Pet Feeding Station set in a creatively staged environment.",
+    "category": "Pet & Family",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A branded Chewy box rests in a warm, sunlit kitchen with wood floors.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Pet Feeding Station box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Pet Feeding Station fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Pet Feeding Station lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Toy Robot Cinematic Build #36",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Toy Robot set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A chrome box lies at the foot of a child\u2019s bed, glowing faintly in the dark room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Toy Robot box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Toy Robot fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Toy Robot lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeding Station Cinematic Build #37",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Pet Feeding Station set in a creatively staged environment.",
+    "category": "Pet & Family",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A branded Chewy box rests in a warm, sunlit kitchen with wood floors.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Pet Feeding Station box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Pet Feeding Station fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Pet Feeding Station lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #38",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Toy Robot Cinematic Build #39",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Toy Robot set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A chrome box lies at the foot of a child\u2019s bed, glowing faintly in the dark room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Toy Robot box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Toy Robot fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Toy Robot lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #40",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #41",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #42",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #43",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #44",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #45",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #46",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #47",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Travel Backpack Cinematic Build #48",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Travel Backpack set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A rugged adventure crate is placed near a tent at a foggy forest campsite.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Travel Backpack box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Travel Backpack fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Travel Backpack lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #49",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #50",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #51",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Cinematic Build #52",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the VR Headset set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A futuristic crate lies on a pedestal inside a glowing neon-blue tech lab.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The VR Headset box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the VR Headset fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled VR Headset lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeding Station Cinematic Build #53",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Pet Feeding Station set in a creatively staged environment.",
+    "category": "Pet & Family",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A branded Chewy box rests in a warm, sunlit kitchen with wood floors.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Pet Feeding Station box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Pet Feeding Station fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Pet Feeding Station lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #54",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #55",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #56",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #57",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Instant Tent Cinematic Build #58",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Instant Tent set in a creatively staged environment.",
+    "category": "Adventure",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A rugged tent pack is dropped in the center of a misty mountain ridge.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Instant Tent box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Instant Tent fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Instant Tent lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Cinematic Build #59",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the VR Headset set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A futuristic crate lies on a pedestal inside a glowing neon-blue tech lab.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The VR Headset box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the VR Headset fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled VR Headset lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #60",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #61",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #62",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Instant Tent Cinematic Build #63",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Instant Tent set in a creatively staged environment.",
+    "category": "Adventure",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A rugged tent pack is dropped in the center of a misty mountain ridge.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Instant Tent box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Instant Tent fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Instant Tent lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Gaming Keyboard Cinematic Build #64",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Gaming Keyboard set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing RGB box rests on a sleek black desk in a gamer's room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Gaming Keyboard box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Gaming Keyboard fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Gaming Keyboard lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Mirror Cinematic Build #65",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Mirror set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A clean white box rests against the wall of a minimal bathroom with fogged-up glass.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Mirror box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Mirror fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Mirror lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Cinematic Build #66",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the VR Headset set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A futuristic crate lies on a pedestal inside a glowing neon-blue tech lab.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The VR Headset box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the VR Headset fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled VR Headset lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #67",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "LEGO Castle Set Cinematic Build #68",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the LEGO Castle Set set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A sealed LEGO box sits in a sunlit child\u2019s room with soft rugs and shelves full of books.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The LEGO Castle Set box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the LEGO Castle Set fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled LEGO Castle Set lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #69",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #70",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeding Station Cinematic Build #71",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Pet Feeding Station set in a creatively staged environment.",
+    "category": "Pet & Family",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A branded Chewy box rests in a warm, sunlit kitchen with wood floors.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Pet Feeding Station box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Pet Feeding Station fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Pet Feeding Station lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Easel & Paint Set Cinematic Build #72",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Easel & Paint Set set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wrapped canvas and paint box sit on a wooden table near a window studio.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Easel & Paint Set box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Easel & Paint Set fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Easel & Paint Set lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Mini Fridge Cinematic Build #73",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Mini Fridge set in a creatively staged environment.",
+    "category": "Student Life",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A compact crate sits on a dorm room floor near posters and snacks.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Mini Fridge box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Mini Fridge fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Mini Fridge lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Aroma Candle Kit Cinematic Build #74",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Aroma Candle Kit set in a creatively staged environment.",
+    "category": "Wellness",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A wooden crate is centered in a spa room lit by soft ambient candles and stone decor.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Aroma Candle Kit box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Aroma Candle Kit fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Aroma Candle Kit lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #75",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #76",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #77",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #78",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Mini Fridge Cinematic Build #79",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Mini Fridge set in a creatively staged environment.",
+    "category": "Student Life",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A compact crate sits on a dorm room floor near posters and snacks.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Mini Fridge box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Mini Fridge fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Mini Fridge lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #80",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Mirror Cinematic Build #81",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Mirror set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A clean white box rests against the wall of a minimal bathroom with fogged-up glass.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Mirror box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Mirror fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Mirror lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #82",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #83",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #84",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Mini Fridge Cinematic Build #85",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Mini Fridge set in a creatively staged environment.",
+    "category": "Student Life",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A compact crate sits on a dorm room floor near posters and snacks.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Mini Fridge box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Mini Fridge fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Mini Fridge lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Mirror Cinematic Build #86",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Mirror set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A clean white box rests against the wall of a minimal bathroom with fogged-up glass.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Mirror box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Mirror fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Mirror lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Coffee Grinder Cinematic Build #87",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Coffee Grinder set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A matte black box sits on a polished kitchen island surrounded by mugs and coffee beans.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Coffee Grinder box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Coffee Grinder fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Coffee Grinder lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #88",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #89",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Cinematic Build #90",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the VR Headset set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A futuristic crate lies on a pedestal inside a glowing neon-blue tech lab.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The VR Headset box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the VR Headset fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled VR Headset lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Drone Explorer Cinematic Build #91",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Drone Explorer set in a creatively staged environment.",
+    "category": "Tech",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A crate labeled 'Explorer X' lies in the center of a rocky desert outpost.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Drone Explorer box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Drone Explorer fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Drone Explorer lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Mirror Cinematic Build #92",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Mirror set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A clean white box rests against the wall of a minimal bathroom with fogged-up glass.",
+    "camera_setup": "fixed wide-angle shot from the corner",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Mirror box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Mirror fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Mirror lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Game Console X Cinematic Build #93",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Game Console X set in a creatively staged environment.",
+    "category": "Entertainment",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A slick box sits beside a television stand in a cozy, modern living room.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "moody spotlighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Game Console X box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Game Console X fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Game Console X lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Cinematic Build #94",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Smart Speaker set in a creatively staged environment.",
+    "category": "Home & Living",
+    "base_style": "photorealistic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft fabric box lies in a bookshelf nook surrounded by plants.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Smart Speaker box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Smart Speaker fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Smart Speaker lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Nike Air Zoom Cinematic Build #95",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Nike Air Zoom set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A glowing Nike shoebox rests on a locker bench in a dimly lit basketball locker room.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Nike Air Zoom box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Nike Air Zoom fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Nike Air Zoom lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #96",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "cinematic",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "overhead top-down locked camera",
+    "lighting": "soft ambient bounce",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Cinematic Build #97",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Luxury Watch set in a creatively staged environment.",
+    "category": "Luxury",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A velvet box sits in a luxury retail showroom with spotlighting.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Luxury Watch box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Luxury Watch fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Luxury Watch lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Vinyl Record Player Cinematic Build #98",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Vinyl Record Player set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A retro box sits on a patterned rug in a vintage-inspired lounge.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Vinyl Record Player box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Vinyl Record Player fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Vinyl Record Player lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Travel Backpack Cinematic Build #99",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Travel Backpack set in a creatively staged environment.",
+    "category": "Lifestyle",
+    "base_style": "magical realism",
+    "aspect_ratio": "16:9",
+    "scene_description": "A rugged adventure crate is placed near a tent at a foggy forest campsite.",
+    "camera_setup": "slow dolly left to right",
+    "lighting": "sunlit warm glow",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Travel Backpack box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Travel Backpack fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Travel Backpack lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  },
+  {
+    "title": "Electric Guitar Cinematic Build #100",
+    "description": "A timeline-based cinematic unboxing and self-assembly of the Electric Guitar set in a creatively staged environment.",
+    "category": "Creative",
+    "base_style": "4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A soft case lies unopened on the floor of a soundproofed music studio.",
+    "camera_setup": "sweeping arc from right to center",
+    "lighting": "neon rim lighting",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00-00:01",
+        "action": "The Electric Guitar box begins to glow and vibrate gently.",
+        "audio": "Low rumble or pulsing hum"
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01-00:02",
+        "action": "The box bursts open with particles or steam revealing floating core components.",
+        "audio": "Sharp cinematic pop with rising whoosh"
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02-00:05",
+        "action": "All parts of the Electric Guitar fly into place, assembling mid-air in a choreographed motion.",
+        "audio": "Clicks, swirls, and ambient tech tones"
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05-00:07",
+        "action": "The fully assembled Electric Guitar lands softly into the scene. Accent lights animate around it.",
+        "audio": "Subtle swoosh and confirming tone"
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07-00:08",
+        "action": "Camera holds as ambient details subtly fade in\u2014like glowing edges, fog, or soft motion.",
+        "audio": "Soft ending swell with environmental fadeout"
+      }
+    ]
+  }
+]

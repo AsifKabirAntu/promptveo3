@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Epic Mountain Vista",
+    "description": "A breathtaking panoramic view of snow-capped mountain peaks bathed in golden morning light, with dramatic clouds rolling through the valleys below.",
+    "style": "Cinematic",
+    "camera": "Wide establishing shot, slowly pushing forward",
+    "lighting": "Golden hour, warm sunlight filtering through clouds",
+    "environment": "High altitude mountain peak at sunrise",
+    "elements": ["snow-covered peaks", "rolling clouds", "dramatic sky", "alpine landscape"],
+    "motion": "Slow forward push, slight tilt up to reveal scale",
+    "ending": "Hold on the vast mountain range",
+    "text": "none",
+    "keywords": ["mountains", "epic", "sunrise", "nature", "landscape"],
+    "category": "Nature",
+    "is_featured": true,
+    "is_public": true
+  },
+  {
+    "title": "Urban Night Chase",
+    "description": "High-energy chase sequence through neon-lit city streets with dynamic camera movement and dramatic lighting contrasts.",
+    "style": "Action",
+    "camera": "Handheld, following behind runner",
+    "lighting": "Neon street lights, strong shadows",
+    "environment": "Dense urban cityscape at night",
+    "elements": ["neon signs", "wet pavement", "steam", "crowds"],
+    "motion": "Fast tracking shot, weaving through obstacles",
+    "ending": "Runner disappears around corner",
+    "text": "none",
+    "keywords": ["chase", "urban", "night", "neon", "action"],
+    "category": "Action",
+    "is_featured": false,
+    "is_public": true
+  },
+  {
+    "title": "Intimate Coffee Shop Moment",
+    "description": "A quiet, contemplative scene in a cozy coffee shop with warm, natural lighting and shallow depth of field.",
+    "style": "Documentary",
+    "camera": "Medium close-up, shallow depth of field",
+    "lighting": "Soft window light, warm interior ambiance",
+    "environment": "Small independent coffee shop",
+    "elements": ["coffee cup", "steam", "book", "wooden table"],
+    "motion": "Subtle focus pull from background to foreground",
+    "ending": "Steam rises from coffee cup",
+    "text": "none",
+    "keywords": ["coffee", "intimate", "warm", "cozy", "contemplative"],
+    "category": "Portrait",
+    "is_featured": false,
+    "is_public": true
+  }
+] 
