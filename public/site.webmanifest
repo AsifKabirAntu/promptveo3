@@ -1,17 +1,16 @@
 {
   "name": "PromptVeo3",
   "short_name": "PromptVeo3",
-  "description": "Professional-grade cinematic prompts for Veo 3",
+  "description": "AI Video Prompt Library and Editor",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#A855F7",
+  "theme_color": "#3b82f6",
   "icons": [
     {
       "src": "/favicon.svg",
-      "sizes": "32x32",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "sizes": "any",
+      "type": "image/svg+xml"
     }
   ]
 } 
