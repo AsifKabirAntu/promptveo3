@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { 
-  Sparkles, 
   Clock, 
   Heart, 
   Eye, 
@@ -22,6 +21,7 @@ import {
   Move,
   Tag
 } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 import { toast } from "sonner"
 import Link from "next/link"
 
@@ -119,7 +119,7 @@ export function PromptPreview() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4">
-            <Sparkles className="w-4 h-4 mr-2" />
+            <Logo size={24} />
             Featured Prompts
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl mb-4">

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Sparkles } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 
 const navigation = {
   product: [
@@ -22,12 +22,10 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-            <div className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                <Sparkles className="h-5 w-5 text-white" />
+                          <div className="flex items-center space-x-2">
+                <Logo size={32} />
+                <span className="text-xl font-bold text-white">PromptVeo3</span>
               </div>
-              <span className="text-xl font-bold text-white">PromptVeo3</span>
-            </div>
             <p className="text-gray-300 text-base">
               Professional cinematic prompts engineered for Veo 3. 
               Create stunning videos with our structured JSON templates.

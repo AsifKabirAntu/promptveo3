@@ -8,9 +8,9 @@ import {
   Heart, 
   FolderOpen, 
   Plus, 
-  Settings, 
-  Sparkles 
+  Settings
 } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 
 const navigation = [
   { name: "Explore Library", href: "/dashboard", icon: Compass },
@@ -28,9 +28,7 @@ export function DashboardSidebar() {
       <div className="flex min-h-0 flex-1 flex-col bg-white border-r border-gray-200">
         <div className="flex h-16 flex-shrink-0 items-center px-4 border-b border-gray-200">
           <Link href="/" className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
+                          <Logo size={32} />
             <span className="text-xl font-bold text-gray-900">PromptVeo3</span>
           </Link>
         </div>

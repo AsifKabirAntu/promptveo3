@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 import Link from "next/link"
 
 export function Hero() {
@@ -10,7 +11,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:py-24 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-6 sm:mb-8">
-            <Sparkles className="w-4 h-4 mr-2" />
+            <Logo size={24} />
             Now available for Veo 3
           </div>
           

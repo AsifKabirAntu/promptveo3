@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Sparkles } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 
 export function Header() {
   return (
@@ -9,9 +9,7 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                <Sparkles className="h-5 w-5 text-white" />
-              </div>
+              <Logo size={32} />
               <span className="text-xl font-bold text-gray-900">PromptVeo3</span>
             </Link>
           </div>
