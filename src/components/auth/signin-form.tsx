@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createClient } from '@/lib/supabase-browser'
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { initiateGoogleSignIn } from '@/lib/google-oauth'
 
 export function SignInForm() {
   const [email, setEmail] = useState('')
@@ -44,7 +43,17 @@ export function SignInForm() {
     setError(null)
 
     try {
-      initiateGoogleSignIn()
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`
+        }
+      })
+
+      if (error) {
+        setError(error.message)
+        setLoading(false)
+      }
     } catch (err) {
       setError('An unexpected error occurred')
       setLoading(false)
