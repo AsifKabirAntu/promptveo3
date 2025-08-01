@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { createClient } from '@/lib/supabase-browser'
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { initiateGoogleSignIn } from '@/lib/google-oauth'
 
 export function SignInForm() {
   const [email, setEmail] = useState('')
@@ -44,17 +45,8 @@ export function SignInForm() {
     setError(null)
 
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`
-        }
-      })
-
-      if (error) {
-        setError(error.message)
-        setLoading(false)
-      }
+      // Use custom Google OAuth flow
+      initiateGoogleSignIn()
     } catch (err) {
       setError('An unexpected error occurred')
       setLoading(false)
