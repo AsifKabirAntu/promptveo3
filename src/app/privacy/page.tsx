@@ -153,9 +153,7 @@ export default function PrivacyPage() {
                 </p>
                 <div className="mt-4 p-4 bg-gray-100 rounded-lg">
                   <p className="text-gray-700">
-                    <strong>Email:</strong> privacy@promptveo3.com<br />
-                    <strong>Address:</strong> [Your Business Address]<br />
-                    <strong>Phone:</strong> [Your Phone Number]
+                    <strong>Email:</strong> info@promptveo3.com
                   </p>
                 </div>
               </CardContent>
