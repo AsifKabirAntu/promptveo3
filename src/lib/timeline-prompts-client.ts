@@ -11,8 +11,15 @@ async function wait(ms: number) {
 
 async function fetchWithRetry(fetchFn: () => Promise<any>, retries = MAX_RETRIES): Promise<any> {
   try {
-    return await fetchFn()
+    // Add a 10-second timeout for each individual attempt
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Individual fetch timeout (10s)')), 10000)
+    })
+    
+    const result = await Promise.race([fetchFn(), timeoutPromise])
+    return result
   } catch (error) {
+    console.error('Fetch attempt failed:', error)
     if (retries > 0) {
       console.log(`Retrying... ${retries} attempts left`)
       await wait(RETRY_DELAY)
@@ -25,14 +32,21 @@ async function fetchWithRetry(fetchFn: () => Promise<any>, retries = MAX_RETRIES
 export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
   try {
     console.log('Initializing Supabase client for timeline prompts...')
+    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
     const supabase = createClientComponentClient<Database>()
 
     console.log('Fetching timeline prompts from Supabase...')
     const fetchPrompts = async () => {
+      console.log('About to execute timeline prompts Supabase query...')
+      const startTime = Date.now()
+      
       const { data: prompts, error } = await supabase
         .from('timeline_prompts')
         .select('*')
         .order('created_at', { ascending: false })
+
+      const endTime = Date.now()
+      console.log(`Timeline prompts Supabase query completed in ${endTime - startTime}ms`)
 
       if (error) {
         console.error('Supabase error fetching timeline prompts:', error)
