@@ -33,16 +33,23 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
   try {
     console.log('Initializing Supabase client...')
     console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-    const supabase = createClientComponentClient<Database>()
+    
+    // Create a fresh client instance specifically for this request
+    const supabase = createClientComponentClient<Database>({
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    })
 
     console.log('Fetching prompts from Supabase...')
     const fetchPrompts = async () => {
       console.log('About to execute Supabase query...')
       const startTime = Date.now()
       
+      // Query specifically for public prompts to ensure RLS works correctly
       const { data: prompts, error } = await supabase
         .from('prompts')
         .select('*')
+        .eq('is_public', true)
         .order('created_at', { ascending: false })
 
       const endTime = Date.now()
