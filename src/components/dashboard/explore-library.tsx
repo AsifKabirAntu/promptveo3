@@ -46,7 +46,7 @@ export function ExploreLibrary() {
         
         // Add a timeout to prevent infinite loading
         const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Data loading timeout')), 10000) // 10 second timeout
+          setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout for production
         })
         
         // Fetch both types of prompts and their metadata in parallel
@@ -83,6 +83,15 @@ export function ExploreLibrary() {
         // Set fallback data on error
         setRegularPrompts([])
         setTimelinePrompts([])
+        
+        // Log more details for debugging
+        if (error instanceof Error) {
+          console.error('Error details:', {
+            message: error.message,
+            stack: error.stack,
+            name: error.name
+          })
+        }
       } finally {
         setLoading(false)
       }

@@ -14,7 +14,13 @@ export function DashboardHeader() {
   const pathname = usePathname()
 
   const handleSignOut = async () => {
-    await signOut()
+    console.log('Sign out button clicked')
+    try {
+      await signOut()
+      console.log('Sign out completed')
+    } catch (error) {
+      console.error('Error in handleSignOut:', error)
+    }
   }
 
   // Get current page title

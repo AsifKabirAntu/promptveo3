@@ -73,7 +73,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Sign out function
   const signOut = useCallback(async () => {
-    await supabase.auth.signOut()
+    console.log('Sign out initiated...')
+    try {
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error('Sign out error:', error)
+      } else {
+        console.log('Sign out successful')
+      }
+    } catch (error) {
+      console.error('Sign out error:', error)
+    }
   }, [supabase.auth])
 
   // Poll for subscription updates when returning from Stripe

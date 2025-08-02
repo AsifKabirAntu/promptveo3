@@ -19,7 +19,10 @@
     "test-stripe": "tsx scripts/test-stripe.ts",
     "test-webhook": "tsx scripts/test-webhook.ts",
     "test-subscription-logic": "tsx scripts/test-subscription-logic.ts",
-    "test-checkout-flow": "tsx scripts/test-checkout-flow.ts"
+    "test-checkout-flow": "tsx scripts/test-checkout-flow.ts",
+    "test-production-db": "tsx scripts/test-production-db.ts",
+    "test-production-env": "tsx scripts/test-production-env.ts",
+    "check-webhook-secret": "tsx scripts/check-webhook-secret.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
