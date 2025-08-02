@@ -3,7 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/database'
 
-export const createBrowserClient = () => {
+export const createClient = () => {
   return createClientComponentClient<Database>({
     cookieOptions: {
       name: 'sb-promptveo3',
@@ -15,4 +15,4 @@ export const createBrowserClient = () => {
   })
 }
 
-export default createBrowserClient 
+export default createClient 
