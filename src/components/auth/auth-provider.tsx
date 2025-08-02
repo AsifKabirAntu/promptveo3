@@ -58,8 +58,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (!user?.id) return
     
     setSubscriptionLoading(true)
-    await fetchSubscription(user.id)
-  }, [user?.id, fetchSubscription])
+    try {
+      console.log('Refreshing subscription data for user:', user.id)
+      const sub = await getUserSubscriptionClient()
+      console.log('Refreshed subscription data:', sub)
+      setSubscription(sub)
+    } catch (error) {
+      console.error('Error refreshing subscription:', error)
+      setSubscription(null)
+    } finally {
+      setSubscriptionLoading(false)
+    }
+  }, [user?.id])
 
   // Sign out function
   const signOut = useCallback(async () => {
@@ -68,29 +78,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Poll for subscription updates when returning from Stripe
   useEffect(() => {
-    if (window.location.search.includes('success=true')) {
+    // Check if we just completed a checkout (either via URL or sessionStorage)
+    const hasCompletedCheckout = window.location.search.includes('success=true') || 
+                                sessionStorage.getItem('checkout_completed') === 'true'
+    
+    if (hasCompletedCheckout) {
+      // Clear the sessionStorage flag
+      sessionStorage.removeItem('checkout_completed')
+      
       let attempts = 0
-      const maxAttempts = 10 // Increased from 5 to 10
-      const pollInterval = 1000 // Decreased from 2000 to 1000 (1 second)
+      const maxAttempts = 15 // Increased to 15 attempts
+      const pollInterval = 1000 // 1 second
 
       const pollSubscription = async () => {
-        console.log('Polling for subscription update, attempt:', attempts + 1)
-        
         try {
           const sub = await getUserSubscriptionClient()
-          console.log('Polled subscription data:', sub)
           
-          if (sub?.status === 'active' && sub?.plan === 'pro') {
-            console.log('Pro subscription confirmed!')
+          if (sub?.status === 'active') {
             setSubscription(sub)
-            return // Stop polling once we confirm pro status
+            return // Stop polling once we confirm active status
           }
           
           attempts++
           if (attempts < maxAttempts) {
             setTimeout(pollSubscription, pollInterval)
-          } else {
-            console.log('Max polling attempts reached without finding active pro subscription')
           }
         } catch (error) {
           console.error('Error during subscription polling:', error)
@@ -103,7 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       pollSubscription()
     }
-  }, [refreshSubscription])
+  }, [])
 
   useEffect(() => {
     // Get initial session
@@ -113,7 +124,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false)
       
       // Fetch subscription for the user
-      await fetchSubscription(session?.user?.id ?? null)
+      if (session?.user?.id) {
+        try {
+          const sub = await getUserSubscriptionClient()
+          setSubscription(sub)
+        } catch (error) {
+          console.error('Error fetching initial subscription:', error)
+          setSubscription(null)
+        } finally {
+          setSubscriptionLoading(false)
+        }
+      } else {
+        setSubscription(null)
+        setSubscriptionLoading(false)
+      }
     }
 
     getSession()
@@ -125,12 +149,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setLoading(false)
         
         // Fetch subscription when user changes
-        await fetchSubscription(session?.user?.id ?? null)
+        if (session?.user?.id) {
+          try {
+            const sub = await getUserSubscriptionClient()
+            setSubscription(sub)
+          } catch (error) {
+            console.error('Error fetching subscription on auth change:', error)
+            setSubscription(null)
+          } finally {
+            setSubscriptionLoading(false)
+          }
+        } else {
+          setSubscription(null)
+          setSubscriptionLoading(false)
+        }
       }
     )
 
     return () => subscription.unsubscribe()
-  }, [fetchSubscription])
+  }, [])
 
   // Calculate features based on subscription
   const features = useMemo(() => {

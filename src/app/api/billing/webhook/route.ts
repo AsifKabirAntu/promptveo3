@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
             )
             console.log('Retrieved subscription:', subscription.id)
             
-            await handleSubscriptionChange(subscription, supabase)
+            await handleSubscriptionChange(subscription, supabase, session)
           }
           break
         }
@@ -86,12 +86,33 @@ export async function POST(request: NextRequest) {
 
 async function handleSubscriptionChange(
   subscription: Stripe.Subscription,
-  supabase: any
+  supabase: any,
+  session?: Stripe.Checkout.Session
 ) {
-  const userId = subscription.metadata.userId
+  // Try to get userId from multiple sources
+  let userId = subscription.metadata.userId
+  
+  if (!userId && session && session.metadata) {
+    // Fallback to session metadata
+    userId = session.metadata.userId
+  }
+  
+  if (!userId && subscription.customer && stripe) {
+    // Fallback to customer metadata
+    try {
+      const customer = await stripe.customers.retrieve(subscription.customer as string)
+      if (customer && !customer.deleted) {
+        userId = customer.metadata.userId
+      }
+    } catch (error) {
+      console.error('Error retrieving customer for userId:', error)
+    }
+  }
   
   if (!userId) {
-    console.error('No userId in subscription metadata')
+    console.error('No userId found in subscription, session, or customer metadata')
+    console.log('Subscription metadata:', subscription.metadata)
+    if (session) console.log('Session metadata:', session.metadata)
     return
   }
 
@@ -114,16 +135,37 @@ async function handleSubscriptionChange(
   console.log('Plan determined:', plan)
 
   // Upsert subscription record using correct column names
-  const subscriptionData = {
+  const subscriptionData: any = {
     user_id: userId,
     stripe_subscription_id: subscription.id,
     stripe_customer_id: subscription.customer as string,
     status,
-    plan,
     price_id: priceId,
-    current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
-    current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
     updated_at: new Date().toISOString(),
+  }
+  
+  // Safely handle date fields
+  if ((subscription as any).current_period_start) {
+    subscriptionData.current_period_start = new Date((subscription as any).current_period_start * 1000).toISOString()
+  }
+  
+  if ((subscription as any).current_period_end) {
+    subscriptionData.current_period_end = new Date((subscription as any).current_period_end * 1000).toISOString()
+  }
+  
+  // Only add plan field if it exists in the table
+  try {
+    // Test if plan column exists by trying to query it
+    const { error: testError } = await supabase
+      .from('subscriptions')
+      .select('plan')
+      .limit(1)
+    
+    if (!testError) {
+      subscriptionData.plan = plan
+    }
+  } catch (error) {
+    console.log('Plan column might not exist, skipping plan field')
   }
 
   console.log('Upserting subscription data:', subscriptionData)

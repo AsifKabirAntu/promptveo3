@@ -44,15 +44,13 @@ export function ExploreLibrary() {
       try {
         setLoading(true)
         
+        // Add a timeout to prevent infinite loading
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Data loading timeout')), 10000) // 10 second timeout
+        })
+        
         // Fetch both types of prompts and their metadata in parallel
-        const [
-          fetchedRegularPrompts,
-          fetchedTimelinePrompts,
-          fetchedCategories,
-          fetchedStyles,
-          fetchedTimelineCategories,
-          fetchedTimelineStyles
-        ] = await Promise.all([
+        const dataPromise = Promise.all([
           getAllPromptsClient(),
           getAllTimelinePromptsClient(),
           getUniqueCategories(),
@@ -60,6 +58,15 @@ export function ExploreLibrary() {
           getUniqueTimelineCategories(),
           getUniqueTimelineBaseStyles()
         ])
+        
+        const [
+          fetchedRegularPrompts,
+          fetchedTimelinePrompts,
+          fetchedCategories,
+          fetchedStyles,
+          fetchedTimelineCategories,
+          fetchedTimelineStyles
+        ] = await Promise.race([dataPromise, timeoutPromise]) as any
         
         setRegularPrompts(fetchedRegularPrompts)
         setTimelinePrompts(fetchedTimelinePrompts)
@@ -73,6 +80,9 @@ export function ExploreLibrary() {
         
       } catch (error) {
         console.error('Error loading data:', error)
+        // Set fallback data on error
+        setRegularPrompts([])
+        setTimelinePrompts([])
       } finally {
         setLoading(false)
       }

@@ -50,11 +50,8 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
-    console.log('No user found for subscription check')
     return null
   }
-
-  console.log('Fetching subscription for user:', user.id)
 
   const { data: subscription, error } = await supabase
     .from('subscriptions')
@@ -62,16 +59,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
     .eq('user_id', user.id)
     .single()
 
-  console.log('Raw subscription data:', subscription)
-  console.log('Subscription query error:', error)
-
-  if (error) {
-    console.log('No subscription found or error:', error.message)
-    return null
-  }
-
-  if (!subscription) {
-    console.log('No subscription data returned')
+  if (error || !subscription) {
     return null
   }
 
@@ -81,7 +69,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
     user_id: subscription.user_id,
     subscription_id: subscription.stripe_subscription_id || '',
     status: subscription.status as SubscriptionStatus,
-    plan: subscription.plan as SubscriptionPlan || (subscription.status === 'active' ? 'pro' : 'free'),
+    plan: (subscription.plan as SubscriptionPlan) || (subscription.status === 'active' ? 'pro' : 'free'),
     price_id: subscription.price_id,
     current_period_start: subscription.current_period_start || '',
     current_period_end: subscription.current_period_end || '',
@@ -89,27 +77,21 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
     updated_at: subscription.updated_at || '',
   }
 
-  console.log('Mapped subscription:', mappedSubscription)
   return mappedSubscription
 }
 
 // Get subscription features based on plan
 export function getSubscriptionFeatures(subscription: UserSubscription | null): SubscriptionFeatures {
-  console.log('Checking features for subscription:', subscription)
-
   // Consider active subscription as pro regardless of plan field
   const isPro = subscription?.status === 'active'
-  console.log('Is Pro?', isPro, 'Status:', subscription?.status)
 
   if (isPro) {
-    console.log('Returning PRO features')
     return {
       ...PRO_PLAN_FEATURES,
       canViewAllPrompts: true,
     }
   }
 
-  console.log('Returning FREE features')
   return {
     ...FREE_PLAN_LIMITS,
     canViewAllPrompts: false,

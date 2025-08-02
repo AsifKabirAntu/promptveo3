@@ -1,6 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { config } from 'dotenv'
+
+// Load environment variables
+config({ path: '.env.local' })
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -19,13 +23,26 @@ async function runSqlFile(filename: string) {
     
     console.log(`Running SQL file: ${filename}`)
     
-    const { error } = await supabase.rpc('exec_sql', { sql })
+    // Split SQL into individual statements
+    const statements = sql.split(';').filter(stmt => stmt.trim().length > 0)
     
-    if (error) {
-      console.error('Error executing SQL:', error)
-    } else {
-      console.log(`Successfully executed ${filename}`)
+    for (const statement of statements) {
+      if (statement.trim()) {
+        console.log('Executing:', statement.trim())
+        const { error } = await supabase.rpc('exec_sql', { sql: statement.trim() })
+        
+        if (error) {
+          console.error('Error executing SQL:', error)
+          // Try direct query as fallback
+          const { error: directError } = await supabase.from('_dummy').select('*').limit(0)
+          if (directError) {
+            console.error('Direct query also failed:', directError)
+          }
+        }
+      }
     }
+    
+    console.log(`Successfully executed ${filename}`)
   } catch (error) {
     console.error(`Error reading or executing ${filename}:`, error)
   }

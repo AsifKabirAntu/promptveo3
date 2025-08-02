@@ -11,7 +11,15 @@
     "ingest": "tsx scripts/ingest-data.ts",
     "ingest-timeline": "tsx scripts/ingest-timeline-data.ts",
     "create-email-table": "tsx scripts/create-email-subscriptions-table.ts",
-    "generate-favicons": "node scripts/generate-favicons.mjs"
+    "generate-favicons": "node scripts/generate-favicons.mjs",
+    "sql": "tsx scripts/run-sql.ts",
+    "add-plan-column": "tsx scripts/add-plan-column.ts",
+    "test-subscription": "tsx scripts/test-subscription.ts",
+    "test-prompts": "tsx scripts/test-prompts.ts",
+    "test-stripe": "tsx scripts/test-stripe.ts",
+    "test-webhook": "tsx scripts/test-webhook.ts",
+    "test-subscription-logic": "tsx scripts/test-subscription-logic.ts",
+    "test-checkout-flow": "tsx scripts/test-checkout-flow.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

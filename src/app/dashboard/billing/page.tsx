@@ -10,6 +10,7 @@ import { getStripe } from '@/lib/stripe'
 import { getPlanDisplayName, getPlanPrice } from '@/lib/subscriptions'
 import { Check, Crown, CreditCard, Calendar, Zap } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default function BillingPage() {
   const { user, subscription, features, refreshSubscription } = useAuth()
@@ -63,6 +64,10 @@ export default function BillingPage() {
       }
 
       console.log('Redirecting to checkout with sessionId:', sessionId)
+      
+      // Set a flag to indicate checkout is starting
+      sessionStorage.setItem('checkout_completed', 'true')
+      
       const { error } = await stripe.redirectToCheckout({ sessionId })
       
       if (error) {
@@ -115,6 +120,12 @@ export default function BillingPage() {
               <h3 className="text-sm font-medium text-green-800">
                 Welcome to Pro! Your subscription is now active.
               </h3>
+              <button 
+                onClick={() => refreshSubscription()}
+                className="mt-2 text-sm text-green-600 hover:text-green-800 underline"
+              >
+                Refresh subscription status
+              </button>
             </div>
           </div>
         </div>
