@@ -22,7 +22,8 @@
     "test-checkout-flow": "tsx scripts/test-checkout-flow.ts",
     "test-production-db": "tsx scripts/test-production-db.ts",
     "test-production-env": "tsx scripts/test-production-env.ts",
-    "check-webhook-secret": "tsx scripts/check-webhook-secret.ts"
+    "check-webhook-secret": "tsx scripts/check-webhook-secret.ts",
+    "fix-production-env": "tsx scripts/fix-production-env.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
