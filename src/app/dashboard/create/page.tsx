@@ -4,11 +4,14 @@ import { useState } from "react"
 import { ArrowLeft, FileText, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Paywall } from "@/components/ui/paywall"
+import { useAuth } from "@/components/auth/auth-provider"
 import Link from "next/link"
 import { PromptEditor } from "@/components/prompt-editor"
 import { TimelinePromptEditor } from "@/components/timeline-prompt-editor"
 
 export default function CreatePromptPage() {
+  const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<"regular" | "timeline">("regular")
 
   return (
@@ -82,13 +85,24 @@ export default function CreatePromptPage() {
         </div>
 
         {/* Editor Content */}
-        <div className="relative">
-          {activeTab === "regular" ? (
-            <PromptEditor isCreateMode={true} />
-          ) : (
-            <TimelinePromptEditor isCreateMode={true} />
-          )}
-        </div>
+        {features.canCreate ? (
+          <div className="relative">
+            {activeTab === "regular" ? (
+              <PromptEditor isCreateMode={true} />
+            ) : (
+              <TimelinePromptEditor isCreateMode={true} />
+            )}
+          </div>
+        ) : (
+          <div className="mt-8">
+            <Paywall 
+              title="Create Custom Prompts"
+              description="Upgrade to Pro to create and save your own custom prompts."
+              feature="Custom prompt creation"
+              className="max-w-4xl mx-auto"
+            />
+          </div>
+        )}
       </div>
     </div>
   )

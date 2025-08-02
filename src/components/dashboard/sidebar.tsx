@@ -8,7 +8,8 @@ import {
   Heart, 
   FolderOpen, 
   Plus, 
-  Settings
+  Settings,
+  CreditCard
 } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 
@@ -17,6 +18,7 @@ const navigation = [
   { name: "Favorites", href: "/dashboard/favorites", icon: Heart },
   { name: "My Prompts", href: "/dashboard/my-prompts", icon: FolderOpen },
   { name: "Create Prompt", href: "/dashboard/create", icon: Plus },
+  { name: "Billing", href: "/dashboard/billing", icon: CreditCard },
   { name: "Account", href: "/dashboard/account", icon: Settings },
 ]
 

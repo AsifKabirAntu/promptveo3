@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, Heart, Copy, Edit, Download, Clock, Eye, Tag } from "lucide-react"
+import { ArrowLeft, Heart, Copy, Edit, Download, Clock, Eye, Tag, Lock } from "lucide-react"
 import { Prompt } from "@/types/prompt"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Paywall } from "@/components/ui/paywall"
+import { useAuth } from "@/components/auth/auth-provider"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 
@@ -14,6 +16,7 @@ interface PromptDetailProps {
 }
 
 export function PromptDetail({ prompt }: PromptDetailProps) {
+  const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
 
@@ -96,30 +99,62 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
           </div>
 
           <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
-            <Button
-              variant="outline"
-              onClick={() => setIsFavorited(!isFavorited)}
-              className={`gap-2 transition-all ${
-                isFavorited 
-                  ? "bg-red-50 text-red-600 border-red-200 hover:bg-red-100" 
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <Heart className={`w-4 h-4 ${isFavorited ? "fill-current" : ""}`} />
-              {isFavorited ? "Favorited" : "Favorite"}
-            </Button>
+            {features.canFavorite ? (
+              <Button
+                variant="outline"
+                onClick={() => setIsFavorited(!isFavorited)}
+                className={`gap-2 transition-all ${
+                  isFavorited 
+                    ? "bg-red-50 text-red-600 border-red-200 hover:bg-red-100" 
+                    : "hover:bg-gray-100"
+                }`}
+              >
+                <Heart className={`w-4 h-4 ${isFavorited ? "fill-current" : ""}`} />
+                {isFavorited ? "Favorited" : "Favorite"}
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                disabled
+                className="gap-2 text-gray-400"
+              >
+                <Lock className="w-4 h-4" />
+                Favorite
+              </Button>
+            )}
 
-            <Link href={`/dashboard/editor?remix=${prompt.id}`}>
-              <Button variant="outline" className="gap-2 hover:bg-gray-100">
-                <Edit className="w-4 h-4" />
+            {features.canRemix ? (
+              <Link href={`/dashboard/editor?remix=${prompt.id}`}>
+                <Button variant="outline" className="gap-2 hover:bg-gray-100">
+                  <Edit className="w-4 h-4" />
+                  Remix Prompt
+                </Button>
+              </Link>
+            ) : (
+              <Button
+                variant="outline"
+                disabled
+                className="gap-2 text-gray-400"
+              >
+                <Lock className="w-4 h-4" />
                 Remix Prompt
               </Button>
-            </Link>
+            )}
 
-            <Button onClick={handleExport} className="gap-2 bg-blue-600 hover:bg-blue-700">
-              <Download className="w-4 h-4" />
-              Export JSON
-            </Button>
+            {features.canViewJSON ? (
+              <Button onClick={handleExport} className="gap-2 bg-blue-600 hover:bg-blue-700">
+                <Download className="w-4 h-4" />
+                Export JSON
+              </Button>
+            ) : (
+              <Button
+                disabled
+                className="gap-2 bg-gray-400 text-gray-600"
+              >
+                <Lock className="w-4 h-4" />
+                Export JSON
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -138,16 +173,26 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
             >
               Human Readable
             </button>
-            <button
-              onClick={() => setActiveTab("json")}
-              className={`px-6 py-4 text-sm font-medium transition-all border-b-2 ${
-                activeTab === "json"
-                  ? "border-blue-500 text-blue-600 bg-blue-50"
-                  : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              }`}
-            >
-              JSON Format
-            </button>
+            {features.canViewJSON ? (
+              <button
+                onClick={() => setActiveTab("json")}
+                className={`px-6 py-4 text-sm font-medium transition-all border-b-2 ${
+                  activeTab === "json"
+                    ? "border-blue-500 text-blue-600 bg-blue-50"
+                    : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                }`}
+              >
+                JSON Format
+              </button>
+            ) : (
+              <button
+                disabled
+                className="px-6 py-4 text-sm font-medium text-gray-400 cursor-not-allowed flex items-center gap-2"
+              >
+                JSON Format
+                <Lock className="w-3 h-3" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -224,7 +269,7 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
                 </CardContent>
               </Card>
             </div>
-          ) : (
+          ) : features.canViewJSON ? (
             <Card className="border-0 shadow-none bg-gray-50">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg font-semibold">Raw JSON</CardTitle>
@@ -248,6 +293,15 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
                 </div>
               </CardContent>
             </Card>
+          ) : (
+            <div className="py-8">
+              <Paywall 
+                title="JSON Export"
+                description="Upgrade to Pro to view and export prompts in JSON format for Veo 3."
+                feature="JSON export"
+                className="max-w-2xl mx-auto"
+              />
+            </div>
           )}
         </div>
       </div>

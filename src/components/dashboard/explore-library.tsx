@@ -1,12 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, Filter, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react"
+import { Search, Filter, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock } from "lucide-react"
 import { UnifiedPromptCard } from "@/components/unified-prompt-card"
 import { PromptSideSheet } from "@/components/prompt-side-sheet"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Paywall } from "@/components/ui/paywall"
+import { useAuth } from "@/components/auth/auth-provider"
 import { getAllPromptsClient, getUniqueCategories, getUniqueStyles, fallbackCategories, fallbackStyles } from "@/lib/prompts-client"
 import { getAllTimelinePromptsClient, getUniqueTimelineCategories, getUniqueTimelineBaseStyles, fallbackTimelineCategories, fallbackTimelineBaseStyles } from "@/lib/timeline-prompts-client"
 import { Prompt } from "@/types/prompt"
@@ -16,6 +18,7 @@ import { TimelinePrompt } from "@/types/timeline-prompt"
 type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
 
 export function ExploreLibrary() {
+  const { features } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [selectedStyle, setSelectedStyle] = useState<string>("")
@@ -78,7 +81,7 @@ export function ExploreLibrary() {
   }, [])
 
   // Convert prompts to unified format and filter based on current tab
-  const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number } => {
+  const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number, limitedCount: number } => {
     const unifiedRegular: UnifiedPrompt[] = regularPrompts.map(prompt => ({ ...prompt, type: 'regular' as const }))
     const unifiedTimeline: UnifiedPrompt[] = timelinePrompts.map(prompt => ({ ...prompt, type: 'timeline' as const }))
     
@@ -110,18 +113,63 @@ export function ExploreLibrary() {
       return matchesSearch && matchesCategory && matchesStyle
     })
 
+    // Special handling for free users - consistent prompts across all tabs
+    let limitedPrompts: UnifiedPrompt[] = []
+    
+    if (features.canViewAllPrompts) {
+      // Pro users see all prompts
+      limitedPrompts = filtered
+    } else {
+      // For free users, always use the same specific prompts across all tabs
+      // Get the first 2 regular and first 1 timeline prompt that match filters
+      const allRegular = unifiedRegular.filter(p => {
+        const matchesSearch = !searchQuery || 
+          p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.description.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesCategory = !selectedCategory || p.category === selectedCategory
+        const matchesStyle = !selectedStyle || (p as Prompt).style === selectedStyle
+        return matchesSearch && matchesCategory && matchesStyle
+      })
+      
+      const allTimeline = unifiedTimeline.filter(p => {
+        const matchesSearch = !searchQuery || 
+          p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.description.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesCategory = !selectedCategory || p.category === selectedCategory
+        const matchesStyle = !selectedStyle || (p as TimelinePrompt).base_style === selectedStyle
+        return matchesSearch && matchesCategory && matchesStyle
+      })
+      
+      // Always use the same specific prompts
+      const staticRegular = allRegular.slice(0, 2)
+      const staticTimeline = allTimeline.slice(0, 1)
+      
+      // Show different combinations based on tab
+      if (timelineFilter === 'all') {
+        // "All Prompts" tab: show 2 regular + 1 timeline
+        limitedPrompts = [...staticRegular, ...staticTimeline]
+      } else if (timelineFilter === 'with-timeline') {
+        // "With Timeline" tab: show only the 1 timeline prompt
+        limitedPrompts = staticTimeline
+      } else if (timelineFilter === 'without-timeline') {
+        // "Without Timeline" tab: show only the 2 regular prompts
+        limitedPrompts = staticRegular
+      }
+    }
+
     // Calculate pagination using itemsPerPage instead of ITEMS_PER_PAGE
     const startIndex = (currentPage - 1) * itemsPerPage
-    const paginatedPrompts = filtered.slice(startIndex, startIndex + itemsPerPage)
+    const paginatedPrompts = limitedPrompts.slice(startIndex, startIndex + itemsPerPage)
 
     return {
       prompts: paginatedPrompts,
-      totalCount: filtered.length
+      totalCount: filtered.length,
+      limitedCount: limitedPrompts.length
     }
   }
 
-  const { prompts: displayPrompts, totalCount } = getDisplayPrompts()
-  const totalPages = Math.ceil(totalCount / itemsPerPage)
+  const { prompts: displayPrompts, totalCount, limitedCount } = getDisplayPrompts()
+  const totalPages = Math.ceil(limitedCount / itemsPerPage)
   
   // Reset to first page when filters change
   useEffect(() => {
@@ -314,7 +362,12 @@ export function ExploreLibrary() {
       {/* Results Count and Page Size Control */}
       <div className="flex items-center justify-between mb-6 bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm text-gray-600">
-          Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{totalCount}</span> prompts
+          Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{limitedCount}</span> prompts
+          {!features.canViewAllPrompts && totalCount > limitedCount && (
+            <span className="text-gray-500 ml-2">
+              (of {totalCount} total - upgrade to see all)
+            </span>
+          )}
         </p>
         
         <div className="flex items-center gap-3">
@@ -341,13 +394,25 @@ export function ExploreLibrary() {
       {/* Prompt Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayPrompts.map((prompt) => (
-                      <UnifiedPromptCard 
-              key={`${prompt.type}-${prompt.id}`} 
-              prompt={prompt}
-              onViewPrompt={handleViewPrompt}
-            />
+          <UnifiedPromptCard 
+            key={`${prompt.type}-${prompt.id}`} 
+            prompt={prompt}
+            onViewPrompt={handleViewPrompt}
+          />
         ))}
       </div>
+
+      {/* Paywall for free users */}
+      {!features.canViewAllPrompts && totalCount > limitedCount && (
+        <div className="mt-8">
+          <Paywall 
+            title="Unlock All Prompts"
+            description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
+            feature="Unlimited prompt access"
+            className="max-w-4xl mx-auto"
+          />
+        </div>
+      )}
 
       {/* Pagination Controls */}
       {totalPages > 1 && (

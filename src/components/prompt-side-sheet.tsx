@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
+import { useAuth } from "@/components/auth/auth-provider"
+import { CompactPaywall, Paywall } from "@/components/ui/paywall"
 
 type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
 
@@ -19,9 +21,12 @@ interface PromptSideSheetProps {
 }
 
 export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProps) {
+  const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [showPaywall, setShowPaywall] = useState(false)
+  const [paywallFeature, setPaywallFeature] = useState('')
 
   useEffect(() => {
     // Reset tab when prompt changes
@@ -43,6 +48,37 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
 
   // Don't render if not open and not animating
   if (!prompt || (!isOpen && !isAnimating)) return null
+
+  const handleFeatureClick = (feature: string, action: () => void) => {
+    if (features.canFavorite && feature === 'favorite') {
+      action()
+    } else if (features.canRemix && feature === 'remix') {
+      action()
+    } else if (features.canViewJSON && feature === 'export') {
+      action()
+    } else if (feature === 'json') {
+      // Only paywall JSON for timeline prompts
+      if (prompt.type === 'timeline' && !features.canViewJSON) {
+        setPaywallFeature(feature)
+        setShowPaywall(true)
+      } else {
+        action()
+      }
+    } else {
+      setPaywallFeature(feature)
+      setShowPaywall(true)
+    }
+  }
+
+  const getPaywallTitle = (feature: string) => {
+    switch (feature) {
+      case 'favorite': return 'Save to Favorites'
+      case 'remix': return 'Remix Prompt'
+      case 'export': return 'Export JSON'
+      case 'json': return 'JSON View'
+      default: return 'Premium Feature'
+    }
+  }
 
   const handleCopyJson = () => {
     const jsonData = prompt.type === 'regular' 
@@ -156,7 +192,7 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
               <div className="flex items-center gap-3 mt-6">
                 <Button
                   variant="outline"
-                  onClick={() => setIsFavorited(!isFavorited)}
+                  onClick={() => handleFeatureClick('favorite', () => setIsFavorited(!isFavorited))}
                   className={`gap-2 transition-all ${
                     isFavorited 
                       ? "bg-red-50 text-red-600 border-red-200 hover:bg-red-100" 
@@ -167,14 +203,21 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
                   {isFavorited ? "Favorited" : "Favorite"}
                 </Button>
 
-                <Link href={`/dashboard/editor?remix${prompt.type === 'timeline' ? '-timeline' : ''}=${prompt.id}`}>
-                  <Button variant="outline" className="gap-2 hover:bg-gray-100">
-                    <Edit className="w-4 h-4" />
-                    Remix
-                  </Button>
-                </Link>
+                <Button 
+                  variant="outline" 
+                  className="gap-2 hover:bg-gray-100"
+                  onClick={() => handleFeatureClick('remix', () => {
+                    window.location.href = `/dashboard/editor?remix${prompt.type === 'timeline' ? '-timeline' : ''}=${prompt.id}`
+                  })}
+                >
+                  <Edit className="w-4 h-4" />
+                  Remix
+                </Button>
 
-                <Button onClick={handleExport} className="gap-2 bg-blue-600 hover:bg-blue-700">
+                <Button 
+                  onClick={() => handleFeatureClick('export', handleExport)} 
+                  className="gap-2 bg-blue-600 hover:bg-blue-700"
+                >
                   <Download className="w-4 h-4" />
                   Export JSON
                 </Button>
@@ -196,7 +239,7 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
                     Details
                   </button>
                   <button
-                    onClick={() => setActiveTab("json")}
+                    onClick={() => handleFeatureClick('json', () => setActiveTab("json"))}
                     className={`px-6 py-4 text-sm font-medium transition-all border-b-2 ${
                       activeTab === "json"
                         ? "border-blue-500 text-blue-600 bg-white"
@@ -447,6 +490,21 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
           </div>
         </div>
       </div>
+
+      {/* Paywall Modal */}
+      {showPaywall && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[10000] p-4 animate-in fade-in duration-200">
+          <div className="w-full max-w-md animate-in zoom-in-95 duration-200">
+            <Paywall
+              title={getPaywallTitle(paywallFeature)}
+              description={`Upgrade to Pro to ${paywallFeature} prompts and unlock all premium features.`}
+              feature={paywallFeature}
+              showUpgradeButton={true}
+              onClose={() => setShowPaywall(false)}
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 } 
