@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { Search, Filter, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { getAllPrompts } from '@/lib/prompts'
-import { getAllTimelinePrompts } from '@/lib/timeline-prompts'
+import { getAllPromptsClient } from '@/lib/prompts-client'
+import { getAllTimelinePromptsClient } from '@/lib/timeline-prompts-client'
 import { Prompt } from '@/types/prompt'
 import { TimelinePrompt } from '@/types/timeline-prompt'
 import { UnifiedPromptCard } from '@/components/unified-prompt-card'
@@ -56,8 +56,8 @@ export default function ExploreLibrary() {
         setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout
       })
 
-      const regularPromptsPromise = getAllPrompts()
-      const timelinePromptsPromise = getAllTimelinePrompts()
+      const regularPromptsPromise = getAllPromptsClient()
+      const timelinePromptsPromise = getAllTimelinePromptsClient()
 
       const [regularPrompts, timelinePrompts] = await Promise.race([
         Promise.all([regularPromptsPromise, timelinePromptsPromise]),
