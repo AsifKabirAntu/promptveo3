@@ -33,7 +33,8 @@ export function ExploreLibrary() {
   const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
   const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
   const [loading, setLoading] = useState(true)
-  
+  const [error, setError] = useState<string | null>(null)
+
   // Categories and styles from both types
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
   const [styles, setStyles] = useState<string[]>(fallbackStyles)
@@ -42,62 +43,70 @@ export function ExploreLibrary() {
   useEffect(() => {
     async function loadData() {
       try {
-        setLoading(true)
+        console.log('Starting to fetch data...')
         
         // Add a timeout to prevent infinite loading
         const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout for production
+          setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout
         })
-        
-        // Fetch both types of prompts and their metadata in parallel
-        const dataPromise = Promise.all([
-          getAllPromptsClient(),
-          getAllTimelinePromptsClient(),
-          getUniqueCategories(),
-          getUniqueStyles(),
-          getUniqueTimelineCategories(),
-          getUniqueTimelineBaseStyles()
-        ])
-        
-        const [
-          fetchedRegularPrompts,
-          fetchedTimelinePrompts,
-          fetchedCategories,
-          fetchedStyles,
-          fetchedTimelineCategories,
-          fetchedTimelineStyles
-        ] = await Promise.race([dataPromise, timeoutPromise]) as any
-        
-        setRegularPrompts(fetchedRegularPrompts)
-        setTimelinePrompts(fetchedTimelinePrompts)
-        
-        // Combine and deduplicate categories and styles
-        const allCategories = [...new Set([...fetchedCategories, ...fetchedTimelineCategories])].sort()
-        const allStyles = [...new Set([...fetchedStyles, ...fetchedTimelineStyles])].sort()
-        
-        if (allCategories.length > 0) setCategories(allCategories)
-        if (allStyles.length > 0) setStyles(allStyles)
-        
-      } catch (error) {
-        console.error('Error loading data:', error)
-        // Set fallback data on error
+
+        const regularPromptsPromise = getAllPromptsClient()
+        const timelinePromptsPromise = getAllTimelinePromptsClient()
+
+        // Log the Supabase URL being used (without exposing the key)
+        console.log('Using Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+
+        try {
+          const [regularData, timelineData] = await Promise.race([
+            Promise.all([regularPromptsPromise, timelinePromptsPromise]),
+            timeoutPromise
+          ]) as [Prompt[], TimelinePrompt[]] // Type assertion here
+
+          console.log('Data fetched successfully:', {
+            regularCount: regularData?.length || 0,
+            timelineCount: timelineData?.length || 0
+          })
+
+          setRegularPrompts(regularData || [])
+          setTimelinePrompts(timelineData || [])
+        } catch (err: any) {
+          if (err.message === 'Data loading timeout') {
+            console.error('Data fetch timed out after 30 seconds')
+            setError('Failed to load data: Connection timeout')
+          } else {
+            console.error('Error fetching data:', err)
+            setError(`Failed to load data: ${err.message}`)
+          }
+          // Set empty arrays to prevent infinite loading state
+          setRegularPrompts([])
+          setTimelinePrompts([])
+        }
+      } catch (err: any) {
+        console.error('Outer error:', err)
+        setError(`Failed to load data: ${err.message}`)
         setRegularPrompts([])
         setTimelinePrompts([])
-        
-        // Log more details for debugging
-        if (error instanceof Error) {
-          console.error('Error details:', {
-            message: error.message,
-            stack: error.stack,
-            name: error.name
-          })
-        }
       } finally {
         setLoading(false)
       }
     }
+
     loadData()
   }, [])
+
+  if (error) {
+    return (
+      <div className="p-4 text-center">
+        <div className="text-red-600 mb-4">{error}</div>
+        <button 
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Try Again
+        </button>
+      </div>
+    )
+  }
 
   // Convert prompts to unified format and filter based on current tab
   const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number, limitedCount: number } => {

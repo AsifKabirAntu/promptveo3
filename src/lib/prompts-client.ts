@@ -1,45 +1,34 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import type { Database } from '@/types/database'
+import { Database } from '@/types/database'
+import { Prompt } from '@/types/prompt'
 
-// Client-side data fetching only
-export async function getAllPromptsClient() {
-  const supabase = createClientComponentClient<Database>()
-  
-  const { data: prompts, error } = await supabase
-    .from('prompts')
-    .select('*')
-    .eq('is_public', true)
-    .order('created_at', { ascending: false })
-  
-  if (error) {
-    console.error('Error fetching prompts:', error)
-    return []
+export async function getAllPromptsClient(): Promise<Prompt[]> {
+  try {
+    console.log('Initializing Supabase client...')
+    const supabase = createClientComponentClient<Database>()
+
+    console.log('Fetching prompts from Supabase...')
+    const { data: prompts, error } = await supabase
+      .from('prompts')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase error fetching prompts:', error)
+      throw new Error(`Database error: ${error.message}`)
+    }
+
+    if (!prompts) {
+      console.warn('No prompts found')
+      return []
+    }
+
+    console.log(`Successfully fetched ${prompts.length} prompts`)
+    return prompts
+  } catch (err: any) {
+    console.error('Error in getAllPromptsClient:', err)
+    throw new Error(`Failed to fetch prompts: ${err.message}`)
   }
-  
-  // Transform database format to match our Prompt interface
-  return (prompts || []).map(prompt => ({
-    id: prompt.id,
-    title: prompt.title,
-    description: prompt.description,
-    style: prompt.style,
-    camera: prompt.camera,
-    lighting: prompt.lighting,
-    environment: prompt.environment,
-    elements: prompt.elements || [],
-    motion: prompt.motion,
-    ending: prompt.ending,
-    text: prompt.text || 'none',
-    keywords: prompt.keywords || [],
-    timeline: prompt.timeline || null,  // Added timeline field
-    category: prompt.category,
-    is_featured: prompt.is_featured || false,
-    is_public: prompt.is_public !== false,
-    likes_count: prompt.likes_count || 0,
-    usage_count: prompt.usage_count || 0,
-    created_at: prompt.created_at,
-    updated_at: prompt.updated_at,
-    created_by: prompt.created_by || ''
-  }))
 }
 
 export async function searchPrompts(query: string, category?: string, style?: string) {

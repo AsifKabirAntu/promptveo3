@@ -1,43 +1,35 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import type { Database } from '@/types/database'
+import { Database } from '@/types/database'
 import { TimelinePrompt } from '@/types/timeline-prompt'
 
 // Client-side data fetching for timeline prompts
 export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
-  const supabase = createClientComponentClient<Database>()
-  
-  const { data: prompts, error } = await supabase
-    .from('timeline_prompts')
-    .select('*')
-    .eq('is_public', true)
-    .order('created_at', { ascending: false })
-  
-  if (error) {
-    console.error('Error fetching timeline prompts:', error)
-    return []
+  try {
+    console.log('Initializing Supabase client for timeline prompts...')
+    const supabase = createClientComponentClient<Database>()
+
+    console.log('Fetching timeline prompts from Supabase...')
+    const { data: prompts, error } = await supabase
+      .from('timeline_prompts')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase error fetching timeline prompts:', error)
+      throw new Error(`Database error: ${error.message}`)
+    }
+
+    if (!prompts) {
+      console.warn('No timeline prompts found')
+      return []
+    }
+
+    console.log(`Successfully fetched ${prompts.length} timeline prompts`)
+    return prompts
+  } catch (err: any) {
+    console.error('Error in getAllTimelinePromptsClient:', err)
+    throw new Error(`Failed to fetch timeline prompts: ${err.message}`)
   }
-  
-  // Transform database format to match our TimelinePrompt interface
-  return (prompts || []).map(prompt => ({
-    id: prompt.id,
-    title: prompt.title,
-    description: prompt.description,
-    category: prompt.category,
-    base_style: prompt.base_style,
-    aspect_ratio: prompt.aspect_ratio || '16:9',
-    scene_description: prompt.scene_description,
-    camera_setup: prompt.camera_setup,
-    lighting: prompt.lighting,
-    negative_prompts: prompt.negative_prompts || [],
-    timeline: Array.isArray(prompt.timeline) ? prompt.timeline : [],
-    created_by: prompt.created_by || '',
-    created_at: prompt.created_at,
-    updated_at: prompt.updated_at,
-    is_featured: prompt.is_featured || false,
-    is_public: prompt.is_public !== false,
-    likes_count: prompt.likes_count || 0,
-    usage_count: prompt.usage_count || 0
-  }))
 }
 
 export async function searchTimelinePrompts(query: string, category?: string, baseStyle?: string): Promise<TimelinePrompt[]> {
