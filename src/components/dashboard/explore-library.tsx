@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Search, Filter, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock } from "lucide-react"
 import { UnifiedPromptCard } from "@/components/unified-prompt-card"
 import { PromptSideSheet } from "@/components/prompt-side-sheet"
@@ -17,7 +17,7 @@ import { TimelinePrompt } from "@/types/timeline-prompt"
 // Union type for unified prompt display
 type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
 
-export function ExploreLibrary() {
+export default function ExploreLibrary() {
   const { features } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("")
@@ -39,71 +39,81 @@ export function ExploreLibrary() {
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
   const [styles, setStyles] = useState<string[]>(fallbackStyles)
 
-  // Load all data
-  useEffect(() => {
-    async function loadData() {
+  const loadData = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      console.log('Starting to fetch data...')
+      
+      // Add a timeout to prevent infinite loading
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout
+      })
+
+      const regularPromptsPromise = getAllPromptsClient()
+      const timelinePromptsPromise = getAllTimelinePromptsClient()
+
+      // Log the Supabase URL being used (without exposing the key)
+      console.log('Using Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+
       try {
-        console.log('Starting to fetch data...')
-        
-        // Add a timeout to prevent infinite loading
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout
+        const [regularData, timelineData] = await Promise.race([
+          Promise.all([regularPromptsPromise, timelinePromptsPromise]),
+          timeoutPromise
+        ]) as [Prompt[], TimelinePrompt[]]
+
+        console.log('Data fetched successfully:', {
+          regularCount: regularData?.length || 0,
+          timelineCount: timelineData?.length || 0
         })
 
-        const regularPromptsPromise = getAllPromptsClient()
-        const timelinePromptsPromise = getAllTimelinePromptsClient()
-
-        // Log the Supabase URL being used (without exposing the key)
-        console.log('Using Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-
-        try {
-          const [regularData, timelineData] = await Promise.race([
-            Promise.all([regularPromptsPromise, timelinePromptsPromise]),
-            timeoutPromise
-          ]) as [Prompt[], TimelinePrompt[]] // Type assertion here
-
-          console.log('Data fetched successfully:', {
-            regularCount: regularData?.length || 0,
-            timelineCount: timelineData?.length || 0
-          })
-
-          setRegularPrompts(regularData || [])
-          setTimelinePrompts(timelineData || [])
-        } catch (err: any) {
-          if (err.message === 'Data loading timeout') {
-            console.error('Data fetch timed out after 30 seconds')
-            setError('Failed to load data: Connection timeout')
-          } else {
-            console.error('Error fetching data:', err)
-            setError(`Failed to load data: ${err.message}`)
-          }
-          // Set empty arrays to prevent infinite loading state
-          setRegularPrompts([])
-          setTimelinePrompts([])
-        }
+        setRegularPrompts(regularData || [])
+        setTimelinePrompts(timelineData || [])
+        setError(null)
       } catch (err: any) {
-        console.error('Outer error:', err)
-        setError(`Failed to load data: ${err.message}`)
+        if (err.message === 'Data loading timeout') {
+          console.error('Data fetch timed out after 30 seconds')
+          setError('Failed to load data: Connection timeout. Please try again.')
+        } else {
+          console.error('Error fetching data:', err)
+          setError(`Failed to load data: ${err.message}. Please try again.`)
+        }
+        // Set empty arrays to prevent infinite loading state
         setRegularPrompts([])
         setTimelinePrompts([])
-      } finally {
-        setLoading(false)
       }
+    } catch (err: any) {
+      console.error('Outer error:', err)
+      setError(`Failed to load data: ${err.message}. Please try again.`)
+      setRegularPrompts([])
+      setTimelinePrompts([])
+    } finally {
+      setLoading(false)
     }
-
-    loadData()
   }, [])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData])
 
   if (error) {
     return (
-      <div className="p-4 text-center">
+      <div className="p-8 text-center">
         <div className="text-red-600 mb-4">{error}</div>
         <button 
-          onClick={() => window.location.reload()}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          onClick={loadData}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
         >
           Try Again
         </button>
+      </div>
+    )
+  }
+
+  if (loading) {
+    return (
+      <div className="p-8 text-center">
+        <div className="animate-pulse text-gray-600">Loading prompts...</div>
       </div>
     )
   }
@@ -218,17 +228,6 @@ export function ExploreLibrary() {
   // Get featured prompt for "Prompt of the Day"
   const promptOfTheDay = displayPrompts.length > 0 ? 
     (displayPrompts.find(p => p.is_featured) || displayPrompts[0]) : null
-
-  if (loading) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading prompts...</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

@@ -2,30 +2,53 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/types/database'
 import { TimelinePrompt } from '@/types/timeline-prompt'
 
-// Client-side data fetching for timeline prompts
+const MAX_RETRIES = 3
+const RETRY_DELAY = 1000 // 1 second
+
+async function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function fetchWithRetry(fetchFn: () => Promise<any>, retries = MAX_RETRIES): Promise<any> {
+  try {
+    return await fetchFn()
+  } catch (error) {
+    if (retries > 0) {
+      console.log(`Retrying... ${retries} attempts left`)
+      await wait(RETRY_DELAY)
+      return fetchWithRetry(fetchFn, retries - 1)
+    }
+    throw error
+  }
+}
+
 export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
   try {
     console.log('Initializing Supabase client for timeline prompts...')
     const supabase = createClientComponentClient<Database>()
 
     console.log('Fetching timeline prompts from Supabase...')
-    const { data: prompts, error } = await supabase
-      .from('timeline_prompts')
-      .select('*')
-      .order('created_at', { ascending: false })
+    const fetchPrompts = async () => {
+      const { data: prompts, error } = await supabase
+        .from('timeline_prompts')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-    if (error) {
-      console.error('Supabase error fetching timeline prompts:', error)
-      throw new Error(`Database error: ${error.message}`)
+      if (error) {
+        console.error('Supabase error fetching timeline prompts:', error)
+        throw new Error(`Database error: ${error.message}`)
+      }
+
+      if (!prompts) {
+        console.warn('No timeline prompts found')
+        return []
+      }
+
+      console.log(`Successfully fetched ${prompts.length} timeline prompts`)
+      return prompts
     }
 
-    if (!prompts) {
-      console.warn('No timeline prompts found')
-      return []
-    }
-
-    console.log(`Successfully fetched ${prompts.length} timeline prompts`)
-    return prompts
+    return await fetchWithRetry(fetchPrompts)
   } catch (err: any) {
     console.error('Error in getAllTimelinePromptsClient:', err)
     throw new Error(`Failed to fetch timeline prompts: ${err.message}`)
