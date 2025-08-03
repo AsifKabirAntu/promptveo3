@@ -43,6 +43,7 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
   }
   
   const url = `${supabaseUrl}/rest/v1/${endpoint}`;
+  console.log(`Fetching from: ${url}`);
   
   const timeoutPromise = new Promise<never>((_, reject) => {
     setTimeout(() => reject(new Error('Request timed out')), 10000);
@@ -54,9 +55,10 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
       'Authorization': `Bearer ${supabaseKey}`,
       ...options
     }
-  }).then(response => {
+  }).then(async response => {
     if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text().catch(() => 'No error details');
+      throw new Error(`API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
     return response.json();
   });
@@ -64,12 +66,39 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
   return Promise.race([fetchPromise, timeoutPromise]);
 }
 
+// Helper to check if user has pro access
+function hasProAccess(): boolean {
+  try {
+    // Check if we have subscription info in localStorage
+    const subKey = 'subscription_data';
+    const storedSub = localStorage.getItem(subKey);
+    if (storedSub) {
+      const { plan, status } = JSON.parse(storedSub);
+      return status === 'active' && plan === 'pro';
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Helper to limit data for free users
+function limitDataForFreeUsers<T>(data: T[]): T[] {
+  if (hasProAccess()) {
+    return data; // Pro users get all data
+  }
+  
+  // Free users get limited data
+  const previewCount = 3;
+  return data.slice(0, previewCount);
+}
+
 export async function getAllPromptsClient(): Promise<Prompt[]> {
   try {
     // Check cache first
     if (isCacheValid('prompts')) {
       console.log('Using cached prompts data');
-      return cache.prompts.data as Prompt[];
+      return limitDataForFreeUsers(cache.prompts.data as Prompt[]);
     }
 
     console.log('Fetching prompts from Supabase...');
@@ -81,7 +110,7 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
         const { data, timestamp } = JSON.parse(savedPrompts) as { data: Prompt[], timestamp: number };
         if (Date.now() - timestamp < CACHE_TTL) {
           console.log('Using localStorage prompts data');
-          return data;
+          return limitDataForFreeUsers(data);
         }
       }
     } catch (e) {
@@ -91,7 +120,7 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
     // Use direct REST API call instead of Supabase client
     const data = await fetchDirectFromSupabase<Prompt[]>('prompts?select=*&order=created_at.desc');
     
-    // Update cache
+    // Update cache with full data
     cache.prompts = { data, timestamp: Date.now() };
     
     // Save to localStorage
@@ -101,10 +130,11 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
         timestamp: Date.now() 
       }));
     } catch (e) {
-      console.error('Failed to save prompts to localStorage', e);
+      console.error('Error saving prompts to localStorage:', e);
     }
-
-    return data;
+    
+    // Return limited data for free users
+    return limitDataForFreeUsers(data);
   } catch (error) {
     console.error('Error fetching prompts:', error);
     
@@ -112,11 +142,12 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
     try {
       const savedPrompts = localStorage.getItem('cached_prompts');
       if (savedPrompts) {
-        console.log('Using localStorage prompts as fallback');
-        return JSON.parse(savedPrompts).data;
+        const { data } = JSON.parse(savedPrompts) as { data: Prompt[] };
+        console.log('Using localStorage fallback for prompts');
+        return limitDataForFreeUsers(data);
       }
     } catch (e) {
-      console.log('No fallback data available');
+      console.error('Error accessing localStorage:', e);
     }
     
     return [];

@@ -106,7 +106,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
         
         // If we have plan information in the profile, use that
         if (profile.plan) {
-          return {
+          const subscription = {
             id: 'profile-' + user.id,
             user_id: user.id,
             subscription_id: profile.subscription_id || '',
@@ -118,20 +118,33 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
             created_at: profile.created_at || new Date().toISOString(),
             updated_at: profile.updated_at || new Date().toISOString()
           }
+          
+          // Save to localStorage for caching system
+          try {
+            localStorage.setItem('subscription_data', JSON.stringify({
+              plan: subscription.plan,
+              status: subscription.status,
+              updated_at: new Date().toISOString()
+            }))
+          } catch (e) {
+            console.error('Error saving subscription to localStorage:', e)
+          }
+          
+          return subscription
         }
       }
       
       // If no profile or no plan in profile, try subscriptions table
       console.log('Checking subscriptions table...')
       const subscriptions = await fetchDirectFromSupabase<any[]>(
-        `subscriptions?user_id=eq.${user.id}&select=*`
+        `subscriptions?select=*&id=eq.${encodeURIComponent(user.id)}`
       )
       
       if (subscriptions && subscriptions.length > 0) {
         const subscription = subscriptions[0]
         console.log('Found subscription with status:', subscription.status)
         
-        return {
+        const userSubscription = {
           id: subscription.id || 'subscription-' + user.id,
           user_id: user.id,
           subscription_id: subscription.subscription_id || '',
@@ -143,6 +156,19 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
           created_at: subscription.created_at || new Date().toISOString(),
           updated_at: subscription.updated_at || new Date().toISOString()
         }
+        
+        // Save to localStorage for caching system
+        try {
+          localStorage.setItem('subscription_data', JSON.stringify({
+            plan: userSubscription.plan,
+            status: userSubscription.status,
+            updated_at: new Date().toISOString()
+          }))
+        } catch (e) {
+          console.error('Error saving subscription to localStorage:', e)
+        }
+        
+        return userSubscription
       }
     } catch (error) {
       console.error('Error fetching subscription data:', error)
@@ -150,7 +176,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
     
     // If we get here, no subscription was found
     console.log('No subscription found, returning free plan')
-    return {
+    const freeSubscription = {
       id: 'free-tier',
       user_id: user.id,
       subscription_id: '',
@@ -162,6 +188,19 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     }
+    
+    // Save free plan to localStorage
+    try {
+      localStorage.setItem('subscription_data', JSON.stringify({
+        plan: 'free',
+        status: 'active',
+        updated_at: new Date().toISOString()
+      }))
+    } catch (e) {
+      console.error('Error saving subscription to localStorage:', e)
+    }
+    
+    return freeSubscription
   } catch (error) {
     console.error('Error in getUserSubscriptionClient:', error)
     return null

@@ -72,6 +72,7 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
   }
   
   const url = `${supabaseUrl}/rest/v1/${endpoint}`;
+  console.log(`Fetching from: ${url}`);
   
   const timeoutPromise = new Promise<never>((_, reject) => {
     setTimeout(() => reject(new Error('Request timed out')), 10000);
@@ -83,14 +84,42 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
       'Authorization': `Bearer ${supabaseKey}`,
       ...options
     }
-  }).then(response => {
+  }).then(async response => {
     if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text().catch(() => 'No error details');
+      throw new Error(`API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
     return response.json();
   });
   
   return Promise.race([fetchPromise, timeoutPromise]);
+}
+
+// Helper to check if user has pro access
+function hasProAccess(): boolean {
+  try {
+    // Check if we have subscription info in localStorage
+    const subKey = 'subscription_data';
+    const storedSub = localStorage.getItem(subKey);
+    if (storedSub) {
+      const { plan, status } = JSON.parse(storedSub);
+      return status === 'active' && plan === 'pro';
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Helper to limit data for free users
+function limitDataForFreeUsers<T>(data: T[]): T[] {
+  if (hasProAccess()) {
+    return data; // Pro users get all data
+  }
+  
+  // Free users get limited data
+  const previewCount = 1; // Free users get only 1 timeline prompt
+  return data.slice(0, previewCount);
 }
 
 // Client-side data fetching for timeline prompts
@@ -99,19 +128,19 @@ export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
     // Check cache first
     if (isCacheValid('timelinePrompts')) {
       console.log('Using cached timeline prompts data');
-      return cache.timelinePrompts.data as TimelinePrompt[];
+      return limitDataForFreeUsers(cache.timelinePrompts.data as TimelinePrompt[]);
     }
 
     console.log('Fetching timeline prompts from Supabase...');
     
     // Try to load from localStorage if available
     try {
-      const savedPrompts = localStorage.getItem('cached_timeline_prompts');
+      const savedPrompts = localStorage.getItem('timeline_prompts_cache');
       if (savedPrompts) {
         const { data, timestamp } = JSON.parse(savedPrompts) as { data: TimelinePrompt[], timestamp: number };
         if (Date.now() - timestamp < CACHE_TTL) {
           console.log('Using localStorage timeline prompts data');
-          return data;
+          return limitDataForFreeUsers(data);
         }
       }
     } catch (e) {
@@ -119,58 +148,38 @@ export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
     }
     
     // Use direct REST API call
-    const prompts = await fetchDirectFromSupabase<Database['public']['Tables']['timeline_prompts']['Row'][]>(
+    const data = await fetchDirectFromSupabase<Database['public']['Tables']['timeline_prompts']['Row'][]>(
       'timeline_prompts?select=*&is_public=eq.true&order=created_at.desc'
     );
     
-    // Transform database format to match our TimelinePrompt interface
-    const transformedPrompts = (prompts || []).map((prompt) => ({
-      id: prompt.id,
-      title: prompt.title,
-      description: prompt.description,
-      category: prompt.category,
-      base_style: prompt.base_style,
-      aspect_ratio: prompt.aspect_ratio || '16:9',
-      scene_description: prompt.scene_description,
-      camera_setup: prompt.camera_setup,
-      lighting: prompt.lighting,
-      negative_prompts: prompt.negative_prompts || [],
-      timeline: Array.isArray(prompt.timeline) ? prompt.timeline : [],
-      created_by: prompt.created_by || '',
-      created_at: prompt.created_at,
-      updated_at: prompt.updated_at,
-      is_featured: prompt.is_featured || false,
-      is_public: prompt.is_public !== false,
-      likes_count: prompt.likes_count || 0,
-      usage_count: prompt.usage_count || 0
-    }));
-
-    // Update cache
-    cache.timelinePrompts = { data: transformedPrompts, timestamp: Date.now() };
+    // Update cache with full data
+    cache.timelinePrompts = { data: data as unknown as TimelinePrompt[], timestamp: Date.now() };
     
     // Save to localStorage
     try {
-      localStorage.setItem('cached_timeline_prompts', JSON.stringify({ 
-        data: transformedPrompts, 
+      localStorage.setItem('timeline_prompts_cache', JSON.stringify({ 
+        data, 
         timestamp: Date.now() 
       }));
     } catch (e) {
-      console.error('Failed to save timeline prompts to localStorage', e);
+      console.error('Error saving timeline prompts to localStorage:', e);
     }
-
-    return transformedPrompts;
+    
+    // Return limited data for free users
+    return limitDataForFreeUsers(data as unknown as TimelinePrompt[]);
   } catch (error) {
     console.error('Error fetching timeline prompts:', error);
     
     // Try to load from localStorage as fallback
     try {
-      const savedPrompts = localStorage.getItem('cached_timeline_prompts');
+      const savedPrompts = localStorage.getItem('timeline_prompts_cache');
       if (savedPrompts) {
-        console.log('Using localStorage timeline prompts as fallback');
-        return JSON.parse(savedPrompts).data;
+        const { data } = JSON.parse(savedPrompts) as { data: TimelinePrompt[] };
+        console.log('Using localStorage fallback for timeline prompts');
+        return limitDataForFreeUsers(data);
       }
     } catch (e) {
-      console.log('No fallback data available');
+      console.error('Error accessing localStorage:', e);
     }
     
     return [];
