@@ -94,29 +94,32 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
     console.log('Fetching subscription data for user:', user.id)
     
     try {
-      // First try to fetch from profiles table (correct location)
+      // First try to fetch from profiles table using authenticated client
       console.log('Checking profiles table for subscription data...')
-      const profiles = await fetchDirectFromSupabase<any[]>(
-        `profiles?select=*&id=eq.${encodeURIComponent(user.id)}`
-      )
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
       
-      if (profiles && profiles.length > 0) {
-        const profile = profiles[0]
-        console.log('Found user profile with plan:', profile.plan)
+      if (profilesError) {
+        console.error('Error fetching profile:', profilesError)
+      } else if (profiles) {
+        console.log('Found user profile with plan:', profiles.plan)
         
         // If we have plan information in the profile, use that
-        if (profile.plan) {
+        if (profiles.plan) {
           const subscription = {
             id: 'profile-' + user.id,
             user_id: user.id,
-            subscription_id: profile.subscription_id || '',
-            status: (profile.subscription_status || 'active') as SubscriptionStatus,
-            plan: (profile.plan || 'free') as SubscriptionPlan,
-            price_id: profile.price_id,
-            current_period_start: profile.subscription_period_start || new Date().toISOString(),
-            current_period_end: profile.subscription_period_end || new Date().toISOString(),
-            created_at: profile.created_at || new Date().toISOString(),
-            updated_at: profile.updated_at || new Date().toISOString()
+            subscription_id: profiles.subscription_id || '',
+            status: (profiles.subscription_status || 'active') as SubscriptionStatus,
+            plan: (profiles.plan || 'free') as SubscriptionPlan,
+            price_id: profiles.price_id,
+            current_period_start: profiles.subscription_period_start || new Date().toISOString(),
+            current_period_end: profiles.subscription_period_end || new Date().toISOString(),
+            created_at: profiles.created_at || new Date().toISOString(),
+            updated_at: profiles.updated_at || new Date().toISOString()
           }
           
           // Save to localStorage for caching system
@@ -136,25 +139,28 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
       
       // If no profile or no plan in profile, try subscriptions table
       console.log('Checking subscriptions table...')
-      const subscriptions = await fetchDirectFromSupabase<any[]>(
-        `subscriptions?select=*&id=eq.${encodeURIComponent(user.id)}`
-      )
+      const { data: subscriptions, error: subscriptionsError } = await supabase
+        .from('subscriptions')
+        .select('*')
+        .eq('user_id', user.id)
+        .single()
       
-      if (subscriptions && subscriptions.length > 0) {
-        const subscription = subscriptions[0]
-        console.log('Found subscription with status:', subscription.status)
+      if (subscriptionsError) {
+        console.error('Error fetching subscriptions:', subscriptionsError)
+      } else if (subscriptions) {
+        console.log('Found subscription with status:', subscriptions.status)
         
         const userSubscription = {
-          id: subscription.id || 'subscription-' + user.id,
+          id: subscriptions.id || 'subscription-' + user.id,
           user_id: user.id,
-          subscription_id: subscription.subscription_id || '',
-          status: (subscription.status || 'active') as SubscriptionStatus,
-          plan: subscription.plan || getPlanFromPriceId(subscription.price_id),
-          price_id: subscription.price_id,
-          current_period_start: subscription.current_period_start || new Date().toISOString(),
-          current_period_end: subscription.current_period_end || new Date().toISOString(),
-          created_at: subscription.created_at || new Date().toISOString(),
-          updated_at: subscription.updated_at || new Date().toISOString()
+          subscription_id: subscriptions.subscription_id || '',
+          status: (subscriptions.status || 'active') as SubscriptionStatus,
+          plan: subscriptions.plan || getPlanFromPriceId(subscriptions.price_id),
+          price_id: subscriptions.price_id,
+          current_period_start: subscriptions.current_period_start || new Date().toISOString(),
+          current_period_end: subscriptions.current_period_end || new Date().toISOString(),
+          created_at: subscriptions.created_at || new Date().toISOString(),
+          updated_at: subscriptions.updated_at || new Date().toISOString()
         }
         
         // Save to localStorage for caching system
