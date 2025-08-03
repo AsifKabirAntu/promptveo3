@@ -222,13 +222,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Set a timeout to ensure loading state doesn't get stuck
     timeoutId = setTimeout(() => {
       if (mounted && loading) {
-        console.warn('⚠️ Auth initialization timed out')
+        console.warn('⚠️ Auth initialization timed out - this is not an error, just means the auth check took longer than expected')
         // Only set loading to false, but don't change the user state
         // This way we don't overwrite a successful auth that just took longer than expected
         setLoading(false)
         setSubscriptionLoading(false)
       }
-    }, 10000) // 10 second timeout
+    }, 15000) // 15 second timeout (increased from 10s)
 
     // Listen for auth changes
     const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange(

@@ -56,6 +56,7 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
   }
   
   const url = `${supabaseUrl}/rest/v1/${endpoint}`;
+  console.log(`Fetching from: ${url}`);
   
   const timeoutPromise = new Promise<never>((_, reject) => {
     setTimeout(() => reject(new Error('Request timed out')), 10000);
@@ -67,9 +68,10 @@ async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promi
       'Authorization': `Bearer ${supabaseKey}`,
       ...options
     }
-  }).then(response => {
+  }).then(async response => {
     if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
+      const errorText = await response.text().catch(() => 'No error details');
+      throw new Error(`API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
     return response.json();
   });
@@ -95,7 +97,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
       // First try to fetch from profiles table (correct location)
       console.log('Checking profiles table for subscription data...')
       const profiles = await fetchDirectFromSupabase<any[]>(
-        `profiles?user_id=eq.${user.id}&select=*`
+        `profiles?select=*&user_id=eq.${encodeURIComponent(user.id)}`
       )
       
       if (profiles && profiles.length > 0) {
