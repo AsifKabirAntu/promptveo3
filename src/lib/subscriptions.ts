@@ -46,6 +46,37 @@ export const PRO_PLAN_FEATURES = {
   canCreate: true,
 }
 
+// Helper for direct API fetching with timeout
+async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promise<T> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase credentials');
+  }
+  
+  const url = `${supabaseUrl}/rest/v1/${endpoint}`;
+  
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error('Request timed out')), 10000);
+  });
+  
+  const fetchPromise = fetch(url, {
+    headers: {
+      'apikey': supabaseKey,
+      'Authorization': `Bearer ${supabaseKey}`,
+      ...options
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  });
+  
+  return Promise.race([fetchPromise, timeoutPromise]);
+}
+
 export async function getUserSubscriptionClient(): Promise<UserSubscription | null> {
   try {
     const supabase = createClientComponentClient<Database>()
@@ -58,96 +89,79 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
       return null
     }
 
-    // Try to fetch subscription with retries
-    let attempts = 0
-    const maxAttempts = 3
-    let lastError: any = null
-
-    while (attempts < maxAttempts) {
-      try {
-        // Add a small delay between retries
-        if (attempts > 0) {
-          await new Promise(resolve => setTimeout(resolve, 1000))
-        }
+    console.log('Fetching subscription data for user:', user.id)
+    
+    try {
+      // First try to fetch from user_profiles table (new location)
+      console.log('Checking user_profiles table for subscription data...')
+      const profiles = await fetchDirectFromSupabase<any[]>(
+        `user_profiles?user_id=eq.${user.id}&select=*`
+      )
+      
+      if (profiles && profiles.length > 0) {
+        const profile = profiles[0]
+        console.log('Found user profile with plan:', profile.plan)
         
-        attempts++
-        console.log(`Fetching subscription data (attempt ${attempts}/${maxAttempts})`)
-        
-        // Fetch subscription with a timeout
-        const fetchPromise = supabase
-          .from('subscriptions')
-          .select('*, prices(*, products(*))')
-          .eq('user_id', user.id)
-          .single()
-
-        // Create a timeout promise
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Subscription fetch timed out')), 5000)
-        })
-
-        // Race the fetch against the timeout
-        const { data: subscription, error } = await Promise.race([
-          fetchPromise,
-          timeoutPromise.then(() => ({ data: null, error: new Error('Timeout') }))
-        ]) as any
-
-        if (error) {
-          lastError = error
-          console.error(`Error fetching subscription (attempt ${attempts}):`, error)
-          continue // Try again
-        }
-
-        if (!subscription) {
-          console.log('No subscription found for user')
+        // If we have plan information in the profile, use that
+        if (profile.plan) {
           return {
-            id: 'free-tier',
+            id: 'profile-' + user.id,
             user_id: user.id,
-            subscription_id: '',
-            status: 'active' as SubscriptionStatus,
-            price_id: undefined,
-            current_period_start: new Date().toISOString(),
-            current_period_end: new Date().toISOString(),
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-            plan: 'free' as SubscriptionPlan
+            subscription_id: profile.subscription_id || '',
+            status: (profile.subscription_status || 'active') as SubscriptionStatus,
+            plan: (profile.plan || 'free') as SubscriptionPlan,
+            price_id: profile.price_id,
+            current_period_start: profile.subscription_period_start || new Date().toISOString(),
+            current_period_end: profile.subscription_period_end || new Date().toISOString(),
+            created_at: profile.created_at || new Date().toISOString(),
+            updated_at: profile.updated_at || new Date().toISOString()
           }
         }
-
-        // Map subscription data to our Subscription type
-        return {
-          id: subscription.id || 'unknown',
-          user_id: subscription.user_id,
-          subscription_id: subscription.subscription_id || '',
-          status: (subscription.status as SubscriptionStatus) || 'active',
-          price_id: subscription.price_id,
-          current_period_start: subscription.current_period_start,
-          current_period_end: subscription.current_period_end,
-          created_at: subscription.created_at,
-          updated_at: subscription.updated_at || subscription.created_at,
-          plan: subscription.plan || getPlanFromPriceId(subscription.price_id)
-        }
-      } catch (err) {
-        lastError = err
-        console.error(`Error in subscription fetch (attempt ${attempts}):`, err)
       }
+      
+      // If no profile or no plan in profile, try subscriptions table
+      console.log('Checking subscriptions table...')
+      const subscriptions = await fetchDirectFromSupabase<any[]>(
+        `subscriptions?user_id=eq.${user.id}&select=*`
+      )
+      
+      if (subscriptions && subscriptions.length > 0) {
+        const subscription = subscriptions[0]
+        console.log('Found subscription with status:', subscription.status)
+        
+        return {
+          id: subscription.id || 'subscription-' + user.id,
+          user_id: user.id,
+          subscription_id: subscription.subscription_id || '',
+          status: (subscription.status || 'active') as SubscriptionStatus,
+          plan: subscription.plan || getPlanFromPriceId(subscription.price_id),
+          price_id: subscription.price_id,
+          current_period_start: subscription.current_period_start || new Date().toISOString(),
+          current_period_end: subscription.current_period_end || new Date().toISOString(),
+          created_at: subscription.created_at || new Date().toISOString(),
+          updated_at: subscription.updated_at || new Date().toISOString()
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching subscription data:', error)
     }
-
-    console.error(`Failed to fetch subscription after ${maxAttempts} attempts`)
-    // Return a default free subscription after all retries fail
+    
+    // If we get here, no subscription was found
+    console.log('No subscription found, returning free plan')
     return {
       id: 'free-tier',
       user_id: user.id,
       subscription_id: '',
       status: 'active' as SubscriptionStatus,
+      plan: 'free' as SubscriptionPlan,
       price_id: undefined,
       current_period_start: new Date().toISOString(),
       current_period_end: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
-      plan: 'free' as SubscriptionPlan
+      updated_at: new Date().toISOString()
     }
   } catch (error) {
-    console.error('Error fetching subscription:', error)
+    console.error('Error in getUserSubscriptionClient:', error)
     return null
   }
 }
@@ -159,52 +173,42 @@ function getPlanFromPriceId(priceId: string | null): 'free' | 'pro' {
 }
 
 export function getSubscriptionFeatures(subscription: any) {
-  // Check if subscription exists and has a plan field
-  const plan = subscription?.plan || 'free'
-  const isPro = plan === 'pro' && subscription?.status === 'active'
-
-  return {
-    canViewAllPrompts: isPro,
-    canCreatePrompts: isPro,
-    canUseTimeline: isPro,
-    canExport: isPro,
-    canShare: isPro,
-    maxPrompts: isPro ? Infinity : 3,
-    maxTimelinePrompts: isPro ? Infinity : 1,
+  const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
+  
+  if (isPro) {
+    return PRO_PLAN_FEATURES
   }
+  
+  return FREE_PLAN_LIMITS
 }
 
-// Check if user has pro access
 export function hasProAccess(subscription: UserSubscription | null): boolean {
-  // Consider active subscription as pro regardless of plan field
-  return subscription?.status === 'active'
+  if (!subscription) return false
+  return subscription.status === 'active' && subscription.plan === 'pro'
 }
 
-// Check if user has free access
 export function hasFreeAccess(subscription: UserSubscription | null): boolean {
-  return !subscription || subscription.status !== 'active'
+  return true // Everyone has access to free features
 }
 
-// Get plan display name
 export function getPlanDisplayName(plan: SubscriptionPlan): string {
   switch (plan) {
-    case 'free':
-      return 'Free'
     case 'pro':
       return 'Pro'
-    default:
+    case 'free':
       return 'Free'
+    default:
+      return 'Unknown'
   }
 }
 
-// Get plan price
 export function getPlanPrice(plan: SubscriptionPlan, interval: 'month' | 'year' = 'month'): string {
   switch (plan) {
-    case 'free':
-      return 'Free'
     case 'pro':
-      return interval === 'year' ? '$120/year' : '$14.99/month'
+      return interval === 'month' ? '$14.99' : '$120'
+    case 'free':
+      return '$0'
     default:
-      return 'Free'
+      return '$0'
   }
 } 
