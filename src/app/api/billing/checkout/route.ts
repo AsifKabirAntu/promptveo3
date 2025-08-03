@@ -49,15 +49,15 @@ export async function POST(request: NextRequest) {
 
     // Get user profile
     const { data: profile } = await supabase
-      .from('user_profiles')
-      .select('full_name')
-      .eq('user_id', user.id)
+      .from('profiles')
+      .select('name')
+      .eq('id', user.id)
       .single()
 
     // Create or get Stripe customer
     const customer = await createOrGetCustomer({
       email: user.email!,
-      name: profile?.full_name || undefined,
+      name: profile?.name || undefined,
       userId: user.id,
     })
 

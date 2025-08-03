@@ -120,23 +120,21 @@ async function handleSubscriptionChange(
   console.log('Subscription status:', subscription.status)
   console.log('Subscription ID:', subscription.id)
 
-  // Ensure profile exists in user_profiles table
+  // Ensure profile exists in profiles table
   const { data: existingProfile, error: profileError } = await supabase
-    .from('user_profiles')
-    .select('user_id')
-    .eq('user_id', userId)
+    .from('profiles')
+    .select('id')
+    .eq('id', userId)
     .single()
 
   if (profileError && profileError.code === 'PGRST116') {
     // Profile doesn't exist, create it
-    console.log('User profile not found, creating user_profiles record for user:', userId)
+    console.log('User profile not found, creating profiles record for user:', userId)
     
     const profileData = {
-      user_id: userId,
-      full_name: 'User', // Default name
+      id: userId,
       email: 'user@example.com', // This should come from auth.users or customer data
-      email_notifications: true,
-      push_notifications: false,
+      name: 'User', // Default name
       plan: 'free',
       subscription_id: null,
       subscription_status: null,
@@ -145,7 +143,7 @@ async function handleSubscriptionChange(
     }
 
     const { error: createProfileError } = await supabase
-      .from('user_profiles')
+      .from('profiles')
       .insert([profileData])
 
     if (createProfileError) {
@@ -258,12 +256,13 @@ async function handleSubscriptionChange(
     
     // Update the profiles table
     const { error: profileUpdateError } = await supabase
-      .from('profiles')
+      .from('profiles') // Use 'profiles' instead of 'user_profiles'
       .update(profileData)
-      .eq('id', userId)
+      .eq('id', userId) // Use 'id' instead of 'user_id'
     
     if (profileUpdateError) {
       console.error('Error updating profile with subscription data:', profileUpdateError)
+      console.log('Profile update error details:', profileUpdateError)
       // Don't throw error, as the subscription update was successful
       console.log('Will retry profile update on next webhook event')
     } else {
