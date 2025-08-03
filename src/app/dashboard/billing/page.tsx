@@ -5,20 +5,22 @@ import { useAuth } from '@/components/auth/auth-provider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Paywall } from '@/components/ui/paywall'
+import { Alert } from '@/components/ui/alert'
 import { getStripe } from '@/lib/stripe'
 import { getPlanDisplayName, getPlanPrice } from '@/lib/subscriptions'
-import { Check, Crown, CreditCard, Calendar, Zap } from 'lucide-react'
+import { Check, Crown, CreditCard, Calendar, Zap, CheckCircle } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 // Client component that uses searchParams
 function BillingPageContent() {
   const { user, subscription, features, refreshSubscription } = useAuth()
-  const [loading, setLoading] = useState(false)
+  const [monthlyLoading, setMonthlyLoading] = useState(false)
+  const [yearlyLoading, setYearlyLoading] = useState(false)
   const [portalLoading, setPortalLoading] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [refreshAttempts, setRefreshAttempts] = useState(0)
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false)
   const searchParams = useSearchParams()
   
   const isSuccess = searchParams.get('success') === 'true'
@@ -29,6 +31,7 @@ function BillingPageContent() {
     if (isSuccess) {
       console.log('Checkout success detected, refreshing subscription data...')
       handleRefreshSubscription()
+      setShowSuccessAlert(true)
     }
   }, [isSuccess])
 
@@ -51,7 +54,13 @@ function BillingPageContent() {
   }
 
   const handleUpgrade = async (priceType: 'monthly' | 'yearly') => {
-    setLoading(true)
+    // Set loading state for the specific plan
+    if (priceType === 'monthly') {
+      setMonthlyLoading(true)
+    } else {
+      setYearlyLoading(true)
+    }
+    
     try {
       console.log('Creating checkout session for price type:', priceType)
       
@@ -99,7 +108,9 @@ function BillingPageContent() {
       console.error('Error creating checkout session:', error)
       alert('Failed to start checkout. Please try again.')
     } finally {
-      setLoading(false)
+      // Reset loading state for both plans
+      setMonthlyLoading(false)
+      setYearlyLoading(false)
     }
   }
 
@@ -129,64 +140,47 @@ function BillingPageContent() {
       </div>
 
       {/* Success/Cancel Messages */}
-      {isSuccess && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-green-800">
-                {isPro ? 'Your subscription is active!' : 'Payment successful! Your subscription should activate shortly.'}
-              </h3>
+      {showSuccessAlert && (
+        <Alert 
+          variant="success" 
+          title={isPro ? "Your subscription is active!" : "Payment successful!"}
+          dismissible
+          icon={<CheckCircle className="h-5 w-5" />}
+        >
+          <div className="flex flex-col">
+            <p>{isPro ? "You now have access to all pro features." : "Your subscription should activate shortly."}</p>
+            {!isPro && (
               <button 
                 onClick={handleRefreshSubscription}
                 disabled={refreshing}
-                className="mt-2 text-sm text-green-600 hover:text-green-800 underline"
+                className="mt-2 text-sm text-green-600 hover:text-green-800 underline self-start"
               >
                 {refreshing ? 'Refreshing...' : 'Refresh subscription status'}
               </button>
-              <button 
-                onClick={async () => {
-                  const supabase = createClientComponentClient()
-                  console.log('Testing auth state...')
-                  const { data: { user }, error } = await supabase.auth.getUser()
-                  console.log('Direct auth test - user:', user?.id, 'error:', error)
-                }}
-                className="mt-2 ml-4 text-sm text-blue-600 hover:text-blue-800 underline"
-              >
-                Test Auth
-              </button>
-            </div>
+            )}
           </div>
-        </div>
+        </Alert>
       )}
 
       {isCanceled && (
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-yellow-800">
-                Payment was canceled. Your subscription remains unchanged.
-              </h3>
-            </div>
-          </div>
-        </div>
+        <Alert 
+          variant="warning" 
+          title="Payment was canceled"
+          dismissible
+          icon={<svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>}
+        >
+          Your subscription remains unchanged.
+        </Alert>
       )}
 
       {/* Current Plan */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold text-gray-900 flex items-center">
-              <span className="mr-2">👑</span> Current Plan
+              <Crown className="h-5 w-5 mr-2 text-amber-500" /> Current Plan
             </h2>
             <div className="mt-4">
               <div className="flex items-center">
@@ -203,7 +197,8 @@ function BillingPageContent() {
                 {isPro ? 'Full access to all features' : 'Limited access to features'}
               </p>
               {isPro && subscription && (
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-gray-500 mt-2 flex items-center">
+                  <Calendar className="h-4 w-4 mr-1" />
                   {subscription.current_period_end && (
                     <>Next billing: {new Date(subscription.current_period_end).toLocaleDateString()}</>
                   )}
@@ -232,8 +227,9 @@ function BillingPageContent() {
             <button
               onClick={handleManageSubscription}
               disabled={portalLoading}
-              className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors"
+              className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors flex items-center"
             >
+              <CreditCard className="h-4 w-4 mr-2" />
               {portalLoading ? 'Loading...' : 'Manage Subscription'}
             </button>
           </div>
@@ -243,113 +239,131 @@ function BillingPageContent() {
       {/* Upgrade Plans (only show if not Pro) */}
       {!isPro && (
         <>
-          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Upgrade Plans</h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Pro Monthly */}
-                <div className="border border-gray-200 rounded-lg p-6 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Pro Monthly</h3>
-                      <p className="text-gray-600">Perfect for getting started</p>
-                    </div>
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full">
+                <div className="relative bg-white border border-blue-200 rounded-xl shadow-sm p-6 transition-all hover:shadow-md hover:border-blue-300 flex flex-col h-full">
+                  <div className="absolute top-0 right-0 -mt-3 -mr-3">
+                    <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
                       Popular
                     </span>
                   </div>
-                  
-                  <div className="mb-6">
-                    <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600">/month</span></div>
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">Pro Monthly</h3>
+                        <p className="text-gray-600 text-sm">Perfect for getting started</p>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600">/month</span></div>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        Unlimited prompt access
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        JSON export for Veo 3
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        Save favorites
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        Remix prompts
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        Create custom prompts
+                      </li>
+                    </ul>
                   </div>
-                  
-                  <ul className="space-y-3 mb-6">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Unlimited prompt access
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      JSON export for Veo 3
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Save favorites
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Remix prompts
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Create custom prompts
-                    </li>
-                  </ul>
                   
                   <button
                     onClick={() => handleUpgrade('monthly')}
-                    disabled={loading}
-                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                    disabled={monthlyLoading || yearlyLoading}
+                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center justify-center mt-auto"
                   >
-                    {loading ? 'Processing...' : 'Upgrade to Pro Monthly'}
+                    {monthlyLoading ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 mr-2" />
+                        Upgrade to Pro Monthly
+                      </>
+                    )}
                   </button>
                 </div>
 
                 {/* Pro Yearly */}
-                <div className="border border-gray-200 rounded-lg p-6 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Pro Yearly</h3>
-                      <p className="text-gray-600">Best value for long-term users</p>
-                    </div>
-                    <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
+                <div className="relative bg-white border border-green-200 rounded-xl shadow-sm p-6 transition-all hover:shadow-md hover:border-green-300 flex flex-col h-full">
+                  <div className="absolute top-0 right-0 -mt-3 -mr-3">
+                    <span className="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
                       Save 33%
                     </span>
                   </div>
-                  
-                  <div className="mb-6">
-                    <div className="text-3xl font-bold text-gray-900">$120<span className="text-lg font-normal text-gray-600">/year</span></div>
-                    <div className="text-sm text-gray-500">$179.88 billed annually</div>
+                  <div>
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900">Pro Yearly</h3>
+                        <p className="text-gray-600 text-sm">Best value for long-term users</p>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-6">
+                      <div className="text-3xl font-bold text-gray-900">$120<span className="text-lg font-normal text-gray-600">/year</span></div>
+                      <div className="text-sm text-gray-500">$179.88 billed annually</div>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        All monthly features
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        Priority support
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                        Early access to new features
+                      </li>
+                    </ul>
                   </div>
-                  
-                  <ul className="space-y-3 mb-6">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      All monthly features
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Priority support
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <svg className="h-4 w-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      Early access to new features
-                    </li>
-                  </ul>
                   
                   <button
                     onClick={() => handleUpgrade('yearly')}
-                    disabled={loading}
-                    className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+                    disabled={monthlyLoading || yearlyLoading}
+                    className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors flex items-center justify-center mt-auto"
                   >
-                    {loading ? 'Processing...' : 'Upgrade to Pro Yearly'}
+                    {yearlyLoading ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 mr-2" />
+                        Upgrade to Pro Yearly
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
@@ -360,7 +374,7 @@ function BillingPageContent() {
 
       {/* Transaction History */}
       {isPro && (
-        <div className="bg-white rounded-lg border border-gray-200">
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
           <div className="p-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">Transaction History</h2>
             

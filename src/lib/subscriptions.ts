@@ -30,7 +30,7 @@ export interface SubscriptionFeatures {
 
 // Free plan limitations
 export const FREE_PLAN_LIMITS = {
-  maxVisiblePrompts: 3,
+  maxVisiblePrompts: 4,
   canViewJSON: false,
   canFavorite: false,
   canRemix: false,

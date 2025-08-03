@@ -33,7 +33,7 @@ export function Paywall({
   ]
 
   return (
-    <div className={`relative overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 ${className}`}>
+    <div className={`relative overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 max-w-3xl mx-auto ${className}`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50" />
       <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-400/20" />
@@ -71,7 +71,7 @@ export function Paywall({
         <p className="text-center text-gray-700 mb-6">{description}</p>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6 max-w-lg mx-auto">
           {features.map((feature, index) => (
             <div key={index} className="flex items-center space-x-2">
               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-100">
@@ -97,7 +97,7 @@ export function Paywall({
 
         {/* CTA Button */}
         {showUpgradeButton && (
-          <div className="text-center">
+          <div className="text-center max-w-xs mx-auto">
             <Link href="/dashboard/billing">
               <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3">
                 <Zap className="h-4 w-4 mr-2" />

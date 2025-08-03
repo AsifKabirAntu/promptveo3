@@ -33,6 +33,7 @@ export function ExploreLibrary() {
   const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
   const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
   const [loading, setLoading] = useState(true)
+  const [totalDatabaseCount, setTotalDatabaseCount] = useState(156) // Total count of prompts in database
   
   // Categories and styles from both types
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
@@ -622,9 +623,9 @@ export function ExploreLibrary() {
       <div className="flex items-center justify-between mb-6 bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm text-gray-600">
           Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{limitedCount}</span> prompts
-          {!features.canViewAllPrompts && totalCount > limitedCount && (
+          {!features.canViewAllPrompts && (
             <span className="text-gray-500 ml-2">
-              (of {totalCount} total - upgrade to see all)
+              (of {totalDatabaseCount} total - upgrade to see all)
             </span>
           )}
         </p>
@@ -755,13 +756,12 @@ export function ExploreLibrary() {
       )}
 
       {/* Paywall for free users only */}
-      {!features.canViewAllPrompts && totalCount > limitedCount && (
-        <div className="mt-8">
+      {!features.canViewAllPrompts && (
+        <div className="mt-8 max-w-3xl mx-auto">
           <Paywall 
             title="Unlock All Prompts"
-            description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
+            description={`You're seeing ${features.maxVisiblePrompts} of ${totalDatabaseCount} prompts. Upgrade to Pro to access the full library.`}
             feature="Unlimited prompt access"
-            className="max-w-4xl mx-auto"
           />
         </div>
       )}
