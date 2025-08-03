@@ -388,31 +388,30 @@ export function ExploreLibrary() {
     });
     
     const totalCount = combinedPrompts.length;
+    let limitedCount = totalCount;
+    let displayPrompts = combinedPrompts;
     
-    // Apply pagination - for pro users, show all with pagination
-    // For free users, limit to features.maxVisiblePrompts
-    let limitedPrompts = combinedPrompts;
-    
-    // If user doesn't have pro access, limit the number of prompts
+    // For free users, limit the total number of visible prompts
     if (!features.canViewAllPrompts) {
-      limitedPrompts = combinedPrompts.slice(0, features.maxVisiblePrompts);
-    } else {
-      // For pro users, apply pagination
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      limitedPrompts = combinedPrompts.slice(startIndex, startIndex + itemsPerPage);
+      limitedCount = Math.min(totalCount, features.maxVisiblePrompts);
+      displayPrompts = combinedPrompts.slice(0, limitedCount);
     }
     
+    // Apply pagination to the displayable prompts (either all for pro, or limited for free)
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedPrompts = displayPrompts.slice(startIndex, startIndex + itemsPerPage);
+    
     return {
-      prompts: limitedPrompts,
+      prompts: paginatedPrompts,
       totalCount,
-      limitedCount: features.canViewAllPrompts ? totalCount : features.maxVisiblePrompts
+      limitedCount
     };
   };
 
   const { prompts: displayPrompts, totalCount, limitedCount } = getDisplayPrompts();
   
   // Calculate total pages for pagination
-  const totalPages = Math.ceil(totalCount / itemsPerPage);
+  const totalPages = Math.ceil(limitedCount / itemsPerPage);
   
   // Reset to first page when filters change
   useEffect(() => {
@@ -682,18 +681,6 @@ export function ExploreLibrary() {
         </div>
       )}
 
-      {/* Paywall for free users only */}
-      {!features.canViewAllPrompts && totalCount > limitedCount && (
-        <div className="mt-8">
-          <Paywall 
-            title="Unlock All Prompts"
-            description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
-            feature="Unlimited prompt access"
-            className="max-w-4xl mx-auto"
-          />
-        </div>
-      )}
-
       {/* Pagination Controls */}
       {totalPages > 1 && (
         <div className="mt-8 flex items-center justify-center gap-2">
@@ -709,33 +696,73 @@ export function ExploreLibrary() {
           </Button>
           
           <div className="flex items-center gap-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <Button
-                key={page}
-                variant={currentPage === page ? "default" : "outline"}
-                size="sm"
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 p-0 ${
-                  currentPage === page 
-                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200" 
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {page}
-              </Button>
+            {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
+              // Show first 3, last 3, and current page with neighbors
+              if (totalPages <= 7) {
+                return i + 1;
+              }
+              
+              if (i === 0) return 1; // First page
+              if (i === 6) return totalPages; // Last page
+              
+              if (currentPage <= 3) {
+                // Near beginning: show 1-5 ... lastPage
+                return i + 1;
+              }
+              
+              if (currentPage >= totalPages - 2) {
+                // Near end: show 1 ... lastPage-4 to lastPage
+                return totalPages - 6 + i;
+              }
+              
+              // Middle: show 1 ... currentPage-1, currentPage, currentPage+1 ... lastPage
+              if (i === 1) return '...';
+              if (i === 5) return '...';
+              
+              return currentPage + i - 3;
+            }).map((page, index) => (
+              page === '...' ? (
+                <span key={`ellipsis-${index}`} className="px-2">...</span>
+              ) : (
+                <Button
+                  key={`page-${page}`}
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setCurrentPage(Number(page))}
+                  className={`w-10 h-10 p-0 ${
+                    currentPage === page 
+                      ? "bg-blue-100 text-blue-700 hover:bg-blue-200" 
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  {page}
+                </Button>
+              )
             ))}
           </div>
           
           <Button
             variant="outline"
             size="sm"
-            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
             className="rounded-full px-4"
           >
             Next
             <ChevronRight className="w-4 h-4 ml-1" />
           </Button>
+        </div>
+      )}
+
+      {/* Paywall for free users only */}
+      {!features.canViewAllPrompts && totalCount > limitedCount && (
+        <div className="mt-8">
+          <Paywall 
+            title="Unlock All Prompts"
+            description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
+            feature="Unlimited prompt access"
+            className="max-w-4xl mx-auto"
+          />
         </div>
       )}
 
