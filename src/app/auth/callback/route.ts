@@ -2,6 +2,9 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
+// This route needs dynamic rendering because it uses cookies
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
@@ -16,7 +19,7 @@ export async function GET(request: Request) {
   // So redirect to a client-side handler that can process it
   if (request.url.includes('#')) {
     console.log('Hash detected in URL, redirecting to client-side handler')
-    return NextResponse.redirect(new URL('/test-callback', requestUrl))
+    return NextResponse.redirect(new URL('/auth/callback/handle-fragment', requestUrl))
   }
 
   // Create a Supabase client for the server

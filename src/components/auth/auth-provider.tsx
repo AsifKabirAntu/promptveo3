@@ -70,6 +70,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         console.log('🔍 Initializing auth state...')
         
+        // First try to get session from localStorage directly
+        try {
+          const sessionKey = `sb-${process.env.NEXT_PUBLIC_SUPABASE_URL?.split('//')[1].split('.')[0]}-auth-token`
+          const storedSession = localStorage.getItem(sessionKey)
+          
+          if (storedSession) {
+            console.log('🔍 Found session in localStorage, attempting to use it')
+            try {
+              const parsedSession = JSON.parse(storedSession)
+              if (parsedSession?.access_token && parsedSession?.refresh_token) {
+                console.log('🔄 Setting session from localStorage')
+                await supabase.auth.setSession({
+                  access_token: parsedSession.access_token,
+                  refresh_token: parsedSession.refresh_token
+                })
+              }
+            } catch (e) {
+              console.error('❌ Error parsing or using stored session:', e)
+            }
+          }
+        } catch (e) {
+          console.log('ℹ️ Could not access localStorage')
+        }
+        
         // Get the current session from Supabase
         const { data, error } = await supabase.auth.getSession()
         
@@ -129,7 +153,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setLoading(false)
         setSubscriptionLoading(false)
       }
-    }, 3000) // 3 second timeout
+    }, 5000) // 5 second timeout
 
     // Listen for auth changes
     const { data: { subscription: authListener } } = supabase.auth.onAuthStateChange(

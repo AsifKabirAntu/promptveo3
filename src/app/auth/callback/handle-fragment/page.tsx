@@ -18,8 +18,8 @@ export default function HandleFragmentPage() {
         const accessToken = params.get('access_token')
         const refreshToken = params.get('refresh_token')
         const expiresIn = params.get('expires_in')
-        const tokenType = params.get('token_type')
         const expiresAt = params.get('expires_at')
+        const tokenType = params.get('token_type')
         
         if (!accessToken) {
           throw new Error('No access token found in URL fragment')
@@ -43,20 +43,18 @@ export default function HandleFragmentPage() {
         // Get Supabase client
         const supabase = createClientComponentClient()
         
-        // Try both methods to ensure session is set
-        
-        // Method 1: Use Supabase's setSession
+        // Set the session in Supabase
         console.log('Setting session via Supabase client...')
         const { error: setSessionError } = await supabase.auth.setSession(session)
         
         if (setSessionError) {
           console.error('❌ Error setting session via Supabase client:', setSessionError)
-        } else {
-          console.log('✅ Session set successfully via Supabase client')
+          throw setSessionError
         }
         
-        // Method 2: Manually store in localStorage
-        console.log('Manually storing session in localStorage...')
+        console.log('✅ Session set successfully via Supabase client')
+        
+        // Also store in localStorage manually as a backup
         try {
           // Get the correct key for localStorage
           const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -74,17 +72,19 @@ export default function HandleFragmentPage() {
             console.error('❌ Error getting user data:', userError)
           }
           
-          const fullSession = {
-            ...session,
-            user: userData?.user || null
+          if (userData?.user) {
+            const fullSession = {
+              ...session,
+              user: userData.user
+            }
+            
+            // Store in localStorage
+            localStorage.setItem(storageKey, JSON.stringify(fullSession))
+            console.log('✅ Session stored in localStorage')
           }
-          
-          // Store in localStorage
-          localStorage.setItem(storageKey, JSON.stringify(fullSession))
-          console.log('✅ Session stored in localStorage')
-          
         } catch (storageError: any) {
           console.error('❌ Error storing session in localStorage:', storageError)
+          // Continue even if localStorage fails
         }
         
         // Verify the session was set
@@ -92,15 +92,15 @@ export default function HandleFragmentPage() {
         
         if (verifyError) {
           console.error('❌ Error verifying session:', verifyError)
+          throw verifyError
         }
         
-        if (verifySession) {
-          console.log('✅ Session verified for user:', verifySession.user.email)
-          setStatus('success')
-        } else {
-          console.warn('⚠️ Session could not be verified, but no error was returned')
-          setStatus('success') // Still proceed as success since we've done all we can
+        if (!verifySession) {
+          throw new Error('Session could not be verified after setting')
         }
+        
+        console.log('✅ Session verified for user:', verifySession.user.email)
+        setStatus('success')
         
         // Redirect to dashboard after a short delay
         setTimeout(() => {
