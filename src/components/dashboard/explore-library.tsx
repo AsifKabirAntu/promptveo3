@@ -342,67 +342,77 @@ export function ExploreLibrary() {
 
   // Convert prompts to unified format and filter based on current tab
   const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number, limitedCount: number } => {
-    // Make sure we have arrays even if they're empty
-    const safeRegularPrompts = regularPrompts || []
-    const safeTimelinePrompts = timelinePrompts || []
+    // Filter prompts based on search and filters
+    const filteredRegularPrompts = regularPrompts
+      .filter(prompt => {
+        const matchesSearch = !searchQuery || 
+          prompt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          prompt.description.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesCategory = !selectedCategory || prompt.category === selectedCategory;
+        const matchesStyle = !selectedStyle || prompt.style === selectedStyle;
+        
+        return matchesSearch && matchesCategory && matchesStyle;
+      })
+      .map(prompt => ({ ...prompt, type: 'regular' as const }));
     
-    console.log(`Getting display prompts: ${safeRegularPrompts.length} regular, ${safeTimelinePrompts.length} timeline`)
+    const filteredTimelinePrompts = timelinePrompts
+      .filter(prompt => {
+        const matchesSearch = !searchQuery || 
+          prompt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          prompt.description.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesCategory = !selectedCategory || prompt.category === selectedCategory;
+        const matchesStyle = !selectedStyle || prompt.base_style === selectedStyle;
+        
+        return matchesSearch && matchesCategory && matchesStyle;
+      })
+      .map(prompt => ({ ...prompt, type: 'timeline' as const }));
     
-    const unifiedRegular: UnifiedPrompt[] = safeRegularPrompts.map(prompt => ({ ...prompt, type: 'regular' as const }))
-    const unifiedTimeline: UnifiedPrompt[] = safeTimelinePrompts.map(prompt => ({ ...prompt, type: 'timeline' as const }))
-    
-    // Filter based on tab selection
-    let filteredPrompts: UnifiedPrompt[] = []
+    // Combine and filter based on timeline filter
+    let combinedPrompts: UnifiedPrompt[] = [];
     
     if (timelineFilter === 'all') {
-      filteredPrompts = [...unifiedRegular, ...unifiedTimeline]
+      combinedPrompts = [...filteredRegularPrompts, ...filteredTimelinePrompts];
     } else if (timelineFilter === 'with-timeline') {
-      filteredPrompts = unifiedTimeline
-    } else if (timelineFilter === 'without-timeline') {
-      filteredPrompts = unifiedRegular
-    }
-    
-    // Apply search and category/style filters
-    const filtered = filteredPrompts.filter((prompt) => {
-      const matchesSearch = !searchQuery || 
-        prompt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        prompt.description.toLowerCase().includes(searchQuery.toLowerCase())
-      
-      const matchesCategory = !selectedCategory || prompt.category === selectedCategory
-      
-      // Handle style matching for both types
-      const promptStyle = prompt.type === 'timeline' ? 
-        (prompt as TimelinePrompt).base_style : 
-        (prompt as Prompt).style
-      const matchesStyle = !selectedStyle || promptStyle === selectedStyle
-      
-      return matchesSearch && matchesCategory && matchesStyle
-    })
-
-    // Special handling for free users - show limited prompts
-    let limitedPrompts: UnifiedPrompt[] = []
-    
-    if (features.canViewAllPrompts) {
-      // Pro users see all prompts
-      limitedPrompts = filtered
+      combinedPrompts = [...filteredTimelinePrompts];
     } else {
-      // Free users see first 3 prompts
-      limitedPrompts = filtered.slice(0, 3)
+      combinedPrompts = [...filteredRegularPrompts];
     }
-
-    // Calculate pagination using itemsPerPage
-    const startIndex = (currentPage - 1) * itemsPerPage
-    const paginatedPrompts = limitedPrompts.slice(startIndex, startIndex + itemsPerPage)
-
+    
+    // Sort by date (newest first)
+    combinedPrompts.sort((a, b) => {
+      const dateA = new Date(a.created_at).getTime();
+      const dateB = new Date(b.created_at).getTime();
+      return dateB - dateA;
+    });
+    
+    const totalCount = combinedPrompts.length;
+    
+    // Apply pagination - for pro users, show all with pagination
+    // For free users, limit to features.maxVisiblePrompts
+    let limitedPrompts = combinedPrompts;
+    
+    // If user doesn't have pro access, limit the number of prompts
+    if (!features.canViewAllPrompts) {
+      limitedPrompts = combinedPrompts.slice(0, features.maxVisiblePrompts);
+    } else {
+      // For pro users, apply pagination
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      limitedPrompts = combinedPrompts.slice(startIndex, startIndex + itemsPerPage);
+    }
+    
     return {
-      prompts: paginatedPrompts,
-      totalCount: filtered.length,
-      limitedCount: limitedPrompts.length
-    }
-  }
+      prompts: limitedPrompts,
+      totalCount,
+      limitedCount: features.canViewAllPrompts ? totalCount : features.maxVisiblePrompts
+    };
+  };
 
-  const { prompts: displayPrompts, totalCount, limitedCount } = getDisplayPrompts()
-  const totalPages = Math.ceil(limitedCount / itemsPerPage)
+  const { prompts: displayPrompts, totalCount, limitedCount } = getDisplayPrompts();
+  
+  // Calculate total pages for pagination
+  const totalPages = Math.ceil(totalCount / itemsPerPage);
   
   // Reset to first page when filters change
   useEffect(() => {
@@ -672,7 +682,7 @@ export function ExploreLibrary() {
         </div>
       )}
 
-      {/* Paywall for free users */}
+      {/* Paywall for free users only */}
       {!features.canViewAllPrompts && totalCount > limitedCount && (
         <div className="mt-8">
           <Paywall 
@@ -680,22 +690,7 @@ export function ExploreLibrary() {
             description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
             feature="Unlimited prompt access"
             className="max-w-4xl mx-auto"
-          >
-            {subscription?.plan === 'pro' && (
-              <Button 
-                onClick={async () => {
-                  await refreshSubscription();
-                  localStorage.removeItem('prompts_cache');
-                  localStorage.removeItem('timeline_prompts_cache');
-                  localStorage.removeItem('subscription_data');
-                  window.location.reload();
-                }}
-                className="mt-4"
-              >
-                Refresh Subscription Status
-              </Button>
-            )}
-          </Paywall>
+          />
         </div>
       )}
 

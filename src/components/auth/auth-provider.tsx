@@ -25,37 +25,6 @@ export function useAuth() {
   return context
 }
 
-// Helper for direct API fetching with timeout
-async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promise<T> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Missing Supabase credentials');
-  }
-  
-  const url = `${supabaseUrl}/${endpoint}`;
-  
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    setTimeout(() => reject(new Error('Request timed out')), 8000);
-  });
-  
-  const fetchPromise = fetch(url, {
-    headers: {
-      'apikey': supabaseKey,
-      'Authorization': `Bearer ${supabaseKey}`,
-      ...options
-    }
-  }).then(response => {
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    }
-    return response.json();
-  });
-  
-  return Promise.race([fetchPromise, timeoutPromise]);
-}
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -135,24 +104,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.log('ℹ️ Could not access localStorage:', e)
         }
         
-        // Method 2: Try direct API call if no user yet
-        if (!sessionUser) {
-          try {
-            console.log('🔍 Trying direct API call for session')
-            const userData = await fetchDirectFromSupabase<{user: User | null}>('auth/v1/user', {
-              'Content-Type': 'application/json'
-            })
-            
-            if (userData?.user) {
-              console.log('✅ User found via direct API:', userData.user.email)
-              sessionUser = userData.user
-            }
-          } catch (e) {
-            console.error('❌ Error with direct session API call:', e)
-          }
-        }
-        
-        // Method 3: Try standard Supabase getSession if still no user
+        // Method 2: Try standard Supabase getSession if still no user
         if (!sessionUser) {
           try {
             console.log('🔍 Trying Supabase getSession')
