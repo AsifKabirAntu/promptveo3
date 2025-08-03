@@ -2,6 +2,7 @@ import { Lock, Sparkles, Zap, Star, Crown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import { ReactNode } from "react"
 
 interface PaywallProps {
   title?: string
@@ -10,6 +11,7 @@ interface PaywallProps {
   showUpgradeButton?: boolean
   className?: string
   onClose?: () => void
+  children?: ReactNode
 }
 
 export function Paywall({ 
@@ -18,7 +20,8 @@ export function Paywall({
   feature,
   showUpgradeButton = true,
   className = "",
-  onClose
+  onClose,
+  children
 }: PaywallProps) {
   const features = [
     "Unlimited prompt access",
@@ -101,9 +104,13 @@ export function Paywall({
                 Upgrade to Pro
               </Button>
             </Link>
-            <p className="text-xs text-gray-500 mt-2">
-              Cancel anytime
-            </p>
+          </div>
+        )}
+        
+        {/* Custom Content */}
+        {children && (
+          <div className="mt-4 text-center">
+            {children}
           </div>
         )}
       </div>
@@ -117,42 +124,64 @@ export function CompactPaywall({
   description = "Upgrade to unlock this feature",
   showUpgradeButton = true,
   feature,
-  onClose
+  onClose,
+  children
 }: PaywallProps) {
   return (
-    <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-4">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-purple-50/30" />
+    <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4">
+      <div className="absolute top-0 right-0 h-24 w-24 bg-gradient-to-br from-blue-100/30 to-purple-100/30 rounded-bl-full" />
       
-      <div className="relative z-10 flex items-center justify-between">
+      <div className="relative z-10">
         {/* Close Button */}
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-1 right-1 p-1 rounded-full hover:bg-gray-100 transition-colors"
+            className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-100 transition-colors"
           >
-            <svg className="w-3 h-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         )}
-
-        <div className="flex items-center space-x-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
-            <Lock className="h-4 w-4 text-white" />
+        
+        {/* Content */}
+        <div className="flex items-start space-x-3">
+          <div className="flex-shrink-0">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600">
+              <Lock className="h-4 w-4 text-white" />
+            </div>
           </div>
-          <div>
-            <h4 className="font-semibold text-gray-900">{title}</h4>
-            <p className="text-sm text-gray-600">{description}</p>
+          <div className="flex-1">
+            <h4 className="font-medium text-gray-900">{title}</h4>
+            <p className="text-sm text-gray-600 mt-1">{description}</p>
+            
+            {/* Feature */}
+            {feature && (
+              <div className="mt-2 flex items-center">
+                <Sparkles className="h-3 w-3 text-blue-500 mr-1" />
+                <span className="text-xs text-gray-700">{feature}</span>
+              </div>
+            )}
+            
+            {/* CTA Button */}
+            {showUpgradeButton && (
+              <div className="mt-3">
+                <Link href="/dashboard/billing">
+                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-sm py-1 h-auto">
+                    Upgrade to Pro
+                  </Button>
+                </Link>
+              </div>
+            )}
+            
+            {/* Custom Content */}
+            {children && (
+              <div className="mt-3">
+                {children}
+              </div>
+            )}
           </div>
         </div>
-        
-        {showUpgradeButton && (
-          <Link href="/dashboard/billing">
-            <Button size="sm" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-              Upgrade
-            </Button>
-          </Link>
-        )}
       </div>
     </div>
   )

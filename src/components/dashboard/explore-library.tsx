@@ -18,7 +18,7 @@ import { TimelinePrompt } from "@/types/timeline-prompt"
 type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
 
 export function ExploreLibrary() {
-  const { features } = useAuth()
+  const { features, refreshSubscription, subscription } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [selectedStyle, setSelectedStyle] = useState<string>("")
@@ -37,6 +37,41 @@ export function ExploreLibrary() {
   // Categories and styles from both types
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
   const [styles, setStyles] = useState<string[]>(fallbackStyles)
+
+  // Refresh subscription and clear localStorage cache if needed
+  useEffect(() => {
+    // Check if subscription is pro but localStorage says free
+    const checkAndRefreshSubscription = async () => {
+      try {
+        // Check localStorage subscription data
+        const subKey = 'subscription_data';
+        const storedSub = localStorage.getItem(subKey);
+        
+        if (storedSub) {
+          const { plan } = JSON.parse(storedSub);
+          
+          // If subscription is pro but localStorage says free, refresh
+          if (subscription?.plan === 'pro' && plan !== 'pro') {
+            console.log('Subscription mismatch detected, refreshing...');
+            await refreshSubscription();
+            
+            // Clear localStorage cache to force fresh data load
+            localStorage.removeItem('prompts_cache');
+            localStorage.removeItem('timeline_prompts_cache');
+            
+            // Force reload the page to get fresh data
+            window.location.reload();
+          }
+        }
+      } catch (e) {
+        console.error('Error checking subscription:', e);
+      }
+    };
+    
+    if (subscription) {
+      checkAndRefreshSubscription();
+    }
+  }, [subscription, refreshSubscription]);
 
   // Try to load data from localStorage on mount
   useEffect(() => {
@@ -645,7 +680,22 @@ export function ExploreLibrary() {
             description={`You're seeing ${limitedCount} of ${totalCount} prompts. Upgrade to Pro to access the full library.`}
             feature="Unlimited prompt access"
             className="max-w-4xl mx-auto"
-          />
+          >
+            {subscription?.plan === 'pro' && (
+              <Button 
+                onClick={async () => {
+                  await refreshSubscription();
+                  localStorage.removeItem('prompts_cache');
+                  localStorage.removeItem('timeline_prompts_cache');
+                  localStorage.removeItem('subscription_data');
+                  window.location.reload();
+                }}
+                className="mt-4"
+              >
+                Refresh Subscription Status
+              </Button>
+            )}
+          </Paywall>
         </div>
       )}
 
