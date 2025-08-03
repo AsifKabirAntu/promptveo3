@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { createClient } from '@/lib/supabase-browser'
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Alert } from "@/components/ui/alert"
 
 export function SignInForm() {
   const [email, setEmail] = useState('')
@@ -122,8 +122,8 @@ export function SignInForm() {
   return (
     <div className="space-y-6">
       {error && (
-        <Alert variant="destructive">
-          <AlertDescription>{error}</AlertDescription>
+        <Alert variant="error" title="Error">
+          {error}
         </Alert>
       )}
 
