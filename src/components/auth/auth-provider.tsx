@@ -65,10 +65,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let mounted = true
     let timeoutId: NodeJS.Timeout | null = null
+    let retryCount = 0
+    const maxRetries = 3
 
-    const initializeAuth = async () => {
+    const initializeAuth = async (retry = false) => {
       try {
-        console.log('🔍 Initializing auth state...')
+        console.log(`🔍 Initializing auth state... ${retry ? `(Retry ${retryCount}/${maxRetries})` : ''}`)
         
         // First try to get session from localStorage directly
         try {
@@ -101,6 +103,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (error) {
           console.error('❌ Error getting session:', error)
+          
+          // Try again if we haven't exceeded max retries
+          if (retry && retryCount < maxRetries) {
+            retryCount++
+            console.log(`Retrying auth initialization (${retryCount}/${maxRetries})...`)
+            // Wait a second before retrying
+            setTimeout(() => initializeAuth(true), 1000)
+            return
+          }
+          
           // Even with an error, we should set loading to false
           setLoading(false)
           setSubscriptionLoading(false)
@@ -123,10 +135,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               setSubscription(null)
             }
           }
+          
+          // Success - set loading to false
+          if (mounted) {
+            setLoading(false)
+            setSubscriptionLoading(false)
+          }
         } else {
           console.log('ℹ️  No user session found')
+          
+          // Try again if we haven't exceeded max retries
+          if (retry && retryCount < maxRetries) {
+            retryCount++
+            console.log(`Retrying auth initialization (${retryCount}/${maxRetries})...`)
+            // Wait a second before retrying
+            setTimeout(() => initializeAuth(true), 1000)
+            return
+          }
+          
           setUser(null)
           setSubscription(null)
+          setLoading(false)
+          setSubscriptionLoading(false)
         }
         
       } catch (error) {
@@ -134,17 +164,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (mounted) {
           setUser(null)
           setSubscription(null)
-        }
-      } finally {
-        if (mounted) {
           setLoading(false)
           setSubscriptionLoading(false)
         }
       }
     }
 
-    // Initialize auth state
-    initializeAuth()
+    // Initialize auth state with retry enabled
+    initializeAuth(true)
     
     // Set a timeout to ensure loading state doesn't get stuck
     timeoutId = setTimeout(() => {
@@ -153,7 +180,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setLoading(false)
         setSubscriptionLoading(false)
       }
-    }, 5000) // 5 second timeout
+    }, 8000) // 8 second timeout
 
     // Listen for auth changes
     const { data: { subscription: authListener } } = supabase.auth.onAuthStateChange(
