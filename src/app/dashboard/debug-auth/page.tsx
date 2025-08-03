@@ -9,6 +9,7 @@ export default function DebugAuthPage() {
   const { user, loading } = useAuth()
   const [sessionData, setSessionData] = useState<any>(null)
   const [cookies, setCookies] = useState<string>('')
+  const [localStorageData, setLocalStorageData] = useState<string | null>(null)
   const supabase = createClientComponentClient<Database>()
 
   useEffect(() => {
@@ -20,6 +21,14 @@ export default function DebugAuthPage() {
 
     // Get cookies
     setCookies(document.cookie)
+    
+    // Safely access localStorage
+    try {
+      setLocalStorageData(localStorage.getItem('supabase.auth.token'))
+    } catch (error) {
+      console.error('Error accessing localStorage:', error)
+      setLocalStorageData(null)
+    }
 
     checkSession()
   }, [supabase.auth])
@@ -52,7 +61,7 @@ export default function DebugAuthPage() {
         <div className="bg-gray-100 p-4 rounded">
           <h2 className="text-lg font-semibold mb-2">Local Storage</h2>
           <pre className="text-sm overflow-auto">
-            {JSON.stringify(localStorage.getItem('supabase.auth.token'), null, 2)}
+            {localStorageData !== null ? JSON.stringify(localStorageData, null, 2) : 'Not available'}
           </pre>
         </div>
       </div>

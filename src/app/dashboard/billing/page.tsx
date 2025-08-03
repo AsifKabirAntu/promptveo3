@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useAuth } from '@/components/auth/auth-provider'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -12,7 +12,8 @@ import { Check, Crown, CreditCard, Calendar, Zap } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-export default function BillingPage() {
+// Client component that uses searchParams
+function BillingPageContent() {
   const { user, subscription, features, refreshSubscription } = useAuth()
   const [loading, setLoading] = useState(false)
   const [portalLoading, setPortalLoading] = useState(false)
@@ -392,5 +393,14 @@ export default function BillingPage() {
         </div>
       )}
     </div>
+  )
+}
+
+// Main component with Suspense boundary
+export default function BillingPage() {
+  return (
+    <Suspense fallback={<div className="p-6">Loading billing information...</div>}>
+      <BillingPageContent />
+    </Suspense>
   )
 } 
