@@ -175,7 +175,7 @@ export default function FavoritesPage() {
         {/* Side Sheet */}
         <PromptSideSheet 
           prompt={selectedPrompt}
-          isOpen={sideSheetOpen}
+          open={sideSheetOpen}
           onClose={handleCloseSideSheet}
         />
       </div>
