@@ -1,7 +1,7 @@
 'use client'
 
 import type { Database } from '@/types/database'
-import { createClient } from './supabase-browser'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export type SubscriptionPlan = 'free' | 'pro'
 export type SubscriptionStatus = 'active' | 'canceled' | 'past_due' | 'incomplete' | 'trialing'
@@ -46,42 +46,116 @@ export const PRO_PLAN_FEATURES = {
   canCreate: true,
 }
 
-export async function getUserSubscriptionClient() {
-  const supabase = createClient()
-  
-  const { data: { user }, error: userError } = await supabase.auth.getUser()
-  if (userError) throw userError
-  if (!user) return null
-
-  // Try to fetch subscription data, but handle missing schema gracefully
+export async function getUserSubscriptionClient(): Promise<UserSubscription | null> {
   try {
-    const { data: subscription, error: subscriptionError } = await supabase
-      .from('subscriptions')
-      .select('*')
-      .eq('user_id', user.id)
-      .single()
+    const supabase = createClientComponentClient<Database>()
     
-    if (subscriptionError) {
-      console.error('Error fetching subscription:', subscriptionError)
-      // Fall through to return default subscription
-    } else {
-      return subscription
+    // First check if the user is authenticated
+    const { data: { user } } = await supabase.auth.getUser()
+    
+    if (!user) {
+      console.log('No authenticated user found')
+      return null
+    }
+
+    // Try to fetch subscription with retries
+    let attempts = 0
+    const maxAttempts = 3
+    let lastError: any = null
+
+    while (attempts < maxAttempts) {
+      try {
+        // Add a small delay between retries
+        if (attempts > 0) {
+          await new Promise(resolve => setTimeout(resolve, 1000))
+        }
+        
+        attempts++
+        console.log(`Fetching subscription data (attempt ${attempts}/${maxAttempts})`)
+        
+        // Fetch subscription with a timeout
+        const fetchPromise = supabase
+          .from('subscriptions')
+          .select('*, prices(*, products(*))')
+          .eq('user_id', user.id)
+          .single()
+
+        // Create a timeout promise
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Subscription fetch timed out')), 5000)
+        })
+
+        // Race the fetch against the timeout
+        const { data: subscription, error } = await Promise.race([
+          fetchPromise,
+          timeoutPromise.then(() => ({ data: null, error: new Error('Timeout') }))
+        ]) as any
+
+        if (error) {
+          lastError = error
+          console.error(`Error fetching subscription (attempt ${attempts}):`, error)
+          continue // Try again
+        }
+
+        if (!subscription) {
+          console.log('No subscription found for user')
+          return {
+            id: 'free-tier',
+            user_id: user.id,
+            subscription_id: '',
+            status: 'active' as SubscriptionStatus,
+            price_id: undefined,
+            current_period_start: new Date().toISOString(),
+            current_period_end: new Date().toISOString(),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            plan: 'free' as SubscriptionPlan
+          }
+        }
+
+        // Map subscription data to our Subscription type
+        return {
+          id: subscription.id || 'unknown',
+          user_id: subscription.user_id,
+          subscription_id: subscription.subscription_id || '',
+          status: (subscription.status as SubscriptionStatus) || 'active',
+          price_id: subscription.price_id,
+          current_period_start: subscription.current_period_start,
+          current_period_end: subscription.current_period_end,
+          created_at: subscription.created_at,
+          updated_at: subscription.updated_at || subscription.created_at,
+          plan: subscription.plan || getPlanFromPriceId(subscription.price_id)
+        }
+      } catch (err) {
+        lastError = err
+        console.error(`Error in subscription fetch (attempt ${attempts}):`, err)
+      }
+    }
+
+    console.error(`Failed to fetch subscription after ${maxAttempts} attempts`)
+    // Return a default free subscription after all retries fail
+    return {
+      id: 'free-tier',
+      user_id: user.id,
+      subscription_id: '',
+      status: 'active' as SubscriptionStatus,
+      price_id: undefined,
+      current_period_start: new Date().toISOString(),
+      current_period_end: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      plan: 'free' as SubscriptionPlan
     }
   } catch (error) {
-    console.log('Subscription table might not exist yet, using default values')
+    console.error('Error fetching subscription:', error)
+    return null
   }
-  
-  // Return a default free subscription if we can't fetch the real data
-  return {
-    id: 'default',
-    user_id: user.id,
-    status: 'active',
-    plan: 'free',
-    current_period_start: new Date().toISOString(),
-    current_period_end: new Date().toISOString(),
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString()
-  }
+}
+
+// Helper function to determine plan from price_id
+function getPlanFromPriceId(priceId: string | null): 'free' | 'pro' {
+  if (!priceId) return 'free'
+  return priceId.includes('pro') ? 'pro' : 'free'
 }
 
 export function getSubscriptionFeatures(subscription: any) {

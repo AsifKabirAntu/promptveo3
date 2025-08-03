@@ -41,6 +41,10 @@ export function ExploreLibrary() {
   // Load all data
   useEffect(() => {
     let mounted = true
+    let retryCount = 0
+    const maxRetries = 2
+    const retryDelay = 2000 // 2 seconds
+    
     // Set a shorter timeout to prevent long loading states
     const loadTimeout = setTimeout(() => {
       if (mounted) {
@@ -51,14 +55,27 @@ export function ExploreLibrary() {
         setCategories(fallbackCategories)
         setStyles(fallbackStyles)
       }
-    }, 5000) // 5 second timeout
+    }, 15000) // 15 second timeout (increased from 5)
 
-    async function loadData() {
+    async function loadData(retry = false) {
       try {
         if (!mounted) return
         setLoading(true)
         
-        console.log('🔍 Loading prompt data...')
+        console.log(`🔍 Loading prompt data...${retry ? ` (Retry ${retryCount}/${maxRetries})` : ''}`)
+        
+        // Helper function to fetch with timeout
+        const fetchWithTimeout = async <T,>(promiseFn: () => Promise<T>, timeoutMs = 10000, fallbackValue: T): Promise<T> => {
+          try {
+            const timeoutPromise = new Promise<never>((_, reject) => {
+              setTimeout(() => reject(new Error(`Request timed out after ${timeoutMs/1000} seconds`)), timeoutMs)
+            })
+            return await Promise.race([promiseFn(), timeoutPromise]) as T
+          } catch (error: any) {
+            console.error(`Timeout or error: ${error.message}`)
+            return fallbackValue
+          }
+        }
         
         // Fetch both types of prompts and their metadata in parallel
         const [
@@ -69,33 +86,26 @@ export function ExploreLibrary() {
           fetchedTimelineCategories,
           fetchedTimelineStyles
         ] = await Promise.all([
-          getAllPromptsClient().catch(err => {
-            console.error('Error fetching regular prompts:', err)
-            return []
-          }),
-          getAllTimelinePromptsClient().catch(err => {
-            console.error('Error fetching timeline prompts:', err)
-            return []
-          }),
-          getUniqueCategories().catch(err => {
-            console.error('Error fetching categories:', err)
-            return fallbackCategories
-          }),
-          getUniqueStyles().catch(err => {
-            console.error('Error fetching styles:', err)
-            return fallbackStyles
-          }),
-          getUniqueTimelineCategories().catch(err => {
-            console.error('Error fetching timeline categories:', err)
-            return fallbackTimelineCategories
-          }),
-          getUniqueTimelineBaseStyles().catch(err => {
-            console.error('Error fetching timeline styles:', err)
-            return fallbackTimelineBaseStyles
-          })
+          fetchWithTimeout(() => getAllPromptsClient(), 10000, []),
+          fetchWithTimeout(() => getAllTimelinePromptsClient(), 10000, []),
+          fetchWithTimeout(() => getUniqueCategories(), 8000, fallbackCategories),
+          fetchWithTimeout(() => getUniqueStyles(), 8000, fallbackStyles),
+          fetchWithTimeout(() => getUniqueTimelineCategories(), 8000, fallbackTimelineCategories),
+          fetchWithTimeout(() => getUniqueTimelineBaseStyles(), 8000, fallbackTimelineBaseStyles)
         ])
         
         if (!mounted) return
+
+        // Check if we got any data
+        const hasData = fetchedRegularPrompts.length > 0 || fetchedTimelinePrompts.length > 0
+        
+        if (!hasData && retry && retryCount < maxRetries) {
+          // If no data and we can retry, do so after a delay
+          retryCount++
+          console.log(`No data received, retrying (${retryCount}/${maxRetries})...`)
+          setTimeout(() => loadData(true), retryDelay)
+          return
+        }
 
         console.log('✅ Data loaded successfully')
         console.log('Regular prompts:', fetchedRegularPrompts?.length || 0)
@@ -114,6 +124,15 @@ export function ExploreLibrary() {
         
       } catch (error) {
         console.error('Error loading data:', error)
+        
+        // Retry logic
+        if (retry && retryCount < maxRetries) {
+          retryCount++
+          console.log(`Error loading data, retrying (${retryCount}/${maxRetries})...`)
+          setTimeout(() => loadData(true), retryDelay)
+          return
+        }
+        
         // Set fallback data on error
         if (mounted) {
           setRegularPrompts([])
@@ -122,14 +141,14 @@ export function ExploreLibrary() {
           setStyles(fallbackStyles)
         }
       } finally {
-        if (mounted) {
+        if (mounted && (!retry || retryCount >= maxRetries)) {
           setLoading(false)
           clearTimeout(loadTimeout)
         }
       }
     }
 
-    loadData()
+    loadData(true) // Start with retry enabled
 
     return () => {
       mounted = false

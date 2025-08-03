@@ -17,6 +17,8 @@ function BillingPageContent() {
   const { user, subscription, features, refreshSubscription } = useAuth()
   const [loading, setLoading] = useState(false)
   const [portalLoading, setPortalLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
+  const [refreshAttempts, setRefreshAttempts] = useState(0)
   const searchParams = useSearchParams()
   
   const isSuccess = searchParams.get('success') === 'true'
@@ -26,9 +28,27 @@ function BillingPageContent() {
   useEffect(() => {
     if (isSuccess) {
       console.log('Checkout success detected, refreshing subscription data...')
-      refreshSubscription()
+      handleRefreshSubscription()
     }
-  }, [isSuccess, refreshSubscription])
+  }, [isSuccess])
+
+  const handleRefreshSubscription = async () => {
+    setRefreshing(true)
+    try {
+      console.log(`Refreshing subscription (attempt ${refreshAttempts + 1})...`)
+      await refreshSubscription()
+      
+      // If we still don't have an active subscription after refresh, try again up to 3 times
+      if (subscription?.status !== 'active' && refreshAttempts < 3) {
+        setRefreshAttempts(prev => prev + 1)
+        setTimeout(() => handleRefreshSubscription(), 2000) // Try again after 2 seconds
+      }
+    } catch (error) {
+      console.error('Error refreshing subscription:', error)
+    } finally {
+      setRefreshing(false)
+    }
+  }
 
   const handleUpgrade = async (priceType: 'monthly' | 'yearly') => {
     setLoading(true)
@@ -119,13 +139,14 @@ function BillingPageContent() {
             </div>
             <div className="ml-3">
               <h3 className="text-sm font-medium text-green-800">
-                Welcome to Pro! Your subscription is now active.
+                {isPro ? 'Your subscription is active!' : 'Payment successful! Your subscription should activate shortly.'}
               </h3>
               <button 
-                onClick={() => refreshSubscription()}
+                onClick={handleRefreshSubscription}
+                disabled={refreshing}
                 className="mt-2 text-sm text-green-600 hover:text-green-800 underline"
               >
-                Refresh subscription status
+                {refreshing ? 'Refreshing...' : 'Refresh subscription status'}
               </button>
               <button 
                 onClick={async () => {
