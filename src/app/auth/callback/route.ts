@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
-  
+
   console.log('🔍 Auth callback received:', {
     url: request.url,
     hasCode: !!code,
@@ -23,9 +23,9 @@ export async function GET(request: Request) {
   }
 
   // Create a Supabase client for the server
-  const cookieStore = cookies()
-  const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-  
+    const cookieStore = cookies()
+    const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
+    
   // If we have a code, exchange it for a session
   if (code) {
     try {
@@ -40,16 +40,16 @@ export async function GET(request: Request) {
           new URL(`/auth/signin?error=session_exchange_failed&details=${encodeURIComponent(error.message)}`, requestUrl)
         )
       }
-      
+
       if (!data.session) {
         console.error('❌ No session returned from code exchange')
         return NextResponse.redirect(
           new URL('/auth/signin?error=no_session', requestUrl)
         )
       }
-      
+
       console.log('✅ Session established successfully for user:', data.session.user.email)
-      
+
       // Redirect to the dashboard
       return NextResponse.redirect(new URL('/dashboard', requestUrl))
     } catch (error: any) {
@@ -59,7 +59,7 @@ export async function GET(request: Request) {
       )
     }
   }
-  
+
   // If we don't have a code or hash, redirect to the sign-in page with an error
   console.error('❌ No code found in callback URL')
   return NextResponse.redirect(

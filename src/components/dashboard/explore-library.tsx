@@ -755,8 +755,8 @@ export function ExploreLibrary() {
         </div>
       )}
 
-      {/* Paywall for free users only */}
-      {!features.canViewAllPrompts && (
+      {/* Paywall for free users only - hide for Pro users */}
+      {!features.canViewAllPrompts && subscription?.status !== 'active' && (
         <div className="mt-8 max-w-3xl mx-auto">
           <Paywall 
             title="Unlock All Prompts"

@@ -19,7 +19,7 @@ interface UnifiedPromptCardProps {
 }
 
 export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: UnifiedPromptCardProps) {
-  const { features } = useAuth()
+  const { features, subscription } = useAuth()
   const [favorite, setFavorite] = useState(false)
   const [loading, setLoading] = useState(true)
   const [showPaywall, setShowPaywall] = useState(false)
@@ -45,8 +45,15 @@ export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: Un
     } else if (features.canRemix && feature === 'remix') {
       action()
     } else {
-      setPaywallFeature(feature)
-      setShowPaywall(true)
+      // Only show paywall for non-Pro users
+      const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
+      if (!isPro) {
+        setPaywallFeature(feature)
+        setShowPaywall(true)
+      } else {
+        // For Pro users, just execute the action directly
+        action()
+      }
     }
   }
 

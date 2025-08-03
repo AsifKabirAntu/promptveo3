@@ -21,7 +21,7 @@ interface PromptSideSheetProps {
 }
 
 export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps) {
-  const { features } = useAuth()
+  const { features, subscription } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -59,14 +59,26 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
     } else if (feature === 'json') {
       // Only paywall JSON for timeline prompts
       if (prompt.type === 'timeline' && !features.canViewJSON) {
-        setPaywallFeature(feature)
-        setShowPaywall(true)
+        const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
+        if (!isPro) {
+          setPaywallFeature(feature)
+          setShowPaywall(true)
+        } else {
+          action()
+        }
       } else {
         action()
       }
     } else {
-      setPaywallFeature(feature)
-      setShowPaywall(true)
+      // Check if user is Pro
+      const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
+      if (!isPro) {
+        setPaywallFeature(feature)
+        setShowPaywall(true)
+      } else {
+        // For Pro users, just execute the action directly
+        action()
+      }
     }
   }
 

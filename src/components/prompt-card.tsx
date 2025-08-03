@@ -24,7 +24,7 @@ export function PromptCard({
   isFavorited = false,
   showActions = true 
 }: PromptCardProps) {
-  const { features } = useAuth()
+  const { features, subscription } = useAuth()
   const [showPaywall, setShowPaywall] = useState(false)
   const [paywallFeature, setPaywallFeature] = useState('')
 
@@ -36,8 +36,15 @@ export function PromptCard({
     } else if (features.canViewJSON && feature === 'export') {
       action()
     } else {
-      setPaywallFeature(feature)
-      setShowPaywall(true)
+      // Only show paywall for non-Pro users
+      const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
+      if (!isPro) {
+        setPaywallFeature(feature)
+        setShowPaywall(true)
+      } else {
+        // For Pro users, just execute the action directly
+        action()
+      }
     }
   }
 

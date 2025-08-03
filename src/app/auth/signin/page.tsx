@@ -59,7 +59,7 @@ export default function SignInPage() {
             </div>
           </div>
         </div>
-
+        
         {/* Right side - Preview */}
         <div className="hidden lg:flex lg:w-1/2 bg-white items-center justify-center p-8">
           <div className="w-full max-w-lg">

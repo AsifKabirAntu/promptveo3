@@ -16,7 +16,7 @@ interface PromptDetailProps {
 }
 
 export function PromptDetail({ prompt }: PromptDetailProps) {
-  const { features } = useAuth()
+  const { features, subscription } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
 
@@ -295,12 +295,39 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
             </Card>
           ) : (
             <div className="py-8">
-              <Paywall 
-                title="JSON Export"
-                description="Upgrade to Pro to view and export prompts in JSON format for Veo 3."
-                feature="JSON export"
-                className="max-w-2xl mx-auto"
-              />
+              {/* Only show paywall for non-Pro users */}
+              {subscription?.status !== 'active' || subscription?.plan !== 'pro' ? (
+                <Paywall 
+                  title="JSON Export"
+                  description="Upgrade to Pro to view and export prompts in JSON format for Veo 3."
+                  feature="JSON export"
+                  className="max-w-2xl mx-auto"
+                />
+              ) : (
+                <Card className="border-0 shadow-none bg-gray-50">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold">Raw JSON</CardTitle>
+                    <CardDescription>
+                      Copy this JSON to use with Veo 3 or other AI video generation tools
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="relative">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleCopyJson}
+                        className="absolute right-2 top-2"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                      <pre className="bg-white rounded-lg p-4 overflow-x-auto text-sm">
+                        <code className="text-gray-900">{JSON.stringify(promptJson, null, 2)}</code>
+                      </pre>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           )}
         </div>
