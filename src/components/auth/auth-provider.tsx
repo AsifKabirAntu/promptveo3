@@ -25,6 +25,37 @@ export function useAuth() {
   return context
 }
 
+// Helper for direct API fetching with timeout
+async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promise<T> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase credentials');
+  }
+  
+  const url = `${supabaseUrl}/${endpoint}`;
+  
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error('Request timed out')), 8000);
+  });
+  
+  const fetchPromise = fetch(url, {
+    headers: {
+      'apikey': supabaseKey,
+      'Authorization': `Bearer ${supabaseKey}`,
+      ...options
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  });
+  
+  return Promise.race([fetchPromise, timeoutPromise]);
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
@@ -65,135 +96,89 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let mounted = true
     let timeoutId: NodeJS.Timeout | null = null
-    let retryCount = 0
-    const maxRetries = 3
 
-    const initializeAuth = async (retry = false) => {
+    const initializeAuth = async () => {
       try {
-        console.log(`🔍 Initializing auth state... ${retry ? `(Retry ${retryCount}/${maxRetries})` : ''}`)
+        console.log('🔍 Initializing auth state...')
         
-        // First try to get session from localStorage directly
+        // Try multiple methods to get the session
+        let sessionUser = null
+        
+        // Method 1: Try localStorage first
         try {
           const sessionKey = `sb-${process.env.NEXT_PUBLIC_SUPABASE_URL?.split('//')[1].split('.')[0]}-auth-token`
           const storedSession = localStorage.getItem(sessionKey)
           
           if (storedSession) {
-            console.log('🔍 Found session in localStorage, attempting to use it')
-            try {
-              const parsedSession = JSON.parse(storedSession)
+            console.log('🔍 Found session in localStorage')
+            const parsedSession = JSON.parse(storedSession)
+            if (parsedSession?.user) {
+              console.log('✅ User found in localStorage:', parsedSession.user.email)
+              sessionUser = parsedSession.user
+              
+              // Also try to set the session with Supabase
               if (parsedSession?.access_token && parsedSession?.refresh_token) {
-                console.log('🔄 Setting session from localStorage')
-                await supabase.auth.setSession({
-                  access_token: parsedSession.access_token,
-                  refresh_token: parsedSession.refresh_token
-                })
+                try {
+                  await supabase.auth.setSession({
+                    access_token: parsedSession.access_token,
+                    refresh_token: parsedSession.refresh_token
+                  })
+                  console.log('✅ Session set with Supabase client')
+                } catch (e) {
+                  console.error('❌ Error setting session with Supabase:', e)
+                }
               }
-            } catch (e) {
-              console.error('❌ Error parsing or using stored session:', e)
             }
           }
         } catch (e) {
-          console.log('ℹ️ Could not access localStorage')
+          console.log('ℹ️ Could not access localStorage:', e)
         }
         
-        // Get the current session from Supabase
-        const { data, error } = await supabase.auth.getSession()
-        
-        if (!mounted) return
-
-        if (error) {
-          console.error('❌ Error getting session:', error)
-          
-          // Try again if we haven't exceeded max retries
-          if (retry && retryCount < maxRetries) {
-            retryCount++
-            console.log(`Retrying auth initialization (${retryCount}/${maxRetries})...`)
-            // Wait a second before retrying
-            setTimeout(() => initializeAuth(true), 1000)
-            return
-          }
-          
-          // Even with an error, we should set loading to false
-          setLoading(false)
-          setSubscriptionLoading(false)
-          return
-        }
-
-        if (data.session?.user) {
-          console.log('✅ User authenticated from Supabase session:', data.session.user.email)
-          setUser(data.session.user)
-          
-          // Fetch subscription data
+        // Method 2: Try direct API call if no user yet
+        if (!sessionUser) {
           try {
-            const sub = await getUserSubscriptionClient()
-            if (mounted) {
-              setSubscription(sub)
+            console.log('🔍 Trying direct API call for session')
+            const userData = await fetchDirectFromSupabase<{user: User | null}>('auth/v1/user', {
+              'Content-Type': 'application/json'
+            })
+            
+            if (userData?.user) {
+              console.log('✅ User found via direct API:', userData.user.email)
+              sessionUser = userData.user
             }
-          } catch (error) {
-            console.error('❌ Error fetching subscription:', error)
-            if (mounted) {
-              setSubscription(null)
-            }
+          } catch (e) {
+            console.error('❌ Error with direct session API call:', e)
           }
-          
-          // Success - set loading to false
-          if (mounted) {
-            setLoading(false)
-            setSubscriptionLoading(false)
-          }
-        } else {
-          console.log('ℹ️  No user session found')
-          
-          // Try again if we haven't exceeded max retries
-          if (retry && retryCount < maxRetries) {
-            retryCount++
-            console.log(`Retrying auth initialization (${retryCount}/${maxRetries})...`)
-            // Wait a second before retrying
-            setTimeout(() => initializeAuth(true), 1000)
-            return
-          }
-          
-          setUser(null)
-          setSubscription(null)
-          setLoading(false)
-          setSubscriptionLoading(false)
         }
         
-      } catch (error) {
-        console.error('❌ Error in auth initialization:', error)
-        if (mounted) {
-          setUser(null)
-          setSubscription(null)
-          setLoading(false)
-          setSubscriptionLoading(false)
+        // Method 3: Try standard Supabase getSession if still no user
+        if (!sessionUser) {
+          try {
+            console.log('🔍 Trying Supabase getSession')
+            const { data, error } = await supabase.auth.getSession()
+            
+            if (error) {
+              console.error('❌ Error getting session from Supabase:', error)
+            } else if (data?.session?.user) {
+              console.log('✅ User found via Supabase getSession:', data.session.user.email)
+              sessionUser = data.session.user
+            } else {
+              console.log('ℹ️ No user session found via Supabase getSession')
+            }
+          } catch (e) {
+            console.error('❌ Error with Supabase getSession:', e)
+          }
         }
-      }
-    }
-
-    // Initialize auth state with retry enabled
-    initializeAuth(true)
-    
-    // Set a timeout to ensure loading state doesn't get stuck
-    timeoutId = setTimeout(() => {
-      if (mounted && loading) {
-        console.warn('⚠️ Auth initialization timed out')
-        setLoading(false)
-        setSubscriptionLoading(false)
-      }
-    }, 8000) // 8 second timeout
-
-    // Listen for auth changes
-    const { data: { subscription: authListener } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (!mounted) return
-
-        console.log(`🔄 Auth state change: ${event}`, session ? `User: ${session.user.email}` : 'No user')
-
-        if (event === 'SIGNED_IN') {
+        
+        // Final result
+        if (sessionUser) {
+          console.log('🔄 Auth state change: SIGNED_IN User:', sessionUser.email)
           console.log('✅ User signed in successfully')
-          setUser(session?.user ?? null)
           
-          if (session?.user?.id) {
+          if (mounted) {
+            setUser(sessionUser)
+            
+            // Fetch subscription data
             try {
               const sub = await getUserSubscriptionClient()
               if (mounted) {
@@ -206,42 +191,105 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               }
             }
           }
-        } else if (event === 'SIGNED_OUT') {
-          console.log('👋 User signed out')
+        } else {
+          console.log('ℹ️ No user session found')
+          if (mounted) {
+            setUser(null)
+            setSubscription(null)
+          }
+        }
+      } catch (error) {
+        console.error('❌ Error in auth initialization:', error)
+        if (mounted) {
           setUser(null)
           setSubscription(null)
-          // Clear localStorage
-          const sessionKey = `sb-${process.env.NEXT_PUBLIC_SUPABASE_URL?.split('//')[1].split('.')[0]}-auth-token`
-          localStorage.removeItem(sessionKey)
-        } else if (event === 'TOKEN_REFRESHED') {
-          console.log('🔄 Token refreshed')
-          setUser(session?.user ?? null)
         }
+      } finally {
+        if (mounted) {
+          setLoading(false)
+          setSubscriptionLoading(false)
+        }
+      }
+    }
 
+    // Initialize auth state
+    initializeAuth()
+    
+    // Set a timeout to ensure loading state doesn't get stuck
+    timeoutId = setTimeout(() => {
+      if (mounted && loading) {
+        console.warn('⚠️ Auth initialization timed out')
         setLoading(false)
         setSubscriptionLoading(false)
+      }
+    }, 10000) // 10 second timeout
+
+    // Listen for auth changes
+    const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log('🔄 Auth state change:', event)
+        
+        if (event === 'SIGNED_IN' && session?.user) {
+          console.log('✅ User signed in successfully')
+          setUser(session.user)
+          
+          // Fetch subscription data
+          getUserSubscriptionClient()
+            .then((sub) => {
+              if (mounted) {
+                setSubscription(sub)
+              }
+            })
+            .catch((error) => {
+              console.error('❌ Error fetching subscription:', error)
+              if (mounted) {
+                setSubscription(null)
+              }
+            })
+            .finally(() => {
+              if (mounted) {
+                setLoading(false)
+                setSubscriptionLoading(false)
+              }
+            })
+        } else if (event === 'SIGNED_OUT') {
+          console.log('ℹ️ User signed out')
+          setUser(null)
+          setSubscription(null)
+          setLoading(false)
+          setSubscriptionLoading(false)
+        } else if (event === 'USER_UPDATED') {
+          console.log('ℹ️ User updated')
+          if (session?.user) {
+            setUser(session.user)
+          }
+        }
       }
     )
 
     return () => {
       mounted = false
       if (timeoutId) clearTimeout(timeoutId)
-      authListener.unsubscribe()
+      authSubscription.unsubscribe()
     }
   }, [])
 
-  // Import getSubscriptionFeatures from subscriptions.ts
+  // Compute subscription features
   const features = getSubscriptionFeatures(subscription)
 
-  const value = {
-    user,
-    loading,
-    subscription,
-    subscriptionLoading,
-    features,
-    refreshSubscription,
-    signOut,
-  }
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        subscription,
+        subscriptionLoading,
+        features,
+        refreshSubscription,
+        signOut
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  )
 } 
