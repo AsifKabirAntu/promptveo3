@@ -4,31 +4,127 @@ import type { Database } from '@/types/database'
 import { TimelinePrompt } from '@/types/timeline-prompt'
 import { createClient } from './supabase-browser'
 
+// Fallback data for when API calls fail
+export const fallbackTimelineCategories = [
+  "Creative",
+  "Cinematic",
+  "Nature",
+  "Urban",
+  "Abstract",
+  "Documentary",
+  "Animation",
+  "Experimental"
+]
+
+export const fallbackTimelineBaseStyles = [
+  "cinematic",
+  "dramatic",
+  "atmospheric",
+  "vibrant",
+  "moody",
+  "ethereal",
+  "gritty",
+  "stylized",
+  "realistic",
+  "surreal"
+]
+
+// Cache types
+type CacheData<T> = {
+  data: T | null;
+  timestamp: number;
+}
+
+type CacheStore = {
+  timelinePrompts: CacheData<TimelinePrompt[]>;
+  timelineCategories: CacheData<string[]>;
+  timelineStyles: CacheData<string[]>;
+  timelinePromptsById: Record<string, CacheData<TimelinePrompt | null>>;
+}
+
+// Cache storage
+const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+const cache: CacheStore = {
+  timelinePrompts: { data: null, timestamp: 0 },
+  timelineCategories: { data: null, timestamp: 0 },
+  timelineStyles: { data: null, timestamp: 0 },
+  timelinePromptsById: {}
+};
+
+// Helper to check if cache is valid
+function isCacheValid(cacheKey: keyof Omit<CacheStore, 'timelinePromptsById'>): boolean {
+  return cache[cacheKey].data !== null && 
+         (Date.now() - cache[cacheKey].timestamp) < CACHE_TTL;
+}
+
+function isIdCacheValid(id: string): boolean {
+  return cache.timelinePromptsById[id]?.data !== null && 
+         (Date.now() - (cache.timelinePromptsById[id]?.timestamp || 0)) < CACHE_TTL;
+}
+
+// Helper for direct API fetching with timeout
+async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promise<T> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase credentials');
+  }
+  
+  const url = `${supabaseUrl}/rest/v1/${endpoint}`;
+  
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error('Request timed out')), 10000);
+  });
+  
+  const fetchPromise = fetch(url, {
+    headers: {
+      'apikey': supabaseKey,
+      'Authorization': `Bearer ${supabaseKey}`,
+      ...options
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  });
+  
+  return Promise.race([fetchPromise, timeoutPromise]);
+}
+
 // Client-side data fetching for timeline prompts
 export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
-  const supabase = createClient()
-  
   try {
-    // Add timeout
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Request timed out after 15 seconds')), 15000)
-    )
+    // Check cache first
+    if (isCacheValid('timelinePrompts')) {
+      console.log('Using cached timeline prompts data');
+      return cache.timelinePrompts.data as TimelinePrompt[];
+    }
 
-    const fetchPromise = supabase
-      .from('timeline_prompts')
-      .select('*')
-      .eq('is_public', true)
-      .order('created_at', { ascending: false })
-
-    const { data: prompts, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
-  
-    if (error) {
-      console.error('Error fetching timeline prompts:', error)
-      return []
+    console.log('Fetching timeline prompts from Supabase...');
+    
+    // Try to load from localStorage if available
+    try {
+      const savedPrompts = localStorage.getItem('cached_timeline_prompts');
+      if (savedPrompts) {
+        const { data, timestamp } = JSON.parse(savedPrompts) as { data: TimelinePrompt[], timestamp: number };
+        if (Date.now() - timestamp < CACHE_TTL) {
+          console.log('Using localStorage timeline prompts data');
+          return data;
+        }
+      }
+    } catch (e) {
+      console.log('No valid localStorage cache for timeline prompts');
     }
     
+    // Use direct REST API call
+    const prompts = await fetchDirectFromSupabase<Database['public']['Tables']['timeline_prompts']['Row'][]>(
+      'timeline_prompts?select=*&is_public=eq.true&order=created_at.desc'
+    );
+    
     // Transform database format to match our TimelinePrompt interface
-    return (prompts || []).map((prompt: Database['public']['Tables']['timeline_prompts']['Row']) => ({
+    const transformedPrompts = (prompts || []).map((prompt) => ({
       id: prompt.id,
       title: prompt.title,
       description: prompt.description,
@@ -47,14 +143,37 @@ export async function getAllTimelinePromptsClient(): Promise<TimelinePrompt[]> {
       is_public: prompt.is_public !== false,
       likes_count: prompt.likes_count || 0,
       usage_count: prompt.usage_count || 0
-    }))
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('timed out')) {
-      console.error('Timeout fetching timeline prompts:', error)
-    } else {
-      console.error('Error fetching timeline prompts:', error)
+    }));
+
+    // Update cache
+    cache.timelinePrompts = { data: transformedPrompts, timestamp: Date.now() };
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('cached_timeline_prompts', JSON.stringify({ 
+        data: transformedPrompts, 
+        timestamp: Date.now() 
+      }));
+    } catch (e) {
+      console.error('Failed to save timeline prompts to localStorage', e);
     }
-    return []
+
+    return transformedPrompts;
+  } catch (error) {
+    console.error('Error fetching timeline prompts:', error);
+    
+    // Try to load from localStorage as fallback
+    try {
+      const savedPrompts = localStorage.getItem('cached_timeline_prompts');
+      if (savedPrompts) {
+        console.log('Using localStorage timeline prompts as fallback');
+        return JSON.parse(savedPrompts).data;
+      }
+    } catch (e) {
+      console.log('No fallback data available');
+    }
+    
+    return [];
   }
 }
 
@@ -122,28 +241,42 @@ export async function searchTimelinePrompts(query: string, category?: string, ba
 }
 
 export async function getTimelinePromptById(id: string): Promise<TimelinePrompt | null> {
-  const supabase = createClient()
-  
   try {
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Request timed out after 15 seconds')), 15000)
-    )
+    // Check cache first
+    if (isIdCacheValid(id)) {
+      console.log(`Using cached timeline prompt data for id: ${id}`);
+      return cache.timelinePromptsById[id].data as TimelinePrompt;
+    }
 
-    const fetchPromise = supabase
-      .from('timeline_prompts')
-      .select('*')
-      .eq('id', id)
-      .eq('is_public', true)
-      .single()
-
-    const { data: prompt, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
-  
-    if (error || !prompt) {
-      console.error('Error fetching timeline prompt:', error)
-      return null
+    console.log(`Fetching timeline prompt with id: ${id} from Supabase...`);
+    
+    // Try to load from localStorage if available
+    try {
+      const savedPrompt = localStorage.getItem(`cached_timeline_prompt_${id}`);
+      if (savedPrompt) {
+        const { data, timestamp } = JSON.parse(savedPrompt) as { data: TimelinePrompt | null, timestamp: number };
+        if (Date.now() - timestamp < CACHE_TTL) {
+          console.log(`Using localStorage data for timeline prompt id: ${id}`);
+          return data;
+        }
+      }
+    } catch (e) {
+      console.log(`No valid localStorage cache for timeline prompt id: ${id}`);
     }
     
-    return {
+    // Use direct REST API call
+    const prompts = await fetchDirectFromSupabase<Database['public']['Tables']['timeline_prompts']['Row'][]>(
+      `timeline_prompts?id=eq.${id}&is_public=eq.true`
+    );
+    
+    if (!prompts || prompts.length === 0) {
+      console.error('Timeline prompt not found');
+      return null;
+    }
+    
+    const prompt = prompts[0];
+    
+    const transformedPrompt = {
       id: prompt.id,
       title: prompt.title,
       description: prompt.description,
@@ -162,102 +295,165 @@ export async function getTimelinePromptById(id: string): Promise<TimelinePrompt 
       is_public: prompt.is_public !== false,
       likes_count: prompt.likes_count || 0,
       usage_count: prompt.usage_count || 0
+    };
+
+    // Update cache
+    if (!cache.timelinePromptsById[id]) {
+      cache.timelinePromptsById[id] = { data: null, timestamp: 0 };
     }
+    cache.timelinePromptsById[id] = { data: transformedPrompt, timestamp: Date.now() };
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem(`cached_timeline_prompt_${id}`, JSON.stringify({ 
+        data: transformedPrompt, 
+        timestamp: Date.now() 
+      }));
+    } catch (e) {
+      console.error(`Failed to save timeline prompt ${id} to localStorage`, e);
+    }
+
+    return transformedPrompt;
   } catch (error) {
-    if (error instanceof Error && error.message.includes('timed out')) {
-      console.error('Timeout fetching timeline prompt:', error)
-    } else {
-      console.error('Error fetching timeline prompt:', error)
+    console.error('Error fetching timeline prompt:', error);
+    
+    // Try to load from localStorage as fallback
+    try {
+      const savedPrompt = localStorage.getItem(`cached_timeline_prompt_${id}`);
+      if (savedPrompt) {
+        console.log(`Using localStorage as fallback for timeline prompt id: ${id}`);
+        return JSON.parse(savedPrompt).data;
+      }
+    } catch (e) {
+      console.log('No fallback data available');
     }
-    return null
+    
+    return null;
   }
 }
 
 export async function getUniqueTimelineCategories(): Promise<string[]> {
-  const supabase = createClient()
-  
   try {
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Request timed out after 15 seconds')), 15000)
-    )
+    // Check cache first
+    if (isCacheValid('timelineCategories')) {
+      console.log('Using cached timeline categories data');
+      return cache.timelineCategories.data as string[];
+    }
 
-    const fetchPromise = supabase
-      .from('timeline_prompts')
-      .select('category')
-      .eq('is_public', true)
-
-    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
-  
-    if (error) {
-      console.error('Error fetching timeline categories:', error)
-      return fallbackTimelineCategories
+    console.log('Fetching timeline categories from Supabase...');
+    
+    // Try to load from localStorage if available
+    try {
+      const savedCategories = localStorage.getItem('cached_timeline_categories');
+      if (savedCategories) {
+        const { data, timestamp } = JSON.parse(savedCategories) as { data: string[], timestamp: number };
+        if (Date.now() - timestamp < CACHE_TTL) {
+          console.log('Using localStorage timeline categories data');
+          return data;
+        }
+      }
+    } catch (e) {
+      console.log('No valid localStorage cache for timeline categories');
     }
     
-    const uniqueCategories = [...new Set(data?.map((item: Database['public']['Tables']['timeline_prompts']['Row']) => item.category).filter(Boolean))] as string[]
-    return uniqueCategories.sort()
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('timed out')) {
-      console.error('Timeout fetching timeline categories:', error)
-    } else {
-      console.error('Error fetching timeline categories:', error)
+    // Use direct REST API call
+    const data = await fetchDirectFromSupabase<Array<{category: string}>>(
+      'timeline_prompts?select=category&is_public=eq.true'
+    );
+    
+    const uniqueCategories = [...new Set(data.map(item => item.category).filter(Boolean))].sort();
+    
+    // Update cache
+    cache.timelineCategories = { data: uniqueCategories, timestamp: Date.now() };
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('cached_timeline_categories', JSON.stringify({ 
+        data: uniqueCategories, 
+        timestamp: Date.now() 
+      }));
+    } catch (e) {
+      console.error('Failed to save timeline categories to localStorage', e);
     }
-    return fallbackTimelineCategories
+
+    return uniqueCategories;
+  } catch (error) {
+    console.error('Error fetching timeline categories:', error);
+    
+    // Try to load from localStorage as fallback
+    try {
+      const savedCategories = localStorage.getItem('cached_timeline_categories');
+      if (savedCategories) {
+        console.log('Using localStorage timeline categories as fallback');
+        return JSON.parse(savedCategories).data;
+      }
+    } catch (e) {
+      console.log('No fallback data available');
+    }
+    
+    return fallbackTimelineCategories;
   }
 }
 
 export async function getUniqueTimelineBaseStyles(): Promise<string[]> {
-  const supabase = createClient()
-  
   try {
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Request timed out after 15 seconds')), 15000)
-    )
+    // Check cache first
+    if (isCacheValid('timelineStyles')) {
+      console.log('Using cached timeline styles data');
+      return cache.timelineStyles.data as string[];
+    }
 
-    const fetchPromise = supabase
-      .from('timeline_prompts')
-      .select('base_style')
-      .eq('is_public', true)
-
-    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
-  
-    if (error) {
-      console.error('Error fetching timeline base styles:', error)
-      return fallbackTimelineBaseStyles
+    console.log('Fetching timeline styles from Supabase...');
+    
+    // Try to load from localStorage if available
+    try {
+      const savedStyles = localStorage.getItem('cached_timeline_styles');
+      if (savedStyles) {
+        const { data, timestamp } = JSON.parse(savedStyles) as { data: string[], timestamp: number };
+        if (Date.now() - timestamp < CACHE_TTL) {
+          console.log('Using localStorage timeline styles data');
+          return data;
+        }
+      }
+    } catch (e) {
+      console.log('No valid localStorage cache for timeline styles');
     }
     
-    const uniqueBaseStyles = [...new Set(data?.map((item: Database['public']['Tables']['timeline_prompts']['Row']) => item.base_style).filter(Boolean))] as string[]
-    return uniqueBaseStyles.sort()
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('timed out')) {
-      console.error('Timeout fetching timeline base styles:', error)
-    } else {
-      console.error('Error fetching timeline base styles:', error)
+    // Use direct REST API call
+    const data = await fetchDirectFromSupabase<Array<{base_style: string}>>(
+      'timeline_prompts?select=base_style&is_public=eq.true'
+    );
+    
+    const uniqueStyles = [...new Set(data.map(item => item.base_style).filter(Boolean))].sort();
+    
+    // Update cache
+    cache.timelineStyles = { data: uniqueStyles, timestamp: Date.now() };
+    
+    // Save to localStorage
+    try {
+      localStorage.setItem('cached_timeline_styles', JSON.stringify({ 
+        data: uniqueStyles, 
+        timestamp: Date.now() 
+      }));
+    } catch (e) {
+      console.error('Failed to save timeline styles to localStorage', e);
     }
-    return fallbackTimelineBaseStyles
+
+    return uniqueStyles;
+  } catch (error) {
+    console.error('Error fetching timeline base styles:', error);
+    
+    // Try to load from localStorage as fallback
+    try {
+      const savedStyles = localStorage.getItem('cached_timeline_styles');
+      if (savedStyles) {
+        console.log('Using localStorage timeline styles as fallback');
+        return JSON.parse(savedStyles).data;
+      }
+    } catch (e) {
+      console.log('No fallback data available');
+    }
+    
+    return fallbackTimelineBaseStyles;
   }
-}
-
-// Fallback data for when API calls fail
-export const fallbackTimelineCategories = [
-  "Creative",
-  "Cinematic",
-  "Nature",
-  "Urban",
-  "Abstract",
-  "Documentary",
-  "Animation",
-  "Experimental"
-]
-
-export const fallbackTimelineBaseStyles = [
-  "cinematic",
-  "dramatic",
-  "atmospheric",
-  "vibrant",
-  "moody",
-  "ethereal",
-  "gritty",
-  "stylized",
-  "realistic",
-  "surreal"
-] 
+} 
