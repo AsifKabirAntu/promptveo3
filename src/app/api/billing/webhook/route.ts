@@ -245,5 +245,29 @@ async function handleSubscriptionChange(
   } else {
     console.log('Successfully updated subscription for user:', userId)
     console.log('Final subscription data:', subscriptionData)
+    
+    // Now update the profiles table with the subscription information
+    console.log('Updating profiles table with subscription data for user:', userId)
+    
+    const profileData = {
+      plan: plan,
+      subscription_id: subscription.id,
+      subscription_status: status,
+      updated_at: new Date().toISOString()
+    }
+    
+    // Update the profiles table
+    const { error: profileUpdateError } = await supabase
+      .from('profiles')
+      .update(profileData)
+      .eq('id', userId)
+    
+    if (profileUpdateError) {
+      console.error('Error updating profile with subscription data:', profileUpdateError)
+      // Don't throw error, as the subscription update was successful
+      console.log('Will retry profile update on next webhook event')
+    } else {
+      console.log('Successfully updated profile with subscription data for user:', userId)
+    }
   }
 } 
