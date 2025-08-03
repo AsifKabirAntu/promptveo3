@@ -38,6 +38,41 @@ export function ExploreLibrary() {
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
   const [styles, setStyles] = useState<string[]>(fallbackStyles)
 
+  // Try to load data from localStorage on mount
+  useEffect(() => {
+    try {
+      // Try to get cached data from localStorage first
+      const cachedRegularPrompts = localStorage.getItem('prompts_cache')
+      const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
+      
+      if (cachedRegularPrompts) {
+        try {
+          const parsed = JSON.parse(cachedRegularPrompts)
+          if (parsed.data && Array.isArray(parsed.data) && parsed.data.length > 0) {
+            console.log(`Initializing with ${parsed.data.length} prompts from localStorage`)
+            setRegularPrompts(parsed.data)
+          }
+        } catch (e) {
+          console.error('Error parsing cached regular prompts:', e)
+        }
+      }
+      
+      if (cachedTimelinePrompts) {
+        try {
+          const parsed = JSON.parse(cachedTimelinePrompts)
+          if (parsed.data && Array.isArray(parsed.data) && parsed.data.length > 0) {
+            console.log(`Initializing with ${parsed.data.length} timeline prompts from localStorage`)
+            setTimelinePrompts(parsed.data)
+          }
+        } catch (e) {
+          console.error('Error parsing cached timeline prompts:', e)
+        }
+      }
+    } catch (e) {
+      console.error('Error accessing localStorage on mount:', e)
+    }
+  }, [])
+
   // Load all data
   useEffect(() => {
     let mounted = true
@@ -50,10 +85,44 @@ export function ExploreLibrary() {
       if (mounted) {
         console.log('⚠️ Data loading timed out, using fallback data')
         setLoading(false)
-        setRegularPrompts([])
-        setTimelinePrompts([])
-        setCategories(fallbackCategories)
-        setStyles(fallbackStyles)
+        
+        // Don't set empty arrays here - use whatever data we have
+        // If we have data in localStorage, the data will already be set by now
+        if (regularPrompts.length === 0 && timelinePrompts.length === 0) {
+          console.log('No data available, using hardcoded fallbacks')
+          
+          // Try to get data from localStorage as a last resort
+          try {
+            const cachedRegularPrompts = localStorage.getItem('prompts_cache')
+            const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
+            
+            if (cachedRegularPrompts) {
+              try {
+                const parsed = JSON.parse(cachedRegularPrompts)
+                if (parsed.data && Array.isArray(parsed.data)) {
+                  console.log(`Using ${parsed.data.length} prompts from localStorage`)
+                  setRegularPrompts(parsed.data)
+                }
+              } catch (e) {
+                console.error('Error parsing cached regular prompts:', e)
+              }
+            }
+            
+            if (cachedTimelinePrompts) {
+              try {
+                const parsed = JSON.parse(cachedTimelinePrompts)
+                if (parsed.data && Array.isArray(parsed.data)) {
+                  console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
+                  setTimelinePrompts(parsed.data)
+                }
+              } catch (e) {
+                console.error('Error parsing cached timeline prompts:', e)
+              }
+            }
+          } catch (e) {
+            console.error('Error accessing localStorage:', e)
+          }
+        }
       }
     }, 15000) // 15 second timeout (increased from 5)
 
@@ -99,52 +168,132 @@ export function ExploreLibrary() {
         // Check if we got any data
         const hasData = fetchedRegularPrompts.length > 0 || fetchedTimelinePrompts.length > 0
         
-        if (!hasData && retry && retryCount < maxRetries) {
-          // If no data and we can retry, do so after a delay
-          retryCount++
-          console.log(`No data received, retrying (${retryCount}/${maxRetries})...`)
-          setTimeout(() => loadData(true), retryDelay)
-          return
+        if (hasData) {
+          console.log('✅ Data loaded successfully')
+          console.log('Regular prompts:', fetchedRegularPrompts.length)
+          console.log('Timeline prompts:', fetchedTimelinePrompts.length)
+          
+          // Update state with fetched data
+          setRegularPrompts(fetchedRegularPrompts)
+          setTimelinePrompts(fetchedTimelinePrompts)
+          
+          // Store the data in localStorage for future use
+          try {
+            localStorage.setItem('prompts_cache_timestamp', Date.now().toString())
+            localStorage.setItem('prompts_cache', JSON.stringify({
+              data: fetchedRegularPrompts,
+              timestamp: Date.now()
+            }))
+            localStorage.setItem('timeline_prompts_cache', JSON.stringify({
+              data: fetchedTimelinePrompts,
+              timestamp: Date.now()
+            }))
+          } catch (e) {
+            console.error('Error storing data in localStorage:', e)
+          }
+        } else {
+          console.log('⚠️ No data received from API')
+          
+          // Try to get data from localStorage
+          try {
+            const cachedRegularPrompts = localStorage.getItem('prompts_cache')
+            const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
+            
+            if (cachedRegularPrompts) {
+              try {
+                const parsed = JSON.parse(cachedRegularPrompts)
+                if (parsed.data && Array.isArray(parsed.data)) {
+                  console.log(`Using ${parsed.data.length} prompts from localStorage`)
+                  setRegularPrompts(parsed.data)
+                }
+              } catch (e) {
+                console.error('Error parsing cached regular prompts:', e)
+              }
+            }
+            
+            if (cachedTimelinePrompts) {
+              try {
+                const parsed = JSON.parse(cachedTimelinePrompts)
+                if (parsed.data && Array.isArray(parsed.data)) {
+                  console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
+                  setTimelinePrompts(parsed.data)
+                }
+              } catch (e) {
+                console.error('Error parsing cached timeline prompts:', e)
+              }
+            }
+          } catch (e) {
+            console.error('Error accessing localStorage:', e)
+          }
+          
+          // If we still don't have data and have retries left, try again
+          if ((!regularPrompts.length || !timelinePrompts.length) && retry && retryCount < maxRetries) {
+            retryCount++
+            console.log(`Retrying data load (${retryCount}/${maxRetries})...`)
+            setTimeout(() => loadData(true), retryDelay)
+            return
+          }
         }
-
-        console.log('✅ Data loaded successfully')
-        console.log('Regular prompts:', fetchedRegularPrompts?.length || 0)
-        console.log('Timeline prompts:', fetchedTimelinePrompts?.length || 0)
-
-        // Set the data with fallbacks
-        setRegularPrompts(fetchedRegularPrompts || [])
-        setTimelinePrompts(fetchedTimelinePrompts || [])
         
-        // Combine and deduplicate categories and styles
-        const allCategories = [...new Set([...fetchedCategories, ...fetchedTimelineCategories])].sort()
-        const allStyles = [...new Set([...fetchedStyles, ...fetchedTimelineStyles])].sort()
+        // Combine categories and styles
+        const allCategories = Array.from(new Set([
+          ...fetchedCategories,
+          ...fetchedTimelineCategories
+        ])).filter(Boolean).sort()
+        
+        const allStyles = Array.from(new Set([
+          ...fetchedStyles,
+          ...fetchedTimelineStyles
+        ])).filter(Boolean).sort()
         
         setCategories(allCategories.length > 0 ? allCategories : fallbackCategories)
         setStyles(allStyles.length > 0 ? allStyles : fallbackStyles)
         
+        setLoading(false)
       } catch (error) {
         console.error('Error loading data:', error)
         
-        // Retry logic
+        // Try to get data from localStorage as a fallback
+        try {
+          const cachedRegularPrompts = localStorage.getItem('prompts_cache')
+          const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
+          
+          if (cachedRegularPrompts) {
+            try {
+              const parsed = JSON.parse(cachedRegularPrompts)
+              if (parsed.data && Array.isArray(parsed.data)) {
+                console.log(`Using ${parsed.data.length} prompts from localStorage`)
+                setRegularPrompts(parsed.data)
+              }
+            } catch (e) {
+              console.error('Error parsing cached regular prompts:', e)
+            }
+          }
+          
+          if (cachedTimelinePrompts) {
+            try {
+              const parsed = JSON.parse(cachedTimelinePrompts)
+              if (parsed.data && Array.isArray(parsed.data)) {
+                console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
+                setTimelinePrompts(parsed.data)
+              }
+            } catch (e) {
+              console.error('Error parsing cached timeline prompts:', e)
+            }
+          }
+        } catch (e) {
+          console.error('Error accessing localStorage:', e)
+        }
+        
+        // If we have retries left, try again
         if (retry && retryCount < maxRetries) {
           retryCount++
-          console.log(`Error loading data, retrying (${retryCount}/${maxRetries})...`)
+          console.log(`Retrying data load (${retryCount}/${maxRetries})...`)
           setTimeout(() => loadData(true), retryDelay)
           return
         }
         
-        // Set fallback data on error
-        if (mounted) {
-          setRegularPrompts([])
-          setTimelinePrompts([])
-          setCategories(fallbackCategories)
-          setStyles(fallbackStyles)
-        }
-      } finally {
-        if (mounted && (!retry || retryCount >= maxRetries)) {
-          setLoading(false)
-          clearTimeout(loadTimeout)
-        }
+        setLoading(false)
       }
     }
 
@@ -158,8 +307,14 @@ export function ExploreLibrary() {
 
   // Convert prompts to unified format and filter based on current tab
   const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number, limitedCount: number } => {
-    const unifiedRegular: UnifiedPrompt[] = regularPrompts.map(prompt => ({ ...prompt, type: 'regular' as const }))
-    const unifiedTimeline: UnifiedPrompt[] = timelinePrompts.map(prompt => ({ ...prompt, type: 'timeline' as const }))
+    // Make sure we have arrays even if they're empty
+    const safeRegularPrompts = regularPrompts || []
+    const safeTimelinePrompts = timelinePrompts || []
+    
+    console.log(`Getting display prompts: ${safeRegularPrompts.length} regular, ${safeTimelinePrompts.length} timeline`)
+    
+    const unifiedRegular: UnifiedPrompt[] = safeRegularPrompts.map(prompt => ({ ...prompt, type: 'regular' as const }))
+    const unifiedTimeline: UnifiedPrompt[] = safeTimelinePrompts.map(prompt => ({ ...prompt, type: 'timeline' as const }))
     
     // Filter based on tab selection
     let filteredPrompts: UnifiedPrompt[] = []
@@ -247,20 +402,15 @@ export function ExploreLibrary() {
         </div>
         
         <div className="space-y-6 mb-8">
-          {/* Search Bar Skeleton */}
-          <div className="h-14 bg-gray-200 rounded-2xl w-full max-w-2xl animate-pulse"></div>
-          
-          {/* Filter Section Skeleton */}
-          <div className="h-16 bg-gray-200 rounded-2xl w-full animate-pulse"></div>
+          <div className="h-12 w-full max-w-2xl bg-gray-200 rounded-2xl animate-pulse"></div>
+          <div className="h-40 w-full bg-gray-200 rounded-2xl animate-pulse"></div>
         </div>
         
-        {/* Results Count Skeleton */}
-        <div className="h-14 bg-gray-200 rounded-xl w-full mb-6 animate-pulse"></div>
+        <div className="h-16 w-full bg-gray-200 rounded-xl animate-pulse mb-6"></div>
         
-        {/* Prompt Grid Skeleton */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="h-64 bg-gray-200 rounded-xl animate-pulse"></div>
+            <div key={i} className="h-80 bg-gray-200 rounded-2xl animate-pulse"></div>
           ))}
         </div>
       </div>
@@ -269,34 +419,34 @@ export function ExploreLibrary() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      {/* Timeline Tabs */}
+      {/* Tab Navigation */}
       <div className="mb-8">
         <div className="flex space-x-4">
-          <button 
+          <button
             onClick={() => setTimelineFilter('all')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              timelineFilter === 'all' 
-                ? 'bg-blue-100 text-blue-700' 
+            className={`px-6 py-2 rounded-full transition-colors ${
+              timelineFilter === 'all'
+                ? 'bg-blue-100 text-blue-700'
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
             }`}
           >
             All Prompts ({regularPrompts.length + timelinePrompts.length})
           </button>
-          <button 
+          <button
             onClick={() => setTimelineFilter('with-timeline')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              timelineFilter === 'with-timeline' 
-                ? 'bg-blue-100 text-blue-700' 
+            className={`px-6 py-2 rounded-full transition-colors ${
+              timelineFilter === 'with-timeline'
+                ? 'bg-blue-100 text-blue-700'
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
             }`}
           >
             With Timeline ({timelinePrompts.length})
           </button>
-          <button 
+          <button
             onClick={() => setTimelineFilter('without-timeline')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              timelineFilter === 'without-timeline' 
-                ? 'bg-blue-100 text-blue-700' 
+            className={`px-6 py-2 rounded-full transition-colors ${
+              timelineFilter === 'without-timeline'
+                ? 'bg-blue-100 text-blue-700'
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
             }`}
           >
@@ -467,6 +617,26 @@ export function ExploreLibrary() {
         ))}
       </div>
 
+      {/* Empty State */}
+      {displayPrompts.length === 0 && (
+        <div className="text-center py-12 bg-white rounded-2xl shadow-sm border border-gray-200">
+          <h3 className="text-xl font-medium text-gray-900 mb-2">No prompts found</h3>
+          <p className="text-gray-600 mb-6">
+            Try adjusting your filters or search query
+          </p>
+          <Button 
+            onClick={() => {
+              setSearchQuery('')
+              setSelectedCategory('')
+              setSelectedStyle('')
+              setTimelineFilter('all')
+            }}
+          >
+            Reset Filters
+          </Button>
+        </div>
+      )}
+
       {/* Paywall for free users */}
       {!features.canViewAllPrompts && totalCount > limitedCount && (
         <div className="mt-8">
@@ -500,9 +670,9 @@ export function ExploreLibrary() {
                 variant={currentPage === page ? "default" : "outline"}
                 size="sm"
                 onClick={() => setCurrentPage(page)}
-                className={`w-9 h-9 p-0 rounded-full ${
+                className={`w-10 h-10 p-0 ${
                   currentPage === page 
-                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200 border-blue-200" 
+                    ? "bg-blue-100 text-blue-700 hover:bg-blue-200" 
                     : "hover:bg-gray-100"
                 }`}
               >
@@ -510,7 +680,7 @@ export function ExploreLibrary() {
               </Button>
             ))}
           </div>
-
+          
           <Button
             variant="outline"
             size="sm"
@@ -524,35 +694,11 @@ export function ExploreLibrary() {
         </div>
       )}
 
-      {/* Empty State */}
-      {totalCount === 0 && !loading && (
-        <div className="text-center py-12 bg-white rounded-2xl border border-gray-200 shadow-sm">
-          <div className="w-20 h-20 mx-auto mb-4 bg-gray-50 rounded-full flex items-center justify-center">
-            <Search className="w-8 h-8 text-gray-400" />
-          </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No prompts found</h3>
-          <p className="text-gray-600 mb-6">
-            Try adjusting your search criteria or browse different categories.
-          </p>
-          <Button 
-            onClick={() => {
-              setSearchQuery("")
-              setSelectedCategory("")
-              setSelectedStyle("")
-            }}
-            variant="outline"
-            className="rounded-full"
-          >
-            Clear Filters
-          </Button>
-        </div>
-      )}
-
-      {/* Side Sheet */}
+      {/* Side Sheet for Prompt Details */}
       <PromptSideSheet 
-        prompt={selectedPrompt}
-        isOpen={sideSheetOpen}
+        open={sideSheetOpen}
         onClose={handleCloseSideSheet}
+        prompt={selectedPrompt}
       />
     </div>
   )

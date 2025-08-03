@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import { User } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase-browser'
 import { getUserSubscriptionClient, getSubscriptionFeatures } from '@/lib/subscriptions'
@@ -62,6 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [subscription, setSubscription] = useState<any>(null)
   const [subscriptionLoading, setSubscriptionLoading] = useState(true)
   const supabase = createClient()
+  const authInitialized = useRef(false)
 
   const refreshSubscription = async () => {
     if (user?.id) {
@@ -177,6 +178,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           
           if (mounted) {
             setUser(sessionUser)
+            authInitialized.current = true
             
             // Fetch subscription data
             try {
@@ -196,6 +198,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           if (mounted) {
             setUser(null)
             setSubscription(null)
+            authInitialized.current = true
           }
         }
       } catch (error) {
@@ -203,6 +206,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (mounted) {
           setUser(null)
           setSubscription(null)
+          authInitialized.current = true
         }
       } finally {
         if (mounted) {
@@ -219,6 +223,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     timeoutId = setTimeout(() => {
       if (mounted && loading) {
         console.warn('⚠️ Auth initialization timed out')
+        // Only set loading to false, but don't change the user state
+        // This way we don't overwrite a successful auth that just took longer than expected
         setLoading(false)
         setSubscriptionLoading(false)
       }
@@ -232,6 +238,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (event === 'SIGNED_IN' && session?.user) {
           console.log('✅ User signed in successfully')
           setUser(session.user)
+          authInitialized.current = true
           
           // Fetch subscription data
           getUserSubscriptionClient()
@@ -258,10 +265,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setSubscription(null)
           setLoading(false)
           setSubscriptionLoading(false)
+          authInitialized.current = true
         } else if (event === 'USER_UPDATED') {
           console.log('ℹ️ User updated')
           if (session?.user) {
             setUser(session.user)
+            authInitialized.current = true
           }
         }
       }

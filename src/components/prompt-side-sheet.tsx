@@ -16,11 +16,11 @@ type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 
 
 interface PromptSideSheetProps {
   prompt: UnifiedPrompt | null
-  isOpen: boolean
+  open: boolean
   onClose: () => void
 }
 
-export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProps) {
+export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps) {
   const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
@@ -37,17 +37,17 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
 
   // Handle proper mount/unmount animation
   useEffect(() => {
-    if (isOpen) {
+    if (open) {
       setIsAnimating(true)
     } else if (isAnimating) {
       // Delay hiding the component until animation completes
       const timer = setTimeout(() => setIsAnimating(false), 300)
       return () => clearTimeout(timer)
     }
-  }, [isOpen, isAnimating])
+  }, [open, isAnimating])
 
   // Don't render if not open and not animating
-  if (!prompt || (!isOpen && !isAnimating)) return null
+  if (!prompt || (!open && !isAnimating)) return null
 
   const handleFeatureClick = (feature: string, action: () => void) => {
     if (features.canFavorite && feature === 'favorite') {
@@ -152,7 +152,7 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
       {/* Backdrop overlay */}
       <div 
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          open ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={onClose}
       />
@@ -160,7 +160,7 @@ export function PromptSideSheet({ prompt, isOpen, onClose }: PromptSideSheetProp
       {/* Side sheet */}
       <div 
         className={`fixed top-0 right-0 h-full w-full max-w-3xl bg-white shadow-2xl z-[9999] transform transition-transform duration-300 ease-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="h-full overflow-y-auto">
