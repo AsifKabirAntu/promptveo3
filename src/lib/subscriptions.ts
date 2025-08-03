@@ -97,7 +97,7 @@ export async function getUserSubscriptionClient(): Promise<UserSubscription | nu
       // First try to fetch from profiles table (correct location)
       console.log('Checking profiles table for subscription data...')
       const profiles = await fetchDirectFromSupabase<any[]>(
-        `profiles?select=*&user_id=eq.${encodeURIComponent(user.id)}`
+        `profiles?select=*&id=eq.${encodeURIComponent(user.id)}`
       )
       
       if (profiles && profiles.length > 0) {
