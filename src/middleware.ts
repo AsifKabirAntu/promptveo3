@@ -2,24 +2,43 @@ import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export default async function middleware(req: NextRequest) {
+export async function middleware(request: NextRequest) {
   const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
+  const supabase = createMiddlewareClient({ req: request, res })
+  const { data: { session } } = await supabase.auth.getSession()
 
-  // Refresh session if expired - required for Server Components
-  // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  // If user is signed in and the current path is /auth redirect the user to /dashboard
-  if (session && req.nextUrl.pathname.startsWith('/auth')) {
-    return NextResponse.redirect(new URL('/dashboard', req.url))
+  // Skip middleware for callback route
+  if (request.nextUrl.pathname.startsWith('/auth/callback')) {
+    return res
   }
 
-  // If user is not signed in and the current path is not /auth redirect the user to /auth/signin
-  if (!session && req.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/auth/signin', req.url))
+  // Check if user is authenticated (either via session or localStorage)
+  let isAuthenticated = !!session
+  
+  // If no session, check for auth token in cookies
+  if (!isAuthenticated) {
+    const authToken = request.cookies.get('sb-hmqanqtadlvtweaoxmuf-auth-token')
+    if (authToken) {
+      isAuthenticated = true
+    }
+  }
+
+  // Auth routes handling
+  if (request.nextUrl.pathname.startsWith('/auth')) {
+    if (isAuthenticated) {
+      // Redirect to dashboard if already authenticated
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+    return res
+  }
+
+  // Protected routes handling
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (!isAuthenticated) {
+      // Redirect to login if not authenticated
+      return NextResponse.redirect(new URL('/auth/signin', request.url))
+    }
+    return res
   }
 
   return res

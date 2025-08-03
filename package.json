@@ -20,10 +20,17 @@
     "test-webhook": "tsx scripts/test-webhook.ts",
     "test-subscription-logic": "tsx scripts/test-subscription-logic.ts",
     "test-checkout-flow": "tsx scripts/test-checkout-flow.ts",
-    "test-production-db": "tsx scripts/test-production-db.ts",
-    "test-production-env": "tsx scripts/test-production-env.ts",
-    "check-webhook-secret": "tsx scripts/check-webhook-secret.ts",
-    "fix-production-env": "tsx scripts/fix-production-env.ts"
+    "test-auth-subscription": "tsx scripts/test-auth-subscription.ts",
+    "check-trigger": "tsx scripts/check-trigger.ts",
+    "create-missing-profile": "tsx scripts/create-missing-profile.ts",
+    "create-profile-for-user": "tsx scripts/create-profile-for-user.ts",
+    "test-subscription-fetch": "tsx scripts/test-subscription-fetch.ts",
+    "check-subscription-db": "tsx scripts/check-subscription-db.ts",
+    "test-auth-state": "tsx scripts/test-auth-state.ts",
+    "fix-subscriptions-fk": "tsx scripts/fix-subscriptions-fk.ts",
+    "create-profile": "tsx scripts/create-profile-for-user.ts",
+    "migrate-user-profiles": "tsx scripts/migrate-to-user-profiles.ts",
+    "add-user-profile-columns": "tsx scripts/add-columns-to-user-profiles.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

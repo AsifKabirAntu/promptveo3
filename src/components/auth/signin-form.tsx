@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,23 +15,61 @@ export function SignInForm() {
   const router = useRouter()
   const supabase = createClient()
 
+  // Check for URL error parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const errorParam = urlParams.get('error')
+    const detailsParam = urlParams.get('details')
+    
+    if (errorParam) {
+      const errorMessage = detailsParam 
+        ? `Authentication error: ${errorParam} - ${detailsParam}`
+        : `Authentication error: ${errorParam}`
+      setError(errorMessage)
+      console.error('OAuth callback error:', { error: errorParam, details: detailsParam })
+      // Clear the error from URL
+      window.history.replaceState({}, document.title, window.location.pathname)
+    }
+  }, [])
+
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      // Sign in with password
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
 
-      if (error) {
-        setError(error.message)
-      } else {
-        router.push('/dashboard')
+      if (signInError) {
+        setError(signInError.message)
+        return
       }
+
+      if (!signInData.session) {
+        setError('No session created')
+        return
+      }
+
+      // Get session to ensure cookie is set
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+
+      if (sessionError || !session) {
+        setError('Failed to establish session')
+        return
+      }
+
+      // Wait for session to be set in cookies
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      // Refresh the page to ensure session is picked up
+      window.location.href = '/dashboard'
+      
     } catch (err) {
+      console.error('Sign in error:', err)
       setError('An unexpected error occurred')
     } finally {
       setLoading(false)
@@ -43,10 +81,13 @@ export function SignInForm() {
     setError(null)
 
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      console.log('🔍 Starting Google sign in...')
+      
+      // Generate the OAuth URL
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: window.location.origin + '/auth/callback',
           queryParams: {
             prompt: 'select_account'
           }
@@ -54,10 +95,25 @@ export function SignInForm() {
       })
 
       if (error) {
+        console.error('❌ OAuth error:', error)
         setError(error.message)
         setLoading(false)
+        return
       }
+
+      if (!data?.url) {
+        console.error('❌ No OAuth URL returned')
+        setError('Failed to generate authentication URL')
+        setLoading(false)
+        return
+      }
+
+      console.log('✅ OAuth URL generated, redirecting...')
+      
+      // Redirect to the OAuth URL
+      window.location.href = data.url
     } catch (err) {
+      console.error('❌ Google sign in error:', err)
       setError('An unexpected error occurred')
       setLoading(false)
     }

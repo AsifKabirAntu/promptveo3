@@ -1,5 +1,7 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+'use client'
+
 import type { Database } from '@/types/database'
+import { createClient } from './supabase-browser'
 
 export type SubscriptionPlan = 'free' | 'pro'
 export type SubscriptionStatus = 'active' | 'canceled' | 'past_due' | 'incomplete' | 'trialing'
@@ -44,57 +46,57 @@ export const PRO_PLAN_FEATURES = {
   canCreate: true,
 }
 
-// Get user subscription (client-side)
-export async function getUserSubscriptionClient(): Promise<UserSubscription | null> {
-  const supabase = createClientComponentClient<Database>()
+export async function getUserSubscriptionClient() {
+  const supabase = createClient()
   
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    return null
+  const { data: { user }, error: userError } = await supabase.auth.getUser()
+  if (userError) throw userError
+  if (!user) return null
+
+  // Try to fetch subscription data, but handle missing schema gracefully
+  try {
+    const { data: subscription, error: subscriptionError } = await supabase
+      .from('subscriptions')
+      .select('*')
+      .eq('user_id', user.id)
+      .single()
+    
+    if (subscriptionError) {
+      console.error('Error fetching subscription:', subscriptionError)
+      // Fall through to return default subscription
+    } else {
+      return subscription
+    }
+  } catch (error) {
+    console.log('Subscription table might not exist yet, using default values')
   }
-
-  const { data: subscription, error } = await supabase
-    .from('subscriptions')
-    .select('*')
-    .eq('user_id', user.id)
-    .single()
-
-  if (error || !subscription) {
-    return null
+  
+  // Return a default free subscription if we can't fetch the real data
+  return {
+    id: 'default',
+    user_id: user.id,
+    status: 'active',
+    plan: 'free',
+    current_period_start: new Date().toISOString(),
+    current_period_end: new Date().toISOString(),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
   }
-
-  // Map database fields to UserSubscription interface
-  const mappedSubscription = {
-    id: subscription.id,
-    user_id: subscription.user_id,
-    subscription_id: subscription.stripe_subscription_id || '',
-    status: subscription.status as SubscriptionStatus,
-    plan: (subscription.plan as SubscriptionPlan) || (subscription.status === 'active' ? 'pro' : 'free'),
-    price_id: subscription.price_id,
-    current_period_start: subscription.current_period_start || '',
-    current_period_end: subscription.current_period_end || '',
-    created_at: subscription.created_at || '',
-    updated_at: subscription.updated_at || '',
-  }
-
-  return mappedSubscription
 }
 
-// Get subscription features based on plan
-export function getSubscriptionFeatures(subscription: UserSubscription | null): SubscriptionFeatures {
-  // Consider active subscription as pro regardless of plan field
-  const isPro = subscription?.status === 'active'
-
-  if (isPro) {
-    return {
-      ...PRO_PLAN_FEATURES,
-      canViewAllPrompts: true,
-    }
-  }
+export function getSubscriptionFeatures(subscription: any) {
+  // Check if subscription exists and has a plan field
+  const plan = subscription?.plan || 'free'
+  const isPro = plan === 'pro' && subscription?.status === 'active'
 
   return {
-    ...FREE_PLAN_LIMITS,
-    canViewAllPrompts: false,
+    canViewAllPrompts: isPro,
+    canCreatePrompts: isPro,
+    canUseTimeline: isPro,
+    canExport: isPro,
+    canShare: isPro,
+    maxPrompts: isPro ? Infinity : 3,
+    maxTimelinePrompts: isPro ? Infinity : 1,
   }
 }
 

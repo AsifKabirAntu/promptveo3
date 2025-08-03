@@ -1,16 +1,16 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase-browser'
-import { UserSubscription, getUserSubscriptionClient, getSubscriptionFeatures, SubscriptionFeatures } from '@/lib/subscriptions'
+import { getUserSubscriptionClient, getSubscriptionFeatures } from '@/lib/subscriptions'
 
 interface AuthContextType {
   user: User | null
   loading: boolean
-  subscription: UserSubscription | null
+  subscription: any
   subscriptionLoading: boolean
-  features: SubscriptionFeatures
+  features: any
   refreshSubscription: () => Promise<void>
   signOut: () => Promise<void>
 }
@@ -28,169 +28,159 @@ export function useAuth() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
-  const [subscription, setSubscription] = useState<UserSubscription | null>(null)
+  const [subscription, setSubscription] = useState<any>(null)
   const [subscriptionLoading, setSubscriptionLoading] = useState(true)
   const supabase = createClient()
 
-  // Fetch subscription data
-  const fetchSubscription = useCallback(async (userId: string | null) => {
-    if (!userId) {
-      setSubscription(null)
-      setSubscriptionLoading(false)
-      return
-    }
-
-    try {
-      console.log('Fetching subscription data for user:', userId)
-      const sub = await getUserSubscriptionClient()
-      console.log('Subscription data received:', sub)
-      setSubscription(sub)
-    } catch (error) {
-      console.error('Error fetching subscription:', error)
-      setSubscription(null)
-    } finally {
-      setSubscriptionLoading(false)
-    }
-  }, [])
-
-  // Refresh subscription data manually
-  const refreshSubscription = useCallback(async () => {
-    if (!user?.id) return
-    
-    setSubscriptionLoading(true)
-    try {
-      console.log('Refreshing subscription data for user:', user.id)
-      const sub = await getUserSubscriptionClient()
-      console.log('Refreshed subscription data:', sub)
-      setSubscription(sub)
-    } catch (error) {
-      console.error('Error refreshing subscription:', error)
-      setSubscription(null)
-    } finally {
-      setSubscriptionLoading(false)
-    }
-  }, [user?.id])
-
-  // Sign out function
-  const signOut = useCallback(async () => {
-    console.log('Sign out initiated...')
-    try {
-      console.log('Current user before sign out:', user?.id)
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.error('Sign out error:', error)
-      } else {
-        console.log('Sign out successful')
-        // Force clear the user state
-        setUser(null)
+  const refreshSubscription = async () => {
+    if (user?.id) {
+      try {
+        const sub = await getUserSubscriptionClient()
+        setSubscription(sub)
+      } catch (error) {
+        console.error('Error refreshing subscription:', error)
         setSubscription(null)
-        // Redirect to home page
-        window.location.href = '/'
       }
-    } catch (error) {
-      console.error('Sign out error:', error)
-      // Force redirect even if there's an error
-      window.location.href = '/'
     }
-  }, [supabase.auth, user?.id])
+  }
 
-  // Poll for subscription updates when returning from Stripe
-  useEffect(() => {
-    // Check if we just completed a checkout (either via URL or sessionStorage)
-    const hasCompletedCheckout = window.location.search.includes('success=true') || 
-                                sessionStorage.getItem('checkout_completed') === 'true'
-    
-    if (hasCompletedCheckout) {
-      // Clear the sessionStorage flag
-      sessionStorage.removeItem('checkout_completed')
+  const signOut = async () => {
+    try {
+      // Sign out with Supabase (this should clear cookies)
+      await supabase.auth.signOut()
       
-      let attempts = 0
-      const maxAttempts = 15 // Increased to 15 attempts
-      const pollInterval = 1000 // 1 second
-
-      const pollSubscription = async () => {
-        try {
-          const sub = await getUserSubscriptionClient()
-          
-          if (sub?.status === 'active') {
-            setSubscription(sub)
-            return // Stop polling once we confirm active status
-          }
-          
-          attempts++
-          if (attempts < maxAttempts) {
-            setTimeout(pollSubscription, pollInterval)
-          }
-        } catch (error) {
-          console.error('Error during subscription polling:', error)
-          attempts++
-          if (attempts < maxAttempts) {
-            setTimeout(pollSubscription, pollInterval)
-          }
-        }
-      }
-
-      pollSubscription()
+      // Update state
+      setUser(null)
+      setSubscription(null)
+      
+      console.log('✅ Signed out successfully')
+      
+      // Force reload to ensure all state is cleared
+      window.location.href = '/auth/signin'
+    } catch (error) {
+      console.error('❌ Error signing out:', error)
     }
-  }, [])
+  }
 
   useEffect(() => {
-    // Get initial session
-    const getSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      setUser(session?.user ?? null)
-      setLoading(false)
-      
-      // Fetch subscription for the user
-      if (session?.user?.id) {
-        try {
-          const sub = await getUserSubscriptionClient()
-          setSubscription(sub)
-        } catch (error) {
-          console.error('Error fetching initial subscription:', error)
-          setSubscription(null)
-        } finally {
-          setSubscriptionLoading(false)
-        }
-      } else {
-        setSubscription(null)
-        setSubscriptionLoading(false)
-      }
-    }
+    let mounted = true
+    let timeoutId: NodeJS.Timeout | null = null
 
-    getSession()
-
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setUser(session?.user ?? null)
-        setLoading(false)
+    const initializeAuth = async () => {
+      try {
+        console.log('🔍 Initializing auth state...')
         
-        // Fetch subscription when user changes
-        if (session?.user?.id) {
+        // Get the current session from Supabase
+        const { data, error } = await supabase.auth.getSession()
+        
+        if (!mounted) return
+
+        if (error) {
+          console.error('❌ Error getting session:', error)
+          // Even with an error, we should set loading to false
+          setLoading(false)
+          setSubscriptionLoading(false)
+          return
+        }
+
+        if (data.session?.user) {
+          console.log('✅ User authenticated from Supabase session:', data.session.user.email)
+          setUser(data.session.user)
+          
+          // Fetch subscription data
           try {
             const sub = await getUserSubscriptionClient()
-            setSubscription(sub)
+            if (mounted) {
+              setSubscription(sub)
+            }
           } catch (error) {
-            console.error('Error fetching subscription on auth change:', error)
-            setSubscription(null)
-          } finally {
-            setSubscriptionLoading(false)
+            console.error('❌ Error fetching subscription:', error)
+            if (mounted) {
+              setSubscription(null)
+            }
           }
         } else {
+          console.log('ℹ️  No user session found')
+          setUser(null)
           setSubscription(null)
+        }
+        
+      } catch (error) {
+        console.error('❌ Error in auth initialization:', error)
+        if (mounted) {
+          setUser(null)
+          setSubscription(null)
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false)
           setSubscriptionLoading(false)
         }
+      }
+    }
+
+    // Initialize auth state
+    initializeAuth()
+    
+    // Set a timeout to ensure loading state doesn't get stuck
+    timeoutId = setTimeout(() => {
+      if (mounted && loading) {
+        console.warn('⚠️ Auth initialization timed out')
+        setLoading(false)
+        setSubscriptionLoading(false)
+      }
+    }, 3000) // 3 second timeout
+
+    // Listen for auth changes
+    const { data: { subscription: authListener } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (!mounted) return
+
+        console.log(`🔄 Auth state change: ${event}`, session ? `User: ${session.user.email}` : 'No user')
+
+        if (event === 'SIGNED_IN') {
+          console.log('✅ User signed in successfully')
+          setUser(session?.user ?? null)
+          
+          if (session?.user?.id) {
+            try {
+              const sub = await getUserSubscriptionClient()
+              if (mounted) {
+                setSubscription(sub)
+              }
+            } catch (error) {
+              console.error('❌ Error fetching subscription:', error)
+              if (mounted) {
+                setSubscription(null)
+              }
+            }
+          }
+        } else if (event === 'SIGNED_OUT') {
+          console.log('👋 User signed out')
+          setUser(null)
+          setSubscription(null)
+          // Clear localStorage
+          const sessionKey = `sb-${process.env.NEXT_PUBLIC_SUPABASE_URL?.split('//')[1].split('.')[0]}-auth-token`
+          localStorage.removeItem(sessionKey)
+        } else if (event === 'TOKEN_REFRESHED') {
+          console.log('🔄 Token refreshed')
+          setUser(session?.user ?? null)
+        }
+
+        setLoading(false)
+        setSubscriptionLoading(false)
       }
     )
 
-    return () => subscription.unsubscribe()
+    return () => {
+      mounted = false
+      if (timeoutId) clearTimeout(timeoutId)
+      authListener.unsubscribe()
+    }
   }, [])
 
-  // Calculate features based on subscription
-  const features = useMemo(() => {
-    return getSubscriptionFeatures(subscription)
-  }, [subscription])
+  // Import getSubscriptionFeatures from subscriptions.ts
+  const features = getSubscriptionFeatures(subscription)
 
   const value = {
     user,

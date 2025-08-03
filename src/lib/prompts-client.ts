@@ -1,194 +1,105 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Database } from '@/types/database'
+'use client'
+
+import { createClient } from './supabase-browser'
 import { Prompt } from '@/types/prompt'
 
-const MAX_RETRIES = 3
-const RETRY_DELAY = 1000 // 1 second
-
-async function wait(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-async function fetchWithRetry(fetchFn: () => Promise<any>, retries = MAX_RETRIES): Promise<any> {
-  try {
-    // Add a 10-second timeout for each individual attempt
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Individual fetch timeout (10s)')), 10000)
-    })
-    
-    const result = await Promise.race([fetchFn(), timeoutPromise])
-    return result
-  } catch (error) {
-    console.error('Fetch attempt failed:', error)
-    if (retries > 0) {
-      console.log(`Retrying... ${retries} attempts left`)
-      await wait(RETRY_DELAY)
-      return fetchWithRetry(fetchFn, retries - 1)
-    }
-    throw error
-  }
-}
+// Fallback data
+export const fallbackCategories = ['Cinematic', 'Commercial', 'Documentary', 'Music Video']
+export const fallbackStyles = ['Action', 'Drama', 'Comedy', 'Horror']
 
 export async function getAllPromptsClient(): Promise<Prompt[]> {
+  const supabase = createClient()
+  
   try {
-    console.log('Initializing Supabase client...')
-    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-    
-    // Create a fresh client instance specifically for this request
-    const supabase = createClientComponentClient<Database>({
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    })
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Request timed out')), 15000)
+    )
 
-    console.log('Fetching prompts from Supabase...')
-    const fetchPrompts = async () => {
-      console.log('About to execute Supabase query...')
-      const startTime = Date.now()
-      
-      // Query specifically for public prompts to ensure RLS works correctly
-      const { data: prompts, error } = await supabase
-        .from('prompts')
-        .select('*')
-        .eq('is_public', true)
-        .order('created_at', { ascending: false })
+    const fetchPromise = supabase
+      .from('prompts')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-      const endTime = Date.now()
-      console.log(`Supabase query completed in ${endTime - startTime}ms`)
+    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
 
-      if (error) {
-        console.error('Supabase error fetching prompts:', error)
-        throw new Error(`Database error: ${error.message}`)
-      }
-
-      if (!prompts) {
-        console.warn('No prompts found')
-        return []
-      }
-
-      console.log(`Successfully fetched ${prompts.length} prompts`)
-      return prompts
-    }
-
-    return await fetchWithRetry(fetchPrompts)
-  } catch (err: any) {
-    console.error('Error in getAllPromptsClient:', err)
-    throw new Error(`Failed to fetch prompts: ${err.message}`)
+    if (error) throw error
+    return data || []
+  } catch (error) {
+    console.error('Error fetching prompts:', error)
+    return []
   }
 }
 
-export async function searchPrompts(query: string, category?: string, style?: string) {
-  const supabase = createClientComponentClient<Database>()
+export async function getUniqueCategories(): Promise<string[]> {
+  const supabase = createClient()
   
-  let queryBuilder = supabase
-    .from('prompts')
-    .select('*')
-    .eq('is_public', true)
-  
-  if (query) {
-    queryBuilder = queryBuilder.or(`title.ilike.%${query}%,description.ilike.%${query}%,keywords.cs.{${query}}`)
+  try {
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Request timed out')), 15000)
+    )
+
+    const fetchPromise = supabase
+      .from('prompts')
+      .select('category')
+      .not('category', 'is', null)
+
+    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
+
+    if (error) throw error
+    
+    const categories = [...new Set((data as { category: string }[])?.map(p => p.category))]
+    return categories.length > 0 ? categories.sort() : fallbackCategories
+  } catch (error) {
+    console.error('Error fetching categories:', error)
+    return fallbackCategories
   }
+}
+
+export async function getUniqueStyles(): Promise<string[]> {
+  const supabase = createClient()
   
-  if (category) {
-    queryBuilder = queryBuilder.eq('category', category)
+  try {
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Request timed out')), 15000)
+    )
+
+    const fetchPromise = supabase
+      .from('prompts')
+      .select('style')
+      .not('style', 'is', null)
+
+    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
+
+    if (error) throw error
+    
+    const styles = [...new Set((data as { style: string }[])?.map(p => p.style))]
+    return styles.length > 0 ? styles.sort() : fallbackStyles
+  } catch (error) {
+    console.error('Error fetching styles:', error)
+    return fallbackStyles
   }
+}
+
+export async function searchPrompts(query: string): Promise<Prompt[]> {
+  const supabase = createClient()
   
-  if (style) {
-    queryBuilder = queryBuilder.ilike('style', `%${style}%`)
-  }
-  
-  const { data: prompts, error } = await queryBuilder.order('created_at', { ascending: false })
-  
-  if (error) {
+  try {
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Request timed out')), 15000)
+    )
+
+    const fetchPromise = supabase
+      .from('prompts')
+      .select('*')
+      .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
+      .order('created_at', { ascending: false })
+
+    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
+
+    if (error) throw error
+    return data || []
+  } catch (error) {
     console.error('Error searching prompts:', error)
     return []
   }
-  
-  // Transform database format to match our Prompt interface  
-  return (prompts || []).map(prompt => ({
-    id: prompt.id,
-    title: prompt.title,
-    description: prompt.description,
-    style: prompt.style,
-    camera: prompt.camera,
-    lighting: prompt.lighting,
-    environment: prompt.environment,
-    elements: prompt.elements || [],
-    motion: prompt.motion,
-    ending: prompt.ending,
-    text: prompt.text || 'none',
-    keywords: prompt.keywords || [],
-    timeline: prompt.timeline || null,  // Added timeline field
-    category: prompt.category,
-    is_featured: prompt.is_featured || false,
-    is_public: prompt.is_public !== false,
-    likes_count: prompt.likes_count || 0,
-    usage_count: prompt.usage_count || 0,
-    created_at: prompt.created_at,
-    updated_at: prompt.updated_at,
-    created_by: prompt.created_by || ''
-  }))
-}
-
-// Fetch unique categories from database
-export async function getUniqueCategories() {
-  const supabase = createClientComponentClient<Database>()
-  
-  const { data: prompts, error } = await supabase
-    .from('prompts')
-    .select('category')
-    .eq('is_public', true)
-  
-  if (error) {
-    console.error('Error fetching categories:', error)
-    return []
-  }
-  
-  // Get unique categories and filter out null/empty values
-  const uniqueCategories = [...new Set(prompts?.map(p => p.category).filter(Boolean))] as string[]
-  return uniqueCategories.sort()
-}
-
-// Fetch unique styles from database
-export async function getUniqueStyles() {
-  const supabase = createClientComponentClient<Database>()
-  
-  const { data: prompts, error } = await supabase
-    .from('prompts')
-    .select('style')
-    .eq('is_public', true)
-  
-  if (error) {
-    console.error('Error fetching styles:', error)
-    return []
-  }
-  
-  // Get unique styles and filter out null/empty values
-  const uniqueStyles = [...new Set(prompts?.map(p => p.style).filter(Boolean))] as string[]
-  return uniqueStyles.sort()
-}
-
-// Fallback constants (for when data isn't loaded yet)
-export const fallbackCategories = [
-  "Cinematic",
-  "Action", 
-  "Drama",
-  "Science Fiction",
-  "Horror",
-  "Comedy",
-  "Documentary",
-  "Animation",
-  "Experimental"
-]
-
-export const fallbackStyles = [
-  "cinematic",
-  "dramatic",
-  "atmospheric",
-  "vibrant",
-  "moody",
-  "ethereal",
-  "gritty",
-  "stylized",
-  "realistic",
-  "surreal"
-] 
+} 

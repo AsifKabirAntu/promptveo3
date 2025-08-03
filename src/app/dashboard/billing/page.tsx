@@ -126,6 +126,17 @@ export default function BillingPage() {
               >
                 Refresh subscription status
               </button>
+              <button 
+                onClick={async () => {
+                  const supabase = createClientComponentClient()
+                  console.log('Testing auth state...')
+                  const { data: { user }, error } = await supabase.auth.getUser()
+                  console.log('Direct auth test - user:', user?.id, 'error:', error)
+                }}
+                className="mt-2 ml-4 text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Test Auth
+              </button>
             </div>
           </div>
         </div>

@@ -1,12 +1,11 @@
 'use client'
 
-import { User, LogOut, Settings, Sparkles, Star } from "lucide-react"
+import { User, LogOut, Settings, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Badge } from "@/components/ui/badge"
 
 export function DashboardHeader() {
   const { user, signOut } = useAuth()
@@ -14,13 +13,7 @@ export function DashboardHeader() {
   const pathname = usePathname()
 
   const handleSignOut = async () => {
-    console.log('Sign out button clicked')
-    try {
-      await signOut()
-      console.log('Sign out completed')
-    } catch (error) {
-      console.error('Error in handleSignOut:', error)
-    }
+    await signOut()
   }
 
   // Get current page title
@@ -52,10 +45,6 @@ export function DashboardHeader() {
             <h1 className="text-xl font-semibold text-gray-900">
               {getPageTitle()}
             </h1>
-            <Badge variant="secondary" className="bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0">
-              <Sparkles className="w-3 h-3 mr-1" />
-              Beta
-            </Badge>
           </div>
 
           {/* Right side - Actions & Profile */}
@@ -74,7 +63,7 @@ export function DashboardHeader() {
               <div className="flex items-center space-x-3">
                 <div className="hidden md:flex flex-col text-right text-sm">
                   <span className="font-medium text-gray-900">
-                    {user?.user_metadata?.name || user?.email?.split('@')[0] || 'Beta User'}
+                    {user?.user_metadata?.name || user?.email?.split('@')[0]}
                   </span>
                   <span className="text-xs text-gray-500">{user?.email}</span>
                 </div>
@@ -92,7 +81,7 @@ export function DashboardHeader() {
                 <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50 overflow-hidden">
                   <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
                     <p className="text-sm font-medium text-gray-900">
-                      {user?.user_metadata?.name || 'Beta User'}
+                      {user?.user_metadata?.name || user?.email?.split('@')[0]}
                     </p>
                     <p className="text-sm text-gray-600 truncate">{user?.email}</p>
                   </div>

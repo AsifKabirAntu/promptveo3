@@ -30,9 +30,9 @@ async function runSqlFile(filename: string) {
       if (statement.trim()) {
         console.log('Executing:', statement.trim())
         const { error } = await supabase.rpc('exec_sql', { sql: statement.trim() })
-        
-        if (error) {
-          console.error('Error executing SQL:', error)
+    
+    if (error) {
+      console.error('Error executing SQL:', error)
           // Try direct query as fallback
           const { error: directError } = await supabase.from('_dummy').select('*').limit(0)
           if (directError) {
@@ -42,7 +42,7 @@ async function runSqlFile(filename: string) {
       }
     }
     
-    console.log(`Successfully executed ${filename}`)
+      console.log(`Successfully executed ${filename}`)
   } catch (error) {
     console.error(`Error reading or executing ${filename}:`, error)
   }

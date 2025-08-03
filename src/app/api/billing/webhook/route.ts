@@ -120,6 +120,47 @@ async function handleSubscriptionChange(
   console.log('Subscription status:', subscription.status)
   console.log('Subscription ID:', subscription.id)
 
+  // Ensure profile exists in user_profiles table
+  const { data: existingProfile, error: profileError } = await supabase
+    .from('user_profiles')
+    .select('user_id')
+    .eq('user_id', userId)
+    .single()
+
+  if (profileError && profileError.code === 'PGRST116') {
+    // Profile doesn't exist, create it
+    console.log('User profile not found, creating user_profiles record for user:', userId)
+    
+    const profileData = {
+      user_id: userId,
+      full_name: 'User', // Default name
+      email: 'user@example.com', // This should come from auth.users or customer data
+      email_notifications: true,
+      push_notifications: false,
+      plan: 'free',
+      subscription_id: null,
+      subscription_status: null,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }
+
+    const { error: createProfileError } = await supabase
+      .from('user_profiles')
+      .insert([profileData])
+
+    if (createProfileError) {
+      console.error('Error creating user profile:', createProfileError)
+      throw createProfileError
+    }
+    
+    console.log('✅ Created user profile for user:', userId)
+  } else if (profileError) {
+    console.error('Error checking user profile:', profileError)
+    throw profileError
+  } else {
+    console.log('✅ User profile exists for user:', userId)
+  }
+
   // Determine subscription status
   let status = subscription.status
   if (status === 'trialing') {

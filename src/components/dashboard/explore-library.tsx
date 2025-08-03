@@ -1,108 +1,141 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
-import { Search, Filter, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { getAllPromptsClient } from '@/lib/prompts-client'
-import { getAllTimelinePromptsClient } from '@/lib/timeline-prompts-client'
-import { Prompt } from '@/types/prompt'
-import { TimelinePrompt } from '@/types/timeline-prompt'
-import { UnifiedPromptCard } from '@/components/unified-prompt-card'
-import { PromptSideSheet } from '@/components/prompt-side-sheet'
-import { Paywall } from '@/components/ui/paywall'
-import { useAuth } from '@/components/auth/auth-provider'
+import { useState, useEffect } from "react"
+import { Search, Filter, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, Lock } from "lucide-react"
+import { UnifiedPromptCard } from "@/components/unified-prompt-card"
+import { PromptSideSheet } from "@/components/prompt-side-sheet"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Paywall } from "@/components/ui/paywall"
+import { useAuth } from "@/components/auth/auth-provider"
+import { getAllPromptsClient, getUniqueCategories, getUniqueStyles, fallbackCategories, fallbackStyles } from "@/lib/prompts-client"
+import { getAllTimelinePromptsClient, getUniqueTimelineCategories, getUniqueTimelineBaseStyles, fallbackTimelineCategories, fallbackTimelineBaseStyles } from "@/lib/timeline-prompts-client"
+import { Prompt } from "@/types/prompt"
+import { TimelinePrompt } from "@/types/timeline-prompt"
 
 // Union type for unified prompt display
 type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
 
-const ITEMS_PER_PAGE = 9
-
-export default function ExploreLibrary() {
+export function ExploreLibrary() {
   const { features } = useAuth()
-  const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
-  const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('')
-  const [selectedStyle, setSelectedStyle] = useState('')
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [selectedStyle, setSelectedStyle] = useState<string>("")
   const [timelineFilter, setTimelineFilter] = useState<'all' | 'with-timeline' | 'without-timeline'>('all')
   const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE)
+  const [itemsPerPage, setItemsPerPage] = useState(9)
   const [filtersExpanded, setFiltersExpanded] = useState(false)
   const [selectedPrompt, setSelectedPrompt] = useState<UnifiedPrompt | null>(null)
   const [sideSheetOpen, setSideSheetOpen] = useState(false)
+  
+  // Separate state for regular and timeline prompts
+  const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
+  const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
+  const [loading, setLoading] = useState(true)
+  
+  // Categories and styles from both types
+  const [categories, setCategories] = useState<string[]>(fallbackCategories)
+  const [styles, setStyles] = useState<string[]>(fallbackStyles)
 
-  // Get unique categories and styles
-  const categories = Array.from(new Set([
-    ...regularPrompts.map(p => p.category),
-    ...timelinePrompts.map(p => p.category)
-  ])).filter(Boolean).sort()
+  // Load all data
+  useEffect(() => {
+    let mounted = true
+    // Set a shorter timeout to prevent long loading states
+    const loadTimeout = setTimeout(() => {
+      if (mounted) {
+        console.log('⚠️ Data loading timed out, using fallback data')
+        setLoading(false)
+        setRegularPrompts([])
+        setTimelinePrompts([])
+        setCategories(fallbackCategories)
+        setStyles(fallbackStyles)
+      }
+    }, 5000) // 5 second timeout
 
-  const styles = Array.from(new Set([
-    ...regularPrompts.map(p => p.style),
-    ...timelinePrompts.map(p => p.base_style)
-  ])).filter(Boolean).sort()
+    async function loadData() {
+      try {
+        if (!mounted) return
+        setLoading(true)
+        
+        console.log('🔍 Loading prompt data...')
+        
+        // Fetch both types of prompts and their metadata in parallel
+        const [
+          fetchedRegularPrompts,
+          fetchedTimelinePrompts,
+          fetchedCategories,
+          fetchedStyles,
+          fetchedTimelineCategories,
+          fetchedTimelineStyles
+        ] = await Promise.all([
+          getAllPromptsClient().catch(err => {
+            console.error('Error fetching regular prompts:', err)
+            return []
+          }),
+          getAllTimelinePromptsClient().catch(err => {
+            console.error('Error fetching timeline prompts:', err)
+            return []
+          }),
+          getUniqueCategories().catch(err => {
+            console.error('Error fetching categories:', err)
+            return fallbackCategories
+          }),
+          getUniqueStyles().catch(err => {
+            console.error('Error fetching styles:', err)
+            return fallbackStyles
+          }),
+          getUniqueTimelineCategories().catch(err => {
+            console.error('Error fetching timeline categories:', err)
+            return fallbackTimelineCategories
+          }),
+          getUniqueTimelineBaseStyles().catch(err => {
+            console.error('Error fetching timeline styles:', err)
+            return fallbackTimelineBaseStyles
+          })
+        ])
+        
+        if (!mounted) return
 
-  const loadData = useCallback(async () => {
-    try {
-      setLoading(true)
-      setError(null)
-      console.log('Starting to fetch data...')
-      
-      // Add a timeout to prevent infinite loading
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Data loading timeout')), 30000) // 30 second timeout
-      })
+        console.log('✅ Data loaded successfully')
+        console.log('Regular prompts:', fetchedRegularPrompts?.length || 0)
+        console.log('Timeline prompts:', fetchedTimelinePrompts?.length || 0)
 
-      const regularPromptsPromise = getAllPromptsClient()
-      const timelinePromptsPromise = getAllTimelinePromptsClient()
+        // Set the data with fallbacks
+        setRegularPrompts(fetchedRegularPrompts || [])
+        setTimelinePrompts(fetchedTimelinePrompts || [])
+        
+        // Combine and deduplicate categories and styles
+        const allCategories = [...new Set([...fetchedCategories, ...fetchedTimelineCategories])].sort()
+        const allStyles = [...new Set([...fetchedStyles, ...fetchedTimelineStyles])].sort()
+        
+        setCategories(allCategories.length > 0 ? allCategories : fallbackCategories)
+        setStyles(allStyles.length > 0 ? allStyles : fallbackStyles)
+        
+      } catch (error) {
+        console.error('Error loading data:', error)
+        // Set fallback data on error
+        if (mounted) {
+          setRegularPrompts([])
+          setTimelinePrompts([])
+          setCategories(fallbackCategories)
+          setStyles(fallbackStyles)
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false)
+          clearTimeout(loadTimeout)
+        }
+      }
+    }
 
-      const [regularPrompts, timelinePrompts] = await Promise.race([
-        Promise.all([regularPromptsPromise, timelinePromptsPromise]),
-        timeoutPromise
-      ]) as [Prompt[], TimelinePrompt[]]
+    loadData()
 
-      setRegularPrompts(regularPrompts)
-      setTimelinePrompts(timelinePrompts)
-      setError(null)
-    } catch (error) {
-      console.error('Data fetch error:', error)
-      setError(error instanceof Error ? error.message : 'Failed to load data')
-      // Set empty arrays as fallback
-      setRegularPrompts([])
-      setTimelinePrompts([])
-    } finally {
-      setLoading(false)
+    return () => {
+      mounted = false
+      clearTimeout(loadTimeout)
     }
   }, [])
-
-  useEffect(() => {
-    loadData()
-  }, [loadData])
-
-  if (error) {
-    return (
-      <div className="p-8 text-center">
-        <div className="text-red-600 mb-4">{error}</div>
-        <button 
-          onClick={loadData}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          Try Again
-        </button>
-      </div>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="p-8 text-center">
-        <div className="animate-pulse text-gray-600">Loading prompts...</div>
-      </div>
-    )
-  }
 
   // Convert prompts to unified format and filter based on current tab
   const getDisplayPrompts = (): { prompts: UnifiedPrompt[], totalCount: number, limitedCount: number } => {
@@ -137,51 +170,18 @@ export default function ExploreLibrary() {
       return matchesSearch && matchesCategory && matchesStyle
     })
 
-    // Special handling for free users - consistent prompts across all tabs
+    // Special handling for free users - show limited prompts
     let limitedPrompts: UnifiedPrompt[] = []
     
     if (features.canViewAllPrompts) {
       // Pro users see all prompts
       limitedPrompts = filtered
     } else {
-      // For free users, always use the same specific prompts across all tabs
-      // Get the first 2 regular and first 1 timeline prompt that match filters
-      const allRegular = unifiedRegular.filter(p => {
-        const matchesSearch = !searchQuery || 
-          p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesCategory = !selectedCategory || p.category === selectedCategory
-        const matchesStyle = !selectedStyle || (p as Prompt).style === selectedStyle
-        return matchesSearch && matchesCategory && matchesStyle
-      })
-      
-      const allTimeline = unifiedTimeline.filter(p => {
-        const matchesSearch = !searchQuery || 
-          p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          p.description.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesCategory = !selectedCategory || p.category === selectedCategory
-        const matchesStyle = !selectedStyle || (p as TimelinePrompt).base_style === selectedStyle
-        return matchesSearch && matchesCategory && matchesStyle
-      })
-      
-      // Always use the same specific prompts
-      const staticRegular = allRegular.slice(0, 2)
-      const staticTimeline = allTimeline.slice(0, 1)
-      
-      // Show different combinations based on tab
-      if (timelineFilter === 'all') {
-        // "All Prompts" tab: show 2 regular + 1 timeline
-        limitedPrompts = [...staticRegular, ...staticTimeline]
-      } else if (timelineFilter === 'with-timeline') {
-        // "With Timeline" tab: show only the 1 timeline prompt
-        limitedPrompts = staticTimeline
-      } else if (timelineFilter === 'without-timeline') {
-        // "Without Timeline" tab: show only the 2 regular prompts
-        limitedPrompts = staticRegular
-      }
+      // Free users see first 3 prompts
+      limitedPrompts = filtered.slice(0, 3)
     }
 
-    // Calculate pagination using itemsPerPage instead of ITEMS_PER_PAGE
+    // Calculate pagination using itemsPerPage
     const startIndex = (currentPage - 1) * itemsPerPage
     const paginatedPrompts = limitedPrompts.slice(startIndex, startIndex + itemsPerPage)
 
@@ -209,6 +209,43 @@ export default function ExploreLibrary() {
     setSideSheetOpen(false)
     // Delay clearing the prompt to allow animation to complete
     setTimeout(() => setSelectedPrompt(null), 300)
+  }
+
+  // Get featured prompt for "Prompt of the Day"
+  const promptOfTheDay = displayPrompts.length > 0 ? 
+    (displayPrompts.find(p => p.is_featured) || displayPrompts[0]) : null
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Skeleton Loading UI */}
+        <div className="mb-8">
+          <div className="flex space-x-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-10 w-32 bg-gray-200 rounded-full animate-pulse"></div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="space-y-6 mb-8">
+          {/* Search Bar Skeleton */}
+          <div className="h-14 bg-gray-200 rounded-2xl w-full max-w-2xl animate-pulse"></div>
+          
+          {/* Filter Section Skeleton */}
+          <div className="h-16 bg-gray-200 rounded-2xl w-full animate-pulse"></div>
+        </div>
+        
+        {/* Results Count Skeleton */}
+        <div className="h-14 bg-gray-200 rounded-xl w-full mb-6 animate-pulse"></div>
+        
+        {/* Prompt Grid Skeleton */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="h-64 bg-gray-200 rounded-xl animate-pulse"></div>
+          ))}
+        </div>
+      </div>
+    )
   }
 
   return (

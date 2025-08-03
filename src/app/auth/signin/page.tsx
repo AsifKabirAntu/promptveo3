@@ -1,25 +1,50 @@
+'use client'
+
 import { SignInForm } from "@/components/auth/signin-form"
-import Link from "next/link"
-import { Logo } from "@/components/ui/logo"
+import { useEffect } from "react"
+import { createClient } from "@/lib/supabase-browser"
 
 export default function SignInPage() {
+  useEffect(() => {
+    // Clear any stale auth data when visiting sign-in page
+    const supabase = createClient()
+    
+    // Check if there's a session and clear it if it's invalid
+    const clearStaleAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        // If session exists but user data is missing, clear it
+        if (!session.user || !session.user.email) {
+          console.log('Clearing stale session data')
+          await supabase.auth.signOut()
+        }
+      }
+    }
+    
+    clearStaleAuth()
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="flex min-h-screen">
-        {/* Left Column - Sign In Form */}
+        {/* Left side - Sign In Form */}
         <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <Link href="/" className="flex items-center justify-center space-x-2 mb-6">
-                <Logo size={40} />
+              <a href="/" className="flex items-center justify-center space-x-2 mb-6">
+                <div className="flex items-center justify-center ">
+                  <img
+                    src="/favicon-32x32.png"
+                    alt="PromptVeo3"
+                    className="w-auto h-auto"
+                    width={40}
+                    height={40}
+                  />
+                </div>
                 <span className="text-2xl font-bold text-gray-900">PromptVeo3</span>
-              </Link>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Welcome back
-              </h2>
-              <p className="text-gray-600">
-                Continue creating amazing videos with structured prompts
-              </p>
+              </a>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
+              <p className="text-gray-600">Continue creating amazing videos with structured prompts</p>
             </div>
             
             <SignInForm />
@@ -27,15 +52,15 @@ export default function SignInPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
-                <Link href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
+                <a href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
                   Sign up
-                </Link>
+                </a>
               </p>
             </div>
           </div>
         </div>
-        
-        {/* Right Column - Timeline Prompt Preview */}
+
+        {/* Right side - Preview */}
         <div className="hidden lg:flex lg:w-1/2 bg-white items-center justify-center p-8">
           <div className="w-full max-w-lg">
             <div className="text-center mb-8">
@@ -43,7 +68,7 @@ export default function SignInPage() {
               <p className="text-gray-600">Access your saved prompts and create new ones</p>
             </div>
             
-            {/* Timeline Prompt Card */}
+            {/* Sample Prompt Card */}
             <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-3">
@@ -52,10 +77,8 @@ export default function SignInPage() {
                 </div>
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Saved</span>
               </div>
-              
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Urban Sunset Chase</h3>
               <p className="text-gray-600 text-sm mb-4">A dynamic chase scene through city streets during golden hour.</p>
-              
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div>
                   <span className="text-xs text-gray-500">Camera</span>
@@ -74,18 +97,14 @@ export default function SignInPage() {
                   <p className="text-sm font-medium">Action</p>
                 </div>
               </div>
-              
               <div className="flex items-center justify-between">
                 <div className="flex space-x-1">
-                  {['action', 'chase', 'urban', 'sunset'].map((tag) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                      {tag}
-                    </span>
-                  ))}
+                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">action</span>
+                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">chase</span>
+                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">urban</span>
+                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">sunset</span>
                 </div>
-                <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                  Edit →
-                </button>
+                <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">Edit →</button>
               </div>
             </div>
             
@@ -110,7 +129,6 @@ export default function SignInPage() {
         </div>
       </div>
       
-      {/* Footer */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
         <p className="text-sm text-gray-500">
           Need help? Contact us at{' '}
