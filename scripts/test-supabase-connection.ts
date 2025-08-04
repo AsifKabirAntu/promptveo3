@@ -12,8 +12,8 @@ const envPath = path.resolve(process.cwd(), '.env.local')
 const envContent = fs.readFileSync(envPath, 'utf8')
 const envVars = envContent
   .split('\n')
-  .filter(line => line.trim() !== '' && !line.startsWith('#'))
-  .reduce((acc, line) => {
+  .filter((line: string) => line.trim() !== '' && !line.startsWith('#'))
+  .reduce((acc: Record<string, string>, line: string) => {
     const [key, value] = line.split('=')
     acc[key] = value
     return acc
@@ -138,7 +138,7 @@ async function testSupabaseConnection() {
         console.error('❌ Error fetching RLS policies:', policiesError)
       } else if (policies && policies.length > 0) {
         console.log('✅ RLS policies found:')
-        console.table(policies.map(p => ({
+        console.table(policies.map((p: any) => ({
           table: p.tablename,
           policy: p.policyname,
           roles: p.roles,
