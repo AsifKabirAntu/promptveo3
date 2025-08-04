@@ -623,7 +623,7 @@ export function ExploreLibrary() {
       <div className="flex items-center justify-between mb-6 bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm text-gray-600">
           Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{limitedCount}</span> prompts
-          {!features.canViewAllPrompts && (
+          {!features.canViewAllPrompts && subscription?.plan !== 'pro' && (
             <span className="text-gray-500 ml-2">
               (of {totalDatabaseCount} total - upgrade to see all)
             </span>
