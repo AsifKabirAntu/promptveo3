@@ -7,11 +7,6 @@ import { useEffect } from "react"
 export default function DashboardPage() {
   const { user, loading } = useAuth()
 
-  // Log auth state for debugging
-  useEffect(() => {
-    console.log("Dashboard auth state:", { user: user?.email || null, loading })
-  }, [user, loading])
-
   // Show loading state
   if (loading) {
     return (

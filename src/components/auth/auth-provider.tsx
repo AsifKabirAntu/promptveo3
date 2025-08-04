@@ -33,14 +33,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const supabase = createClient()
   const authInitialized = useRef(false)
 
+  // Modify the refreshSubscription function to include a debounce
   const refreshSubscription = async () => {
+    // Prevent multiple quick refreshes
+    if (subscriptionLoading) {
+      return
+    }
+    
     if (user?.id) {
       try {
+        setSubscriptionLoading(true)
         const sub = await getUserSubscriptionClient()
         setSubscription(sub)
       } catch (error) {
         console.error('Error refreshing subscription:', error)
         setSubscription(null)
+      } finally {
+        setSubscriptionLoading(false)
       }
     }
   }
@@ -54,12 +63,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(null)
       setSubscription(null)
       
-      console.log('✅ Signed out successfully')
-      
       // Force reload to ensure all state is cleared
       window.location.href = '/auth/signin'
     } catch (error) {
-      console.error('❌ Error signing out:', error)
+      console.error('Error signing out:', error)
     }
   }
 
@@ -69,8 +76,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const initializeAuth = async () => {
       try {
-        console.log('🔍 Initializing auth state...')
-        
         // Try multiple methods to get the session
         let sessionUser = null
         
@@ -80,10 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const storedSession = localStorage.getItem(sessionKey)
           
           if (storedSession) {
-            console.log('🔍 Found session in localStorage')
             const parsedSession = JSON.parse(storedSession)
             if (parsedSession?.user) {
-              console.log('✅ User found in localStorage:', parsedSession.user.email)
               sessionUser = parsedSession.user
               
               // Also try to set the session with Supabase
@@ -93,41 +96,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     access_token: parsedSession.access_token,
                     refresh_token: parsedSession.refresh_token
                   })
-                  console.log('✅ Session set with Supabase client')
                 } catch (e) {
-                  console.error('❌ Error setting session with Supabase:', e)
+                  console.error('Error setting session with Supabase:', e)
                 }
               }
             }
           }
         } catch (e) {
-          console.log('ℹ️ Could not access localStorage:', e)
+          // Silent fail for localStorage access
         }
         
         // Method 2: Try standard Supabase getSession if still no user
         if (!sessionUser) {
           try {
-            console.log('🔍 Trying Supabase getSession')
             const { data, error } = await supabase.auth.getSession()
             
             if (error) {
-              console.error('❌ Error getting session from Supabase:', error)
+              console.error('Error getting session from Supabase:', error)
             } else if (data?.session?.user) {
-              console.log('✅ User found via Supabase getSession:', data.session.user.email)
               sessionUser = data.session.user
-            } else {
-              console.log('ℹ️ No user session found via Supabase getSession')
             }
           } catch (e) {
-            console.error('❌ Error with Supabase getSession:', e)
+            console.error('Error with Supabase getSession:', e)
           }
         }
         
         // Final result
         if (sessionUser) {
-          console.log('🔄 Auth state change: SIGNED_IN User:', sessionUser.email)
-          console.log('✅ User signed in successfully')
-          
           if (mounted) {
             setUser(sessionUser)
             authInitialized.current = true
@@ -139,14 +134,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 setSubscription(sub)
               }
             } catch (error) {
-              console.error('❌ Error fetching subscription:', error)
+              console.error('Error fetching subscription:', error)
               if (mounted) {
                 setSubscription(null)
               }
             }
           }
         } else {
-          console.log('ℹ️ No user session found')
           if (mounted) {
             setUser(null)
             setSubscription(null)
@@ -154,7 +148,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
         }
       } catch (error) {
-        console.error('❌ Error in auth initialization:', error)
+        console.error('Error in auth initialization:', error)
         if (mounted) {
           setUser(null)
           setSubscription(null)
@@ -174,9 +168,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Set a timeout to ensure loading state doesn't get stuck
     timeoutId = setTimeout(() => {
       if (mounted && loading) {
-        console.warn('⚠️ Auth initialization timed out - this is not an error, just means the auth check took longer than expected')
         // Only set loading to false, but don't change the user state
-        // This way we don't overwrite a successful auth that just took longer than expected
         setLoading(false)
         setSubscriptionLoading(false)
       }
@@ -185,10 +177,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Listen for auth changes
     const { data: { subscription: authSubscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        console.log('🔄 Auth state change:', event)
-        
         if (event === 'SIGNED_IN' && session?.user) {
-          console.log('✅ User signed in successfully')
           setUser(session.user)
           authInitialized.current = true
           
@@ -200,7 +189,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               }
             })
             .catch((error) => {
-              console.error('❌ Error fetching subscription:', error)
+              console.error('Error fetching subscription:', error)
               if (mounted) {
                 setSubscription(null)
               }
@@ -212,14 +201,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               }
             })
         } else if (event === 'SIGNED_OUT') {
-          console.log('ℹ️ User signed out')
           setUser(null)
           setSubscription(null)
           setLoading(false)
           setSubscriptionLoading(false)
           authInitialized.current = true
         } else if (event === 'USER_UPDATED') {
-          console.log('ℹ️ User updated')
           if (session?.user) {
             setUser(session.user)
             authInitialized.current = true

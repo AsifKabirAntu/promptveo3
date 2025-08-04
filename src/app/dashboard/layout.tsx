@@ -1,6 +1,7 @@
 import { DashboardSidebar } from "@/components/dashboard/sidebar"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { ProtectedRoute } from "@/components/auth/protected-route"
+import '@/lib/clear-cache' // Import for side-effects only (auto-clears cache)
 
 export default function DashboardLayout({
   children,

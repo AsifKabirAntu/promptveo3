@@ -1,19 +1,28 @@
 'use client'
 
-import { User, LogOut, Settings, Star } from "lucide-react"
+import { User, LogOut, Settings, Star, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { clearCache } from "@/lib/clear-cache"
 
 export function DashboardHeader() {
   const { user, signOut } = useAuth()
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const pathname = usePathname()
 
   const handleSignOut = async () => {
     await signOut()
+  }
+
+  // Force refresh data by clearing cache and reloading the page
+  const handleRefreshData = () => {
+    setIsRefreshing(true)
+    clearCache() // Clear any potential localStorage cache
+    window.location.reload() // Force reload of the page
   }
 
   // Get current page title
@@ -49,6 +58,18 @@ export function DashboardHeader() {
 
           {/* Right side - Actions & Profile */}
           <div className="flex items-center space-x-4">
+            {/* Refresh Button */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={handleRefreshData}
+              disabled={isRefreshing}
+            >
+              <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+              {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
+            </Button>
+            
             {/* Quick Actions */}
             <div className="hidden md:flex items-center gap-2 mr-2">
               <Link href="/dashboard/create">

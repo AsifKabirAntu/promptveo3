@@ -16,7 +16,7 @@ interface TimelinePromptDetailProps {
 }
 
 export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
-  const { features, subscription } = useAuth()
+  const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<'readable' | 'json'>('readable')
   const [copied, setCopied] = useState(false)
   const [showPaywall, setShowPaywall] = useState(false)
@@ -32,15 +32,8 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
     } else if (features.canViewJSON && feature === 'export') {
       action()
     } else {
-      // Only show paywall for non-Pro users
-      const isPro = subscription?.status === 'active' && subscription?.plan === 'pro'
-      if (!isPro) {
-        setPaywallFeature(feature)
-        setShowPaywall(true)
-      } else {
-        // For Pro users, just execute the action directly
-        action()
-      }
+      setPaywallFeature(feature)
+      setShowPaywall(true)
     }
   }
 

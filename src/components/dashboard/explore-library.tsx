@@ -39,77 +39,7 @@ export function ExploreLibrary() {
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
   const [styles, setStyles] = useState<string[]>(fallbackStyles)
 
-  // Refresh subscription and clear localStorage cache if needed
-  useEffect(() => {
-    // Check if subscription is pro but localStorage says free
-    const checkAndRefreshSubscription = async () => {
-      try {
-        // Check localStorage subscription data
-        const subKey = 'subscription_data';
-        const storedSub = localStorage.getItem(subKey);
-        
-        if (storedSub) {
-          const { plan } = JSON.parse(storedSub);
-          
-          // If subscription is pro but localStorage says free, refresh
-          if (subscription?.plan === 'pro' && plan !== 'pro') {
-            console.log('Subscription mismatch detected, refreshing...');
-            await refreshSubscription();
-            
-            // Clear localStorage cache to force fresh data load
-            localStorage.removeItem('prompts_cache');
-            localStorage.removeItem('timeline_prompts_cache');
-            
-            // Force reload the page to get fresh data
-            window.location.reload();
-          }
-        }
-      } catch (e) {
-        console.error('Error checking subscription:', e);
-      }
-    };
-    
-    if (subscription) {
-      checkAndRefreshSubscription();
-    }
-  }, [subscription, refreshSubscription]);
-
-  // Try to load data from localStorage on mount
-  useEffect(() => {
-    try {
-      // Try to get cached data from localStorage first
-      const cachedRegularPrompts = localStorage.getItem('prompts_cache')
-      const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
-      
-      if (cachedRegularPrompts) {
-        try {
-          const parsed = JSON.parse(cachedRegularPrompts)
-          if (parsed.data && Array.isArray(parsed.data) && parsed.data.length > 0) {
-            console.log(`Initializing with ${parsed.data.length} prompts from localStorage`)
-            setRegularPrompts(parsed.data)
-          }
-        } catch (e) {
-          console.error('Error parsing cached regular prompts:', e)
-        }
-      }
-      
-      if (cachedTimelinePrompts) {
-        try {
-          const parsed = JSON.parse(cachedTimelinePrompts)
-          if (parsed.data && Array.isArray(parsed.data) && parsed.data.length > 0) {
-            console.log(`Initializing with ${parsed.data.length} timeline prompts from localStorage`)
-            setTimelinePrompts(parsed.data)
-          }
-        } catch (e) {
-          console.error('Error parsing cached timeline prompts:', e)
-        }
-      }
-    } catch (e) {
-      console.error('Error accessing localStorage on mount:', e)
-    }
-  }, [])
-
-  // Load all data
+  // Remove initial localStorage loading
   useEffect(() => {
     let mounted = true
     let retryCount = 0
@@ -119,55 +49,14 @@ export function ExploreLibrary() {
     // Set a shorter timeout to prevent long loading states
     const loadTimeout = setTimeout(() => {
       if (mounted) {
-        console.log('⚠️ Data loading timed out, using fallback data')
         setLoading(false)
-        
-        // Don't set empty arrays here - use whatever data we have
-        // If we have data in localStorage, the data will already be set by now
-        if (regularPrompts.length === 0 && timelinePrompts.length === 0) {
-          console.log('No data available, using hardcoded fallbacks')
-          
-          // Try to get data from localStorage as a last resort
-          try {
-            const cachedRegularPrompts = localStorage.getItem('prompts_cache')
-            const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
-            
-            if (cachedRegularPrompts) {
-              try {
-                const parsed = JSON.parse(cachedRegularPrompts)
-                if (parsed.data && Array.isArray(parsed.data)) {
-                  console.log(`Using ${parsed.data.length} prompts from localStorage`)
-                  setRegularPrompts(parsed.data)
-                }
-              } catch (e) {
-                console.error('Error parsing cached regular prompts:', e)
-              }
-            }
-            
-            if (cachedTimelinePrompts) {
-              try {
-                const parsed = JSON.parse(cachedTimelinePrompts)
-                if (parsed.data && Array.isArray(parsed.data)) {
-                  console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
-                  setTimelinePrompts(parsed.data)
-                }
-              } catch (e) {
-                console.error('Error parsing cached timeline prompts:', e)
-              }
-            }
-          } catch (e) {
-            console.error('Error accessing localStorage:', e)
-          }
-        }
       }
-    }, 15000) // 15 second timeout (increased from 5)
+    }, 15000) // 15 second timeout
 
     async function loadData(retry = false) {
       try {
         if (!mounted) return
         setLoading(true)
-        
-        console.log(`🔍 Loading prompt data...${retry ? ` (Retry ${retryCount}/${maxRetries})` : ''}`)
         
         // Helper function to fetch with timeout
         const fetchWithTimeout = async <T,>(promiseFn: () => Promise<T>, timeoutMs = 10000, fallbackValue: T): Promise<T> => {
@@ -177,7 +66,6 @@ export function ExploreLibrary() {
             })
             return await Promise.race([promiseFn(), timeoutPromise]) as T
           } catch (error: any) {
-            console.error(`Timeout or error: ${error.message}`)
             return fallbackValue
           }
         }
@@ -205,67 +93,13 @@ export function ExploreLibrary() {
         const hasData = fetchedRegularPrompts.length > 0 || fetchedTimelinePrompts.length > 0
         
         if (hasData) {
-          console.log('✅ Data loaded successfully')
-          console.log('Regular prompts:', fetchedRegularPrompts.length)
-          console.log('Timeline prompts:', fetchedTimelinePrompts.length)
-          
           // Update state with fetched data
           setRegularPrompts(fetchedRegularPrompts)
           setTimelinePrompts(fetchedTimelinePrompts)
-          
-          // Store the data in localStorage for future use
-          try {
-            localStorage.setItem('prompts_cache_timestamp', Date.now().toString())
-            localStorage.setItem('prompts_cache', JSON.stringify({
-              data: fetchedRegularPrompts,
-              timestamp: Date.now()
-            }))
-            localStorage.setItem('timeline_prompts_cache', JSON.stringify({
-              data: fetchedTimelinePrompts,
-              timestamp: Date.now()
-            }))
-          } catch (e) {
-            console.error('Error storing data in localStorage:', e)
-          }
         } else {
-          console.log('⚠️ No data received from API')
-          
-          // Try to get data from localStorage
-          try {
-            const cachedRegularPrompts = localStorage.getItem('prompts_cache')
-            const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
-            
-            if (cachedRegularPrompts) {
-              try {
-                const parsed = JSON.parse(cachedRegularPrompts)
-                if (parsed.data && Array.isArray(parsed.data)) {
-                  console.log(`Using ${parsed.data.length} prompts from localStorage`)
-                  setRegularPrompts(parsed.data)
-                }
-              } catch (e) {
-                console.error('Error parsing cached regular prompts:', e)
-              }
-            }
-            
-            if (cachedTimelinePrompts) {
-              try {
-                const parsed = JSON.parse(cachedTimelinePrompts)
-                if (parsed.data && Array.isArray(parsed.data)) {
-                  console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
-                  setTimelinePrompts(parsed.data)
-                }
-              } catch (e) {
-                console.error('Error parsing cached timeline prompts:', e)
-              }
-            }
-          } catch (e) {
-            console.error('Error accessing localStorage:', e)
-          }
-          
           // If we still don't have data and have retries left, try again
           if ((!regularPrompts.length || !timelinePrompts.length) && retry && retryCount < maxRetries) {
             retryCount++
-            console.log(`Retrying data load (${retryCount}/${maxRetries})...`)
             setTimeout(() => loadData(true), retryDelay)
             return
           }
@@ -287,44 +121,9 @@ export function ExploreLibrary() {
         
         setLoading(false)
       } catch (error) {
-        console.error('Error loading data:', error)
-        
-        // Try to get data from localStorage as a fallback
-        try {
-          const cachedRegularPrompts = localStorage.getItem('prompts_cache')
-          const cachedTimelinePrompts = localStorage.getItem('timeline_prompts_cache')
-          
-          if (cachedRegularPrompts) {
-            try {
-              const parsed = JSON.parse(cachedRegularPrompts)
-              if (parsed.data && Array.isArray(parsed.data)) {
-                console.log(`Using ${parsed.data.length} prompts from localStorage`)
-                setRegularPrompts(parsed.data)
-              }
-            } catch (e) {
-              console.error('Error parsing cached regular prompts:', e)
-            }
-          }
-          
-          if (cachedTimelinePrompts) {
-            try {
-              const parsed = JSON.parse(cachedTimelinePrompts)
-              if (parsed.data && Array.isArray(parsed.data)) {
-                console.log(`Using ${parsed.data.length} timeline prompts from localStorage`)
-                setTimelinePrompts(parsed.data)
-              }
-            } catch (e) {
-              console.error('Error parsing cached timeline prompts:', e)
-            }
-          }
-        } catch (e) {
-          console.error('Error accessing localStorage:', e)
-        }
-        
         // If we have retries left, try again
         if (retry && retryCount < maxRetries) {
           retryCount++
-          console.log(`Retrying data load (${retryCount}/${maxRetries})...`)
           setTimeout(() => loadData(true), retryDelay)
           return
         }
