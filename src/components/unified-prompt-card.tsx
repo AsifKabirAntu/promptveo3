@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Heart, Eye, Edit, ExternalLink, Lock } from "lucide-react"
+import { Heart, Eye, Edit, ExternalLink, Lock, Unlock } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,8 @@ import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import { toggleFavorite, isFavorited, type UnifiedPrompt } from "@/lib/favorites"
 import { toast } from "sonner"
+import { FREE_VIEWABLE_REGULAR_PROMPTS } from "@/lib/prompts-client"
+import { FREE_VIEWABLE_TIMELINE_PROMPTS } from "@/lib/timeline-prompts-client"
 
 interface UnifiedPromptCardProps {
   prompt: UnifiedPrompt
@@ -24,6 +26,11 @@ export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: Un
   const [loading, setLoading] = useState(true)
   const [showPaywall, setShowPaywall] = useState(false)
   const [paywallFeature, setPaywallFeature] = useState('')
+
+  // Check if this prompt is free viewable
+  const isFreeViewable = 
+    (prompt.type === 'regular' && FREE_VIEWABLE_REGULAR_PROMPTS.includes(prompt.id)) ||
+    (prompt.type === 'timeline' && FREE_VIEWABLE_TIMELINE_PROMPTS.includes(prompt.id))
 
   useEffect(() => {
     async function checkFavorite() {
@@ -114,6 +121,12 @@ export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: Un
               {prompt.type === 'timeline' && (
                 <Badge variant="secondary" className="bg-purple-100 text-purple-700 border-0">
                   Timeline
+                </Badge>
+              )}
+              {isFreeViewable && !features.canViewAllPrompts && (
+                <Badge variant="secondary" className="bg-green-100 text-green-700 border-0">
+                  <Unlock className="w-3 h-3 mr-1" />
+                  Free Access
                 </Badge>
               )}
             </div>

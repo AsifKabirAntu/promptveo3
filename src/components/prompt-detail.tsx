@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowLeft, Heart, Copy, Edit, Download, Clock, Eye, Tag, Lock } from "lucide-react"
 import { Prompt } from "@/types/prompt"
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
+import { canViewRegularPrompt, hasProAccess } from "@/lib/prompts-client"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 
@@ -19,6 +20,65 @@ export function PromptDetail({ prompt }: PromptDetailProps) {
   const { features } = useAuth()
   const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
   const [isFavorited, setIsFavorited] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [canViewPrompt, setCanViewPrompt] = useState(false)
+  
+  // Check if user can view this prompt
+  useEffect(() => {
+    async function checkAccess() {
+      try {
+        setLoading(true)
+        const hasPro = await hasProAccess()
+        const canView = hasPro || canViewRegularPrompt(prompt.id)
+        setCanViewPrompt(canView)
+      } catch (error) {
+        console.error('Error checking prompt access:', error)
+        setCanViewPrompt(false) // Default to no access on error
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    checkAccess()
+  }, [prompt.id])
+  
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+  
+  // If free user can't view this prompt, show paywall
+  if (!canViewPrompt) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header with back button */}
+          <div className="mb-8">
+            <Link href="/dashboard">
+              <Button variant="outline" size="sm" className="mb-4">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Library
+              </Button>
+            </Link>
+          </div>
+          
+          {/* Paywall */}
+          <div className="py-8">
+            <Paywall 
+              title="Premium Prompt Access"
+              description="Upgrade to Pro to view all prompts in our library. Free users can view 2 regular prompts and 2 timeline prompts."
+              feature="Full prompt access"
+              className="max-w-2xl mx-auto"
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const promptJson = {
     description: prompt.description,

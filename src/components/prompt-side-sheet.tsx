@@ -1,18 +1,17 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Heart, Copy, Edit, Download, Clock, Eye, Tag } from "lucide-react"
-import { Prompt } from "@/types/prompt"
-import { TimelinePrompt } from "@/types/timeline-prompt"
+import { createPortal } from "react-dom"
+import { X, Heart, Edit, Download, Eye, Copy, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
-import { formatDate } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
-import { CompactPaywall, Paywall } from "@/components/ui/paywall"
+import { canViewRegularPrompt, hasProAccess } from "@/lib/prompts-client"
+import { canViewTimelinePrompt } from "@/lib/timeline-prompts-client"
 
-type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
+type UnifiedPrompt = { type: 'regular' | 'timeline', id: string, title: string, description: string, [key: string]: any }
 
 interface PromptSideSheetProps {
   prompt: UnifiedPrompt | null
@@ -27,13 +26,35 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
   const [isAnimating, setIsAnimating] = useState(false)
   const [showPaywall, setShowPaywall] = useState(false)
   const [paywallFeature, setPaywallFeature] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [canViewPrompt, setCanViewPrompt] = useState(false)
 
   useEffect(() => {
     // Reset tab when prompt changes
     if (prompt) {
       setActiveTab("readable")
+      checkAccess()
     }
   }, [prompt])
+
+  // Check if user can view this prompt
+  async function checkAccess() {
+    if (!prompt) return
+    
+    try {
+      setLoading(true)
+      const hasPro = await hasProAccess()
+      const canView = hasPro || 
+        (prompt.type === 'regular' && canViewRegularPrompt(prompt.id)) ||
+        (prompt.type === 'timeline' && canViewTimelinePrompt(prompt.id))
+      setCanViewPrompt(canView)
+    } catch (error) {
+      console.error('Error checking prompt access:', error)
+      setCanViewPrompt(false) // Default to no access on error
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Handle proper mount/unmount animation
   useEffect(() => {
@@ -48,6 +69,97 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
 
   // Don't render if not open and not animating
   if (!prompt || (!open && !isAnimating)) return null
+
+  // If still loading, show loading state
+  if (loading) {
+    return createPortal(
+      <>
+        {/* Backdrop overlay */}
+        <div 
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${
+            open && isAnimating ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={onClose}
+        />
+        
+        {/* Side sheet container */}
+        <div 
+          className={`fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
+            open && isAnimating ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">{prompt.title}</h2>
+                <p className="text-sm text-gray-500">
+                  {prompt.type === 'timeline' ? 'Timeline Prompt' : 'Regular Prompt'}
+                </p>
+              </div>
+              <Button variant="ghost" size="sm" onClick={onClose}>
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Loading State */}
+          <div className="p-6 h-full flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        </div>
+      </>,
+      document.body
+    )
+  }
+
+  // If user can't view this prompt, show paywall content
+  if (!canViewPrompt) {
+    return createPortal(
+      <>
+        {/* Backdrop overlay */}
+        <div 
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 ${
+            open && isAnimating ? 'opacity-100' : 'opacity-0'
+          }`}
+          onClick={onClose}
+        />
+        
+        {/* Side sheet container */}
+        <div 
+          className={`fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
+            open && isAnimating ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          {/* Header */}
+          <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">{prompt.title}</h2>
+                <p className="text-sm text-gray-500">
+                  {prompt.type === 'timeline' ? 'Timeline Prompt' : 'Regular Prompt'}
+                </p>
+              </div>
+              <Button variant="ghost" size="sm" onClick={onClose}>
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Paywall Content */}
+          <div className="p-6 h-full flex items-center justify-center">
+            <Paywall 
+              title="Premium Prompt Access"
+              description={`Upgrade to Pro to view all prompts in our library. Free users can view 2 regular prompts and 2 ${prompt.type} prompts.`}
+              feature="Full prompt access"
+              className="max-w-md mx-auto"
+            />
+          </div>
+        </div>
+      </>,
+      document.body
+    )
+  }
 
   const handleFeatureClick = (feature: string, action: () => void) => {
     if (features.canFavorite && feature === 'favorite') {

@@ -1,86 +1,87 @@
 'use client'
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/types/database'
 import { Prompt } from '@/types/prompt'
-import { createClient } from './supabase-browser'
+import { getUserSubscriptionClient, hasProAccess as checkProSubscription } from '@/lib/subscriptions'
 
-// Fallback data if API fails
-export const fallbackCategories = ['Business', 'Creative', 'Education', 'Entertainment', 'Technical']
-export const fallbackStyles = ['Action', 'Drama', 'Comedy', 'Horror']
+const supabase = createClientComponentClient<Database>()
 
-// Cache types
-type CacheData<T> = {
-  data: T | null;
-  timestamp: number;
-}
-
-type CacheStore = {
-  prompts: CacheData<Prompt[]>;
-  categories: CacheData<string[]>;
-  styles: CacheData<string[]>;
-}
-
-// Cache storage
+// Cache settings
 const CACHE_TTL = 0; // Set to 0 to disable cache
-const cache: CacheStore = {
-  prompts: { data: null, timestamp: 0 },
-  categories: { data: null, timestamp: 0 },
-  styles: { data: null, timestamp: 0 }
-};
 
-// Helper to check if cache is valid
-function isCacheValid(cacheKey: keyof CacheStore): boolean {
-  return cache[cacheKey].data !== null && 
-         (Date.now() - cache[cacheKey].timestamp) < CACHE_TTL;
-}
+// Free users can view details for these specific prompt IDs (2 regular prompts)
+export const FREE_VIEWABLE_REGULAR_PROMPTS = [
+  '719899d1-6bb3-4ddb-ab75-7a25f9442f82', // Hidden Vista Dark
+  '4654dffd-4a04-4bbd-8713-98a04a4ee57f', // Radiant Symphony Vacant
+];
+
+// Fallback data for when API is unavailable
+export const fallbackCategories = [
+  "Lifestyle", "Sci-Fi", "Nature", "Creative", "Technology", "Action", "Drama"
+];
+
+export const fallbackStyles = [
+  "cinematic, vibrant, energetic", "cyberpunk, noir, atmospheric", "epic, majestic, inspirational",
+  "sophisticated, elegant, contemporary", "raw, authentic, documentary", "surreal, artistic, experimental"
+];
 
 // Helper for direct API fetching with timeout
 async function fetchDirectFromSupabase<T>(endpoint: string, options = {}): Promise<T> {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const apiKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Missing Supabase credentials');
+  if (!baseUrl || !apiKey) {
+    throw new Error('Supabase configuration missing');
   }
+
+  const url = `${baseUrl}/rest/v1/${endpoint}`;
   
-  const url = `${supabaseUrl}/rest/v1/${endpoint}`;
-  
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    setTimeout(() => reject(new Error('Request timed out')), 10000);
-  });
-  
+  const timeoutPromise = new Promise((_, reject) => 
+    setTimeout(() => reject(new Error('Request timed out after 15 seconds')), 15000)
+  );
+
   const fetchPromise = fetch(url, {
     headers: {
-      'apikey': supabaseKey,
-      'Authorization': `Bearer ${supabaseKey}`,
+      'apikey': apiKey,
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation',
       ...options
     }
-  }).then(async response => {
-    if (!response.ok) {
-      const errorText = await response.text().catch(() => 'No error details');
-      throw new Error(`API error: ${response.status} ${response.statusText} - ${errorText}`);
-    }
-    return response.json();
   });
-  
-  return Promise.race([fetchPromise, timeoutPromise]);
+
+  try {
+    const response = await Promise.race([fetchPromise, timeoutPromise]) as Response;
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error('Direct Supabase fetch error:', error);
+    throw error;
+  }
 }
 
 // Helper to check if user has pro access
-function hasProAccess(): boolean {
-  // Pro access check should rely on prop passed from parent component
-  // For now, we'll default to true to show all data
-  return true;
+export async function hasProAccess(): Promise<boolean> {
+  try {
+    // Get the user's subscription
+    const subscription = await getUserSubscriptionClient();
+    
+    // Check if they have pro access
+    return checkProSubscription(subscription);
+  } catch (error) {
+    console.error('Error checking pro access:', error);
+    return false; // Default to no pro access on error
+  }
 }
 
-// Helper to limit data for free users
-function limitDataForFreeUsers<T>(data: T[]): T[] {
-  if (hasProAccess()) {
-    return data; // Pro users get all data
-  }
-  
-  // Free users get limited data
-  const previewCount = 3;
-  return data.slice(0, previewCount);
+// Helper function to check if a regular prompt can be viewed by free users
+export function canViewRegularPrompt(promptId: string): boolean {
+  return FREE_VIEWABLE_REGULAR_PROMPTS.includes(promptId);
 }
 
 export async function getAllPromptsClient(): Promise<Prompt[]> {
@@ -90,8 +91,8 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
       'prompts?select=*&is_public=eq.true&order=created_at.desc'
     );
     
-    // Return limited data for free users
-    return limitDataForFreeUsers(data as Prompt[]);
+    // NO LONGER LIMIT DATA - show all prompts to free users
+    return data as Prompt[];
   } catch (error) {
     console.error('Error fetching prompts:', error);
     return [];
@@ -100,13 +101,12 @@ export async function getAllPromptsClient(): Promise<Prompt[]> {
 
 export async function getUniqueCategories(): Promise<string[]> {
   try {
-    // Use direct REST API call - bypassing cache completely
-    const data = await fetchDirectFromSupabase<Array<{category: string}>>(
+    const data = await fetchDirectFromSupabase<{category: string}[]>(
       'prompts?select=category&is_public=eq.true'
     );
     
-    const uniqueCategories = [...new Set(data.map(item => item.category).filter(Boolean))].sort();
-    return uniqueCategories;
+    const categories = [...new Set(data.map(item => item.category))].sort();
+    return categories.length > 0 ? categories : fallbackCategories;
   } catch (error) {
     console.error('Error fetching categories:', error);
     return fallbackCategories;
@@ -115,13 +115,12 @@ export async function getUniqueCategories(): Promise<string[]> {
 
 export async function getUniqueStyles(): Promise<string[]> {
   try {
-    // Use direct REST API call - bypassing cache completely
-    const data = await fetchDirectFromSupabase<Array<{style: string}>>(
+    const data = await fetchDirectFromSupabase<{style: string}[]>(
       'prompts?select=style&is_public=eq.true'
     );
     
-    const uniqueStyles = [...new Set(data.map(item => item.style).filter(Boolean))].sort();
-    return uniqueStyles;
+    const styles = [...new Set(data.map(item => item.style))].sort();
+    return styles.length > 0 ? styles : fallbackStyles;
   } catch (error) {
     console.error('Error fetching styles:', error);
     return fallbackStyles;
@@ -129,25 +128,16 @@ export async function getUniqueStyles(): Promise<string[]> {
 }
 
 export async function searchPrompts(query: string): Promise<Prompt[]> {
-  const supabase = createClient()
-  
   try {
-    const timeoutPromise = new Promise((_, reject) => 
-      setTimeout(() => reject(new Error('Request timed out')), 15000)
-    )
-
-    const fetchPromise = supabase
-      .from('prompts')
-      .select('*')
-      .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
-      .order('created_at', { ascending: false })
-
-    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any
-
-    if (error) throw error
-    return data || []
+    const encodedQuery = encodeURIComponent(query);
+    const data = await fetchDirectFromSupabase<any[]>(
+      `prompts?select=*&is_public=eq.true&or=(title.ilike.*${encodedQuery}*,description.ilike.*${encodedQuery}*)&order=created_at.desc`
+    );
+    
+    // NO LONGER LIMIT DATA - show all search results to free users
+    return data as Prompt[];
   } catch (error) {
-    console.error('Error searching prompts:', error)
-    return []
+    console.error('Error searching prompts:', error);
+    return [];
   }
 } 

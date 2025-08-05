@@ -30,11 +30,12 @@ export interface SubscriptionFeatures {
 
 // Free plan limitations
 export const FREE_PLAN_LIMITS = {
-  maxVisiblePrompts: 4,
+  maxVisiblePrompts: Infinity, // Show all prompts in the library
   canViewJSON: false,
   canFavorite: false,
   canRemix: false,
   canCreate: false,
+  canViewAllPrompts: false, // This controls the "upgrade to see all" message
 }
 
 // Pro plan features
@@ -44,6 +45,7 @@ export const PRO_PLAN_FEATURES = {
   canFavorite: true,
   canRemix: true,
   canCreate: true,
+  canViewAllPrompts: true,
 }
 
 // Helper for direct API fetching with timeout

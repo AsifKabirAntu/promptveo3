@@ -1,15 +1,16 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowLeft, Heart, Copy, Download, Edit, Clock, Eye, Tag, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useState, useEffect } from "react"
+import { ArrowLeft, Heart, Copy, Edit, Download, Clock, Eye, Tag, Calendar, Play, Wand2, Lock } from "lucide-react"
 import { TimelinePrompt } from "@/types/timeline-prompt"
-import { formatDate } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
-import { CompactPaywall, Paywall } from "@/components/ui/paywall"
+import { canViewTimelinePrompt, hasProAccess } from "@/lib/timeline-prompts-client"
 import Link from "next/link"
+import { formatDate } from "@/lib/utils"
 
 interface TimelinePromptDetailProps {
   prompt: TimelinePrompt
@@ -17,8 +18,69 @@ interface TimelinePromptDetailProps {
 
 export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
   const { features } = useAuth()
-  const [activeTab, setActiveTab] = useState<'readable' | 'json'>('readable')
+  const [activeTab, setActiveTab] = useState<"readable" | "json">("readable")
+  const [isFavorited, setIsFavorited] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [canViewPrompt, setCanViewPrompt] = useState(false)
+  
+  // Check if user can view this timeline prompt
+  useEffect(() => {
+    async function checkAccess() {
+      try {
+        setLoading(true)
+        const hasPro = await hasProAccess()
+        const canView = hasPro || canViewTimelinePrompt(prompt.id)
+        setCanViewPrompt(canView)
+      } catch (error) {
+        console.error('Error checking prompt access:', error)
+        setCanViewPrompt(false) // Default to no access on error
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    checkAccess()
+  }, [prompt.id])
+  
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+  
+  // If free user can't view this prompt, show paywall
+  if (!canViewPrompt) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header with back button */}
+          <div className="mb-8">
+            <Link href="/dashboard">
+              <Button variant="outline" size="sm" className="mb-4">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Library
+              </Button>
+            </Link>
+          </div>
+          
+          {/* Paywall */}
+          <div className="py-8">
+            <Paywall 
+              title="Premium Timeline Prompt Access"
+              description="Upgrade to Pro to view all timeline prompts in our library. Free users can view 2 regular prompts and 2 timeline prompts."
+              feature="Full timeline prompt access"
+              className="max-w-2xl mx-auto"
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const [showPaywall, setShowPaywall] = useState(false)
   const [paywallFeature, setPaywallFeature] = useState('')
 
@@ -220,7 +282,7 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
                   className="px-6 py-4 text-sm font-medium text-gray-400 cursor-not-allowed flex items-center gap-2"
                 >
                   Raw JSON
-                  <Lock className="w-3 h-3" />
+                  {/* Removed Lock icon as it's not imported */}
                 </button>
               )}
             </div>
@@ -364,7 +426,7 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
               </Card>
             ) : (
               <div className="py-8">
-                <CompactPaywall
+                <Paywall
                   title="JSON Export"
                   description="Upgrade to Pro to view and export timeline prompts in JSON format for Veo 3."
                   feature="JSON export"

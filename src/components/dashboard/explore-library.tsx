@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
-import { getAllPromptsClient, getUniqueCategories, getUniqueStyles, fallbackCategories, fallbackStyles } from "@/lib/prompts-client"
-import { getAllTimelinePromptsClient, getUniqueTimelineCategories, getUniqueTimelineBaseStyles, fallbackTimelineCategories, fallbackTimelineBaseStyles } from "@/lib/timeline-prompts-client"
+import { getAllPromptsClient, getUniqueCategories, getUniqueStyles, fallbackCategories, fallbackStyles, FREE_VIEWABLE_REGULAR_PROMPTS } from "@/lib/prompts-client"
+import { getAllTimelinePromptsClient, getUniqueTimelineCategories, getUniqueTimelineBaseStyles, fallbackTimelineCategories, fallbackTimelineBaseStyles, FREE_VIEWABLE_TIMELINE_PROMPTS } from "@/lib/timeline-prompts-client"
 import { Prompt } from "@/types/prompt"
 import { TimelinePrompt } from "@/types/timeline-prompt"
 
@@ -33,7 +33,7 @@ export function ExploreLibrary() {
   const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
   const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
   const [loading, setLoading] = useState(true)
-  const [totalDatabaseCount, setTotalDatabaseCount] = useState(156) // Total count of prompts in database
+  const [totalDatabaseCount, setTotalDatabaseCount] = useState(600) // Updated to 600 total prompts
   
   // Categories and styles from both types
   const [categories, setCategories] = useState<string[]>(fallbackCategories)
@@ -180,8 +180,30 @@ export function ExploreLibrary() {
       combinedPrompts = [...filteredRegularPrompts];
     }
     
-    // Sort by date (newest first)
+    // Get IDs of free viewable prompts
+    const freeRegularPromptIds = FREE_VIEWABLE_REGULAR_PROMPTS;
+    const freeTimelinePromptIds = FREE_VIEWABLE_TIMELINE_PROMPTS;
+    
+    // Use the appropriate free prompt IDs based on the current tab
+    let relevantFreePromptIds: string[] = [];
+    if (timelineFilter === 'all') {
+      relevantFreePromptIds = [...freeRegularPromptIds, ...freeTimelinePromptIds];
+    } else if (timelineFilter === 'with-timeline') {
+      relevantFreePromptIds = [...freeTimelinePromptIds];
+    } else {
+      relevantFreePromptIds = [...freeRegularPromptIds];
+    }
+    
+    // Sort prompts to show free viewable prompts first
     combinedPrompts.sort((a, b) => {
+      // First check if either prompt is in the free viewable list
+      const aIsFree = relevantFreePromptIds.includes(a.id);
+      const bIsFree = relevantFreePromptIds.includes(b.id);
+      
+      if (aIsFree && !bIsFree) return -1; // a is free, b is not, so a comes first
+      if (!aIsFree && bIsFree) return 1;  // b is free, a is not, so b comes first
+      
+      // If both are free or both are not free, sort by date (newest first)
       const dateA = new Date(a.created_at).getTime();
       const dateB = new Date(b.created_at).getTime();
       return dateB - dateA;
@@ -191,13 +213,11 @@ export function ExploreLibrary() {
     let limitedCount = totalCount;
     let displayPrompts = combinedPrompts;
     
-    // For free users, limit the total number of visible prompts
-    if (!features.canViewAllPrompts) {
-      limitedCount = Math.min(totalCount, features.maxVisiblePrompts);
-      displayPrompts = combinedPrompts.slice(0, limitedCount);
-    }
+    // We no longer limit the number of visible prompts
+    // Free users can see all prompts, but can only view details for specific ones
+    // The limitedCount is still used for the "upgrade to see all" message
     
-    // Apply pagination to the displayable prompts (either all for pro, or limited for free)
+    // Apply pagination to all prompts
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedPrompts = displayPrompts.slice(startIndex, startIndex + itemsPerPage);
     
@@ -421,10 +441,10 @@ export function ExploreLibrary() {
       {/* Results Count and Page Size Control */}
       <div className="flex items-center justify-between mb-6 bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm text-gray-600">
-          Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{limitedCount}</span> prompts
+          Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{totalCount}</span> prompts
           {!features.canViewAllPrompts && subscription?.plan !== 'pro' && (
             <span className="text-gray-500 ml-2">
-              (of {totalDatabaseCount} total - upgrade to see all)
+              (Free users can only view details for 4 specific prompts)
             </span>
           )}
         </p>
@@ -559,8 +579,8 @@ export function ExploreLibrary() {
         <div className="mt-8 max-w-3xl mx-auto">
           <Paywall 
             title="Unlock All Prompts"
-            description={`You're seeing ${features.maxVisiblePrompts} of ${totalDatabaseCount} prompts. Upgrade to Pro to access the full library.`}
-            feature="Unlimited prompt access"
+            description={`You can browse all ${totalDatabaseCount} prompts, but only view details for 4 specific prompts. Upgrade to Pro to view details for all prompts.`}
+            feature="Full prompt access"
           />
         </div>
       )}
