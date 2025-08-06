@@ -1,0 +1,4498 @@
+[
+  {
+    "title": "Smartwatch Comet",
+    "category": "Product Reveal",
+    "description": "Smartwatch Comet is revealed in a a cosmic space with swirling galaxies environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A cosmic space with swirling galaxies",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.53",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.53-00:07.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:07.00-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Smart Speaker Origami",
+    "category": "Product Reveal",
+    "description": "Smart Speaker Origami is revealed in a a minimalist japanese room with shoji screens environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "A minimalist Japanese room with shoji screens",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.22",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.22-00:01.70",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.70-00:03.74",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.74-00:07.20",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.20-00:07.35",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.35-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Electric Bike Blitz",
+    "category": "Product Reveal",
+    "description": "Electric Bike Blitz is revealed in a urban warehouse with graffiti environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Urban warehouse with graffiti",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.19",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.19-00:05.14",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.14-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Foldable Phone Bloom",
+    "category": "Product Reveal",
+    "description": "Foldable Phone Bloom is revealed in a mirror-walled chamber with neon edges environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Mirror-walled chamber with neon edges",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:05.07",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:05.07-00:06.98",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.98-00:07.05",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.05-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Smart Thermostat IceFire",
+    "category": "Product Reveal",
+    "description": "Smart Thermostat IceFire is revealed in a transitioning frozen-to-cozy living room environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Transitioning frozen-to-cozy living room",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.23",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.23-00:03.47",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.47-00:05.59",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.59-00:07.24",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.24-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Eco Bottle Forest",
+    "category": "Product Reveal",
+    "description": "Eco Bottle Forest is revealed in a mossy forest clearing environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Mossy forest clearing",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.44",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.44-00:01.62",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.62-00:03.60",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.60-00:07.23",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.23-00:07.44",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.44-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Wireless Earbuds Sonic",
+    "category": "Product Reveal",
+    "description": "Wireless Earbuds Sonic is revealed in a abstract space of waveforms environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Abstract space of waveforms",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.63",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.63-00:01.24",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.24-00:01.44",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:01.44-00:04.14",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.14-00:05.48",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:05.48-00:08.00",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Fitness Tracker Pulse",
+    "category": "Product Reveal",
+    "description": "Fitness Tracker Pulse is revealed in a glowing running track environment, using a slow dolly forward and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Glowing running track",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.30",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.30-00:04.49",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.49-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "3D Pen Sculptor",
+    "category": "Product Reveal",
+    "description": "3D Pen Sculptor is revealed in a maker studio with wooden tables environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Maker studio with wooden tables",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.21",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.21-00:02.94",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.94-00:04.13",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.13-00:04.24",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.24-00:05.23",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:05.23-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Pet Feeder Garden",
+    "category": "Product Reveal",
+    "description": "Pet Feeder Garden is revealed in a cheerful kitchen environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Cheerful kitchen",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:05.68",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:05.68-00:06.28",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.28-00:06.56",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.56-00:07.28",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.28-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Sustainable Sneaker Meteor",
+    "category": "Product Reveal",
+    "description": "Sustainable Sneaker Meteor is revealed in a desert at sunset environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Desert at sunset",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.72",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.72-00:02.86",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.86-00:05.38",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.38-00:07.63",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.63-00:08.00",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Gaming Console Portal",
+    "category": "Product Reveal",
+    "description": "Gaming Console Portal is revealed in a rainy neon alley environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Rainy neon alley",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.30",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.30-00:01.58",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.58-00:04.69",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.69-00:05.03",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.03-00:05.95",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:05.95-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Luxury Watch Warp",
+    "category": "Product Reveal",
+    "description": "Luxury Watch Warp is revealed in a velvet-lit dark room environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Velvet-lit dark room",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.25",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.25-00:05.19",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.19-00:05.62",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.62-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Biotech Serum Bloom",
+    "category": "Product Reveal",
+    "description": "Biotech Serum Bloom is revealed in a modern lab environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Modern lab",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.55",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.55-00:02.28",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.28-00:02.96",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.96-00:06.15",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.15-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "VR Headset Arena",
+    "category": "Product Reveal",
+    "description": "VR Headset Arena is revealed in a neon grid arena environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Neon grid arena",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.39",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.39-00:04.99",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.99-00:07.32",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.32-00:07.68",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.68-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Smart Mug Steam",
+    "category": "Product Reveal",
+    "description": "Smart Mug Steam is revealed in a sunlit rustic kitchen environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Sunlit rustic kitchen",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.36",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.36-00:00.95",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:00.95-00:01.77",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:01.77-00:02.95",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:02.95-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Light Orb Symphony",
+    "category": "Product Reveal",
+    "description": "Light Orb Symphony is revealed in a dark void with beams environment, using a macro close-up spiral and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Dark void with beams",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.29",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.29-00:02.07",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.07-00:03.53",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.53-00:03.80",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.80-00:07.22",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.22-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Solar Charger Sunrise",
+    "category": "Product Reveal",
+    "description": "Solar Charger Sunrise is revealed in a mountain ridge at dawn environment, using a macro close-up spiral and  to enhance the visual impact. The video features a natural, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "natural, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Mountain ridge at dawn",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.80",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.80-00:01.64",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.64-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Smart Door Lock",
+    "category": "Product Reveal",
+    "description": "Smart Door Lock is revealed in a sleek modern door environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Sleek modern door",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:06.16",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:06.16-00:06.33",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.33-00:07.52",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.52-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Pet Camera Toss",
+    "category": "Product Reveal",
+    "description": "Pet Camera Toss is revealed in a playful living room environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Playful living room",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.47",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.47-00:04.92",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.92-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "VR Gloves Fusion",
+    "category": "Product Reveal",
+    "description": "VR Gloves Fusion is revealed in a white grid void environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "White grid void",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.11",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.11-00:03.30",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.30-00:04.50",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.50-00:07.46",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.46-00:07.65",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.65-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Robotics Kit Evolution",
+    "category": "Product Reveal",
+    "description": "Robotics Kit Evolution is revealed in a colourful workshop environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Colourful workshop",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.28",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.28-00:04.58",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.58-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Electric Skateboard Slide",
+    "category": "Product Reveal",
+    "description": "Electric Skateboard Slide is revealed in a industrial parking garage environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Industrial parking garage",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.80",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.80-00:03.01",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.01-00:05.08",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.08-00:05.21",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.21-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Tea Infuser Garden",
+    "category": "Product Reveal",
+    "description": "Tea Infuser Garden is revealed in a greenhouse environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Greenhouse",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.55",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.55-00:02.69",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.69-00:04.58",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.58-00:06.36",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.36-00:06.59",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.59-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "AR Globe Reveal",
+    "category": "Product Reveal",
+    "description": "AR Globe Reveal is revealed in a study room environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Study room",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.17",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.17-00:06.07",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.07-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Modular Sofa",
+    "category": "Product Reveal",
+    "description": "Modular Sofa is revealed in a loft space environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Loft space",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.21",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.21-00:01.95",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.95-00:04.14",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.14-00:04.94",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.94-00:06.78",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.78-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Portable Projector Skylight",
+    "category": "Product Reveal",
+    "description": "Portable Projector Skylight is revealed in a dark living room environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Dark living room",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.43",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.43-00:05.85",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.85-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Portable Blender Fruit",
+    "category": "Product Reveal",
+    "description": "Portable Blender Fruit is revealed in a white kitchen with floating fruit environment, using a macro close-up spiral and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "White kitchen with floating fruit",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.54",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.54-00:03.86",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.86-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Smart Garden Hydro",
+    "category": "Product Reveal",
+    "description": "Smart Garden Hydro is revealed in a minimal kitchen environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Minimal kitchen",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.38",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.38-00:01.96",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.96-00:02.81",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.81-00:05.56",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.56-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Hi-Fi Headphones Build",
+    "category": "Product Reveal",
+    "description": "Hi-Fi Headphones Build is revealed in a sound studio environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a natural, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "natural, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Sound studio",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.02",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.02-00:03.31",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.31-00:06.01",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.01-00:06.50",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.50-00:06.99",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.99-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Smart Suitcase Journey",
+    "category": "Product Reveal",
+    "description": "Smart Suitcase Journey is revealed in a airport lounge environment, using a macro close-up spiral and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Airport lounge",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:05.26",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:05.26-00:06.37",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.37-00:07.02",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.02-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Biodegradable Phone Case",
+    "category": "Product Reveal",
+    "description": "Biodegradable Phone Case is revealed in a rainforest floor environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Rainforest floor",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.40",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.40-00:03.41",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.41-00:05.50",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.50-00:06.28",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.28-00:07.14",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.14-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Makeup Brush Cleaner",
+    "category": "Product Reveal",
+    "description": "Makeup Brush Cleaner is revealed in a vanity table environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Vanity table",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:05.09",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:05.09-00:05.51",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.51-00:06.08",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.08-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "AI Smart Mirror",
+    "category": "Product Reveal",
+    "description": "AI Smart Mirror is revealed in a futuristic bathroom environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Futuristic bathroom",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.78",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.78-00:07.07",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:07.07-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Air Purifier Cloud",
+    "category": "Product Reveal",
+    "description": "Air Purifier Cloud is revealed in a modern living room environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Modern living room",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.53",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.53-00:01.36",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.36-00:04.43",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.43-00:07.48",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.48-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Electric Scooter Dash",
+    "category": "Product Reveal",
+    "description": "Electric Scooter Dash is revealed in a city plaza environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "City plaza",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.73",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.73-00:05.24",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.24-00:05.40",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.40-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Compostable Toothbrush",
+    "category": "Product Reveal",
+    "description": "Compostable Toothbrush is revealed in a beach shore environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Beach shore",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.33",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.33-00:05.77",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.77-00:07.41",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.41-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Tactical Flashlight",
+    "category": "Product Reveal",
+    "description": "Tactical Flashlight is revealed in a dark cave environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Dark cave",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.26",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.26-00:01.44",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.44-00:02.61",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.61-00:04.88",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.88-00:06.85",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.85-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Ergonomic Keyboard",
+    "category": "Product Reveal",
+    "description": "Ergonomic Keyboard is revealed in a office desk environment, using a slow dolly forward and  to enhance the visual impact. The video features a natural, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "natural, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Office desk",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.07",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.07-00:04.81",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.81-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "AI Voice Translator",
+    "category": "Product Reveal",
+    "description": "AI Voice Translator is revealed in a airport cafe environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Airport cafe",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.79",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.79-00:02.45",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.45-00:03.18",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.18-00:03.21",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.21-00:06.84",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.84-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Modular Backpack",
+    "category": "Product Reveal",
+    "description": "Modular Backpack is revealed in a hiking trail environment, using a macro close-up spiral and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Hiking trail",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.30",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.30-00:02.54",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.54-00:03.92",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.92-00:06.25",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.25-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Foldable Lamp",
+    "category": "Product Reveal",
+    "description": "Foldable Lamp is revealed in a night study environment, using a macro close-up spiral and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Night study",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.33",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.33-00:03.74",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.74-00:05.42",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.42-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Wireless Mousepad",
+    "category": "Product Reveal",
+    "description": "Wireless Mousepad is revealed in a modern office environment, using a slow dolly forward and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Modern office",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.42",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.42-00:00.97",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:00.97-00:01.28",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:01.28-00:02.29",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:02.29-00:06.87",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.87-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Eco Yoga Mat",
+    "category": "Product Reveal",
+    "description": "Eco Yoga Mat is revealed in a zen garden environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Zen garden",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.66",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.66-00:05.71",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.71-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Camping Stove",
+    "category": "Product Reveal",
+    "description": "Camping Stove is revealed in a mountain campsite environment, using a slow dolly forward and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Mountain campsite",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.32",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.32-00:03.91",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.91-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Sleep Buds",
+    "category": "Product Reveal",
+    "description": "Sleep Buds is revealed in a bedroom environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Bedroom",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.91",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.91-00:01.39",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.39-00:04.07",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.07-00:06.72",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.72-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Smart Raincoat",
+    "category": "Product Reveal",
+    "description": "Smart Raincoat is revealed in a rainy street environment, using a slow dolly forward and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Rainy street",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.04",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.04-00:02.09",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.09-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Garment Steamer",
+    "category": "Product Reveal",
+    "description": "Garment Steamer is revealed in a laundry room environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Laundry room",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.59",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.59-00:03.90",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.90-00:06.19",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.19-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Pet GPS Tracker",
+    "category": "Product Reveal",
+    "description": "Pet GPS Tracker is revealed in a grassy park environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Grassy park",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.41",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.41-00:04.46",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.46-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Smart Scale",
+    "category": "Product Reveal",
+    "description": "Smart Scale is revealed in a bathroom environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a natural, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "natural, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Bathroom",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.44",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.44-00:03.94",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.94-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Filament Recycler",
+    "category": "Product Reveal",
+    "description": "Filament Recycler is revealed in a garage workshop environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Garage workshop",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.37",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.37-00:01.64",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.64-00:03.70",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.70-00:03.94",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.94-00:04.42",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.42-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Plant-Based Burger Kit",
+    "category": "Product Reveal",
+    "description": "Plant-Based Burger Kit is revealed in a modern kitchen environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Modern kitchen",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:06.15",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:06.15-00:06.54",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.54-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Smart Helmet",
+    "category": "Product Reveal",
+    "description": "Smart Helmet is revealed in a bike lane environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Bike lane",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.15",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.15-00:01.59",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.59-00:03.30",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.30-00:04.02",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.02-00:05.84",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:05.84-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Floating Bed Lamp",
+    "category": "Product Reveal",
+    "description": "Floating Bed Lamp is revealed in a bedroom loft environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Bedroom loft",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.18",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.18-00:06.46",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.46-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Soundbar Surround",
+    "category": "Product Reveal",
+    "description": "Soundbar Surround is revealed in a home theatre environment, using a slow dolly forward and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Home theatre",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.31",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.31-00:01.44",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.44-00:04.08",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.08-00:04.17",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.17-00:04.41",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.41-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Solar Watch",
+    "category": "Product Reveal",
+    "description": "Solar Watch is revealed in a garden patio environment, using a slow dolly forward and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Garden patio",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.33",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.33-00:05.11",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.11-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Craft Brew Kit",
+    "category": "Product Reveal",
+    "description": "Craft Brew Kit is revealed in a home brewery environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Home brewery",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.92",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.92-00:01.09",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.09-00:03.26",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.26-00:06.83",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.83-00:07.09",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.09-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Smart Ring",
+    "category": "Product Reveal",
+    "description": "Smart Ring is revealed in a minimal desk environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Minimal desk",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.97",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.97-00:05.11",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.11-00:06.28",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.28-00:06.87",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.87-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Smart Decanter",
+    "category": "Product Reveal",
+    "description": "Smart Decanter is revealed in a wine cellar environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Wine cellar",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.79",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.79-00:04.93",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.93-00:05.82",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.82-00:06.28",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.28-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Electric Ukulele",
+    "category": "Product Reveal",
+    "description": "Electric Ukulele is revealed in a sunroom environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Sunroom",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.71",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.71-00:05.40",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.40-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Portable SSD",
+    "category": "Product Reveal",
+    "description": "Portable SSD is revealed in a high-tech office environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a natural, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "natural, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "High-tech office",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.42",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.42-00:03.14",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.14-00:04.07",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.07-00:06.49",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.49-00:07.08",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.08-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Smart Picture Frame",
+    "category": "Product Reveal",
+    "description": "Smart Picture Frame is revealed in a family room environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Family room",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.82",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.82-00:01.50",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.50-00:03.18",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.18-00:04.48",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.48-00:04.49",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.49-00:08.00",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "Drone Camera",
+    "category": "Product Reveal",
+    "description": "Drone Camera is revealed in a open field environment, using a slow dolly forward and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Open field",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.59",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.59-00:03.35",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.35-00:05.78",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.78-00:06.55",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.55-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Eco Charger",
+    "category": "Product Reveal",
+    "description": "Eco Charger is revealed in a beach rock environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Beach rock",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.37",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.37-00:02.75",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.75-00:07.33",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.33-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Kids Coding Tablet",
+    "category": "Product Reveal",
+    "description": "Kids Coding Tablet is revealed in a colourful playroom environment, using a slow dolly forward and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Colourful playroom",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.81",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.81-00:02.37",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.37-00:05.13",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.13-00:05.48",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.48-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Massaging Travel Pillow",
+    "category": "Product Reveal",
+    "description": "Massaging Travel Pillow is revealed in a airport gate environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Airport gate",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.28",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.28-00:06.05",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.05-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Smart Plant Pot",
+    "category": "Product Reveal",
+    "description": "Smart Plant Pot is revealed in a cozy living room environment, using a macro close-up spiral and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Cozy living room",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.83",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.83-00:03.89",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.89-00:05.65",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.65-00:06.63",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.63-00:07.65",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.65-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Cooling Fan Purifier",
+    "category": "Product Reveal",
+    "description": "Cooling Fan Purifier is revealed in a office corner environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Office corner",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.24",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.24-00:03.56",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.56-00:05.83",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.83-00:06.30",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.30-00:07.41",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.41-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Gaming Mouse",
+    "category": "Product Reveal",
+    "description": "Gaming Mouse is revealed in a rgb desk environment, using a macro close-up spiral and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "RGB desk",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.83",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.83-00:03.96",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.96-00:04.16",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.16-00:06.97",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.97-00:07.02",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.02-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Gesture Drone",
+    "category": "Product Reveal",
+    "description": "Gesture Drone is revealed in a park field environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Park field",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.39",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.39-00:03.15",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.15-00:03.80",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.80-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Magnetic Desk Organizer",
+    "category": "Product Reveal",
+    "description": "Magnetic Desk Organizer is revealed in a wooden desk environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Wooden desk",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.84",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.84-00:02.45",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.45-00:04.16",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.16-00:05.64",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.64-00:06.22",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.22-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Security Camera",
+    "category": "Product Reveal",
+    "description": "Security Camera is revealed in a home entrance environment, using a slow dolly forward and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Home entrance",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.94",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.94-00:05.62",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.62-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Waterproof Speaker",
+    "category": "Product Reveal",
+    "description": "Waterproof Speaker is revealed in a poolside environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Poolside",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.03",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.03-00:04.52",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.52-00:05.47",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.47-00:07.30",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.30-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Sound Chair",
+    "category": "Product Reveal",
+    "description": "Sound Chair is revealed in a gaming room environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Gaming room",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.32",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.32-00:03.57",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.57-00:04.35",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.35-00:04.46",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:04.46-00:06.67",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.67-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Smart Glasses",
+    "category": "Product Reveal",
+    "description": "Smart Glasses is revealed in a street cafe environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Street cafe",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.37",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.37-00:05.71",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.71-00:06.26",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.26-00:07.51",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.51-00:08.00",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Compact Dishwasher",
+    "category": "Product Reveal",
+    "description": "Compact Dishwasher is revealed in a studio kitchen environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Studio kitchen",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.17",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.17-00:01.53",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.53-00:03.13",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.13-00:03.65",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.65-00:04.90",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.90-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Portable AC",
+    "category": "Product Reveal",
+    "description": "Portable AC is revealed in a bedroom environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Bedroom",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.46",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.46-00:02.81",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.81-00:03.05",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.05-00:03.77",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.77-00:06.67",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.67-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Foldable Grill",
+    "category": "Product Reveal",
+    "description": "Foldable Grill is revealed in a backyard environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Backyard",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.79",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.79-00:04.33",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.33-00:05.61",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.61-00:05.73",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.73-00:06.60",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.60-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Bamboo Sunglasses",
+    "category": "Product Reveal",
+    "description": "Bamboo Sunglasses is revealed in a sunny beach environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Sunny beach",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.61",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.61-00:01.30",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.30-00:05.19",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.19-00:06.56",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.56-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Smart Jump Rope",
+    "category": "Product Reveal",
+    "description": "Smart Jump Rope is revealed in a gym studio environment, using a macro close-up spiral and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Gym studio",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.44",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.44-00:01.83",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.83-00:02.48",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.48-00:02.88",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:02.88-00:05.99",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:05.99-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Self-Cleaning Litter Box",
+    "category": "Product Reveal",
+    "description": "Self-Cleaning Litter Box is revealed in a laundry room environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Laundry room",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.44",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.44-00:01.69",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:01.69-00:02.55",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.55-00:03.95",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.95-00:04.41",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.41-00:08.00",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Smart Faucet",
+    "category": "Product Reveal",
+    "description": "Smart Faucet is revealed in a kitchen sink environment, using a macro close-up spiral and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Kitchen sink",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.88",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.88-00:02.51",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.51-00:05.70",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.70-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Mini EV Charger",
+    "category": "Product Reveal",
+    "description": "Mini EV Charger is revealed in a garage environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Garage",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.63",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.63-00:06.90",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.90-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      }
+    ]
+  },
+  {
+    "title": "Smart Blanket",
+    "category": "Product Reveal",
+    "description": "Smart Blanket is revealed in a living room environment, using a 360-degree orbit shot and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Living room",
+    "camera_setup": "360-degree orbit shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.48",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.48-00:04.76",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.76-00:04.76",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.76-00:05.86",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:05.86-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Smart Pen",
+    "category": "Product Reveal",
+    "description": "Smart Pen is revealed in a office environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Office",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.32",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.32-00:03.26",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.26-00:03.28",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.28-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "VR Fitness Board",
+    "category": "Product Reveal",
+    "description": "VR Fitness Board is revealed in a gym environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Gym",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.18",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.18-00:04.62",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.62-00:04.73",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.73-00:06.75",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.75-00:07.60",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.60-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Gentle nature sounds with chimes."
+      }
+    ]
+  },
+  {
+    "title": "Charging Desk",
+    "category": "Product Reveal",
+    "description": "Charging Desk is revealed in a workspace environment, using a slow dolly forward and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Workspace",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.53",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.53-00:04.32",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.32-00:06.25",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.25-00:08.00",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Sanitizing Phone Holder",
+    "category": "Product Reveal",
+    "description": "Sanitizing Phone Holder is revealed in a entryway environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a minimalist, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "minimalist, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Entryway",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.19",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.19-00:05.49",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.49-00:08.00",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Handheld Vacuum",
+    "category": "Product Reveal",
+    "description": "Handheld Vacuum is revealed in a home environment, using a slow dolly forward and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Home",
+    "camera_setup": "slow dolly forward",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.23",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.23-00:02.08",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.08-00:02.44",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:02.44-00:03.85",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.85-00:07.17",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:07.17-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Aroma Diffuser",
+    "category": "Product Reveal",
+    "description": "Aroma Diffuser is revealed in a spa room environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Spa room",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.57",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.57-00:03.90",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.90-00:07.68",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:07.68-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Serene strings swelling to a climax."
+      }
+    ]
+  },
+  {
+    "title": "Photo Printer",
+    "category": "Product Reveal",
+    "description": "Photo Printer is revealed in a office environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a neon, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "neon, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Office",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.24",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.24-00:02.92",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.92-00:04.64",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.64-00:07.19",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.19-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Self-Watering Bottle",
+    "category": "Product Reveal",
+    "description": "Self-Watering Bottle is revealed in a gym bag environment, using a low-angle tracking shot and  to enhance the visual impact. The video features a dynamic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "dynamic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Gym bag",
+    "camera_setup": "low-angle tracking shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.61",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.61-00:02.16",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Energetic electronic beats rising."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.16-00:03.59",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.59-00:03.61",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.61-00:06.97",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:06.97-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      }
+    ]
+  },
+  {
+    "title": "Robot Vacuum",
+    "category": "Product Reveal",
+    "description": "Robot Vacuum is revealed in a apartment environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Apartment",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:02.03",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:02.03-00:04.28",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:04.28-00:04.78",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.78-00:07.67",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.67-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  },
+  {
+    "title": "E-ink Notepad",
+    "category": "Product Reveal",
+    "description": "E-ink Notepad is revealed in a study environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a sleek, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "sleek, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Study",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:05.59",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:05.59-00:06.75",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:06.75-00:06.78",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Subtle techno pulses and airy sweeps."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:06.78-00:08.00",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Sensor Night Light",
+    "category": "Product Reveal",
+    "description": "Sensor Night Light is revealed in a hallway environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a vibrant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "vibrant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Hallway",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.17",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.17-00:05.57",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:05.57-00:08.00",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Futuristic synth arpeggios."
+      }
+    ]
+  },
+  {
+    "title": "Smart Bird Feeder",
+    "category": "Product Reveal",
+    "description": "Smart Bird Feeder is revealed in a backyard environment, using a fixed wide-angle shot with slight zoom and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Backyard",
+    "camera_setup": "fixed wide-angle shot with slight zoom",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.45",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.45-00:02.47",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.47-00:04.94",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.94-00:06.36",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.36-00:08.00",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      }
+    ]
+  },
+  {
+    "title": "Water Purifier",
+    "category": "Product Reveal",
+    "description": "Water Purifier is revealed in a forest camp environment, using a top-down view slowly tilting up and  to enhance the visual impact. The video features a futuristic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "futuristic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Forest camp",
+    "camera_setup": "top-down view slowly tilting up",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:04.46",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Satisfying clicks and whirrs."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:04.46-00:07.69",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:07.69-00:08.00",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Satisfying clicks and whirrs."
+      }
+    ]
+  },
+  {
+    "title": "Voice Blender",
+    "category": "Product Reveal",
+    "description": "Voice Blender is revealed in a kitchen environment, using a macro close-up spiral and  to enhance the visual impact. The video features a pastel, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "pastel, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Kitchen",
+    "camera_setup": "macro close-up spiral",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:00.49",
+        "action": "Mechanical sounds accompany the assembly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:00.49-00:03.96",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.96-00:05.32",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Gentle nature sounds with chimes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:05.32-00:07.30",
+        "action": "A wave of energy passes through, causing instant assembly.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:07.30-00:08.00",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Calm piano notes punctuated by soft bells."
+      }
+    ]
+  },
+  {
+    "title": "Dental Cleaning Toy",
+    "category": "Product Reveal",
+    "description": "Dental Cleaning Toy is revealed in a pet area environment, using a steady cam with subtle rotation and  to enhance the visual impact. The video features a elegant, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "elegant, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Pet area",
+    "camera_setup": "steady cam with subtle rotation",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:01.52",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Serene strings swelling to a climax."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:01.52-00:02.39",
+        "action": "Lights flash and the final component snaps into place.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:02.39-00:03.08",
+        "action": "Delicate panels unfold like petals.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:03.08-00:03.49",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:03.49-00:04.18",
+        "action": "Invisible forces pull pieces together smoothly.",
+        "audio": "Deep bass rumble followed by a harmonious chord."
+      },
+      {
+        "sequence": 6,
+        "timestamp": "00:04.18-00:08.00",
+        "action": "Components swirl out and assemble in mid-air.",
+        "audio": "Energetic electronic beats rising."
+      }
+    ]
+  },
+  {
+    "title": "Electric Longboard",
+    "category": "Product Reveal",
+    "description": "Electric Longboard is revealed in a seaside path environment, using a drone-like sweeping shot and  to enhance the visual impact. The video features a cinematic, photorealistic, 4k style, showcasing the product's transformation or assembly over time.",
+    "base_style": "cinematic, photorealistic, 4K",
+    "aspect_ratio": "16:9",
+    "scene_description": "Seaside path",
+    "camera_setup": "drone-like sweeping shot",
+    "lighting": "",
+    "negative_prompts": [
+      "no people",
+      "no text overlays",
+      "no distracting music"
+    ],
+    "timeline": [
+      {
+        "sequence": 1,
+        "timestamp": "00:00.00-00:03.82",
+        "action": "The environment reacts with subtle changes as assembly occurs.",
+        "audio": "Futuristic synth arpeggios."
+      },
+      {
+        "sequence": 2,
+        "timestamp": "00:03.82-00:03.90",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 3,
+        "timestamp": "00:03.90-00:04.83",
+        "action": "Mystical particles coalesce to form the product.",
+        "audio": "Playful xylophone and marimba notes."
+      },
+      {
+        "sequence": 4,
+        "timestamp": "00:04.83-00:06.38",
+        "action": "The packaging trembles and emits light.",
+        "audio": "Soft ambient tones and faint rustling."
+      },
+      {
+        "sequence": 5,
+        "timestamp": "00:06.38-00:08.00",
+        "action": "Parts gracefully connect with magnetic clicks.",
+        "audio": "Soft ambient tones and faint rustling."
+      }
+    ]
+  }
+]

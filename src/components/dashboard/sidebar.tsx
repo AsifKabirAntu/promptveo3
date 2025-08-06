@@ -9,12 +9,14 @@ import {
   FolderOpen, 
   Plus, 
   Settings,
-  CreditCard
+  CreditCard,
+  Package
 } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 
 const navigation = [
   { name: "Explore Library", href: "/dashboard", icon: Compass },
+  { name: "Products", href: "/dashboard/products", icon: Package },
   { name: "Favorites", href: "/dashboard/favorites", icon: Heart },
   { name: "My Prompts", href: "/dashboard/my-prompts", icon: FolderOpen },
   { name: "Create Prompt", href: "/dashboard/create", icon: Plus },

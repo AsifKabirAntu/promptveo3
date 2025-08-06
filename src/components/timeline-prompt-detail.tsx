@@ -23,6 +23,8 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
   const [copied, setCopied] = useState(false)
   const [loading, setLoading] = useState(true)
   const [canViewPrompt, setCanViewPrompt] = useState(false)
+  const [showPaywall, setShowPaywall] = useState(false)
+  const [paywallFeature, setPaywallFeature] = useState('')
   
   // Check if user can view this timeline prompt
   useEffect(() => {
@@ -80,9 +82,6 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
       </div>
     )
   }
-
-  const [showPaywall, setShowPaywall] = useState(false)
-  const [paywallFeature, setPaywallFeature] = useState('')
 
   const handleFeatureClick = (feature: string, action: () => void) => {
     if (features.canViewJSON && feature === 'json') {
@@ -195,6 +194,11 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
               <Badge variant="secondary" className="bg-purple-100 text-purple-700 border-0">
                 Timeline Prompt
               </Badge>
+              {prompt.created_by === 'ai-generator' && (
+                <Badge variant="secondary" className="bg-green-100 text-green-700 border-0">
+                  ✨ AI Generated
+                </Badge>
+              )}
             </div>
             
             <h1 className="text-3xl font-bold text-gray-900">{prompt.title}</h1>
@@ -203,16 +207,20 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
             <div className="flex items-center gap-6 text-sm text-gray-500 mt-2">
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>Created {formatDate(new Date(prompt.created_at))}</span>
+                <span>{prompt.created_by === 'ai-generator' ? 'Generated' : `Created ${formatDate(new Date(prompt.created_at))}`}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Heart className="w-4 h-4" />
-                <span>{prompt.likes_count} likes</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Eye className="w-4 h-4" />
-                <span>{prompt.usage_count} uses</span>
-              </div>
+              {prompt.created_by !== 'ai-generator' && (
+                <>
+                  <div className="flex items-center gap-2">
+                    <Heart className="w-4 h-4" />
+                    <span>{prompt.likes_count} likes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Eye className="w-4 h-4" />
+                    <span>{prompt.usage_count} uses</span>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-100">
