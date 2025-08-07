@@ -8,9 +8,10 @@ interface ProductGridProps {
   loading: boolean
   viewMode: 'grid' | 'list'
   onProductUpdate?: () => void
+  canDelete?: boolean
 }
 
-export function ProductGrid({ products, loading, viewMode, onProductUpdate }: ProductGridProps) {
+export function ProductGrid({ products, loading, viewMode, onProductUpdate, canDelete = true }: ProductGridProps) {
   if (loading) {
     return (
       <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
@@ -39,6 +40,7 @@ export function ProductGrid({ products, loading, viewMode, onProductUpdate }: Pr
           product={product}
           viewMode={viewMode}
           onUpdate={onProductUpdate}
+          canDelete={canDelete}
         />
       ))}
     </div>

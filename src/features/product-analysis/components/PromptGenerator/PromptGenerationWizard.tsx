@@ -7,7 +7,9 @@ import { Badge } from '@/components/ui/badge'
 import { ArrowLeft, ChevronRight, Sparkles, Loader2, Heart, Copy, Edit, Download, Clock, Eye, Tag, Lock, Check } from 'lucide-react'
 import { UserProduct, PromptGenerationRequest, PromptGenerationResponse } from '../../types'
 import { analyzeProductImage, generatePrompt } from '../../services/api'
+import { canUserGeneratePrompt } from '../../services/usage-api'
 import { TimelinePromptDetail } from '@/components/timeline-prompt-detail'
+import { Paywall } from '@/components/ui/paywall'
 import { formatDate } from '@/lib/utils'
 
 interface PromptGenerationWizardProps {
@@ -183,6 +185,7 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [activeTab, setActiveTab] = useState("readable");
+  const [showPaywall, setShowPaywall] = useState(false)
 
   // Auto-analyze product if not already analyzed
   useEffect(() => {
@@ -225,6 +228,13 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
   const handleGenerate = async () => {
     if (!selectedStyle || !selectedCamera) {
       setError('Please select both style and camera setup')
+      return
+    }
+
+    // Check if user can generate prompts
+    const canGenerate = await canUserGeneratePrompt()
+    if (!canGenerate) {
+      setShowPaywall(true)
       return
     }
 
@@ -279,6 +289,9 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
       if (result.success) {
         setGeneratedPrompt(result.prompt)
         setCurrentStep('result')
+        
+        // Refresh usage data after successful generation
+        window.dispatchEvent(new CustomEvent('usage-updated'))
       } else {
         setError('Failed to generate prompt')
         setCurrentStep('style')
@@ -884,6 +897,20 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
           </div>
         )}
       </div>
+
+      {/* Paywall Modal */}
+      {showPaywall && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="max-w-md">
+            <Paywall
+              title="Prompt Generation Limit Reached"
+              description="You've reached your monthly prompt generation limit. Upgrade to Pro for 40 prompts per month."
+              feature="More prompt generations"
+              onClose={() => setShowPaywall(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 } 

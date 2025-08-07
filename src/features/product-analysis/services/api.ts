@@ -9,6 +9,7 @@ import {
   PromptGenerationResponse,
   ProductUploadForm 
 } from '../types'
+import { canUserUpload, canUserGeneratePrompt, incrementUploadUsage, incrementPromptGenerationUsage } from './usage-api'
 
 const supabase = createClientComponentClient<Database>()
 
@@ -33,6 +34,12 @@ export async function uploadProduct(formData: ProductUploadForm, file: File): Pr
     
     if (userError || !user) {
       throw new Error('Authentication required. Please sign in to upload products.')
+    }
+
+    // Check if user can upload
+    const canUpload = await canUserUpload()
+    if (!canUpload) {
+      throw new Error('Upload limit reached. Upgrade to Pro for more uploads or wait until next month.')
     }
 
     // Upload image to Supabase Storage
@@ -82,6 +89,14 @@ export async function uploadProduct(formData: ProductUploadForm, file: File): Pr
     } catch (analysisError) {
       // Don't fail the upload if analysis fails - it can be retried later
       console.warn('Analysis failed during upload, can be retried later:', analysisError)
+    }
+
+    // Track upload usage
+    try {
+      await incrementUploadUsage()
+    } catch (usageError) {
+      // Don't fail the upload if usage tracking fails
+      console.warn('Failed to track upload usage:', usageError)
     }
 
     return data as UserProduct

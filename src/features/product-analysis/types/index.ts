@@ -182,4 +182,7 @@ export const SUPPORTED_IMAGE_FORMATS = [
 ] as const
 
 export const MAX_IMAGE_SIZE = 10 * 1024 * 1024 // 10MB
-export const MAX_IMAGE_DIMENSION = 4096 // pixels 
+export const MAX_IMAGE_DIMENSION = 4096 // pixels
+
+// Re-export usage types
+export * from './usage' 

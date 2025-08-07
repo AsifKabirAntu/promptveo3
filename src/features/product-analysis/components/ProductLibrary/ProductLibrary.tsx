@@ -11,7 +11,9 @@ import { ProductCard } from './ProductCard'
 import { ProductGrid } from './ProductGrid'
 import { EmptyState } from './EmptyState'
 import { useProductLibrary } from '../../hooks/useProductLibrary'
+import { useProductUsage } from '../../hooks/useProductUsage'
 import { PRODUCT_CATEGORIES } from '../../types'
+import { Paywall } from '@/components/ui/paywall'
 
 export function ProductLibrary() {
   const {
@@ -27,13 +29,45 @@ export function ProductLibrary() {
     refreshProducts
   } = useProductLibrary()
 
+  const {
+    limits,
+    canDelete,
+    loading: usageLoading,
+    error: usageError,
+    refreshUsage
+  } = useProductUsage()
+
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [showPaywall, setShowPaywall] = useState(false)
 
-  const handleUploadSuccess = () => {
+  const handleUploadSuccess = async () => {
     setShowUploadModal(false)
-    refreshProducts()
+    await refreshProducts()
+    // Refresh usage data immediately after upload
+    await refreshUsage()
+  }
+
+  // Listen for usage updates from other components
+  useEffect(() => {
+    const handleUsageUpdate = () => {
+      refreshUsage()
+    }
+
+    window.addEventListener('usage-updated', handleUsageUpdate)
+    
+    return () => {
+      window.removeEventListener('usage-updated', handleUsageUpdate)
+    }
+  }, [refreshUsage])
+
+  const handleUploadClick = () => {
+    if (limits && !limits.canUpload) {
+      setShowPaywall(true)
+    } else {
+      setShowUploadModal(true)
+    }
   }
 
   const filteredProducts = products.filter(product => {
@@ -65,61 +99,122 @@ export function ProductLibrary() {
               <h2 className="text-lg font-medium text-gray-900">Library Overview</h2>
             </div>
             <Button
-              onClick={() => setShowUploadModal(true)}
+              onClick={handleUploadClick}
               className="bg-blue-600 hover:bg-blue-700 text-white"
+              disabled={usageLoading}
             >
               <Plus className="w-4 h-4 mr-2" />
               Upload Product
             </Button>
           </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          {/* Modern Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            {/* Total Products */}
             <Card className="bg-white border border-gray-200 shadow-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Total Products</p>
-                    <p className="text-3xl font-bold text-gray-900">{products.length}</p>
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Total Products</p>
+                    <p className="text-2xl font-bold text-gray-900">{products.length}</p>
                   </div>
-                  <div className="h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Upload className="h-6 w-6 text-blue-600" />
+                  <div className="h-10 w-10 bg-gray-100 rounded-xl flex items-center justify-center">
+                    <Upload className="h-5 w-5 text-gray-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
+            {/* Categories */}
             <Card className="bg-white border border-gray-200 shadow-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Categories</p>
-                    <p className="text-3xl font-bold text-gray-900">
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Categories</p>
+                    <p className="text-2xl font-bold text-gray-900">
                       {new Set(products.map(p => p.category)).size}
                     </p>
                   </div>
-                  <div className="h-12 w-12 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <Filter className="h-6 w-6 text-indigo-600" />
+                  <div className="h-10 w-10 bg-gray-100 rounded-xl flex items-center justify-center">
+                    <Filter className="h-5 w-5 text-gray-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
+            {/* AI Ready */}
             <Card className="bg-white border border-gray-200 shadow-sm">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">AI Ready</p>
-                    <p className="text-3xl font-bold text-gray-900">
+                  <div className="space-y-1">
+                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">AI Ready</p>
+                    <p className="text-2xl font-bold text-gray-900">
                       {products.filter(p => Object.keys(p.analysis_data).length > 0).length}
                     </p>
                   </div>
-                  <div className="h-12 w-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <Sparkles className="h-6 w-6 text-emerald-600" />
+                  <div className="h-10 w-10 bg-gray-100 rounded-xl flex items-center justify-center">
+                    <Sparkles className="h-5 w-5 text-gray-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Usage Limits Card */}
+            {limits && (
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <CardContent className="p-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Monthly Usage</p>
+                      <div className="h-8 w-8 bg-gray-100 rounded-xl flex items-center justify-center">
+                        {usageLoading ? (
+                          <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+                        ) : (
+                          <Grid3X3 className="h-4 w-4 text-gray-600" />
+                        )}
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      {/* Uploads Progress */}
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span className="text-gray-600 font-medium">Uploads</span>
+                          <span className={`font-semibold ${limits.canUpload ? "text-green-600" : "text-red-500"}`}>
+                            {limits.uploadsUsed}/{limits.maxUploads}
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                              limits.canUpload ? "bg-green-500" : "bg-red-500"
+                            }`}
+                            style={{ width: `${Math.min((limits.uploadsUsed / limits.maxUploads) * 100, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Prompts Progress */}
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span className="text-gray-600 font-medium">Prompts</span>
+                          <span className={`font-semibold ${limits.canGeneratePrompt ? "text-green-600" : "text-red-500"}`}>
+                            {limits.promptsUsed}/{limits.maxPrompts}
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                              limits.canGeneratePrompt ? "bg-green-500" : "bg-red-500"
+                            }`}
+                            style={{ width: `${Math.min((limits.promptsUsed / limits.maxPrompts) * 100, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
 
@@ -249,7 +344,11 @@ export function ProductLibrary() {
               products={sortedProducts} 
               loading={false} 
               viewMode={viewMode}
-              onProductUpdate={refreshProducts}
+              onProductUpdate={async () => {
+                await refreshProducts()
+                await refreshUsage()
+              }}
+              canDelete={canDelete}
             />
           )}
         </div>
@@ -261,6 +360,20 @@ export function ProductLibrary() {
         onClose={() => setShowUploadModal(false)}
         onSuccess={handleUploadSuccess}
       />
+
+      {/* Paywall Modal */}
+      {showPaywall && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="max-w-md">
+            <Paywall
+              title="Upload Limit Reached"
+              description={`You've reached your monthly upload limit of ${limits?.maxUploads || 1} photo${limits?.maxUploads === 1 ? '' : 's'}. Upgrade to Pro for 20 uploads per month.`}
+              feature="More photo uploads"
+              onClose={() => setShowPaywall(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 } 

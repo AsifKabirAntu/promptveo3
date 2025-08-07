@@ -33,6 +33,36 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if user can generate prompts
+    const { data: subscription } = await supabase
+      .from('profiles')
+      .select('plan')
+      .eq('id', product.user_id)
+      .single()
+
+    const userPlan = subscription?.plan || 'free'
+    
+    const { data: canGenerate, error: checkError } = await supabase
+      .rpc('can_user_generate_prompt', {
+        user_uuid: product.user_id,
+        user_plan: userPlan
+      })
+
+    if (checkError) {
+      console.error('Error checking prompt generation permissions:', checkError)
+      return NextResponse.json(
+        { error: 'Failed to check permissions' },
+        { status: 500 }
+      )
+    }
+
+    if (!canGenerate) {
+      return NextResponse.json(
+        { error: 'Prompt generation limit reached. Upgrade to Pro for more prompts or wait until next month.' },
+        { status: 403 }
+      )
+    }
+
     // Check if product has been analyzed (use provided analysisData or product's existing data)
     const finalAnalysisData = analysisData || product.analysis_data
     if (!finalAnalysisData || Object.keys(finalAnalysisData).length === 0) {
@@ -294,6 +324,16 @@ Create a product reveal video prompt. Timeline can vary in length.`
 
     if (sessionError) {
       console.error('Error saving analysis session:', sessionError)
+    }
+
+    // Track prompt generation usage
+    try {
+      await supabase.rpc('increment_prompt_generation_usage', {
+        user_uuid: product.user_id
+      })
+    } catch (usageError) {
+      console.error('Failed to track prompt generation usage:', usageError)
+      // Don't fail the request if usage tracking fails
     }
 
     return NextResponse.json({

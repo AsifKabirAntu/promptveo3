@@ -26,9 +26,10 @@ interface ProductCardProps {
   product: UserProduct
   viewMode: 'grid' | 'list'
   onUpdate?: () => void
+  canDelete?: boolean
 }
 
-export function ProductCard({ product, viewMode, onUpdate }: ProductCardProps) {
+export function ProductCard({ product, viewMode, onUpdate, canDelete = true }: ProductCardProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
@@ -251,15 +252,21 @@ export function ProductCard({ product, viewMode, onUpdate }: ProductCardProps) {
             </Button>
             {showMenu && (
               <div className="absolute right-0 top-8 w-28 bg-white rounded-lg shadow-lg z-20 border border-blue-200">
-                <button
-                  className="w-full px-2 py-1.5 text-xs flex items-center gap-1.5 hover:bg-red-50 font-semibold"
-                  style={{ color: '#dc2626' }}
-                  onClick={handleDelete}
-                  disabled={loading}
-                >
-                  <Trash2 className="w-3 h-3" />
-                  Delete
-                </button>
+                {canDelete ? (
+                  <button
+                    className="w-full px-2 py-1.5 text-xs flex items-center gap-1.5 hover:bg-red-50 font-semibold"
+                    style={{ color: '#dc2626' }}
+                    onClick={handleDelete}
+                    disabled={loading}
+                  >
+                    <Trash2 className="w-3 h-3" />
+                    Delete
+                  </button>
+                ) : (
+                  <div className="w-full px-2 py-1.5 text-xs text-gray-400">
+                    Pro required
+                  </div>
+                )}
               </div>
             )}
           </div>
