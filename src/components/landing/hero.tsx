@@ -16,15 +16,15 @@ export function Hero() {
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
-            <span className="block">Structurec prompts,</span>
-            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="block leading-[1.1]">Structured prompts,</span>
+            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-[1.2]">
               engineered for Veo 3
             </span>
           </h1>
           
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-800 sm:text-xl">
-            PromptVeo3 helps creators generate beautiful, structured prompts for Veo 3 in seconds. 
-            Browse, remix, and export professional-grade structured prompts in JSON format.
+            Ship high‑quality Veo 3 videos 10x faster with structured JSON prompts. 
+            Product reveals, room transformations, timelines, ads, and more. Browse, remix, and export perfect JSON with zero guesswork.
           </p>
           
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

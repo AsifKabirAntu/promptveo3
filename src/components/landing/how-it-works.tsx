@@ -4,7 +4,7 @@ const steps = [
   {
     icon: Search,
     title: "Browse Prompts",
-    description: "Explore our curated library of cinematic prompts designed specifically for Veo 3."
+          description: "Explore our curated library of structured prompts (product reveals, room transformations, timelines, and more) built for Veo 3."
   },
   {
     icon: Edit,
@@ -25,14 +25,14 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-24 bg-white">
+    <section id="how-it-works" className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            How It Works
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+            Go from idea to Veo 3 video in minutes
           </h2>
-          <p className="mt-4 text-lg text-gray-800">
-            From prompt discovery to video creation in four simple steps
+          <p className="mt-4 text-base sm:text-lg text-gray-800">
+            A streamlined flow that removes trial‑and‑error and keeps you creating
           </p>
         </div>
 

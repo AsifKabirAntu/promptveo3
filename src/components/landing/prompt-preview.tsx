@@ -115,7 +115,7 @@ export function PromptPreview() {
   }
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="prompt-preview" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4 gap-2">
@@ -123,13 +123,12 @@ export function PromptPreview() {
             <span className="hidden sm:inline">Featured Prompts</span>
             <span className="sm:hidden">Featured</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl xl:text-5xl mb-4">
-            See the Power of Structured Prompts
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-            Explore our featured prompts to see how structured data creates stunning Veo 3 videos. 
-            From cinematic landscapes to timeline-based sequences.
-          </p>
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 mb-4">
+              What great prompts look like
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+              Production‑ready examples across formats: product reveals, room transformations, timelines, ads, and more—regular and timeline prompts included.
+            </p>
         </div>
 
         <div className="max-w-6xl mx-auto">

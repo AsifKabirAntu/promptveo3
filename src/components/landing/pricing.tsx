@@ -10,7 +10,7 @@ const plans = [
     price: "Free",
     description: "Perfect for getting started",
     features: [
-      { name: "3 prompts per category", included: true },
+      { name: "View 4 prompts", included: true },
       { name: "Browse prompt library", included: true },
       { name: "Basic search and filters", included: true },
       { name: "JSON export for Veo 3", included: false },
@@ -48,11 +48,11 @@ export function Pricing() {
     <section id="pricing" className="py-24 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Simple, Transparent Pricing
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+            Pricing that scales with your output
           </h2>
-          <p className="mt-4 text-lg text-gray-800">
-            Choose the plan that works best for your creative workflow
+          <p className="mt-4 text-base sm:text-lg text-gray-800">
+            Start free. Upgrade when you’re ready to move faster and ship more.
           </p>
         </div>
 
