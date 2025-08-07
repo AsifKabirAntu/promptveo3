@@ -1,6 +1,7 @@
 import { Hero } from "@/components/landing/hero"
 import { HowItWorks } from "@/components/landing/how-it-works"
 import { PromptPreview } from "@/components/landing/prompt-preview"
+import { VideoShowcase } from "@/components/landing/video-showcase"
 import { Pricing } from "@/components/landing/pricing"
 import { CTAFooter } from "@/components/landing/cta-footer"
 import { Header } from "@/components/layout/header"
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Hero />
         <HowItWorks />
         <PromptPreview />
+        <VideoShowcase />
         <Pricing />
         <CTAFooter />
       </main>

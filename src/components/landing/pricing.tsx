@@ -128,7 +128,6 @@ export function Pricing() {
 
         <div className="mt-12 text-center text-sm text-gray-600">
           <p>✨ Start free, upgrade anytime</p>
-          <p className="mt-1">Cancel anytime • 7-day free trial for Pro</p>
         </div>
       </div>
     </section>
