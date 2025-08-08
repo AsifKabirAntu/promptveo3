@@ -27,8 +27,8 @@ export function Footer() {
                 <span className="text-xl font-bold text-white">PromptVeo3</span>
               </div>
             <p className="text-gray-300 text-base">
-              Professional cinematic prompts engineered for Veo 3. 
-              Create stunning videos with our structured JSON templates.
+              Structured JSON prompts engineered for Veo 3. 
+              Create stunning product reveals, room transformations, timelines, ads, and more—without prompt guesswork.
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-8 xl:col-span-2 xl:mt-0 xl:justify-end">

@@ -115,81 +115,83 @@ export function PromptPreview() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="prompt-preview" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4">
-            <Logo size={24} />
-            Featured Prompts
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 mb-4 gap-2">
+            <Logo size={20} className="sm:w-6 sm:h-6" />
+            <span className="hidden sm:inline">Featured Prompts</span>
+            <span className="sm:hidden">Featured</span>
           </div>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl mb-4">
-            See the Power of Structured Prompts
-          </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Explore our featured prompts to see how structured data creates stunning Veo 3 videos. 
-            From cinematic landscapes to timeline-based sequences.
-          </p>
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 mb-4">
+              What great prompts look like
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+              Production‑ready examples across formats: product reveals, room transformations, timelines, ads, and more—regular and timeline prompts included.
+            </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
           <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "regular" | "timeline")} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="regular" className="flex items-center gap-2">
-                <FileText className="w-4 h-4" />
-                Regular Prompt
+            <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8">
+              <TabsTrigger value="regular" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Regular Prompt</span>
+                <span className="sm:hidden">Regular</span>
               </TabsTrigger>
-              <TabsTrigger value="timeline" className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                Timeline Prompt
+              <TabsTrigger value="timeline" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Timeline Prompt</span>
+                <span className="sm:hidden">Timeline</span>
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="regular" className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-8">
+            <TabsContent value="regular" className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                 {/* Prompt Details */}
                 <Card className="border-0 shadow-lg bg-white">
                   <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="default" className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-2">
+                      <Badge variant="default" className="bg-blue-100 text-blue-700 hover:bg-blue-200 border-0 w-fit">
                         {featuredRegularPrompt.category}
                       </Badge>
-                      <Badge variant="outline" className="bg-gray-50">
+                      <Badge variant="outline" className="bg-gray-50 w-fit">
                         {featuredRegularPrompt.style}
                       </Badge>
                     </div>
-                    <CardTitle className="text-2xl font-bold text-gray-900">
+                    <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">
                       {featuredRegularPrompt.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 text-base">
+                    <CardDescription className="text-gray-600 text-sm sm:text-base">
                       {featuredRegularPrompt.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
+                  <CardContent className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Camera className="w-4 h-4" />
+                          <Camera className="w-4 h-4 flex-shrink-0" />
                           Camera
                         </div>
                         <p className="text-sm text-gray-600">{featuredRegularPrompt.camera}</p>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Lightbulb className="w-4 h-4" />
+                          <Lightbulb className="w-4 h-4 flex-shrink-0" />
                           Lighting
                         </div>
                         <p className="text-sm text-gray-600">{featuredRegularPrompt.lighting}</p>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Globe className="w-4 h-4" />
+                          <Globe className="w-4 h-4 flex-shrink-0" />
                           Environment
                         </div>
                         <p className="text-sm text-gray-600">{featuredRegularPrompt.environment}</p>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Move className="w-4 h-4" />
+                          <Move className="w-4 h-4 flex-shrink-0" />
                           Motion
                         </div>
                         <p className="text-sm text-gray-600">{featuredRegularPrompt.motion}</p>
@@ -198,19 +200,19 @@ export function PromptPreview() {
                     
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                        <Tag className="w-4 h-4" />
+                        <Tag className="w-4 h-4 flex-shrink-0" />
                         Keywords
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {featuredRegularPrompt.keywords.map((keyword, index) => (
-                          <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700">
+                          <Badge key={index} variant="secondary" className="bg-gray-100 text-gray-700 text-xs">
                             {keyword}
                           </Badge>
-          ))}
-        </div>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="flex gap-3 pt-4">
+                    <div className="flex flex-col sm:flex-row gap-3 pt-4">
                       <Button 
                         variant="outline" 
                         size="sm"
@@ -233,18 +235,18 @@ export function PromptPreview() {
                 </Card>
 
                 {/* JSON Preview */}
-                <Card className="border-0 shadow-lg bg-gray-900">
+                <Card className="border-0 shadow-lg bg-gray-900 order-first lg:order-last">
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
-                      <Code className="w-5 h-5" />
+                    <CardTitle className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                      <Code className="w-4 h-4 sm:w-5 sm:h-5" />
                       JSON Structure
                     </CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardDescription className="text-gray-300 text-sm">
                       The structured data that powers Veo 3 generation
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <pre className="bg-gray-800 rounded-lg p-4 overflow-x-auto text-sm max-h-96 overflow-y-auto">
+                    <pre className="bg-gray-800 rounded-lg p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm max-h-64 sm:max-h-96 overflow-y-auto">
                       <code className="text-green-400 font-mono">
                         {JSON.stringify(featuredRegularPrompt, null, 2)}
                       </code>
@@ -254,47 +256,47 @@ export function PromptPreview() {
               </div>
             </TabsContent>
 
-            <TabsContent value="timeline" className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-8">
+                        <TabsContent value="timeline" className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
                 {/* Timeline Prompt Details */}
                 <Card className="border-0 shadow-lg bg-white">
                   <CardHeader className="pb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="default" className="bg-purple-100 text-purple-700 hover:bg-purple-200 border-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-2">
+                      <Badge variant="default" className="bg-purple-100 text-purple-700 hover:bg-purple-200 border-0 w-fit">
                         {featuredTimelinePrompt.category}
                       </Badge>
-                      <Badge variant="outline" className="bg-gray-50">
+                      <Badge variant="outline" className="bg-gray-50 w-fit">
                         {featuredTimelinePrompt.base_style}
                       </Badge>
                     </div>
-                    <CardTitle className="text-2xl font-bold text-gray-900">
+                    <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">
                       {featuredTimelinePrompt.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 text-base">
+                    <CardDescription className="text-gray-600 text-sm sm:text-base">
                       {featuredTimelinePrompt.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="space-y-6">
+                  <CardContent className="space-y-4 sm:space-y-6">
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Globe className="w-4 h-4" />
+                          <Globe className="w-4 h-4 flex-shrink-0" />
                           Scene Description
                         </div>
                         <p className="text-sm text-gray-600">{featuredTimelinePrompt.scene_description}</p>
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <Camera className="w-4 h-4" />
+                            <Camera className="w-4 h-4 flex-shrink-0" />
                             Camera Setup
                           </div>
                           <p className="text-sm text-gray-600">{featuredTimelinePrompt.camera_setup}</p>
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                            <Lightbulb className="w-4 h-4" />
+                            <Lightbulb className="w-4 h-4 flex-shrink-0" />
                             Lighting
                           </div>
                           <p className="text-sm text-gray-600">{featuredTimelinePrompt.lighting}</p>
@@ -303,13 +305,13 @@ export function PromptPreview() {
 
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                          <Clock className="w-4 h-4" />
+                          <Clock className="w-4 h-4 flex-shrink-0" />
                           Timeline Sequence
                         </div>
                         <div className="space-y-2">
                           {featuredTimelinePrompt.timeline.slice(0, 3).map((step, index) => (
                             <div key={index} className="bg-gray-50 rounded-lg p-3">
-                              <div className="flex items-center justify-between mb-1">
+                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
                                 <span className="text-xs font-medium text-gray-500">Step {step.sequence}</span>
                                 <span className="text-xs text-gray-500">{step.timestamp}</span>
                               </div>
@@ -317,7 +319,7 @@ export function PromptPreview() {
                             </div>
                           ))}
                           {featuredTimelinePrompt.timeline.length > 3 && (
-            <div className="text-center">
+                            <div className="text-center">
                               <Badge variant="outline" className="text-xs">
                                 +{featuredTimelinePrompt.timeline.length - 3} more steps
                               </Badge>
@@ -326,57 +328,40 @@ export function PromptPreview() {
                         </div>
                       </div>
 
-                      <div className="flex gap-3 pt-4">
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => handleCopyJson(featuredTimelinePrompt, featuredTimelinePrompt.title)}
-                          className="flex-1"
-                        >
-                          <Copy className="w-4 h-4 mr-2" />
-                          Copy JSON
-                        </Button>
-                        <Button 
-                          size="sm"
-                          onClick={() => handleDownloadJson(featuredTimelinePrompt, featuredTimelinePrompt.title)}
-                          className="flex-1"
-                        >
-                          <Download className="w-4 h-4 mr-2" />
-                          Download
-                        </Button>
-            </div>
-            </div>
+                      
+                    </div>
                   </CardContent>
                 </Card>
 
                 {/* JSON Preview */}
-                <Card className="border-0 shadow-lg bg-gray-900">
+                <Card className="border-0 shadow-lg bg-gray-900 order-first lg:order-last">
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
-                      <Code className="w-5 h-5" />
+                    <CardTitle className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                      <Code className="w-4 h-4 sm:w-5 sm:h-5" />
                       Timeline JSON Structure
                     </CardTitle>
-                    <CardDescription className="text-gray-300">
+                    <CardDescription className="text-gray-300 text-sm">
                       Sequential data with timestamps and audio cues
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <pre className="bg-gray-800 rounded-lg p-4 overflow-x-auto text-sm max-h-96 overflow-y-auto">
+                    <pre className="bg-gray-800 rounded-lg p-3 sm:p-4 overflow-x-auto text-xs sm:text-sm max-h-64 sm:max-h-96 overflow-y-auto">
                       <code className="text-green-400 font-mono">
                         {JSON.stringify(featuredTimelinePrompt, null, 2)}
                       </code>
                     </pre>
                   </CardContent>
                 </Card>
-            </div>
+              </div>
             </TabsContent>
           </Tabs>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <Link href="/auth/signup">
-              <Button size="lg" className="px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                <Zap className="w-5 h-5 mr-2" />
-                Ready to create your own?
+              <Button size="lg" className="px-6 sm:px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full sm:w-auto">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <span className="hidden sm:inline">Ready to create your own?</span>
+                <span className="sm:hidden">Get Started</span>
               </Button>
             </Link>
           </div>

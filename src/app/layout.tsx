@@ -7,9 +7,9 @@ import { Toaster } from 'sonner'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "PromptVeo3 - Cinematic Prompts for Veo 3",
-  description: "Browse, remix, and export professional-grade cinematic prompts for Veo 3. Create stunning videos with structured JSON prompts.",
-  keywords: ["Veo 3", "AI video", "prompts", "cinematic", "video generation"],
+  title: "PromptVeo3 — Structured JSON Prompts for Veo 3 | Product Reveals, Room Transformations, Timelines",
+  description: "Create high‑quality Veo 3 videos with structured JSON prompts. Browse a curated library for product reveals, room transformations, timelines, ads, and more—remix instantly and export perfect JSON.",
+  keywords: ["Veo 3", "AI video", "prompts", "structured prompts", "json prompts", "product reveal prompts", "room transformation prompts", "timeline prompts", "video generation"],
   icons: {
     icon: [
       { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
