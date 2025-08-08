@@ -10,8 +10,9 @@ import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
 import { canViewRegularPrompt, hasProAccess } from "@/lib/prompts-client"
 import { canViewTimelinePrompt } from "@/lib/timeline-prompts-client"
+import { canViewExplodedPrompt } from "@/lib/exploded-prompts-client"
 
-type UnifiedPrompt = { type: 'regular' | 'timeline', id: string, title: string, description: string, [key: string]: any }
+type UnifiedPrompt = { type: 'regular' | 'timeline' | 'exploded', id: string, title: string, description: string, [key: string]: any }
 
 interface PromptSideSheetProps {
   prompt: UnifiedPrompt | null
@@ -46,7 +47,8 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
       const hasPro = await hasProAccess()
       const canView = hasPro || 
         (prompt.type === 'regular' && canViewRegularPrompt(prompt.id)) ||
-        (prompt.type === 'timeline' && canViewTimelinePrompt(prompt.id))
+        (prompt.type === 'timeline' && canViewTimelinePrompt(prompt.id)) ||
+        (prompt.type === 'exploded' && canViewExplodedPrompt(prompt.id))
       setCanViewPrompt(canView)
     } catch (error) {
       console.error('Error checking prompt access:', error)
@@ -94,7 +96,7 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">{prompt.title}</h2>
                 <p className="text-sm text-gray-500">
-                  {prompt.type === 'timeline' ? 'Timeline Prompt' : 'Regular Prompt'}
+                  {prompt.type === 'timeline' ? 'Timeline Prompt' : prompt.type === 'exploded' ? 'Exploded Build Prompt' : 'Regular Prompt'}
                 </p>
               </div>
               <Button variant="ghost" size="sm" onClick={onClose}>
@@ -137,7 +139,7 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">{prompt.title}</h2>
                 <p className="text-sm text-gray-500">
-                  {prompt.type === 'timeline' ? 'Timeline Prompt' : 'Regular Prompt'}
+                  {prompt.type === 'timeline' ? 'Timeline Prompt' : prompt.type === 'exploded' ? 'Exploded Build Prompt' : 'Regular Prompt'}
                 </p>
               </div>
               <Button variant="ghost" size="sm" onClick={onClose}>
@@ -170,7 +172,7 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
       action()
     } else if (feature === 'json') {
       // Only paywall JSON for timeline prompts
-      if (prompt.type === 'timeline' && !features.canViewJSON) {
+      if ((prompt.type === 'timeline' || prompt.type === 'exploded') && !features.canViewJSON) {
         setPaywallFeature(feature)
         setShowPaywall(true)
       } else {
@@ -206,18 +208,31 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
           text: prompt.text,
           keywords: prompt.keywords
         }
-      : {
-          title: prompt.title,
-          description: prompt.description,
-          category: prompt.category,
-          base_style: prompt.base_style,
-          aspect_ratio: prompt.aspect_ratio,
-          scene_description: prompt.scene_description,
-          camera_setup: prompt.camera_setup,
-          lighting: prompt.lighting,
-          negative_prompts: prompt.negative_prompts,
-          timeline: prompt.timeline
-        }
+      : prompt.type === 'timeline'
+        ? {
+            title: prompt.title,
+            description: prompt.description,
+            category: prompt.category,
+            base_style: prompt.base_style,
+            aspect_ratio: prompt.aspect_ratio,
+            scene_description: prompt.scene_description,
+            camera_setup: prompt.camera_setup,
+            lighting: prompt.lighting,
+            negative_prompts: prompt.negative_prompts,
+            timeline: prompt.timeline
+          }
+        : {
+            title: prompt.title,
+            description: prompt.description,
+            category: prompt.category,
+            shot: prompt.shot,
+            subject: prompt.subject,
+            scene: prompt.scene,
+            visual_details: prompt.visual_details,
+            cinematography: prompt.cinematography,
+            audio: prompt.audio,
+            dialogue: prompt.dialogue
+          }
     
     navigator.clipboard.writeText(JSON.stringify(jsonData, null, 2))
   }
@@ -236,18 +251,31 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
           text: prompt.text,
           keywords: prompt.keywords
         }
-      : {
-          title: prompt.title,
-          description: prompt.description,
-          category: prompt.category,
-          base_style: prompt.base_style,
-          aspect_ratio: prompt.aspect_ratio,
-          scene_description: prompt.scene_description,
-          camera_setup: prompt.camera_setup,
-          lighting: prompt.lighting,
-          negative_prompts: prompt.negative_prompts,
-          timeline: prompt.timeline
-        }
+      : prompt.type === 'timeline'
+        ? {
+            title: prompt.title,
+            description: prompt.description,
+            category: prompt.category,
+            base_style: prompt.base_style,
+            aspect_ratio: prompt.aspect_ratio,
+            scene_description: prompt.scene_description,
+            camera_setup: prompt.camera_setup,
+            lighting: prompt.lighting,
+            negative_prompts: prompt.negative_prompts,
+            timeline: prompt.timeline
+          }
+        : {
+            title: prompt.title,
+            description: prompt.description,
+            category: prompt.category,
+            shot: prompt.shot,
+            subject: prompt.subject,
+            scene: prompt.scene,
+            visual_details: prompt.visual_details,
+            cinematography: prompt.cinematography,
+            audio: prompt.audio,
+            dialogue: prompt.dialogue
+          }
     
     const dataStr = JSON.stringify(jsonData, null, 2)
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr)
@@ -285,6 +313,11 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
               {prompt.type === 'timeline' && (
                 <Badge variant="secondary" className="bg-purple-100 text-purple-700 border-0">
                   Timeline
+                </Badge>
+              )}
+              {prompt.type === 'exploded' && (
+                <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-0">
+                  Special
                 </Badge>
               )}
             </div>
@@ -441,7 +474,7 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
                           </CardContent>
                         </Card>
                       </>
-                    ) : (
+                    ) : prompt.type === 'timeline' ? (
                       // Timeline prompt details
                       <>
                         <div className="grid md:grid-cols-2 gap-6">
@@ -509,7 +542,7 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
                             <CardTitle className="text-lg font-semibold">Timeline Sequence</CardTitle>
                           </CardHeader>
                           <CardContent>
-                                                         <div className="space-y-4">
+                            <div className="space-y-4">
                                {prompt.timeline.map((step: { sequence: number; timestamp: string; action: string; audio: string }, index: number) => (
                                 <div key={index} className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                                   <div className="flex items-center gap-2 mb-2">
@@ -537,6 +570,91 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
                                 </div>
                               ))}
                             </div>
+                          </CardContent>
+                        </Card>
+                      </>
+                    ) : (
+                      // Exploded Build prompt details
+                      <>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Shot</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Composition:</span> {prompt.shot?.composition}</p>
+                              <p><span className="font-medium">Lens:</span> {prompt.shot?.lens}</p>
+                              <p><span className="font-medium">Frame Rate:</span> {prompt.shot?.frame_rate}</p>
+                              <p><span className="font-medium">Camera Movement:</span> {prompt.shot?.camera_movement}</p>
+                            </CardContent>
+                          </Card>
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Subject</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Description:</span> {prompt.subject?.description}</p>
+                              <p><span className="font-medium">Wardrobe:</span> {prompt.subject?.wardrobe}</p>
+                              <p><span className="font-medium">Props:</span> {prompt.subject?.props}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Scene</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Location:</span> {prompt.scene?.location}</p>
+                              <p><span className="font-medium">Time of Day:</span> {prompt.scene?.time_of_day}</p>
+                              <p><span className="font-medium">Environment:</span> {prompt.scene?.environment}</p>
+                            </CardContent>
+                          </Card>
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Cinematography</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Lighting:</span> {prompt.cinematography?.lighting}</p>
+                              <p><span className="font-medium">Color Palette:</span> {prompt.cinematography?.color_palette}</p>
+                              <p><span className="font-medium">Tone:</span> {prompt.cinematography?.tone}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Visual Details</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Action:</span> {prompt.visual_details?.action}</p>
+                              <p><span className="font-medium">Special Effects:</span> {prompt.visual_details?.special_effects}</p>
+                              <p><span className="font-medium">Hair/Clothing Motion:</span> {prompt.visual_details?.hair_clothing_motion}</p>
+                            </CardContent>
+                          </Card>
+                          <Card className="border-0 shadow-none bg-white">
+                            <CardHeader className="pb-3">
+                              <CardTitle className="text-lg font-semibold">Audio</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-2 text-sm text-gray-700">
+                              <p><span className="font-medium">Music:</span> {prompt.audio?.music}</p>
+                              <p><span className="font-medium">Ambient:</span> {prompt.audio?.ambient}</p>
+                              <p><span className="font-medium">Sound Effects:</span> {prompt.audio?.sound_effects}</p>
+                              <p><span className="font-medium">Mix Level:</span> {prompt.audio?.mix_level}</p>
+                            </CardContent>
+                          </Card>
+                        </div>
+
+                        <Card className="border-0 shadow-none bg-white">
+                          <CardHeader className="pb-3">
+                            <CardTitle className="text-lg font-semibold">Dialogue</CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-2 text-sm text-gray-700">
+                            <p><span className="font-medium">Character:</span> {prompt.dialogue?.character}</p>
+                            <p><span className="font-medium">Line:</span> {prompt.dialogue?.line}</p>
+                            <p><span className="font-medium">Subtitles:</span> {String(prompt.dialogue?.subtitles)}</p>
                           </CardContent>
                         </Card>
                       </>
@@ -576,18 +694,31 @@ export function PromptSideSheet({ prompt, open, onClose }: PromptSideSheetProps)
                                     text: prompt.text,
                                     keywords: prompt.keywords
                                   }
-                                : {
-                                    title: prompt.title,
-                                    description: prompt.description,
-                                    category: prompt.category,
-                                    base_style: prompt.base_style,
-                                    aspect_ratio: prompt.aspect_ratio,
-                                    scene_description: prompt.scene_description,
-                                    camera_setup: prompt.camera_setup,
-                                    lighting: prompt.lighting,
-                                    negative_prompts: prompt.negative_prompts,
-                                    timeline: prompt.timeline
-                                  }, 
+                                : prompt.type === 'timeline'
+                                  ? {
+                                      title: prompt.title,
+                                      description: prompt.description,
+                                      category: prompt.category,
+                                      base_style: prompt.base_style,
+                                      aspect_ratio: prompt.aspect_ratio,
+                                      scene_description: prompt.scene_description,
+                                      camera_setup: prompt.camera_setup,
+                                      lighting: prompt.lighting,
+                                      negative_prompts: prompt.negative_prompts,
+                                      timeline: prompt.timeline
+                                    }
+                                  : {
+                                      title: prompt.title,
+                                      description: prompt.description,
+                                      category: prompt.category,
+                                      shot: prompt.shot,
+                                      subject: prompt.subject,
+                                      scene: prompt.scene,
+                                      visual_details: prompt.visual_details,
+                                      cinematography: prompt.cinematography,
+                                      audio: prompt.audio,
+                                      dialogue: prompt.dialogue
+                                    }, 
                               null, 
                               2
                             )}

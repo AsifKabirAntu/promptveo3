@@ -196,6 +196,29 @@ function BillingPageContent() {
               <p className="text-gray-600 mt-1">
                 {isPro ? 'Full access to all features' : 'Limited access to features'}
               </p>
+              {!isPro && (
+                <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                  <h4 className="text-sm font-medium text-gray-900 mb-3">Your Free Plan Includes:</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center text-sm text-gray-700">
+                      <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                      View 4 prompts
+                    </li>
+                    <li className="flex items-center text-sm text-gray-700">
+                      <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                      Browse prompt library
+                    </li>
+                    <li className="flex items-center text-sm text-gray-700">
+                      <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                      1 product upload/month
+                    </li>
+                    <li className="flex items-center text-sm text-gray-700">
+                      <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                      1 prompt generation/month
+                    </li>
+                  </ul>
+                </div>
+              )}
               {isPro && subscription && (
                 <p className="text-sm text-gray-500 mt-2 flex items-center">
                   <Calendar className="h-4 w-4 mr-1" />
@@ -270,15 +293,19 @@ function BillingPageContent() {
                       </li>
                       <li className="flex items-center text-sm text-gray-700">
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        20 product uploads/month
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        40 prompt generations/month
+                      </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
                         JSON export for Veo 3
                       </li>
                       <li className="flex items-center text-sm text-gray-700">
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
-                        Save favorites
-                      </li>
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
-                        Remix prompts
+                        Remix, Create, Save to favorites
                       </li>
                       <li className="flex items-center text-sm text-gray-700">
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
@@ -325,8 +352,11 @@ function BillingPageContent() {
                     </div>
                     
                     <div className="mb-6">
-                      <div className="text-3xl font-bold text-gray-900">$120<span className="text-lg font-normal text-gray-600">/year</span></div>
-                      <div className="text-sm text-gray-500">$179.88 billed annually</div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-lg text-gray-500 line-through">$179</span>
+                        <div className="text-3xl font-bold text-gray-900">$120<span className="text-lg font-normal text-gray-600">/year</span></div>
+                      </div>
+                      <div className="text-sm text-gray-500">Billed annually</div>
                     </div>
                     
                     <ul className="space-y-3 mb-6">

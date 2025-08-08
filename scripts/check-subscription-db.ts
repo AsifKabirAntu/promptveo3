@@ -72,16 +72,16 @@ async function checkSubscriptionDB() {
     console.log('Profiles:', allProfiles)
   }
 
-  console.log('\n5. All users in user_profiles table:')
+  console.log('\n5. All users in profiles table:')
   const { data: allUserProfiles, error: allUserProfilesError } = await supabase
-    .from('user_profiles')
+    .from('profiles')
     .select('*')
     .limit(10)
 
   if (allUserProfilesError) {
-    console.log('Error fetching all user_profiles:', allUserProfilesError)
+    console.log('Error fetching all profiles:', allUserProfilesError)
   } else {
-    console.log('Total user_profiles found:', allUserProfiles?.length || 0)
+    console.log('Total profiles found:', allUserProfiles?.length || 0)
     console.log('User profiles:', allUserProfiles)
   }
 }

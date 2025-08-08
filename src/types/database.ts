@@ -160,6 +160,68 @@ export interface Database {
           usage_count?: number
         }
       }
+      exploded_build_prompts: {
+        Row: {
+          id: string
+          title: string
+          description: string
+          category: string
+          shot: unknown
+          subject: unknown
+          scene: unknown
+          visual_details: unknown
+          cinematography: unknown
+          audio: unknown
+          dialogue: unknown
+          created_by: string | null
+          created_at: string
+          updated_at: string
+          is_featured: boolean
+          is_public: boolean
+          likes_count: number
+          usage_count: number
+        }
+        Insert: {
+          id?: string
+          title: string
+          description: string
+          category?: string
+          shot: unknown
+          subject: unknown
+          scene: unknown
+          visual_details: unknown
+          cinematography: unknown
+          audio: unknown
+          dialogue: unknown
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+          is_featured?: boolean
+          is_public?: boolean
+          likes_count?: number
+          usage_count?: number
+        }
+        Update: {
+          id?: string
+          title?: string
+          description?: string
+          category?: string
+          shot?: unknown
+          subject?: unknown
+          scene?: unknown
+          visual_details?: unknown
+          cinematography?: unknown
+          audio?: unknown
+          dialogue?: unknown
+          created_by?: string | null
+          created_at?: string
+          updated_at?: string
+          is_featured?: boolean
+          is_public?: boolean
+          likes_count?: number
+          usage_count?: number
+        }
+      }
       user_prompts: {
         Row: {
           id: string

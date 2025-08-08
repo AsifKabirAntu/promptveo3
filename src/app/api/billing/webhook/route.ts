@@ -256,7 +256,7 @@ async function handleSubscriptionChange(
     
     // Update the profiles table
     const { error: profileUpdateError } = await supabase
-      .from('profiles') // Use 'profiles' instead of 'user_profiles'
+              .from('profiles')
       .update(profileData)
       .eq('id', userId) // Use 'id' instead of 'user_id'
     

@@ -13,6 +13,7 @@ import { toggleFavorite, isFavorited, type UnifiedPrompt } from "@/lib/favorites
 import { toast } from "sonner"
 import { FREE_VIEWABLE_REGULAR_PROMPTS } from "@/lib/prompts-client"
 import { FREE_VIEWABLE_TIMELINE_PROMPTS } from "@/lib/timeline-prompts-client"
+import { FREE_VIEWABLE_EXPLODED_PROMPTS } from "@/lib/exploded-prompts-client"
 
 interface UnifiedPromptCardProps {
   prompt: UnifiedPrompt
@@ -30,7 +31,8 @@ export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: Un
   // Check if this prompt is free viewable
   const isFreeViewable = 
     (prompt.type === 'regular' && FREE_VIEWABLE_REGULAR_PROMPTS.includes(prompt.id)) ||
-    (prompt.type === 'timeline' && FREE_VIEWABLE_TIMELINE_PROMPTS.includes(prompt.id))
+    (prompt.type === 'timeline' && FREE_VIEWABLE_TIMELINE_PROMPTS.includes(prompt.id)) ||
+    (prompt.type === 'exploded' && FREE_VIEWABLE_EXPLODED_PROMPTS.includes(prompt.id))
 
   useEffect(() => {
     async function checkFavorite() {
@@ -121,6 +123,11 @@ export function UnifiedPromptCard({ prompt, onViewPrompt, onFavoriteToggle }: Un
               {prompt.type === 'timeline' && (
                 <Badge variant="secondary" className="bg-purple-100 text-purple-700 border-0">
                   Timeline
+                </Badge>
+              )}
+              {prompt.type === 'exploded' && (
+                <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-0">
+                  Special
                 </Badge>
               )}
               {isFreeViewable && !features.canViewAllPrompts && (

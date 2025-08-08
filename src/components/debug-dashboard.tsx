@@ -90,9 +90,9 @@ export function DebugDashboard() {
           // Test 5: Test profile check
           console.log('Testing profile check...')
           const { data: profile, error: profileError } = await supabase
-            .from('user_profiles')
+            .from('profiles')
             .select('id')
-            .eq('user_id', session.user.id)
+            .eq('id', session.user.id)
             .single()
           
           tests.profileCheck = {

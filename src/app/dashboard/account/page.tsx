@@ -39,9 +39,9 @@ export default function AccountPage() {
         if (user) {
           // Load user profile data
           const { data: profile } = await supabase
-            .from('user_profiles')
+            .from('profiles')
             .select('*')
-            .eq('user_id', user.id)
+            .eq('id', user.id)
             .single()
 
           if (profile) {
@@ -81,9 +81,9 @@ export default function AccountPage() {
       setSaving(true)
       
       const { error } = await supabase
-        .from('user_profiles')
+        .from('profiles')
         .upsert({
-          user_id: user.id,
+          id: user.id,
           full_name: formData.fullName,
           email_notifications: formData.emailNotifications,
           push_notifications: formData.pushNotifications,
@@ -111,9 +111,9 @@ export default function AccountPage() {
       
       // Delete user data from profiles
       const { error: profileError } = await supabase
-        .from('user_profiles')
+        .from('profiles')
         .delete()
-        .eq('user_id', user.id)
+        .eq('id', user.id)
 
       if (profileError) throw profileError
 

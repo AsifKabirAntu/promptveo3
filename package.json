@@ -30,7 +30,8 @@
     "fix-subscriptions-fk": "tsx scripts/fix-subscriptions-fk.ts",
     "create-profile": "tsx scripts/create-profile-for-user.ts",
     "migrate-user-profiles": "tsx scripts/migrate-to-user-profiles.ts",
-    "add-user-profile-columns": "tsx scripts/add-columns-to-user-profiles.ts"
+    "add-user-profile-columns": "tsx scripts/add-columns-to-user-profiles.ts",
+    "ingest-exploded": "tsx scripts/ingest-exploded-prompts.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",

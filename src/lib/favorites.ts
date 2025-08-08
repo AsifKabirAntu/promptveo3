@@ -1,10 +1,14 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Prompt } from '@/types/prompt'
 import { TimelinePrompt } from '@/types/timeline-prompt'
+import { ExplodedBuildPrompt } from '@/types/exploded-prompt'
 
 const supabase = createClientComponentClient()
 
-export type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
+export type UnifiedPrompt =
+  | (Prompt & { type: 'regular' })
+  | (TimelinePrompt & { type: 'timeline' })
+  | (ExplodedBuildPrompt & { type: 'exploded' })
 
 export async function getFavorites(): Promise<UnifiedPrompt[]> {
   const { data: { user } } = await supabase.auth.getUser()
@@ -27,16 +31,28 @@ export async function getFavorites(): Promise<UnifiedPrompt[]> {
     .from('favorites')
     .select('prompt_id')
     .eq('user_id', user.id)
-    .eq('prompt_type', 'timeline')
+    .in('prompt_type', ['timeline'])
 
   if (timelineError) {
     console.error('Error fetching timeline favorites:', timelineError)
     return []
   }
 
+  // Get exploded prompt favorites
+  const { data: explodedFavorites, error: explodedError } = await supabase
+    .from('favorites')
+    .select('prompt_id')
+    .eq('user_id', user.id)
+    .eq('prompt_type', 'exploded')
+
+  if (explodedError) {
+    console.error('Error fetching exploded favorites:', explodedError)
+  }
+
   // Get the actual prompts
   const regularPromptIds = regularFavorites?.map(f => f.prompt_id) || []
   const timelinePromptIds = timelineFavorites?.map(f => f.prompt_id) || []
+  const explodedPromptIds = explodedFavorites?.map(f => f.prompt_id) || []
 
   const favorites: UnifiedPrompt[] = []
 
@@ -64,6 +80,20 @@ export async function getFavorites(): Promise<UnifiedPrompt[]> {
       favorites.push(...timelinePrompts.map(prompt => ({
         ...prompt,
         type: 'timeline' as const
+      })))
+    }
+  }
+
+  if (explodedPromptIds.length > 0) {
+    const { data: explodedPrompts } = await supabase
+      .from('exploded_build_prompts')
+      .select('*')
+      .in('id', explodedPromptIds)
+
+    if (explodedPrompts) {
+      favorites.push(...explodedPrompts.map(prompt => ({
+        ...prompt,
+        type: 'exploded' as const
       })))
     }
   }

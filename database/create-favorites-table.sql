@@ -2,7 +2,7 @@
 DO $$ 
 BEGIN
   IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'prompt_type_enum') THEN
-    CREATE TYPE prompt_type_enum AS ENUM ('regular', 'timeline');
+    CREATE TYPE prompt_type_enum AS ENUM ('regular', 'timeline', 'exploded');
   END IF;
 END $$;
 
@@ -29,6 +29,10 @@ BEGIN
   ELSIF NEW.prompt_type = 'timeline' THEN
     IF NOT EXISTS (SELECT 1 FROM timeline_prompts WHERE id = NEW.prompt_id) THEN
       RAISE EXCEPTION 'Referenced prompt does not exist in timeline_prompts table';
+    END IF;
+  ELSIF NEW.prompt_type = 'exploded' THEN
+    IF NOT EXISTS (SELECT 1 FROM exploded_build_prompts WHERE id = NEW.prompt_id) THEN
+      RAISE EXCEPTION 'Referenced prompt does not exist in exploded_build_prompts table';
     END IF;
   END IF;
   RETURN NEW;

@@ -1,0 +1,842 @@
+[
+  {
+    "title": "MacBook Pro Exploded Build",
+    "description": "Hyper-detailed MacBook Pro assembly with molten-silver elegance and a whisper of innovation.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "35mm prime with ultra-sharp macro focus",
+      "frame_rate": "60fps smooth motion for parts, 120fps on logo reveal",
+      "composition": "floating components align in a horizontal mid-air stack, final lid closes in slow cinematic drift",
+      "camera_movement": "smooth dolly glide through each layer, final slow pull-out to full laptop glow"
+    },
+    "subject": {
+      "props": "hovering logic board, Retina display panel, unibody aluminum shell halves, glowing Apple logo backlight",
+      "wardrobe": "",
+      "description": "Apple MacBook Pro assembling mid-air \u2014 precision-milled body, micro-screws, keys, and backlit logo locking perfectly"
+    },
+    "scene": {
+      "location": "minimal white void with floating arcs of light",
+      "environment": "metallic dust shimmer, soft ambient glow, faint circuit projections",
+      "time_of_day": "timeless design-light"
+    },
+    "visual_details": {
+      "action": "logic board floats into place, battery pack locks in with magnetic shimmer, keyboard clicks into frame, screen lowers slowly, Apple logo glows",
+      "special_effects": "silver particle drifts, lens flares on key clicks, soft energy wave at logo ignition",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "precision, minimalism, quiet power",
+      "lighting": "soft directional beams reflecting off aluminum, subtle rim light around edges",
+      "color_palette": "brushed silver, deep black, cool white glow"
+    },
+    "audio": {
+      "music": "ambient piano with subtle electronic textures",
+      "ambient": "soft hum of circuits, faint wind of digital air",
+      "mix_level": "studio-quality, immersive spatial design",
+      "sound_effects": "gentle magnetic clicks, logo glow chime"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Samsung Galaxy Z Fold Exploded Build",
+    "description": "Cinematic assembly of luxury foldable smartphone, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Samsung Galaxy Z Fold rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Samsung Galaxy Z Fold",
+      "wardrobe": "",
+      "description": "Samsung Galaxy Z Fold assembles with magnetic precision \u2014 every internal element showcased before locking into the luxury foldable smartphone shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Samsung Galaxy Z Fold surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in rose-gold and obsidian black with flowing glass-like light",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "rose-gold and obsidian black with flowing glass-like light"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Xbox Series X Exploded Build",
+    "description": "Cinematic assembly of tower gaming console, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Xbox Series X rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Xbox Series X",
+      "wardrobe": "",
+      "description": "Xbox Series X assembles with magnetic precision \u2014 every internal element showcased before locking into the tower gaming console shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Xbox Series X surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in military green, black steel, faint plasma glow",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "military green, black steel, faint plasma glow"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "NVIDIA RTX 5090 GPU Exploded Build",
+    "description": "Cinematic assembly of cutting-edge graphics card, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the NVIDIA RTX 5090 GPU rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of NVIDIA RTX 5090 GPU",
+      "wardrobe": "",
+      "description": "NVIDIA RTX 5090 GPU assembles with magnetic precision \u2014 every internal element showcased before locking into the cutting-edge graphics card shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the NVIDIA RTX 5090 GPU surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in neon green energy, metallic graphite",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "neon green energy, metallic graphite"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Apple Watch Ultra Exploded Build",
+    "description": "Cinematic assembly of rugged smartwatch, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Apple Watch Ultra rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Apple Watch Ultra",
+      "wardrobe": "",
+      "description": "Apple Watch Ultra assembles with magnetic precision \u2014 every internal element showcased before locking into the rugged smartwatch shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Apple Watch Ultra surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in titanium brushed, solar gold rim",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "titanium brushed, solar gold rim"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Sony WH-1000XM6 Headphones Exploded Build",
+    "description": "Cinematic assembly of premium noise-cancelling headphones, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Sony WH-1000XM6 Headphones rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Sony WH-1000XM6 Headphones",
+      "wardrobe": "",
+      "description": "Sony WH-1000XM6 Headphones assembles with magnetic precision \u2014 every internal element showcased before locking into the premium noise-cancelling headphones shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Sony WH-1000XM6 Headphones surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in matte midnight blue, chrome trim",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "matte midnight blue, chrome trim"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "DJI Mavic 4 Drone Exploded Build",
+    "description": "Cinematic assembly of next-gen aerial drone, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the DJI Mavic 4 Drone rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of DJI Mavic 4 Drone",
+      "wardrobe": "",
+      "description": "DJI Mavic 4 Drone assembles with magnetic precision \u2014 every internal element showcased before locking into the next-gen aerial drone shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the DJI Mavic 4 Drone surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in carbon-fiber weave, red signal accents",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "carbon-fiber weave, red signal accents"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Steam Deck Exploded Build",
+    "description": "Cinematic assembly of handheld gaming console, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Steam Deck rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Steam Deck",
+      "wardrobe": "",
+      "description": "Steam Deck assembles with magnetic precision \u2014 every internal element showcased before locking into the handheld gaming console shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Steam Deck surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in gunmetal grey, neon orange button glow",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "gunmetal grey, neon orange button glow"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Oculus Quest 4 Exploded Build",
+    "description": "Cinematic assembly of advanced VR headset, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Oculus Quest 4 rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Oculus Quest 4",
+      "wardrobe": "",
+      "description": "Oculus Quest 4 assembles with magnetic precision \u2014 every internal element showcased before locking into the advanced VR headset shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Oculus Quest 4 surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in pearl white, deep space black visor",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "pearl white, deep space black visor"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Raspberry Pi 6 Exploded Build",
+    "description": "Cinematic assembly of compact computing board, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Raspberry Pi 6 rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Raspberry Pi 6",
+      "wardrobe": "",
+      "description": "Raspberry Pi 6 assembles with magnetic precision \u2014 every internal element showcased before locking into the compact computing board shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Raspberry Pi 6 surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in emerald green PCB, gold circuitry",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "emerald green PCB, gold circuitry"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Canon EOS R6 Mark III Exploded Build",
+    "description": "Cinematic assembly of mirrorless camera, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Canon EOS R6 Mark III rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Canon EOS R6 Mark III",
+      "wardrobe": "",
+      "description": "Canon EOS R6 Mark III assembles with magnetic precision \u2014 every internal element showcased before locking into the mirrorless camera shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Canon EOS R6 Mark III surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in sleek black magnesium, silver lens ring",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "sleek black magnesium, silver lens ring"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "GoPro Hero 13 Exploded Build",
+    "description": "Cinematic assembly of action camera, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the GoPro Hero 13 rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of GoPro Hero 13",
+      "wardrobe": "",
+      "description": "GoPro Hero 13 assembles with magnetic precision \u2014 every internal element showcased before locking into the action camera shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the GoPro Hero 13 surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in frost silver, sapphire blue lens ring",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "frost silver, sapphire blue lens ring"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Tesla Model S Plaid Dashboard Exploded Build",
+    "description": "Cinematic assembly of futuristic EV dashboard, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Tesla Model S Plaid Dashboard rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Tesla Model S Plaid Dashboard",
+      "wardrobe": "",
+      "description": "Tesla Model S Plaid Dashboard assembles with magnetic precision \u2014 every internal element showcased before locking into the futuristic EV dashboard shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Tesla Model S Plaid Dashboard surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in glass black, crimson light edge",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "glass black, crimson light edge"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "ASUS ROG Gaming Laptop Exploded Build",
+    "description": "Cinematic assembly of RGB gaming powerhouse, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the ASUS ROG Gaming Laptop rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of ASUS ROG Gaming Laptop",
+      "wardrobe": "",
+      "description": "ASUS ROG Gaming Laptop assembles with magnetic precision \u2014 every internal element showcased before locking into the RGB gaming powerhouse shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the ASUS ROG Gaming Laptop surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in black titanium with lava red vents",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "black titanium with lava red vents"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Google Pixel 9 Pro Exploded Build",
+    "description": "Cinematic assembly of flagship smartphone, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Google Pixel 9 Pro rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Google Pixel 9 Pro",
+      "wardrobe": "",
+      "description": "Google Pixel 9 Pro assembles with magnetic precision \u2014 every internal element showcased before locking into the flagship smartphone shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Google Pixel 9 Pro surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in misty silver with prismatic edge glow",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "misty silver with prismatic edge glow"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Logitech G Pro X Keyboard Exploded Build",
+    "description": "Cinematic assembly of mechanical gaming keyboard, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Logitech G Pro X Keyboard rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Logitech G Pro X Keyboard",
+      "wardrobe": "",
+      "description": "Logitech G Pro X Keyboard assembles with magnetic precision \u2014 every internal element showcased before locking into the mechanical gaming keyboard shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Logitech G Pro X Keyboard surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in jet black, rainbow RGB underglow",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "jet black, rainbow RGB underglow"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Bose Smart Speaker Exploded Build",
+    "description": "Cinematic assembly of high-fidelity smart speaker, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Bose Smart Speaker rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Bose Smart Speaker",
+      "wardrobe": "",
+      "description": "Bose Smart Speaker assembles with magnetic precision \u2014 every internal element showcased before locking into the high-fidelity smart speaker shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Bose Smart Speaker surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in charcoal grey with silver mesh",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "charcoal grey with silver mesh"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Kindle Oasis X Exploded Build",
+    "description": "Cinematic assembly of premium e-reader, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Kindle Oasis X rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Kindle Oasis X",
+      "wardrobe": "",
+      "description": "Kindle Oasis X assembles with magnetic precision \u2014 every internal element showcased before locking into the premium e-reader shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Kindle Oasis X surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in soft white with glowing page edge",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "soft white with glowing page edge"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "MSI Curved Gaming Monitor Exploded Build",
+    "description": "Cinematic assembly of ultra-wide gaming display, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the MSI Curved Gaming Monitor rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of MSI Curved Gaming Monitor",
+      "wardrobe": "",
+      "description": "MSI Curved Gaming Monitor assembles with magnetic precision \u2014 every internal element showcased before locking into the ultra-wide gaming display shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the MSI Curved Gaming Monitor surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in black with cyan underbezel glow",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "black with cyan underbezel glow"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  },
+  {
+    "title": "Razer Blade 18 Exploded Build",
+    "description": "Cinematic assembly of sleek gaming laptop, revealing every detail in a symphony of motion.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "28mm anamorphic with cinematic depth",
+      "frame_rate": "100fps floating assembly, 24fps dramatic finish",
+      "composition": "parts of the Razer Blade 18 rise in spirals from a glowing core, locking together mid-air",
+      "camera_movement": "orbit sweeps through each major component, final push-out to reveal in full glory"
+    },
+    "subject": {
+      "props": "hovering core systems, casing shells, signature visual accents of Razer Blade 18",
+      "wardrobe": "",
+      "description": "Razer Blade 18 assembles with magnetic precision \u2014 every internal element showcased before locking into the sleek gaming laptop shell"
+    },
+    "scene": {
+      "location": "digital environment with reactive holographic schematics",
+      "environment": "swirling light particles, slow plasma arcs, volumetric dust glow",
+      "time_of_day": "deep midnight tech aura"
+    },
+    "visual_details": {
+      "action": "components align one by one, each lock-in triggering a ripple of light; final logo flare spreads through the Razer Blade 18 surface",
+      "special_effects": "color-matched energy pulses, holographic reflections, dynamic light scattering in matte black with neon green logo pulse",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "majestic, precision-focused, high-impact",
+      "lighting": "rim and underglow illumination, moving light sweeps highlighting contours",
+      "color_palette": "matte black with neon green logo pulse"
+    },
+    "audio": {
+      "music": "hybrid electronic-ambient score with evolving crescendos",
+      "ambient": "deep hums and faint digital winds",
+      "mix_level": "immersive 3D mix with deep bass impact",
+      "sound_effects": "mechanical clicks, magnetic thumps, cascading chimes"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  }
+]

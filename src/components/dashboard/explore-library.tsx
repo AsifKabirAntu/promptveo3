@@ -11,18 +11,20 @@ import { Paywall } from "@/components/ui/paywall"
 import { useAuth } from "@/components/auth/auth-provider"
 import { getAllPromptsClient, getUniqueCategories, getUniqueStyles, fallbackCategories, fallbackStyles, FREE_VIEWABLE_REGULAR_PROMPTS } from "@/lib/prompts-client"
 import { getAllTimelinePromptsClient, getUniqueTimelineCategories, getUniqueTimelineBaseStyles, fallbackTimelineCategories, fallbackTimelineBaseStyles, FREE_VIEWABLE_TIMELINE_PROMPTS } from "@/lib/timeline-prompts-client"
+import { getAllExplodedPromptsClient, FREE_VIEWABLE_EXPLODED_PROMPTS } from "@/lib/exploded-prompts-client"
 import { Prompt } from "@/types/prompt"
 import { TimelinePrompt } from "@/types/timeline-prompt"
+import { ExplodedBuildPrompt } from "@/types/exploded-prompt"
 
 // Union type for unified prompt display
-type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' })
+type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 'timeline' }) | (ExplodedBuildPrompt & { type: 'exploded' })
 
 export function ExploreLibrary() {
   const { features, refreshSubscription, subscription } = useAuth()
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string>("")
   const [selectedStyle, setSelectedStyle] = useState<string>("")
-  const [timelineFilter, setTimelineFilter] = useState<'all' | 'with-timeline' | 'without-timeline'>('all')
+  const [timelineFilter, setTimelineFilter] = useState<'all' | 'with-timeline' | 'without-timeline' | 'special'>('all')
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(9)
   const [filtersExpanded, setFiltersExpanded] = useState(false)
@@ -32,6 +34,7 @@ export function ExploreLibrary() {
   // Separate state for regular and timeline prompts
   const [regularPrompts, setRegularPrompts] = useState<Prompt[]>([])
   const [timelinePrompts, setTimelinePrompts] = useState<TimelinePrompt[]>([])
+  const [explodedPrompts, setExplodedPrompts] = useState<ExplodedBuildPrompt[]>([])
   const [loading, setLoading] = useState(true)
   const [totalDatabaseCount, setTotalDatabaseCount] = useState(600) // Updated to 600 total prompts
   
@@ -70,10 +73,11 @@ export function ExploreLibrary() {
           }
         }
         
-        // Fetch both types of prompts and their metadata in parallel
+        // Fetch all types of prompts and their metadata in parallel
         const [
           fetchedRegularPrompts,
           fetchedTimelinePrompts,
+          fetchedExplodedPrompts,
           fetchedCategories,
           fetchedStyles,
           fetchedTimelineCategories,
@@ -81,6 +85,7 @@ export function ExploreLibrary() {
         ] = await Promise.all([
           fetchWithTimeout(() => getAllPromptsClient(), 10000, []),
           fetchWithTimeout(() => getAllTimelinePromptsClient(), 10000, []),
+          fetchWithTimeout(() => getAllExplodedPromptsClient(), 10000, []),
           fetchWithTimeout(() => getUniqueCategories(), 8000, fallbackCategories),
           fetchWithTimeout(() => getUniqueStyles(), 8000, fallbackStyles),
           fetchWithTimeout(() => getUniqueTimelineCategories(), 8000, fallbackTimelineCategories),
@@ -90,15 +95,16 @@ export function ExploreLibrary() {
         if (!mounted) return
 
         // Check if we got any data
-        const hasData = fetchedRegularPrompts.length > 0 || fetchedTimelinePrompts.length > 0
+        const hasData = fetchedRegularPrompts.length > 0 || fetchedTimelinePrompts.length > 0 || fetchedExplodedPrompts.length > 0
         
         if (hasData) {
           // Update state with fetched data
           setRegularPrompts(fetchedRegularPrompts)
           setTimelinePrompts(fetchedTimelinePrompts)
+          setExplodedPrompts(fetchedExplodedPrompts)
         } else {
           // If we still don't have data and have retries left, try again
-          if ((!regularPrompts.length || !timelinePrompts.length) && retry && retryCount < maxRetries) {
+          if ((!regularPrompts.length || !timelinePrompts.length || !explodedPrompts.length) && retry && retryCount < maxRetries) {
             retryCount++
             setTimeout(() => loadData(true), retryDelay)
             return
@@ -106,9 +112,10 @@ export function ExploreLibrary() {
         }
         
         // Combine categories and styles
-        const allCategories = Array.from(new Set([
+                  const allCategories = Array.from(new Set([
           ...fetchedCategories,
-          ...fetchedTimelineCategories
+          ...fetchedTimelineCategories,
+          'Exploaded Build'
         ])).filter(Boolean).sort()
         
         const allStyles = Array.from(new Set([
@@ -168,30 +175,45 @@ export function ExploreLibrary() {
         return matchesSearch && matchesCategory && matchesStyle;
       })
       .map(prompt => ({ ...prompt, type: 'timeline' as const }));
+
+    const filteredExplodedPrompts = explodedPrompts
+      .filter(prompt => {
+        const matchesSearch = !searchQuery || 
+          prompt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          prompt.description.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = !selectedCategory || prompt.category === selectedCategory;
+        return matchesSearch && matchesCategory;
+      })
+      .map(prompt => ({ ...prompt, type: 'exploded' as const }));
     
     // Combine and filter based on timeline filter
     let combinedPrompts: UnifiedPrompt[] = [];
     
     if (timelineFilter === 'all') {
-      combinedPrompts = [...filteredRegularPrompts, ...filteredTimelinePrompts];
+      combinedPrompts = [...filteredRegularPrompts, ...filteredTimelinePrompts, ...filteredExplodedPrompts];
     } else if (timelineFilter === 'with-timeline') {
       combinedPrompts = [...filteredTimelinePrompts];
-    } else {
+    } else if (timelineFilter === 'without-timeline') {
       combinedPrompts = [...filteredRegularPrompts];
+    } else {
+      combinedPrompts = [...filteredExplodedPrompts];
     }
     
     // Get IDs of free viewable prompts
     const freeRegularPromptIds = FREE_VIEWABLE_REGULAR_PROMPTS;
     const freeTimelinePromptIds = FREE_VIEWABLE_TIMELINE_PROMPTS;
+    const freeExplodedPromptIds = FREE_VIEWABLE_EXPLODED_PROMPTS;
     
     // Use the appropriate free prompt IDs based on the current tab
     let relevantFreePromptIds: string[] = [];
     if (timelineFilter === 'all') {
-      relevantFreePromptIds = [...freeRegularPromptIds, ...freeTimelinePromptIds];
+      relevantFreePromptIds = [...freeRegularPromptIds, ...freeTimelinePromptIds, ...freeExplodedPromptIds];
     } else if (timelineFilter === 'with-timeline') {
       relevantFreePromptIds = [...freeTimelinePromptIds];
-    } else {
+    } else if (timelineFilter === 'without-timeline') {
       relevantFreePromptIds = [...freeRegularPromptIds];
+    } else {
+      relevantFreePromptIds = [...freeExplodedPromptIds];
     }
     
     // Sort prompts to show free viewable prompts first
@@ -294,7 +316,7 @@ export function ExploreLibrary() {
                 : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
             }`}
           >
-            All Prompts ({regularPrompts.length + timelinePrompts.length})
+            All Prompts ({regularPrompts.length + timelinePrompts.length + explodedPrompts.length})
           </button>
           <button
             onClick={() => setTimelineFilter('with-timeline')}
@@ -315,6 +337,16 @@ export function ExploreLibrary() {
             }`}
           >
             Without Timeline ({regularPrompts.length})
+          </button>
+          <button
+            onClick={() => setTimelineFilter('special')}
+            className={`px-6 py-2 rounded-full transition-colors ${
+              timelineFilter === 'special'
+                ? 'bg-blue-100 text-blue-700'
+                : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+            }`}
+          >
+            Special (Exploaded Build) ({explodedPrompts.length})
           </button>
         </div>
       </div>

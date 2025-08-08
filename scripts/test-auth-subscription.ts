@@ -71,12 +71,12 @@ async function testAuthAndSubscription() {
       plan: profile.plan
     })
     
-    // 4. Test user_profiles table
-    console.log('4. Testing user_profiles table...')
+    // 4. Test profiles table
+    console.log('4. Testing profiles table...')
     const { data: userProfile, error: userProfileError } = await supabase
-      .from('user_profiles')
+      .from('profiles')
       .select('*')
-      .eq('user_id', session.user.id)
+      .eq('id', session.user.id)
       .single()
     
     if (userProfileError) {

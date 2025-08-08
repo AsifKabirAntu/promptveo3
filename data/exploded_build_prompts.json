@@ -1,0 +1,44 @@
+[
+  {
+    "title": "MacBook Pro Exploded Build",
+    "description": "Hyper-detailed MacBook Pro assembly with molten-silver elegance and a whisper of innovation.",
+    "category": "Exploaded Build",
+    "shot": {
+      "lens": "35mm prime with ultra-sharp macro focus",
+      "frame_rate": "60fps smooth motion for parts, 120fps on logo reveal",
+      "composition": "floating components align in a horizontal mid-air stack, final lid closes in slow cinematic drift",
+      "camera_movement": "smooth dolly glide through each layer, final slow pull-out to full laptop glow"
+    },
+    "subject": {
+      "props": "hovering logic board, Retina display panel, unibody aluminum shell halves, glowing Apple logo backlight",
+      "wardrobe": "",
+      "description": "Apple MacBook Pro assembling mid-air \u2014 precision-milled body, micro-screws, keys, and backlit logo locking perfectly"
+    },
+    "scene": {
+      "location": "minimal white void with floating arcs of light",
+      "environment": "metallic dust shimmer, soft ambient glow, faint circuit projections",
+      "time_of_day": "timeless design-light"
+    },
+    "visual_details": {
+      "action": "logic board floats into place, battery pack locks in with magnetic shimmer, keyboard clicks into frame, screen lowers slowly, Apple logo glows",
+      "special_effects": "silver particle drifts, lens flares on key clicks, soft energy wave at logo ignition",
+      "hair_clothing_motion": ""
+    },
+    "cinematography": {
+      "tone": "precision, minimalism, quiet power",
+      "lighting": "soft directional beams reflecting off aluminum, subtle rim light around edges",
+      "color_palette": "brushed silver, deep black, cool white glow"
+    },
+    "audio": {
+      "music": "ambient piano with subtle electronic textures",
+      "ambient": "soft hum of circuits, faint wind of digital air",
+      "mix_level": "studio-quality, immersive spatial design",
+      "sound_effects": "gentle magnetic clicks, logo glow chime"
+    },
+    "dialogue": {
+      "line": "",
+      "character": "",
+      "subtitles": false
+    }
+  }
+]

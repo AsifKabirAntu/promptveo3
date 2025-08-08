@@ -67,9 +67,9 @@ async function testUserData() {
   console.log('\n4. Testing User Profile from Database:')
   try {
     const { data: profile, error: profileError } = await supabase
-      .from('user_profiles')
+      .from('profiles')
       .select('*')
-      .eq('user_id', session.user.id)
+      .eq('id', session.user.id)
       .single()
     
     if (profileError) {
