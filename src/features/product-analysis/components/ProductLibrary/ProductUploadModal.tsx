@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ProductUploadForm, PRODUCT_CATEGORIES, SUPPORTED_IMAGE_FORMATS, MAX_IMAGE_SIZE } from '../../types'
+import { ProductUploadForm, SUPPORTED_IMAGE_FORMATS, MAX_IMAGE_SIZE } from '../../types'
 import { uploadProduct } from '../../services/api'
 import { toast } from 'sonner'
 
@@ -19,7 +19,7 @@ interface ProductUploadModalProps {
 export function ProductUploadModal({ open, onClose, onSuccess }: ProductUploadModalProps) {
   const [formData, setFormData] = useState<ProductUploadForm>({
     name: '',
-    category: 'Electronics',
+    category: 'Uncategorized',
     file: null
   })
   const [dragOver, setDragOver] = useState(false)
@@ -112,7 +112,7 @@ export function ProductUploadModal({ open, onClose, onSuccess }: ProductUploadMo
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.file || !formData.name || !formData.category) {
+    if (!formData.file || !formData.name) {
       toast.error('Please fill in all required fields')
       return
     }
@@ -132,7 +132,7 @@ export function ProductUploadModal({ open, onClose, onSuccess }: ProductUploadMo
   }
 
   const handleReset = () => {
-    setFormData({ name: '', category: 'Electronics', file: null })
+    setFormData({ name: '', category: 'Uncategorized', file: null })
     setPreview(null)
     if (fileInputRef.current) {
       fileInputRef.current.value = ''
@@ -248,7 +248,7 @@ export function ProductUploadModal({ open, onClose, onSuccess }: ProductUploadMo
             </div>
 
             {/* Product Details */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-900 mb-2">
                   Product Name *
@@ -260,24 +260,6 @@ export function ProductUploadModal({ open, onClose, onSuccess }: ProductUploadMo
                   className="bg-white"
                   required
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-2">
-                  Category *
-                </label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-3 text-sm focus:border-blue-300 focus:ring-blue-200 text-gray-900"
-                  required
-                >
-                  {PRODUCT_CATEGORIES.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
 

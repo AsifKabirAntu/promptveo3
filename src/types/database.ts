@@ -292,7 +292,6 @@ export interface Database {
           id: string
           user_id: string
           name: string
-          category: string
           image_url: string
           image_metadata: unknown // JSONB
           analysis_data: unknown // JSONB
@@ -303,7 +302,6 @@ export interface Database {
           id?: string
           user_id: string
           name: string
-          category: string
           image_url: string
           image_metadata?: unknown
           analysis_data?: unknown
@@ -314,7 +312,6 @@ export interface Database {
           id?: string
           user_id?: string
           name?: string
-          category?: string
           image_url?: string
           image_metadata?: unknown
           analysis_data?: unknown

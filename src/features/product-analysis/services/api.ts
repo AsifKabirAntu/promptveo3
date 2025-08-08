@@ -67,13 +67,12 @@ export async function uploadProduct(formData: ProductUploadForm, file: File): Pr
       filePath: filePath // Store the file path for future signed URLs
     }
 
-    // Insert product record
+    // Insert product record (no category)
     const { data, error } = await supabase
       .from('user_products')
       .insert({
         user_id: user.id,
         name: formData.name,
-        category: formData.category,
         image_url: signedUrl,
         image_metadata: imageMetadata,
         analysis_data: {}
@@ -285,8 +284,7 @@ export async function getAnalysisSessions(): Promise<ProductAnalysisSession[]> {
         user_products (
           id,
           name,
-          image_url,
-          category
+          image_url
         )
       `)
       .order('created_at', { ascending: false })
@@ -309,8 +307,7 @@ export async function getAnalysisSession(sessionId: string): Promise<ProductAnal
         user_products (
           id,
           name,
-          image_url,
-          category
+          image_url
         )
       `)
       .eq('id', sessionId)

@@ -4,7 +4,7 @@ export interface UserProduct {
   id: string
   user_id: string
   name: string
-  category: string
+  // category removed
   image_url: string
   image_metadata: ImageMetadata
   analysis_data: ProductAnalysis
@@ -98,7 +98,7 @@ export interface PromptMetadata {
 // Form and UI Types
 export interface ProductUploadForm {
   name: string
-  category: string
+  category: string // kept in payload for backward comp., always 'Uncategorized'
   file: File | null
 }
 
@@ -141,9 +141,9 @@ export interface ProductLibraryState {
   products: UserProduct[]
   loading: boolean
   error: string | null
-  selectedCategory: string
+  // category state removed
   searchQuery: string
-  sortBy: 'name' | 'created_at' | 'category'
+  sortBy: 'name' | 'created_at'
   sortOrder: 'asc' | 'desc'
 }
 
@@ -157,23 +157,7 @@ export interface PromptWizardState {
   error: string | null
 }
 
-// Constants
-export const PRODUCT_CATEGORIES = [
-  'Electronics',
-  'Fashion',
-  'Home & Garden',
-  'Sports & Outdoors',
-  'Beauty & Personal Care',
-  'Automotive',
-  'Books & Media',
-  'Food & Beverages',
-  'Toys & Games',
-  'Health & Wellness',
-  'Office Supplies',
-  'Other'
-] as const
-
-export type ProductCategory = typeof PRODUCT_CATEGORIES[number]
+// Constants removed: PRODUCT_CATEGORIES
 
 export const SUPPORTED_IMAGE_FORMATS = [
   'image/jpeg',

@@ -7,7 +7,6 @@ export function useProductLibrary() {
     products: [],
     loading: true,
     error: null,
-    selectedCategory: '',
     searchQuery: '',
     sortBy: 'created_at',
     sortOrder: 'desc'
@@ -29,11 +28,7 @@ export function useProductLibrary() {
     setState(prev => ({ ...prev, searchQuery }))
   }
 
-  const setSelectedCategory = (selectedCategory: string) => {
-    setState(prev => ({ ...prev, selectedCategory }))
-  }
-
-  const setSortBy = (sortBy: 'name' | 'created_at' | 'category') => {
+  const setSortBy = (sortBy: 'name' | 'created_at') => {
     setState(prev => ({ ...prev, sortBy }))
   }
 
@@ -64,11 +59,9 @@ export function useProductLibrary() {
     loading: state.loading,
     error: state.error,
     searchQuery: state.searchQuery,
-    selectedCategory: state.selectedCategory,
     sortBy: state.sortBy,
     sortOrder: state.sortOrder,
     setSearchQuery,
-    setSelectedCategory,
     setSortBy,
     setSortOrder,
     refreshProducts

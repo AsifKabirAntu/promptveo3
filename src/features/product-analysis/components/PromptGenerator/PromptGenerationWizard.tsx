@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, ChevronRight, Sparkles, Loader2, Heart, Copy, Edit, Download, Clock, Eye, Tag, Lock, Check } from 'lucide-react'
+import { ArrowLeft, ChevronRight, Sparkles, Loader2, Heart, Copy, Edit, Download, Clock, Eye, Tag, Lock, Check, Save } from 'lucide-react'
 import { UserProduct, PromptGenerationRequest, PromptGenerationResponse } from '../../types'
 import { analyzeProductImage, generatePrompt } from '../../services/api'
 import { canUserGeneratePrompt } from '../../services/usage-api'
 import { TimelinePromptDetail } from '@/components/timeline-prompt-detail'
 import { Paywall } from '@/components/ui/paywall'
 import { formatDate } from '@/lib/utils'
+import { createUserPrompt } from '@/lib/user-prompts-client'
+import { toast } from 'sonner'
 
 interface PromptGenerationWizardProps {
   product: UserProduct
@@ -396,6 +398,40 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
                 </Button>
 
                 <Button
+                  onClick={async () => {
+                    try {
+                      const saved = await createUserPrompt({
+                        prompt_type: 'timeline',
+                        title: promptData.title,
+                        description: promptData.description,
+                        category: promptData.category,
+                        base_style: promptData.base_style,
+                        aspect_ratio: promptData.aspect_ratio,
+                        scene_description: promptData.scene_description,
+                        camera_setup: promptData.camera_setup,
+                        lighting: promptData.lighting,
+                        negative_prompts: promptData.negative_prompts || [],
+                        timeline_sequence: promptData.timeline || [],
+                        is_public: false,
+                        is_featured: false
+                      })
+                      if (saved) {
+                        toast.success('Prompt saved to My Prompts')
+                      } else {
+                        toast.error('Failed to save prompt')
+                      }
+                    } catch (e) {
+                      console.error(e)
+                      toast.error('Failed to save prompt')
+                    }
+                  }}
+                  className="gap-2 bg-gray-900 text-white hover:bg-black"
+                >
+                  <Save className="w-4 h-4" />
+                  Save Prompt
+                </Button>
+
+                <Button
                   variant="outline"
                   onClick={() => {
                     const content = `Title: ${promptData.title}\n\nDescription: ${promptData.description}\n\nStyle: ${promptData.base_style}\nCamera: ${promptData.camera_setup}\n\nTimeline:\n${promptData.timeline.map(t => `${t.timestamp}: ${t.action}`).join('\n')}`
@@ -646,8 +682,6 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
               {product.name.length > 60 ? `${product.name.slice(0, 60)}...` : product.name}
             </h1>
             <div className="flex items-center gap-3 mt-1">
-              <span className="text-sm text-gray-500">{product.category}</span>
-              <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
               <span className="text-sm text-blue-600 font-medium">Product Reveal Generator</span>
                 </div>
                 </div>

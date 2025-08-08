@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Plus, Search, Filter, Grid3X3, LayoutGrid, Upload, Sparkles } from 'lucide-react'
+import { Plus, Search, Grid3X3, LayoutGrid, Upload, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -12,7 +12,6 @@ import { ProductGrid } from './ProductGrid'
 import { EmptyState } from './EmptyState'
 import { useProductLibrary } from '../../hooks/useProductLibrary'
 import { useProductUsage } from '../../hooks/useProductUsage'
-import { PRODUCT_CATEGORIES } from '../../types'
 import { Paywall } from '@/components/ui/paywall'
 
 export function ProductLibrary() {
@@ -22,8 +21,6 @@ export function ProductLibrary() {
     error,
     searchQuery,
     setSearchQuery,
-    selectedCategory,
-    setSelectedCategory,
     sortBy,
     setSortBy,
     refreshProducts
@@ -39,7 +36,6 @@ export function ProductLibrary() {
 
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [showFilters, setShowFilters] = useState(false)
   const [showPaywall, setShowPaywall] = useState(false)
 
   const handleUploadSuccess = async () => {
@@ -71,18 +67,14 @@ export function ProductLibrary() {
   }
 
   const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.category.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesCategory = !selectedCategory || product.category === selectedCategory
-    return matchesSearch && matchesCategory
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesSearch
   })
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
       case 'name':
         return a.name.localeCompare(b.name)
-      case 'category':
-        return a.category.localeCompare(b.category)
       case 'created_at':
       default:
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -109,7 +101,7 @@ export function ProductLibrary() {
           </div>
 
           {/* Modern Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
             {/* Total Products */}
             <Card className="bg-white border border-gray-200 shadow-sm">
               <CardContent className="p-4">
@@ -120,23 +112,6 @@ export function ProductLibrary() {
                   </div>
                   <div className="h-10 w-10 bg-gray-100 rounded-xl flex items-center justify-center">
                     <Upload className="h-5 w-5 text-gray-600" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Categories */}
-            <Card className="bg-white border border-gray-200 shadow-sm">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Categories</p>
-                    <p className="text-2xl font-bold text-gray-900">
-                      {new Set(products.map(p => p.category)).size}
-                    </p>
-                  </div>
-                  <div className="h-10 w-10 bg-gray-100 rounded-xl flex items-center justify-center">
-                    <Filter className="h-5 w-5 text-gray-600" />
                   </div>
                 </div>
               </CardContent>
@@ -159,7 +134,7 @@ export function ProductLibrary() {
               </CardContent>
             </Card>
 
-            {/* Usage Limits Card */}
+            {/* Monthly Usage */}
             {limits && (
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardContent className="p-4">
@@ -168,7 +143,7 @@ export function ProductLibrary() {
                       <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Monthly Usage</p>
                       <div className="h-8 w-8 bg-gray-100 rounded-xl flex items-center justify-center">
                         {usageLoading ? (
-                          <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+                          <div className="w-4 h-4 border-2 border-gray-300 border-top-transparent rounded-full animate-spin" />
                         ) : (
                           <Grid3X3 className="h-4 w-4 text-gray-600" />
                         )}
@@ -179,32 +154,32 @@ export function ProductLibrary() {
                       <div className="space-y-1">
                         <div className="flex justify-between text-xs">
                           <span className="text-gray-600 font-medium">Uploads</span>
-                          <span className={`font-semibold ${limits.canUpload ? "text-green-600" : "text-red-500"}`}>
+                          <span className={`font-semibold ${limits.canUpload ? 'text-green-600' : 'text-red-500'}`}>
                             {limits.uploadsUsed}/{limits.maxUploads}
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5">
-                          <div 
+                          <div
                             className={`h-1.5 rounded-full transition-all duration-300 ${
-                              limits.canUpload ? "bg-green-500" : "bg-red-500"
+                              limits.canUpload ? 'bg-green-500' : 'bg-red-500'
                             }`}
                             style={{ width: `${Math.min((limits.uploadsUsed / limits.maxUploads) * 100, 100)}%` }}
                           />
                         </div>
                       </div>
-                      
+
                       {/* Prompts Progress */}
                       <div className="space-y-1">
                         <div className="flex justify-between text-xs">
                           <span className="text-gray-600 font-medium">Prompts</span>
-                          <span className={`font-semibold ${limits.canGeneratePrompt ? "text-green-600" : "text-red-500"}`}>
+                          <span className={`font-semibold ${limits.canGeneratePrompt ? 'text-green-600' : 'text-red-500'}`}>
                             {limits.promptsUsed}/{limits.maxPrompts}
                           </span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5">
-                          <div 
+                          <div
                             className={`h-1.5 rounded-full transition-all duration-300 ${
-                              limits.canGeneratePrompt ? "bg-green-500" : "bg-red-500"
+                              limits.canGeneratePrompt ? 'bg-green-500' : 'bg-red-500'
                             }`}
                             style={{ width: `${Math.min((limits.promptsUsed / limits.maxPrompts) * 100, 100)}%` }}
                           />
@@ -215,49 +190,46 @@ export function ProductLibrary() {
                 </CardContent>
               </Card>
             )}
+
+            {/* Removed 4th placeholder card */}
           </div>
         </div>
 
-        {/* Search and Filters */}
+        {/* Search and View Toggle */}
         <Card className="bg-white border border-gray-200 shadow-sm mb-6">
           <CardContent className="p-6">
-            <div className="flex flex-col lg:flex-row gap-4">
-              {/* Search */}
-              <div className="relative flex-1">
-                
+            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+              <div className="relative flex-1 w-full">
                 <Input
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-20 bg-white/70 border-gray-200 focus:border-blue-300 focus:ring-blue-200"
+                  className="bg-white/70 border-gray-200 focus:border-blue-300 focus:ring-blue-200"
                 />
               </div>
 
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  variant={selectedCategory === '' ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setSelectedCategory('')}
-                  className={selectedCategory === '' ? 'bg-blue-600 hover:bg-blue-700' : ''}
-                >
-                  All Categories
-                </Button>
-                {PRODUCT_CATEGORIES.slice(0, 6).map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className={selectedCategory === category ? 'bg-blue-600 hover:bg-blue-700' : ''}
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
 
-              {/* View Toggle */}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Products Display */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <h2 className="text-lg font-semibold text-gray-900">
+                {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
+              </h2>
               <div className="flex items-center gap-2">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as any)}
+                  className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white focus:border-blue-200 focus:ring-blue-200 text-gray-900 pr-4"
+                >
+                  <option value="created_at">Sort by Date</option>
+                  <option value="name">Sort by Name</option>
+                </select>
+                {/* View Toggle moved here */}
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'outline'}
                   size="sm"
@@ -273,55 +245,6 @@ export function ProductLibrary() {
                   <LayoutGrid className="w-4 h-4" />
                 </Button>
               </div>
-            </div>
-
-            {/* Active Filters */}
-            {(selectedCategory || searchQuery) && (
-              <div className="flex items-center gap-2 mt-4">
-                <span className="text-sm text-gray-600">Active filters:</span>
-                {selectedCategory && (
-                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-                    Category: {selectedCategory}
-                    <button
-                      onClick={() => setSelectedCategory('')}
-                      className="ml-2 text-blue-600 hover:text-blue-800"
-                    >
-                      ×
-                    </button>
-                  </Badge>
-                )}
-                {searchQuery && (
-                  <Badge variant="secondary" className="bg-green-100 text-green-700">
-                    Search: {searchQuery}
-                    <button
-                      onClick={() => setSearchQuery('')}
-                      className="ml-2 text-green-600 hover:text-green-800"
-                    >
-                      ×
-                    </button>
-                  </Badge>
-                )}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Products Display */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <h2 className="text-lg font-semibold text-gray-900">
-                {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
-              </h2>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="text-sm border border-gray-200 rounded-lg px-3 py-2 bg-white focus:border-blue-200 focus:ring-blue-200 text-gray-900 pr-4"
-              >
-                <option value="created_at">Sort by Date</option>
-                <option value="name">Sort by Name</option>
-                <option value="category">Sort by Category</option>
-              </select>
             </div>
           </div>
 

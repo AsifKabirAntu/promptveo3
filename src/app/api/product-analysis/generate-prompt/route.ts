@@ -134,7 +134,7 @@ IMPORTANT: For the "description" field, write a vivid, cinematic scene descripti
 Return only the JSON.`
 
     const userMessage = `
-Product: ${product.name} (${product.category})
+Product: ${product.name}
 Selected base_style: ${selectedStyle.base_style}
 Selected camera_setup: ${selectedCamera.setup}
 
