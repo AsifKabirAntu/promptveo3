@@ -11,7 +11,7 @@ const plans = [
     description: "Perfect for getting started",
     features: [
       { name: "View 4 prompts", included: true },
-      { name: "Browse prompt library", included: true },
+      { name: "Browse entire prompt library (700+ prompts)", included: true },
       { name: "Basic search and filters", included: true },
       { name: "JSON export for Veo 3", included: false },
       { name: "Save favorites", included: false },
@@ -28,18 +28,17 @@ const plans = [
     description: "Unlock unlimited access",
     features: [
       { name: "Unlimited prompt access", included: true },
-      { name: "Browse entire prompt library", included: true },
+      { name: "Browse entire prompt library (700+ prompts)", included: true },
       { name: "Advanced search and filters", included: true },
       { name: "JSON export for Veo 3", included: true },
-      { name: "Save to personal library", included: true },
+      { name: "Save favorites", included: true },
       { name: "Remix prompts", included: true },
       { name: "Create custom prompts", included: true },
-      { name: "Priority support", included: true },
     ],
     cta: "Get Early Bird Deal",
     popular: true,
     originalPrice: "$79",
-    savings: "Early Bird Special",
+    savings: "Early Bird",
   },
 ]
 

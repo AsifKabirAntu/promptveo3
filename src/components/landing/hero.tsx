@@ -26,11 +26,14 @@ export function Hero() {
             Ship high‑quality Veo 3 videos 10x faster with structured JSON prompts. 
             Product reveals, room transformations, timelines, ads, and more. Browse, remix, and export perfect JSON with zero guesswork.
           </p>
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-gray-700 sm:text-lg">
+            Browse our library of 700+ ready‑to‑use Veo 3 prompts.
+          </p>
           
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/dashboard">
               <Button size="lg" className="px-6 sm:px-8 w-full sm:w-auto">
-                Explore Prompts
+                Explore 700+ Prompts
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
