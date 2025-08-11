@@ -7,6 +7,7 @@ config({ path: '.env.local' })
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 const monthlyPriceId = process.env.STRIPE_PRO_MONTHLY_PRICE_ID
 const yearlyPriceId = process.env.STRIPE_PRO_YEARLY_PRICE_ID
+const onetimePriceId = process.env.STRIPE_PRO_ONETIME_PRICE_ID
 
 async function testStripe() {
   try {
@@ -21,16 +22,21 @@ async function testStripe() {
       console.log('✅ STRIPE_SECRET_KEY is set')
     }
     
-    if (!monthlyPriceId) {
-      console.error('❌ STRIPE_PRO_MONTHLY_PRICE_ID is not set')
+    if (!onetimePriceId) {
+      console.error('❌ STRIPE_PRO_ONETIME_PRICE_ID is not set (REQUIRED)')
       return
+    } else {
+      console.log('✅ STRIPE_PRO_ONETIME_PRICE_ID is set:', onetimePriceId)
+    }
+    
+    if (!monthlyPriceId) {
+      console.warn('⚠️ STRIPE_PRO_MONTHLY_PRICE_ID is not set (legacy)')
     } else {
       console.log('✅ STRIPE_PRO_MONTHLY_PRICE_ID is set:', monthlyPriceId)
     }
     
     if (!yearlyPriceId) {
-      console.error('❌ STRIPE_PRO_YEARLY_PRICE_ID is not set')
-      return
+      console.warn('⚠️ STRIPE_PRO_YEARLY_PRICE_ID is not set (legacy)')
     } else {
       console.log('✅ STRIPE_PRO_YEARLY_PRICE_ID is set:', yearlyPriceId)
     }
@@ -42,36 +48,56 @@ async function testStripe() {
     })
     console.log('✅ Stripe initialized successfully')
     
-    // Test price retrieval
-    console.log('\n3. Testing price retrieval...')
+    // Test price retrieval - One-time (priority)
+    console.log('\n3. Testing one-time price retrieval...')
     try {
-      const monthlyPrice = await stripe.prices.retrieve(monthlyPriceId)
-      console.log('✅ Monthly price retrieved:', {
-        id: monthlyPrice.id,
-        active: monthlyPrice.active,
-        currency: monthlyPrice.currency,
-        unit_amount: monthlyPrice.unit_amount,
-        recurring: monthlyPrice.recurring
+      const onetimePrice = await stripe.prices.retrieve(onetimePriceId)
+      console.log('✅ One-time price retrieved:', {
+        id: onetimePrice.id,
+        active: onetimePrice.active,
+        currency: onetimePrice.currency,
+        unit_amount: onetimePrice.unit_amount,
+        type: onetimePrice.type // Should be 'one_time'
       })
     } catch (error) {
-      console.error('❌ Error retrieving monthly price:', error)
+      console.error('❌ Error retrieving one-time price:', error)
     }
     
-    try {
-      const yearlyPrice = await stripe.prices.retrieve(yearlyPriceId)
-      console.log('✅ Yearly price retrieved:', {
-        id: yearlyPrice.id,
-        active: yearlyPrice.active,
-        currency: yearlyPrice.currency,
-        unit_amount: yearlyPrice.unit_amount,
-        recurring: yearlyPrice.recurring
-      })
-    } catch (error) {
-      console.error('❌ Error retrieving yearly price:', error)
+    // Test legacy prices (if set)
+    if (monthlyPriceId) {
+      console.log('\n4. Testing monthly price retrieval (legacy)...')
+      try {
+        const monthlyPrice = await stripe.prices.retrieve(monthlyPriceId)
+        console.log('✅ Monthly price retrieved:', {
+          id: monthlyPrice.id,
+          active: monthlyPrice.active,
+          currency: monthlyPrice.currency,
+          unit_amount: monthlyPrice.unit_amount,
+          recurring: monthlyPrice.recurring
+        })
+      } catch (error) {
+        console.error('❌ Error retrieving monthly price:', error)
+      }
+    }
+    
+    if (yearlyPriceId) {
+      console.log('\n5. Testing yearly price retrieval (legacy)...')
+      try {
+        const yearlyPrice = await stripe.prices.retrieve(yearlyPriceId)
+        console.log('✅ Yearly price retrieved:', {
+          id: yearlyPrice.id,
+          active: yearlyPrice.active,
+          currency: yearlyPrice.currency,
+          unit_amount: yearlyPrice.unit_amount,
+          recurring: yearlyPrice.recurring
+        })
+      } catch (error) {
+        console.error('❌ Error retrieving yearly price:', error)
+      }
     }
     
     // Test customer creation
-    console.log('\n4. Testing customer creation...')
+    console.log('\n6. Testing customer creation...')
     try {
       const testCustomer = await stripe.customers.create({
         email: 'test@example.com',
@@ -89,29 +115,29 @@ async function testStripe() {
       console.error('❌ Error creating test customer:', error)
     }
     
-    // Test checkout session creation (without customer_creation)
-    console.log('\n5. Testing checkout session creation...')
+    // Test checkout session creation (one-time payment)
+    console.log('\n7. Testing checkout session creation...')
     try {
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
-            price: monthlyPriceId,
+            price: onetimePriceId,
             quantity: 1,
           },
         ],
-        mode: 'subscription',
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel',
+        mode: 'payment', // One-time payment
+        success_url: 'https://example.com/success',
+        cancel_url: 'https://example.com/cancel',
         metadata: {
           userId: 'test-user-id'
-        },
-        subscription_data: {
-          metadata: {
-            userId: 'test-user-id'
-          },
-        },
+        }
       })
-      console.log('✅ Checkout session created:', session.id)
+      console.log('✅ Checkout session created:', {
+        id: session.id,
+        mode: session.mode,
+        status: session.status,
+        url: session.url ? 'URL generated' : 'No URL'
+      })
     } catch (error) {
       console.error('❌ Error creating checkout session:', error)
     }

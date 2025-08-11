@@ -16,8 +16,6 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 function BillingPageContent() {
   const { user, subscription, features, refreshSubscription } = useAuth()
   const [monthlyLoading, setMonthlyLoading] = useState(false)
-  const [yearlyLoading, setYearlyLoading] = useState(false)
-  const [portalLoading, setPortalLoading] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [refreshAttempts, setRefreshAttempts] = useState(0)
   const [showSuccessAlert, setShowSuccessAlert] = useState(false)
@@ -53,16 +51,12 @@ function BillingPageContent() {
     }
   }
 
-  const handleUpgrade = async (priceType: 'monthly' | 'yearly') => {
-    // Set loading state for the specific plan
-    if (priceType === 'monthly') {
-      setMonthlyLoading(true)
-    } else {
-      setYearlyLoading(true)
-    }
+  const handleUpgrade = async () => {
+    // Set loading state
+    setMonthlyLoading(true)
     
     try {
-      console.log('Creating checkout session for price type:', priceType)
+      console.log('Creating checkout session for one-time payment...')
       
       const response = await fetch('/api/billing/checkout', {
         method: 'POST',
@@ -70,7 +64,7 @@ function BillingPageContent() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          priceId: priceType === 'monthly' ? 'MONTHLY' : 'YEARLY' 
+          priceId: 'ONETIME'
         }),
       })
 
@@ -108,25 +102,8 @@ function BillingPageContent() {
       console.error('Error creating checkout session:', error)
       alert('Failed to start checkout. Please try again.')
     } finally {
-      // Reset loading state for both plans
+      // Reset loading state
       setMonthlyLoading(false)
-      setYearlyLoading(false)
-    }
-  }
-
-  const handleManageSubscription = async () => {
-    setPortalLoading(true)
-    try {
-      const response = await fetch('/api/billing/portal', {
-        method: 'POST',
-      })
-
-      const { url } = await response.json()
-      window.location.href = url
-    } catch (error) {
-      console.error('Error creating portal session:', error)
-    } finally {
-      setPortalLoading(false)
     }
   }
 
@@ -210,53 +187,33 @@ function BillingPageContent() {
                     </li>
                     <li className="flex items-center text-sm text-gray-700">
                       <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                      1 product upload/month
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <Check className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                      1 prompt generation/month
+                      Basic search and filters
                     </li>
                   </ul>
                 </div>
               )}
               {isPro && subscription && (
-                <p className="text-sm text-gray-500 mt-2 flex items-center">
-                  <Calendar className="h-4 w-4 mr-1" />
-                  {subscription.current_period_end && (
-                    <>Next billing: {new Date(subscription.current_period_end).toLocaleDateString()}</>
-                  )}
-                </p>
+                <div className="mt-2 flex items-center gap-4">
+                  <p className="text-sm text-green-600 flex items-center">
+                    <Check className="h-4 w-4 mr-1" />
+                    Lifetime access - no recurring charges
+                  </p>
+                </div>
               )}
             </div>
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-gray-900">
-              {isPro ? (
-                subscription?.price_id?.includes('year') ? '$120' : '$14.99'
-              ) : (
-                'Free'
-              )}
+              {isPro ? '$29' : 'Free'}
             </div>
             {isPro && (
               <div className="text-sm text-gray-500">
-                {subscription?.price_id?.includes('year') ? '/year' : '/month'}
+                one-time payment
               </div>
             )}
           </div>
         </div>
         
-        {isPro && (
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <button
-              onClick={handleManageSubscription}
-              disabled={portalLoading}
-              className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 disabled:opacity-50 transition-colors flex items-center"
-            >
-              <CreditCard className="h-4 w-4 mr-2" />
-              {portalLoading ? 'Loading...' : 'Manage Subscription'}
-            </button>
-          </div>
-        )}
       </div>
 
       {/* Upgrade Plans (only show if not Pro) */}
@@ -266,38 +223,36 @@ function BillingPageContent() {
             <div className="p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Upgrade Plans</h2>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Pro Monthly */}
+              <div className="grid gap-6 max-w-md mx-auto">
+                {/* Pro One-time */}
                 <div className="relative bg-white border border-blue-200 rounded-xl shadow-sm p-6 transition-all hover:shadow-md hover:border-blue-300 flex flex-col h-full">
                   <div className="absolute top-0 right-0 -mt-3 -mr-3">
-                    <span className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-                      Popular
+                    <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+                      Early Bird
                     </span>
                   </div>
                   <div>
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Pro Monthly</h3>
-                        <p className="text-gray-600 text-sm">Perfect for getting started</p>
+                        <h3 className="text-lg font-semibold text-gray-900">Pro (One-time)</h3>
+                        <p className="text-gray-600 text-sm">Early bird special pricing</p>
                       </div>
                     </div>
                     
                     <div className="mb-6">
-                      <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600">/month</span></div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xl text-gray-500 line-through">$79</span>
+                        <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
+                          Early Bird Special
+                        </Badge>
+                      </div>
+                      <div className="text-3xl font-bold text-gray-900">$29<span className="text-lg font-normal text-gray-600"> one-time</span></div>
                     </div>
                     
                     <ul className="space-y-3 mb-6">
                       <li className="flex items-center text-sm text-gray-700">
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
                         Unlimited prompt access
-                      </li>
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
-                        20 product uploads/month
-                      </li>
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
-                        40 prompt generations/month
                       </li>
                       <li className="flex items-center text-sm text-gray-700">
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
@@ -311,12 +266,16 @@ function BillingPageContent() {
                         <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
                         Create custom prompts
                       </li>
+                      <li className="flex items-center text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-blue-500 mr-2 flex-shrink-0" />
+                        Priority support
+                      </li>
                     </ul>
                   </div>
                   
                   <button
-                    onClick={() => handleUpgrade('monthly')}
-                    disabled={monthlyLoading || yearlyLoading}
+                    onClick={handleUpgrade}
+                    disabled={monthlyLoading}
                     className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center justify-center mt-auto"
                   >
                     {monthlyLoading ? (
@@ -330,68 +289,7 @@ function BillingPageContent() {
                     ) : (
                       <>
                         <Zap className="h-4 w-4 mr-2" />
-                        Upgrade to Pro Monthly
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                {/* Pro Yearly */}
-                <div className="relative bg-white border border-green-200 rounded-xl shadow-sm p-6 transition-all hover:shadow-md hover:border-green-300 flex flex-col h-full">
-                  <div className="absolute top-0 right-0 -mt-3 -mr-3">
-                    <span className="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-                      Save 33%
-                    </span>
-                  </div>
-                  <div>
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Pro Yearly</h3>
-                        <p className="text-gray-600 text-sm">Best value for long-term users</p>
-                      </div>
-                    </div>
-                    
-                    <div className="mb-6">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-lg text-gray-500 line-through">$179</span>
-                        <div className="text-3xl font-bold text-gray-900">$120<span className="text-lg font-normal text-gray-600">/year</span></div>
-                      </div>
-                      <div className="text-sm text-gray-500">Billed annually</div>
-                    </div>
-                    
-                    <ul className="space-y-3 mb-6">
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                        All monthly features
-                      </li>
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                        Priority support
-                      </li>
-                      <li className="flex items-center text-sm text-gray-700">
-                        <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                        Early access to new features
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <button
-                    onClick={() => handleUpgrade('yearly')}
-                    disabled={monthlyLoading || yearlyLoading}
-                    className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors flex items-center justify-center mt-auto"
-                  >
-                    {yearlyLoading ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        <Zap className="h-4 w-4 mr-2" />
-                        Upgrade to Pro Yearly
+                        Get Early Bird Deal
                       </>
                     )}
                   </button>
@@ -433,10 +331,10 @@ function BillingPageContent() {
                         {subscription.created_at ? new Date(subscription.created_at).toLocaleDateString() : 'N/A'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        Pro {subscription.price_id?.includes('year') ? 'Yearly' : 'Monthly'} Subscription
+                        Pro One-time Purchase
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {subscription.price_id?.includes('year') ? '$120.00' : '$14.99'}
+                        $29.00
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">

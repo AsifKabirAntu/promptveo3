@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Do you offer free and pro plans?",
     answer:
-      "Yes. Free users can explore the library and test prompts. Pro users get access to higher limits, premium prompts, product upload features, and priority updates.",
+      "Yes. Free users can explore the library and test prompts. Pro users get unlimited access to all prompts, advanced features, and priority updates.",
   },
   {
     question: "Can I customize the prompts?",

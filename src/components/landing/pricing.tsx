@@ -13,8 +13,6 @@ const plans = [
       { name: "View 4 prompts", included: true },
       { name: "Browse prompt library", included: true },
       { name: "Basic search and filters", included: true },
-      { name: "1 product upload/month", included: true },
-      { name: "1 prompt generation/month", included: true },
       { name: "JSON export for Veo 3", included: false },
       { name: "Save favorites", included: false },
       { name: "Remix prompts", included: false },
@@ -25,25 +23,23 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$14.99",
-    period: "/month",
+    price: "$29",
+    period: " one-time",
     description: "Unlock unlimited access",
     features: [
       { name: "Unlimited prompt access", included: true },
       { name: "Browse entire prompt library", included: true },
       { name: "Advanced search and filters", included: true },
-      { name: "20 product uploads/month", included: true },
-      { name: "40 prompt generations/month", included: true },
       { name: "JSON export for Veo 3", included: true },
       { name: "Save to personal library", included: true },
       { name: "Remix prompts", included: true },
       { name: "Create custom prompts", included: true },
       { name: "Priority support", included: true },
     ],
-    cta: "Upgrade to Pro",
+    cta: "Get Early Bird Deal",
     popular: true,
-    yearlyPrice: "$120/year",
-    yearlySavings: "Save 33%",
+    originalPrice: "$79",
+    savings: "Early Bird Special",
   },
 ]
 
@@ -81,21 +77,19 @@ export function Pricing() {
                   <span>{plan.name}</span>
                 </CardTitle>
                 <div className="mt-4">
+                  {plan.originalPrice && (
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="text-2xl text-gray-500 line-through">{plan.originalPrice}</span>
+                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
+                        {plan.savings}
+                      </Badge>
+                    </div>
+                  )}
                   <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
                   {plan.period && (
                     <span className="text-lg text-gray-600">{plan.period}</span>
                   )}
                 </div>
-                {plan.yearlyPrice && (
-                  <div className="mt-2">
-                    <div className="text-sm text-gray-600">
-                      or <span className="font-semibold">{plan.yearlyPrice}</span>
-                    </div>
-                    <Badge variant="outline" className="mt-1 bg-green-50 text-green-700 border-green-200">
-                      {plan.yearlySavings}
-                    </Badge>
-                  </div>
-                )}
                 <CardDescription className="mt-2">
                   {plan.description}
                 </CardDescription>

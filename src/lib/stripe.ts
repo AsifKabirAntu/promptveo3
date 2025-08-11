@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js'
 
 // Server-side Stripe instance (only available on server)
 let stripe: Stripe | null = null
-let STRIPE_PRODUCTS: { PRO_MONTHLY: string; PRO_YEARLY: string } | null = null
+let STRIPE_PRODUCTS: { PRO_MONTHLY: string; PRO_YEARLY: string; PRO_ONETIME: string } | null = null
 
 if (typeof window === 'undefined') {
   // Server-side only
@@ -19,14 +19,16 @@ if (typeof window === 'undefined') {
   // Stripe product IDs (server-side only)
   const monthlyPriceId = process.env.STRIPE_PRO_MONTHLY_PRICE_ID
   const yearlyPriceId = process.env.STRIPE_PRO_YEARLY_PRICE_ID
+  const onetimePriceId = process.env.STRIPE_PRO_ONETIME_PRICE_ID
 
-  if (!monthlyPriceId || !yearlyPriceId) {
-    throw new Error('Stripe price IDs are not configured. Please set STRIPE_PRO_MONTHLY_PRICE_ID and STRIPE_PRO_YEARLY_PRICE_ID')
+  if (!monthlyPriceId || !yearlyPriceId || !onetimePriceId) {
+    console.warn('Some Stripe price IDs are not configured. Monthly and yearly are for backward compatibility, onetime is required for new payments.')
   }
 
   STRIPE_PRODUCTS = {
-    PRO_MONTHLY: monthlyPriceId,
-    PRO_YEARLY: yearlyPriceId,
+    PRO_MONTHLY: monthlyPriceId || '',
+    PRO_YEARLY: yearlyPriceId || '',
+    PRO_ONETIME: onetimePriceId || '',
   }
 }
 
@@ -48,18 +50,20 @@ export async function createCheckoutSession({
   priceId,
   successUrl,
   cancelUrl,
+  mode = 'payment', // Default to one-time payment, can be 'subscription' for backward compatibility
 }: {
   userId: string
   priceId: string
   successUrl: string
   cancelUrl: string
+  mode?: 'payment' | 'subscription'
 }) {
   if (!stripe) {
     throw new Error('Stripe is not initialized')
   }
   
   try {
-    const session = await stripe.checkout.sessions.create({
+    const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       customer_email: undefined, // Will be collected during checkout
       line_items: [
         {
@@ -67,19 +71,25 @@ export async function createCheckoutSession({
           quantity: 1,
         },
       ],
-      mode: 'subscription',
+      mode,
       success_url: successUrl,
       cancel_url: cancelUrl,
       allow_promotion_codes: true,
       metadata: {
         userId,
       },
-      subscription_data: {
+    }
+
+    // Add subscription-specific configuration if needed
+    if (mode === 'subscription') {
+      sessionConfig.subscription_data = {
         metadata: {
           userId,
         },
-      },
-    })
+      }
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionConfig)
 
     return session
   } catch (error) {

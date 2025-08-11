@@ -30,8 +30,8 @@ export function DashboardHeader() {
     switch (pathname) {
       case '/dashboard':
         return 'Explore Library'
-      case '/dashboard/products':
-        return 'PromptVeo3 Wizard'
+      // case '/dashboard/products':
+      //   return 'PromptVeo3 Wizard'
       case '/dashboard/favorites':
         return 'My Favorites'
       case '/dashboard/my-prompts':
@@ -43,7 +43,7 @@ export function DashboardHeader() {
       default:
         if (pathname?.includes('/prompts/')) return 'Prompt Details'
         if (pathname?.includes('/timeline-prompts/')) return 'Timeline Prompt Details'
-        if (pathname?.includes('/products/')) return 'PromptVeo3 Wizard'
+        // if (pathname?.includes('/products/')) return 'PromptVeo3 Wizard'
         return 'Dashboard'
     }
   }

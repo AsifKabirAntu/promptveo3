@@ -21,16 +21,42 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Convert price type to actual price ID
+    console.log('Processing checkout request with priceId:', priceId)
+    console.log('Available Stripe products:', {
+      PRO_ONETIME: STRIPE_PRODUCTS?.PRO_ONETIME,
+      PRO_MONTHLY: STRIPE_PRODUCTS?.PRO_MONTHLY,
+      PRO_YEARLY: STRIPE_PRODUCTS?.PRO_YEARLY
+    })
+
+    // Convert price type to actual price ID and determine mode
     let actualPriceId: string
-    if (priceId === 'MONTHLY') {
+    let mode: 'payment' | 'subscription' = 'payment'
+    
+    if (priceId === 'ONETIME') {
+      actualPriceId = STRIPE_PRODUCTS.PRO_ONETIME
+      mode = 'payment' // Always use payment mode for one-time purchases
+      console.log('Using one-time payment with price ID:', actualPriceId)
+    } else if (priceId === 'MONTHLY') {
+      // Keep for backward compatibility
       actualPriceId = STRIPE_PRODUCTS.PRO_MONTHLY
+      mode = 'subscription'
+      console.log('Using monthly subscription with price ID:', actualPriceId)
     } else if (priceId === 'YEARLY') {
+      // Keep for backward compatibility
       actualPriceId = STRIPE_PRODUCTS.PRO_YEARLY
+      mode = 'subscription'
+      console.log('Using yearly subscription with price ID:', actualPriceId)
     } else {
       return NextResponse.json(
-        { error: 'Invalid price type' },
+        { error: 'Invalid price ID. Use ONETIME, MONTHLY, or YEARLY.' },
         { status: 400 }
+      )
+    }
+
+    if (!actualPriceId) {
+      return NextResponse.json(
+        { error: `Price ID not configured for ${priceId}. Check environment variables.` },
+        { status: 500 }
       )
     }
 
@@ -61,16 +87,17 @@ export async function POST(request: NextRequest) {
       userId: user.id,
     })
 
-    // Create checkout session
+    // Create checkout session with appropriate mode
     const session = await createCheckoutSession({
       userId: user.id,
       priceId: actualPriceId,
+      mode,
       successUrl: `${request.nextUrl.origin}/dashboard/billing?success=true`,
       cancelUrl: `${request.nextUrl.origin}/dashboard/billing?canceled=true`,
     })
 
     return NextResponse.json({ sessionId: session.id })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Checkout error:', error)
     
     // Return more specific error messages

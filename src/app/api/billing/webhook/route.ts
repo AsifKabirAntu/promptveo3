@@ -47,15 +47,20 @@ export async function POST(request: NextRequest) {
       switch (event.type) {
         case 'checkout.session.completed': {
           const session = event.data.object as Stripe.Checkout.Session
-          console.log('Checkout session completed:', session.id)
+          console.log('Checkout session completed:', session.id, 'mode:', session.mode)
           
           if (session.mode === 'subscription' && session.subscription) {
+            // Handle subscription payments (backward compatibility)
             const subscription = await stripe.subscriptions.retrieve(
               session.subscription as string
             )
             console.log('Retrieved subscription:', subscription.id)
             
             await handleSubscriptionChange(subscription, supabase, session)
+          } else if (session.mode === 'payment' && session.payment_status === 'paid') {
+            // Handle one-time payments
+            console.log('Processing one-time payment for session:', session.id)
+            await handleOneTimePayment(session, supabase)
           }
           break
         }
@@ -82,6 +87,71 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ received: true })
+}
+
+async function handleOneTimePayment(
+  session: Stripe.Checkout.Session,
+  supabase: any
+) {
+  // Get userId from session metadata
+  const userId = session.metadata?.userId
+  
+  if (!userId) {
+    console.error('No userId found in session metadata for one-time payment')
+    console.log('Session metadata:', session.metadata)
+    return
+  }
+  
+  console.log('Creating subscription record for one-time payment, userId:', userId)
+  
+  try {
+    // Create a "subscription" record for one-time payment (for compatibility with existing system)
+    // This represents a lifetime purchase rather than a recurring subscription
+    const subscriptionData = {
+      user_id: userId,
+      subscription_id: `onetime_${session.id}`, // Use session ID as unique identifier
+      status: 'active',
+      plan: 'pro',
+      price_id: session.line_items?.data[0]?.price?.id || 'onetime',
+      current_period_start: new Date().toISOString(),
+      current_period_end: null, // null indicates lifetime access
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }
+
+    // Insert or update subscription record
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .upsert(subscriptionData, {
+        onConflict: 'user_id'
+      })
+      .select()
+
+    if (error) {
+      console.error('Error creating subscription record for one-time payment:', error)
+      return
+    }
+
+    console.log('Successfully created subscription record for one-time payment:', data)
+
+    // Update user profile plan
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .update({ 
+        plan: 'pro',
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', userId)
+
+    if (profileError) {
+      console.error('Error updating user profile for one-time payment:', profileError)
+    } else {
+      console.log('Successfully updated user profile to pro plan')
+    }
+
+  } catch (error) {
+    console.error('Error handling one-time payment:', error)
+  }
 }
 
 async function handleSubscriptionChange(

@@ -1,6 +1,6 @@
-# 🚀 Stripe Subscription Setup Guide
+# 🚀 Stripe Payment Setup Guide (Updated for One-time Payments)
 
-This guide will walk you through setting up Stripe payments for your PromptVeo3 subscription system.
+This guide will walk you through setting up Stripe payments for your PromptVeo3 one-time payment system.
 
 ## 📋 Prerequisites
 
@@ -14,29 +14,27 @@ This guide will walk you through setting up Stripe payments for your PromptVeo3 
 
 1. **Login to Stripe Dashboard** → [dashboard.stripe.com](https://dashboard.stripe.com)
 
-2. **Create Pro Monthly Product:**
+2. **Create Pro One-time Product (PRIMARY):**
    - Go to **Products** → **Add Product**
-   - Name: `PromptVeo3 Pro Monthly`
-   - Description: `Unlimited access to all prompts and features`
-   - Pricing: `$14.99/month`
-   - Save the **Price ID** (starts with `price_`)
+   - Name: `PromptVeo3 Pro (One-time)`
+   - Description: `Lifetime access to all prompts and features - Early Bird Special`
+   - Pricing: `$29.00` (ONE-TIME payment, not recurring)
+   - **Important**: Make sure pricing model is set to "One-time" not "Recurring"
+   - Save the **Price ID** (starts with `price_`) - you'll need this
 
-3. **Create Pro Yearly Product:**
-   - Go to **Products** → **Add Product**
-   - Name: `PromptVeo3 Pro Yearly`
-   - Description: `Unlimited access to all prompts and features (annual)`
-   - Pricing: `$120/year`
-   - Save the **Price ID** (starts with `price_`)
+3. **Legacy Subscription Products (Optional - for backward compatibility):**
+   - **Pro Monthly:** `$14.99/month` (keep existing if you have users)
+   - **Pro Yearly:** `$120/year` (keep existing if you have users)
 
 ### 1.2 Configure Webhook Endpoint
 
-1. **Go to Webhooks** → **Add endpoint**
+1. **Go to Webhooks** → **Add endpoint** (or update existing)
 2. **Endpoint URL:** `https://www.promptveo3.com/api/billing/webhook`
 3. **Events to send:**
-   - `checkout.session.completed`
-   - `customer.subscription.created`
-   - `customer.subscription.updated`
-   - `customer.subscription.deleted`
+   - `checkout.session.completed` ⭐ (CRITICAL for one-time payments)
+   - `customer.subscription.created` (legacy)
+   - `customer.subscription.updated` (legacy)
+   - `customer.subscription.deleted` (legacy)
 4. **Save the webhook** and copy the **Signing Secret** (starts with `whsec_`)
 
 ### 1.3 Get API Keys
@@ -58,6 +56,9 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 
 # Stripe Product Price IDs
+STRIPE_PRO_ONETIME_PRICE_ID=price_your_onetime_price_id_here
+
+# Legacy Price IDs (Optional - for backward compatibility)
 STRIPE_PRO_MONTHLY_PRICE_ID=price_your_monthly_price_id_here
 STRIPE_PRO_YEARLY_PRICE_ID=price_your_yearly_price_id_here
 ```
@@ -68,53 +69,26 @@ Add the same environment variables to your Vercel project:
 
 1. **Go to Vercel Dashboard** → Your project → **Settings** → **Environment Variables**
 2. **Add each variable:**
-   - `STRIPE_SECRET_KEY` (use sandbox key for now)
-   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (use sandbox key for now)
-   - `STRIPE_WEBHOOK_SECRET` (use sandbox webhook secret)
-   - `STRIPE_PRO_MONTHLY_PRICE_ID`
-   - `STRIPE_PRO_YEARLY_PRICE_ID`
+   - `STRIPE_SECRET_KEY` (use sandbox key for testing, production key for live)
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (use sandbox key for testing, production key for live)
+   - `STRIPE_WEBHOOK_SECRET` (use sandbox webhook secret for testing)
+   - `STRIPE_PRO_ONETIME_PRICE_ID` ⭐ **REQUIRED**
+   - `STRIPE_PRO_MONTHLY_PRICE_ID` (optional - legacy)
+   - `STRIPE_PRO_YEARLY_PRICE_ID` (optional - legacy)
 
 ## 🔧 Step 3: Database Setup
 
-### 3.1 Create Subscriptions Table
+### 3.1 Subscription Table (Already exists)
 
-Run this SQL in your Supabase SQL editor:
-
-```sql
--- Create subscriptions table
-CREATE TABLE IF NOT EXISTS subscriptions (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
-  subscription_id TEXT NOT NULL,
-  status TEXT NOT NULL,
-  plan TEXT NOT NULL DEFAULT 'free',
-  current_period_start TIMESTAMP WITH TIME ZONE,
-  current_period_end TIMESTAMP WITH TIME ZONE,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Create indexes
-CREATE INDEX IF NOT EXISTS idx_subscriptions_user_id ON subscriptions(user_id);
-CREATE INDEX IF NOT EXISTS idx_subscriptions_status ON subscriptions(status);
-
--- Enable Row Level Security
-ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
-
--- Create RLS policies
-CREATE POLICY "Users can view their own subscriptions" ON subscriptions
-  FOR SELECT USING (auth.uid() = user_id);
-
-CREATE POLICY "Users can insert their own subscriptions" ON subscriptions
-  FOR INSERT WITH CHECK (auth.uid() = user_id);
-
-CREATE POLICY "Users can update their own subscriptions" ON subscriptions
-  FOR UPDATE USING (auth.uid() = user_id);
-```
+The existing subscriptions table will work for one-time payments. One-time purchases are stored as:
+- `subscription_id`: `onetime_{stripe_session_id}`
+- `status`: `active`
+- `plan`: `pro`
+- `current_period_end`: `null` (indicates lifetime access)
 
 ## 🔧 Step 4: Testing
 
-### 4.1 Local Testing
+### 4.1 Test One-time Payment Flow
 
 1. **Start your development server:**
    ```bash
@@ -123,86 +97,53 @@ CREATE POLICY "Users can update their own subscriptions" ON subscriptions
 
 2. **Test the billing page:**
    - Go to `/dashboard/billing`
-   - Should show your current plan (Free)
-   - Click "Upgrade to Pro" buttons
+   - Click "Get Early Bird Deal" 
+   - Use Stripe test card: `4242 4242 4242 4242`
+   - Complete the checkout
 
-3. **Test feature gating:**
-   - Try to favorite a prompt (should show paywall)
-   - Try to remix a prompt (should show paywall)
-   - Try to view JSON in timeline prompts (should show paywall)
-   - Try to create a new prompt (should show paywall)
+3. **Verify webhook processing:**
+   - Check your Vercel function logs
+   - Verify user gets Pro access
+   - Check database for subscription record
 
-### 4.2 Production Testing
+### 4.2 Test Cards (Sandbox Mode)
 
-1. **Deploy to Vercel:**
-   ```bash
-   git add .
-   git commit -m "Add Stripe subscription system"
-   git push
-   ```
+- **Success:** `4242 4242 4242 4242`
+- **Declined:** `4000 0000 0000 0002`
+- **Requires 3D Secure:** `4000 0000 0000 3220`
 
-2. **Test in production:**
-   - Visit your live site
-   - Test all the same features as local testing
+## 🚀 Step 5: Going Live
 
-## 🔧 Step 5: Going Live
+### 5.1 Switch to Production
 
-When ready for real payments:
+1. **Update Stripe keys** in Vercel environment variables:
+   - Replace `sk_test_` with `sk_live_`
+   - Replace `pk_test_` with `pk_live_`
 
-1. **Switch to Live mode** in Stripe Dashboard
-2. **Get new Live keys** (starts with `sk_live_` and `pk_live_`)
-3. **Update Vercel environment variables** with live keys
-4. **Create new webhook** with live endpoint
-5. **Test with real payment methods**
+2. **Create production webhook** endpoint in Stripe Dashboard
 
-## 🎯 Current Status
+3. **Test with real payment** (small amount first!)
 
-✅ **Completed:**
-- Stripe API integration
-- Subscription management system
-- Feature gating for free users
-- Paywall components
-- Billing page
-- Webhook handling
+### 5.2 Important Notes
 
-🔄 **In Progress:**
-- Environment variable setup
-- Testing in localhost
+- ✅ One-time payments = lifetime access
+- ✅ No recurring billing
+- ✅ Existing subscription users are grandfathered
+- ✅ New users get $29 Early Bird pricing
+- ⚠️ Test thoroughly before going live!
 
-📋 **Next Steps:**
-1. Add your Stripe keys to `.env.local`
-2. Test the billing page locally
-3. Verify all paywall features work
-4. Deploy to production
-
-## 🆘 Troubleshooting
+## 🛠️ Troubleshooting
 
 ### Common Issues:
 
-1. **"Neither apiKey nor config.authenticator provided"**
-   - Make sure `STRIPE_SECRET_KEY` is set in `.env.local`
+1. **"Stripe products not configured"** → Check `STRIPE_PRO_ONETIME_PRICE_ID` is set
+2. **Webhook not working** → Verify webhook endpoint URL and events
+3. **User not getting Pro access** → Check function logs for webhook errors
+4. **Payment succeeds but no access** → Verify database subscription record
 
-2. **Billing page shows blank**
-   - Check that all Stripe environment variables are set
-   - Verify the Stripe keys are correct
+### Debug Steps:
 
-3. **Paywall not showing**
-   - Check that `useAuth` is properly imported
-   - Verify subscription features are being calculated correctly
-
-4. **Webhook not working**
-   - Make sure webhook URL is correct
-   - Verify webhook secret is set
-   - Check Stripe dashboard for webhook delivery status
-
-## 📞 Support
-
-If you encounter any issues:
-1. Check the browser console for errors
-2. Verify all environment variables are set
-3. Test with Stripe's test card numbers
-4. Check Stripe dashboard for webhook events
-
-**Test Card Numbers:**
-- Success: `4242 4242 4242 4242`
-- Decline: `4000 0000 0000 0002` 
+1. Check Vercel function logs: `vercel logs`
+2. Check Stripe webhook delivery in dashboard
+3. Check database subscription table
+4. Verify environment variables are set correctly 

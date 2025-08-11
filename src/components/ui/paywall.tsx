@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { ReactNode } from "react"
+import { Badge } from "@/components/ui/badge"
 
 interface PaywallProps {
   title?: string
@@ -88,11 +89,16 @@ export function Paywall({
             <Star className="h-4 w-4 text-white" />
             <span className="text-white font-semibold">Pro Plan</span>
           </div>
-          <div className="mt-2">
-            <span className="text-2xl font-bold text-gray-900">$14.99</span>
-            <span className="text-gray-600">/month</span>
+          <div className="mt-2 flex items-center justify-center gap-2">
+            <span className="text-lg text-gray-500 line-through">$79</span>
+            <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
+              Early Bird
+            </Badge>
           </div>
-          <div className="text-sm text-gray-500">or $120/year (save 33%)</div>
+          <div className="mt-1">
+            <span className="text-2xl font-bold text-gray-900">$29</span>
+            <span className="text-gray-600"> one-time</span>
+          </div>
         </div>
 
         {/* CTA Button */}
