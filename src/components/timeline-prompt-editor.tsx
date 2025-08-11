@@ -17,7 +17,7 @@ interface TimelineStep {
   sequence: number
   timestamp: string
   action: string
-  audio: string
+  dialogue: string
 }
 
 interface TimelineFormData {
@@ -53,7 +53,7 @@ export function TimelinePromptEditor({ isCreateMode = false }: TimelinePromptEdi
     camera_setup: "",
     lighting: "",
     negative_prompts: [],
-    timeline: [{ sequence: 1, timestamp: "0:00", action: "", audio: "" }],
+    timeline: [{ sequence: 1, timestamp: "0:00", action: "", dialogue: "" }],
     is_featured: false,
     is_public: true
   })
@@ -137,7 +137,7 @@ export function TimelinePromptEditor({ isCreateMode = false }: TimelinePromptEdi
           sequence: prev.timeline.length + 1,
           timestamp: "",
           action: "",
-          audio: ""
+          dialogue: ""
         }
       ]
     }))
@@ -179,7 +179,12 @@ export function TimelinePromptEditor({ isCreateMode = false }: TimelinePromptEdi
         camera_setup: formData.camera_setup,
         lighting: formData.lighting,
         negative_prompts: formData.negative_prompts,
-        timeline_sequence: formData.timeline,
+        timeline_sequence: formData.timeline.map(step => ({
+          sequence: step.sequence,
+          timestamp: step.timestamp,
+          action: step.action,
+          audio: step.dialogue // Map dialogue to audio for API compatibility
+        })),
         is_public: formData.is_public,
         is_featured: formData.is_featured
       }
@@ -491,12 +496,12 @@ export function TimelinePromptEditor({ isCreateMode = false }: TimelinePromptEdi
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Audio
+                      Dialogue
                     </label>
                     <textarea
-                      value={step.audio}
-                      onChange={(e) => updateTimelineStep(index, 'audio', e.target.value)}
-                      placeholder="Describe the audio/sound for this sequence..."
+                      value={step.dialogue}
+                      onChange={(e) => updateTimelineStep(index, 'dialogue', e.target.value)}
+                      placeholder="Describe the dialogue/speech for this sequence..."
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder:text-gray-600"
                       rows={2}
                     />

@@ -570,8 +570,8 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
                                     <p className="text-gray-600 text-sm">{step.action}</p>
                                   </div>
                                   <div>
-                                    <h5 className="font-medium text-gray-700 text-sm">Dialogue</h5>
-                                    <p className="text-gray-600 text-sm">{step.dialogue}</p>
+                                    <h5 className="font-medium text-gray-700 text-sm">Audio</h5>
+                                    <p className="text-gray-600 text-sm">{step.audio}</p>
                                   </div>
                                 </div>
                               </div>
