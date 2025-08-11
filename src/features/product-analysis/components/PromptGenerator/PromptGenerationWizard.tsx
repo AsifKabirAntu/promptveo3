@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -177,6 +178,7 @@ const CAMERA_OPTIONS: CameraOption[] = [
 ]
 
 export function PromptGenerationWizard({ product, onClose }: PromptGenerationWizardProps) {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState<'style' | 'generating' | 'result'>('style')
   const [selectedStyle, setSelectedStyle] = useState<StyleOption | null>(null)
   const [selectedCamera, setSelectedCamera] = useState<CameraOption | null>(null)
@@ -706,6 +708,25 @@ export function PromptGenerationWizard({ product, onClose }: PromptGenerationWiz
         )}
 
         {/* Linear Step Content */}
+        {currentStep === 'style' && !isAnalyzing && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-blue-900 mb-1">✨ Try Enhanced Multi-Scene Generation</h3>
+                <p className="text-sm text-blue-700">
+                  Create professional videos with multiple 8-second scenes using advanced styles like Cinematic, AI Vlogs, ASMR, and more.
+                </p>
+              </div>
+              <Button 
+                onClick={() => router.push(`/dashboard/products/${product.id}/generate-enhanced`)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              >
+                Try Enhanced Mode
+              </Button>
+            </div>
+          </div>
+        )}
+
         {currentStep === 'style' && analysisData && (
           <div className="space-y-8">
             {/* Linear Style Selection */}

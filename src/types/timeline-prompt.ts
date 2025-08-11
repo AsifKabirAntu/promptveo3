@@ -3,7 +3,10 @@ export interface TimelineSequence {
   sequence: number
   timestamp: string
   action: string
-  audio: string
+  dialogue: string
+  sounds: string
+  negativePrompt: string
+  productDescription: string
 }
 
 export interface TimelinePrompt {
