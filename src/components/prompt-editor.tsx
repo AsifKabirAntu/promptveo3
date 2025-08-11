@@ -90,7 +90,7 @@ export function PromptEditor({ isCreateMode = false }: PromptEditorProps) {
             const timelineString = originalPrompt.timeline.map(step => (
               `Sequence ${step.sequence} (${step.timestamp}):\n` +
               `Action: ${step.action}\n` +
-              `Audio: ${step.audio}\n`
+              `Dialogue: ${step.dialogue}\n`
             )).join('\n\n')
 
             // Map all fields from timeline prompt to regular prompt format
