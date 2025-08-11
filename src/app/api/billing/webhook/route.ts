@@ -57,8 +57,8 @@ export async function POST(request: NextRequest) {
             console.log('Retrieved subscription:', subscription.id)
             
             await handleSubscriptionChange(subscription, supabase, session)
-          } else if (session.mode === 'payment' && session.payment_status === 'paid') {
-            // Handle one-time payments
+          } else if (session.mode === 'payment' && (session.payment_status === 'paid' || session.payment_status === 'no_payment_required')) {
+            // Handle one-time payments (including 100% discounts/coupons)
             console.log('Processing one-time payment for session:', session.id)
             await handleOneTimePayment(session, supabase)
           }
