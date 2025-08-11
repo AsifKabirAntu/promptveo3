@@ -398,8 +398,8 @@ export function TimelinePromptDetail({ prompt }: TimelinePromptDetailProps) {
                               <p className="text-gray-900">{step.action}</p>
                             </div>
                             <div>
-                              <h4 className="text-sm font-medium text-gray-700 mb-1">Audio</h4>
-                              <p className="text-gray-900">{step.audio}</p>
+                              <h4 className="text-sm font-medium text-gray-700 mb-1">Dialogue</h4>
+                              <p className="text-gray-900">{step.dialogue}</p>
                             </div>
                           </div>
                         </div>
