@@ -58,9 +58,15 @@ export async function POST(request: NextRequest) {
             
             await handleSubscriptionChange(subscription, supabase, session)
           } else if (session.mode === 'payment' && (session.payment_status === 'paid' || session.payment_status === 'no_payment_required')) {
-            // Handle one-time payments (including 100% discounts/coupons)
-            console.log('Processing one-time payment for session:', session.id)
+            // Handle one-time payments (including $0 payments with coupons)
+            console.log('Processing one-time payment for session:', session.id, 'payment_status:', session.payment_status)
             await handleOneTimePayment(session, supabase)
+          } else {
+            console.log('Unhandled session mode/status:', {
+              mode: session.mode,
+              payment_status: session.payment_status,
+              session_id: session.id
+            })
           }
           break
         }
@@ -99,25 +105,39 @@ async function handleOneTimePayment(
   if (!userId) {
     console.error('No userId found in session metadata for one-time payment')
     console.log('Session metadata:', session.metadata)
+    console.log('Full session object:', {
+      id: session.id,
+      mode: session.mode,
+      payment_status: session.payment_status,
+      amount_total: session.amount_total,
+      customer: session.customer
+    })
     return
   }
   
-  console.log('Creating subscription record for one-time payment, userId:', userId)
+  console.log('Creating subscription record for one-time payment:', {
+    sessionId: session.id,
+    userId,
+    paymentStatus: session.payment_status,
+    amountTotal: session.amount_total
+  })
   
   try {
     // Create a "subscription" record for one-time payment (for compatibility with existing system)
     // This represents a lifetime purchase rather than a recurring subscription
     const subscriptionData = {
       user_id: userId,
-      subscription_id: `onetime_${session.id}`, // Use session ID as unique identifier
+      stripe_subscription_id: `onetime_${session.id}`, // Use session ID as unique identifier - FIXED: was subscription_id
       status: 'active',
       plan: 'pro',
-      price_id: session.line_items?.data[0]?.price?.id || 'onetime',
+      price_id: session.line_items?.data?.[0]?.price?.id || 'onetime',
       current_period_start: new Date().toISOString(),
       current_period_end: null, // null indicates lifetime access
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
     }
+
+    console.log('Inserting subscription data:', subscriptionData)
 
     // Insert or update subscription record
     const { data, error } = await supabase
@@ -134,11 +154,14 @@ async function handleOneTimePayment(
 
     console.log('Successfully created subscription record for one-time payment:', data)
 
-    // Update user profile plan
+        // Update user profile plan
+    console.log('Updating user profile to pro plan for userId:', userId)
     const { error: profileError } = await supabase
       .from('profiles')
-      .update({ 
+      .update({
         plan: 'pro',
+        subscription_status: 'active',
+        subscription_id: `onetime_${session.id}`,
         updated_at: new Date().toISOString()
       })
       .eq('id', userId)
