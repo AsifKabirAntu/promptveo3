@@ -10,12 +10,14 @@ import {
   Plus, 
   Settings,
   CreditCard,
-  Package
+  Package,
+  Sparkles
 } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 
 const navigation = [
   { name: "Explore Library", href: "/dashboard", icon: Compass },
+  { name: "Generate Prompt", href: "/dashboard/generate-prompt", icon: Sparkles },
   // { name: "Products", href: "/dashboard/products", icon: Package },
   { name: "Favorites", href: "/dashboard/favorites", icon: Heart },
   { name: "My Prompts", href: "/dashboard/my-prompts", icon: FolderOpen },
