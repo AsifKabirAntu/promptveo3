@@ -1,0 +1,16 @@
+{
+  "totalScraped": 3,
+  "totalIngested": 0,
+  "totalErrors": 3,
+  "videosAvailable": 3,
+  "featuredPrompts": 1,
+  "categories": [
+    "Cinematic"
+  ],
+  "topCreators": [
+    "Ahmed",
+    "The"
+  ],
+  "ingestedAt": "2025-08-13T09:39:53.715Z",
+  "readyForProduction": false
+}

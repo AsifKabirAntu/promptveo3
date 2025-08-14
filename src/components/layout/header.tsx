@@ -52,6 +52,12 @@ export function Header() {
             >
               Insights
             </Link>
+            <Link
+              href="/community"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-105 transform hover:translate-y-[-1px]"
+            >
+              Community
+            </Link>
             <button 
               onClick={() => handleNavClick('pricing')}
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-all duration-300 hover:scale-105 transform hover:translate-y-[-1px]"
@@ -114,6 +120,13 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Insights
+              </Link>
+              <Link
+                href="/community"
+                className="block px-3 py-2 text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-all duration-200 hover:translate-x-1"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Community
               </Link>
               <button 
                 onClick={() => handleNavClick('pricing')}
