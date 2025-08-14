@@ -691,20 +691,22 @@ export default function CommunityPromptDetailPage() {
             </Card>
           </div>
         </div>
+        
+        {/* Related Prompts Section */}
+        <div className="mt-12">
+          <RelatedPrompts category={prompt.prompt_category} currentPromptId={prompt.id} />
+        </div>
+        
+        {/* CTA Section */}
+        <div className="mt-16">
+          <BlogCTA 
+            primaryText="Explore More Community Prompts"
+            primaryHref="/community"
+            secondaryText="Join the Community"
+            secondaryHref="/auth/signin"
+          />
+        </div>
       </div>
-    </div>
-    
-    {/* Related Prompts Section */}
-    <RelatedPrompts category={prompt.prompt_category} currentPromptId={prompt.id} />
-    
-    {/* CTA Section */}
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <BlogCTA 
-        primaryText="Explore More Community Prompts"
-        primaryHref="/community"
-        secondaryText="Join the Community"
-        secondaryHref="/auth/signin"
-      />
     </div>
     
     <Footer />
