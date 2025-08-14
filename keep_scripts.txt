@@ -1,0 +1,2 @@
+delete-ulazai-prompts.ts
+setup-community-db.ts

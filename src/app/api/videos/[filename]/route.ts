@@ -45,7 +45,7 @@ export async function GET(
     headers.set('Accept-Ranges', 'bytes')
     headers.set('Cache-Control', 'public, max-age=86400') // Cache for 1 day
     
-    return new NextResponse(videoBuffer, {
+    return new NextResponse(videoBuffer as any, {
       status: 200,
       headers
     })
