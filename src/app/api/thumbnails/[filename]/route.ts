@@ -45,7 +45,7 @@ export async function GET(
     headers.set('Content-Length', thumbnailBuffer.length.toString())
     headers.set('Cache-Control', 'public, max-age=31536000, immutable') // Cache for 1 year
     
-    return new NextResponse(thumbnailBuffer, { headers })
+    return new NextResponse(thumbnailBuffer as BodyInit, { headers })
   } catch (error) {
     console.error('Error serving thumbnail:', error)
     return new NextResponse('Internal Server Error', { status: 500 })
