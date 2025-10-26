@@ -17,6 +17,7 @@ import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { BlogCTA } from '@/components/blog/blog-cta'
 import { RelatedPrompts } from '@/components/community/related-prompts'
+import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
 
 interface CommunityPromptDetail {
   id: string
@@ -697,8 +698,13 @@ export default function CommunityPromptDetailPage() {
           <RelatedPrompts category={prompt.prompt_category} currentPromptId={prompt.id} />
         </div>
         
+        {/* FluxFrame Ad */}
+        <div className="mt-12">
+          <FluxFrameInlineAd />
+        </div>
+        
         {/* CTA Section */}
-        <div className="mt-16">
+        <div className="mt-12">
           <BlogCTA 
             primaryText="Explore More Community Prompts"
             primaryHref="/community"

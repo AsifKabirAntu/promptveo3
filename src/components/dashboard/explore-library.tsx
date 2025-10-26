@@ -17,6 +17,7 @@ import { Prompt } from "@/types/prompt"
 import { TimelinePrompt } from "@/types/timeline-prompt"
 import { ExplodedBuildPrompt } from "@/types/exploded-prompt"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
 
 // Community prompt interface
 interface CommunityPrompt {
@@ -735,6 +736,11 @@ export function ExploreLibrary() {
             <option value={36}>36</option>
           </select>
         </div>
+      </div>
+
+      {/* FluxFrame Ad - Before Prompt Grid */}
+      <div className="mb-8">
+        <FluxFrameInlineAd />
       </div>
 
       {/* Prompt Grid */}

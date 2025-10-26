@@ -11,6 +11,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { BlogCTA } from '@/components/blog/blog-cta'
+import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
 
 interface CommunityPrompt {
   id: string
@@ -438,6 +439,9 @@ export default function CommunityDirectoryPage() {
 
             {/* Main Content */}
             <div className="flex-1">
+              {/* FluxFrame Ad - Top of content */}
+              <FluxFrameInlineAd />
+              
               {/* Loading State */}
               {loading && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

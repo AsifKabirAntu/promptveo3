@@ -13,6 +13,7 @@ import { Card } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useAuth } from '@/components/auth/auth-provider'
+import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
 
 interface CommunityPromptDetail {
   id: string
@@ -344,6 +345,11 @@ export default function DashboardCommunityPromptDetail() {
             </Card>
           )}
         </div>
+      </div>
+      
+      {/* FluxFrame Ad - Before end of page */}
+      <div className="mt-12">
+        <FluxFrameInlineAd />
       </div>
     </div>
   )
