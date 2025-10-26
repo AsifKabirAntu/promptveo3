@@ -19,7 +19,7 @@ export default function HomePage() {
         <HowItWorks />
         
         {/* FluxFrame Ad #1 - After How It Works */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <FluxFrameInlineAd />
           </div>
@@ -30,7 +30,7 @@ export default function HomePage() {
         <CommunityPreview />
         
         {/* FluxFrame Ad #2 - After Community Preview */}
-        <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <FluxFrameInlineAd />
           </div>
