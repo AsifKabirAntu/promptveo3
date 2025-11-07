@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { 
   ArrowLeft, Copy, Heart, Eye, User, Clock, ChevronRight, 
-  Download, Play, Settings, Camera, Lightbulb, 
-  MapPin, Zap, Timer, Monitor, Tag, Users
+  Download, Settings, Camera, Lightbulb, 
+  MapPin, Zap, Timer, Monitor, Tag
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -192,9 +192,69 @@ export default function DashboardCommunityPromptDetail() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content */}
+        {/* Main Content - LEFT SIDE (2 columns) */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Video Player */}
+          {/* Header */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <Badge className="bg-blue-100 text-blue-800 border-0">
+                {prompt.prompt_category}
+              </Badge>
+            </div>
+            
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{prompt.title}</h1>
+            
+            <p className="text-lg text-gray-600 mb-6">{prompt.clean_description || prompt.description}</p>
+            
+            {/* Tags */}
+            {(() => {
+              const displayTags = prompt.extracted_tags && prompt.extracted_tags.length > 0 
+                ? prompt.extracted_tags 
+                : []
+              return displayTags.length > 0 && (
+                <div className="mb-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Tag className="w-4 h-4 text-gray-400" />
+                    <span className="text-sm font-medium text-gray-700">Tags</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {displayTags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-sm">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )
+            })()}
+            
+            {/* Creator & Stats */}
+            <div className="flex items-center justify-between border-b border-gray-200 pb-6">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <User className="w-4 h-4 text-gray-400" />
+                  <span className="font-medium text-gray-900">{prompt.creator_name}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <Clock className="w-4 h-4" />
+                  <span>{formatDate(prompt.created_at)}</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <div className="flex items-center gap-1">
+                  <Eye className="w-4 h-4" />
+                  <span>{viewsCount} views</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Heart className="w-4 h-4" />
+                  <span>{likesCount} likes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Video Preview */}
           {(prompt.local_video_path || prompt.video_url || prompt.video_thumbnail_url) && (
             <Card className="overflow-hidden">
               <div className="aspect-video bg-black">
@@ -221,96 +281,156 @@ export default function DashboardCommunityPromptDetail() {
             </Card>
           )}
 
-          {/* Title and Description */}
-          <div>
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                  {prompt.title}
-                </h1>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <User className="w-4 h-4" />
-                    <span>{prompt.creator_name}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{formatDate(prompt.created_at)}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Eye className="w-4 h-4" />
-                    <span>{viewsCount} views</span>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Actions */}
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleLike}
-                  className={isLiked ? "text-red-500 border-red-200" : ""}
-                >
-                  <Heart className={`w-4 h-4 mr-1 ${isLiked ? 'fill-current' : ''}`} />
-                  {likesCount}
-                </Button>
-              </div>
-            </div>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              {prompt.clean_description || prompt.description}
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-6">
-              <Badge className="bg-blue-100 text-blue-800">
-                {prompt.prompt_category}
-              </Badge>
-              {(prompt.extracted_tags || prompt.tags).map((tag) => (
-                <Badge key={tag} variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
-              {prompt.difficulty_level && (
-                <Badge variant="outline">
-                  {prompt.difficulty_level}
-                </Badge>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar */}
-        <div className="space-y-6">
-          {/* Prompt Text */}
+          {/* Prompt Content */}
           <Card className="p-6">
             {isPro ? (
               <>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">Prompt Text</h3>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleCopy}
-                    className="flex items-center gap-1"
-                  >
-                    <Copy className="w-4 h-4" />
-                    {copied ? 'Copied!' : 'Copy'}
-                  </Button>
+                  <h3 className="font-semibold text-gray-900">Veo 3 Prompt</h3>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleCopy}
+                      className="flex items-center gap-1"
+                    >
+                      <Copy className="w-4 h-4" />
+                      {copied ? 'Copied!' : 'Copy'}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
+                        const url = URL.createObjectURL(blob)
+                        const a = document.createElement('a')
+                        a.href = url
+                        a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
+                        document.body.appendChild(a)
+                        a.click()
+                        document.body.removeChild(a)
+                        URL.revokeObjectURL(url)
+                      }}
+                      className="flex items-center gap-1"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download
+                    </Button>
+                  </div>
                 </div>
                 
-                <Textarea
-                  value={prompt.veo3_prompt || prompt.full_prompt_text}
-                  readOnly
-                  className="min-h-[200px] resize-none bg-gray-50"
-                />
+                {/* Display clean Veo 3 prompt using parsed content */}
+                {(() => {
+                  // Priority: prompt_structure (JSON) > veo3_prompt (text) > full_prompt_text 
+                  let cleanPrompt = null
+                  let isJSON = false
+
+                  // First prioritize structured JSON data for better formatting
+                  if (prompt.prompt_structure && typeof prompt.prompt_structure === 'object') {
+                    cleanPrompt = prompt.prompt_structure
+                    isJSON = true
+                  } else if (prompt.veo3_prompt) {
+                    cleanPrompt = prompt.veo3_prompt
+                    isJSON = false
+                  } else {
+                    // Try to parse full_prompt_text as JSON
+                    try {
+                      const parsed = JSON.parse(prompt.full_prompt_text)
+                      if (parsed && typeof parsed === 'object') {
+                        cleanPrompt = parsed
+                        isJSON = true
+                      } else {
+                        cleanPrompt = prompt.full_prompt_text
+                      }
+                    } catch {
+                      // If not JSON, use the raw text
+                      cleanPrompt = prompt.full_prompt_text
+                    }
+                  }
+
+                  if (isJSON && cleanPrompt) {
+                    // If it's JSON, render it in a structured, readable format
+                    const renderJSONContent = (obj: any) => {
+                      if (typeof obj === 'string') {
+                        return (
+                          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <p className="text-gray-800 leading-relaxed whitespace-pre-wrap">{obj}</p>
+                          </div>
+                        )
+                      }
+                      
+                      return (
+                        <div className="space-y-4">
+                          {Object.entries(obj).map(([key, value]) => (
+                            <div key={key} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                              <div className="flex items-center gap-2 mb-3">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize">
+                                  {key.replace(/_/g, ' ')}
+                                </span>
+                              </div>
+                              <div className="text-gray-800 leading-relaxed">
+                                {typeof value === 'object' ? (
+                                  <pre className="text-sm font-mono whitespace-pre-wrap">
+                                    {JSON.stringify(value, null, 2)}
+                                  </pre>
+                                ) : (
+                                  <p className="whitespace-pre-wrap">{String(value)}</p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )
+                    }
+
+                    return (
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
+                          <p className="text-sm text-blue-800 font-medium">
+                            📋 Structured Veo 3 Prompt
+                          </p>
+                        </div>
+                        {renderJSONContent(cleanPrompt)}
+                        
+                        {/* Collapsible raw JSON for technical users */}
+                        <details className="mt-4">
+                          <summary className="cursor-pointer text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center gap-2">
+                            <span>Show Raw JSON</span>
+                          </summary>
+                          <div className="mt-3 bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto">
+                            <pre className="text-xs font-mono leading-relaxed">
+                              {JSON.stringify(cleanPrompt, null, 2)}
+                            </pre>
+                          </div>
+                        </details>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <div className="space-y-4">
+                        <div className="bg-green-50 border border-green-200 rounded-md p-3">
+                          <p className="text-sm text-green-800 font-medium">
+                            📝 Veo 3 Prompt
+                          </p>
+                          <p className="text-xs text-green-600 mt-1">
+                            Copy this prompt and paste it into your Veo 3 interface
+                          </p>
+                        </div>
+                        <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                          <p className="text-gray-800 leading-relaxed text-base whitespace-pre-wrap">
+                            {cleanPrompt || 'No prompt content available'}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  }
+                })()}
                 
-                <div className="mt-4 text-xs text-gray-500">
-                  <div className="flex items-center justify-between">
-                    <span>Pro access</span>
-                    <span>{(prompt.veo3_prompt || prompt.full_prompt_text).length} characters</span>
-                  </div>
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                  <p className="text-sm text-blue-800">
+                    <strong>How to use:</strong> Copy this prompt and paste it into your Veo 3 interface. 
+                    Adjust parameters as needed for your specific requirements.
+                  </p>
                 </div>
               </>
             ) : (
@@ -322,38 +442,103 @@ export default function DashboardCommunityPromptDetail() {
               />
             )}
           </Card>
+        </div>
 
-          {/* Technical Details */}
-          {(prompt.style || prompt.camera_settings || prompt.lighting) && (
+        {/* Sidebar - RIGHT SIDE (1 column) */}
+        <div className="space-y-6">
+          {/* Creator Info */}
+          <Card className="p-6">
+            <h3 className="font-semibold text-gray-900 mb-4">Creator</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">{prompt.creator_name}</p>
+                <p className="text-sm text-gray-500">Prompt Creator</p>
+              </div>
+            </div>
+            
+            {/* Creator Stats */}
+            <div className="flex items-center justify-between text-sm text-gray-500 pt-3 border-t">
+              <div className="flex items-center gap-1">
+                <Eye className="w-4 h-4" />
+                <span>{viewsCount.toLocaleString()} views</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Heart className="w-4 h-4" />
+                <span>{likesCount.toLocaleString()} likes</span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card className="p-6">
+            <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="space-y-3">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={handleLike}
+              >
+                <Heart className={`w-4 h-4 mr-2 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
+                {isLiked ? 'Liked' : 'Like This Prompt'}
+              </Button>
+            </div>
+          </Card>
+
+          {/* Prompt Details */}
+          {(prompt.style || prompt.camera_settings || prompt.lighting || prompt.duration_seconds || prompt.aspect_ratio) && (
             <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Technical Details</h3>
-              <div className="space-y-3 text-sm">
+              <h3 className="font-semibold text-gray-900 mb-4">Prompt Details</h3>
+              <div className="space-y-4">
                 {prompt.style && (
-                  <div className="flex items-center gap-2">
-                    <Camera className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Style:</span>
-                    <span className="font-medium">{prompt.style}</span>
-                  </div>
-                )}
-                {prompt.camera_settings && (
-                  <div className="flex items-center gap-2">
-                    <Monitor className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Camera:</span>
-                    <span className="font-medium">{prompt.camera_settings}</span>
-                  </div>
-                )}
-                {prompt.lighting && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <Lightbulb className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Lighting:</span>
-                    <span className="font-medium">{prompt.lighting}</span>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Style</p>
+                      <p className="text-sm text-gray-600">{prompt.style}</p>
+                    </div>
                   </div>
                 )}
+                
+                {prompt.camera_settings && (
+                  <div className="flex items-center gap-3">
+                    <Camera className="w-4 h-4 text-gray-400" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Camera</p>
+                      <p className="text-sm text-gray-600">{prompt.camera_settings}</p>
+                    </div>
+                  </div>
+                )}
+                
+                {prompt.lighting && (
+                  <div className="flex items-center gap-3">
+                    <Zap className="w-4 h-4 text-gray-400" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Lighting</p>
+                      <p className="text-sm text-gray-600">{prompt.lighting}</p>
+                    </div>
+                  </div>
+                )}
+                
                 {prompt.duration_seconds && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     <Timer className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Duration:</span>
-                    <span className="font-medium">{prompt.duration_seconds}s</span>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Duration</p>
+                      <p className="text-sm text-gray-600">{prompt.duration_seconds} seconds</p>
+                    </div>
+                  </div>
+                )}
+                
+                {prompt.aspect_ratio && (
+                  <div className="flex items-center gap-3">
+                    <Monitor className="w-4 h-4 text-gray-400" />
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Aspect Ratio</p>
+                      <p className="text-sm text-gray-600">{prompt.aspect_ratio}</p>
+                    </div>
                   </div>
                 )}
               </div>
