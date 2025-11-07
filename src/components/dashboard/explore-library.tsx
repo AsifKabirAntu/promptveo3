@@ -143,7 +143,6 @@ function CommunityPromptCard({ prompt }: { prompt: CommunityPrompt }) {
 
           <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
             <span>{formatDate(prompt.created_at)}</span>
-            <span className="text-blue-600 font-medium">Free</span>
           </div>
         </div>
       </div>
