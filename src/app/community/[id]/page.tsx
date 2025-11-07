@@ -595,14 +595,6 @@ export default function CommunityPromptDetailPage() {
             <Card className="p-6">
               <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
               <div className="space-y-3">
-                <Button onClick={copyPrompt} className="w-full" variant="default">
-                  <Copy className="w-4 h-4 mr-2" />
-                  {copied ? 'Copied!' : 'Copy Prompt'}
-                </Button>
-                <Button onClick={downloadPrompt} variant="outline" className="w-full">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download
-                </Button>
                 <Button 
                   variant="outline" 
                   className="w-full"
