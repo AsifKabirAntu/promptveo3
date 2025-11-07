@@ -554,87 +554,97 @@ export function ExploreLibrary() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Modern Tab Navigation */}
-      <div className="mb-8 bg-white rounded-2xl shadow-sm border border-gray-200 p-2">
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setTimelineFilter('all')}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-              timelineFilter === 'all'
-                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200'
-                : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-sm">All Prompts</span>
-              <span className={`text-xs font-semibold ${timelineFilter === 'all' ? 'text-blue-100' : 'text-gray-400'}`}>
+      {/* Professional Tab Navigation */}
+      <div className="mb-6">
+        <div className="border-b border-gray-200">
+          <nav className="flex space-x-8 overflow-x-auto scrollbar-hide" aria-label="Tabs">
+            <button
+              onClick={() => setTimelineFilter('all')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                timelineFilter === 'all'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              All Prompts
+              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
+                timelineFilter === 'all'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'bg-gray-100 text-gray-600'
+              }`}>
                 {regularPrompts.length + timelinePrompts.length + explodedPrompts.length}
               </span>
-            </div>
-          </button>
-          <button
-            onClick={() => setTimelineFilter('with-timeline')}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-              timelineFilter === 'with-timeline'
-                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200'
-                : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-sm">With Timeline</span>
-              <span className={`text-xs font-semibold ${timelineFilter === 'with-timeline' ? 'text-blue-100' : 'text-gray-400'}`}>
+            </button>
+            <button
+              onClick={() => setTimelineFilter('with-timeline')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                timelineFilter === 'with-timeline'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              With Timeline
+              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
+                timelineFilter === 'with-timeline'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'bg-gray-100 text-gray-600'
+              }`}>
                 {timelinePrompts.length}
               </span>
-            </div>
-          </button>
-          <button
-            onClick={() => setTimelineFilter('without-timeline')}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-              timelineFilter === 'without-timeline'
-                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200'
-                : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-sm">Without Timeline</span>
-              <span className={`text-xs font-semibold ${timelineFilter === 'without-timeline' ? 'text-blue-100' : 'text-gray-400'}`}>
+            </button>
+            <button
+              onClick={() => setTimelineFilter('without-timeline')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                timelineFilter === 'without-timeline'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Without Timeline
+              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
+                timelineFilter === 'without-timeline'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'bg-gray-100 text-gray-600'
+              }`}>
                 {regularPrompts.length}
               </span>
-            </div>
-          </button>
-          <button
-            onClick={() => setTimelineFilter('special')}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-              timelineFilter === 'special'
-                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200'
-                : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-sm">Special Build</span>
-              <span className={`text-xs font-semibold ${timelineFilter === 'special' ? 'text-blue-100' : 'text-gray-400'}`}>
+            </button>
+            <button
+              onClick={() => setTimelineFilter('special')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                timelineFilter === 'special'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Special Build
+              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
+                timelineFilter === 'special'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'bg-gray-100 text-gray-600'
+              }`}>
                 {explodedPrompts.length}
               </span>
-            </div>
-          </button>
-          <button
-            onClick={() => setTimelineFilter('community')}
-            className={`flex-1 min-w-[140px] px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-              timelineFilter === 'community'
-                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md shadow-blue-200'
-                : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex flex-col items-center gap-1">
-              <div className="flex items-center gap-1.5">
-                <Users className="w-4 h-4" />
-                <span className="text-sm">Community</span>
-              </div>
-              <span className={`text-xs font-semibold ${timelineFilter === 'community' ? 'text-blue-100' : 'text-gray-400'}`}>
+            </button>
+            <button
+              onClick={() => setTimelineFilter('community')}
+              className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors flex items-center ${
+                timelineFilter === 'community'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              <Users className="w-4 h-4 mr-1.5" />
+              Community
+              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
+                timelineFilter === 'community'
+                  ? 'bg-blue-100 text-blue-600'
+                  : 'bg-gray-100 text-gray-600'
+              }`}>
                 {communityPrompts.length}
               </span>
-            </div>
-          </button>
+            </button>
+          </nav>
         </div>
       </div>
 
