@@ -15,6 +15,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useAuth } from '@/components/auth/auth-provider'
 import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
 import { Paywall } from '@/components/ui/paywall'
+import { RelatedCommunityPrompts } from '@/components/dashboard/related-community-prompts'
 
 interface CommunityPromptDetail {
   id: string
@@ -576,6 +577,12 @@ export default function DashboardCommunityPromptDetail() {
           )}
         </div>
       </div>
+      
+      {/* Related Prompts */}
+      <RelatedCommunityPrompts 
+        category={prompt.prompt_category} 
+        currentPromptId={prompt.id} 
+      />
       
       {/* FluxFrame Ad - Before end of page */}
       <div className="mt-12">
