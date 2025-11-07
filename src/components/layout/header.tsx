@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/ui/logo"
 import { smoothScrollWithBounce } from "@/lib/smooth-scroll"
@@ -9,9 +10,16 @@ import { Menu, X } from "lucide-react"
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   const handleNavClick = (sectionId: string) => {
-    smoothScrollWithBounce(sectionId)
+    // If not on homepage, navigate to homepage first
+    if (pathname !== '/') {
+      router.push(`/#${sectionId}`)
+    } else {
+      smoothScrollWithBounce(sectionId)
+    }
     setIsMobileMenuOpen(false)
   }
 
@@ -74,7 +82,7 @@ export function Header() {
             </Link>
             <Link href="/auth/signup">
               <Button size="sm">
-                Join Beta
+                Get Pro
               </Button>
             </Link>
             

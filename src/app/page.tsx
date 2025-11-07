@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect } from 'react'
 import { Hero } from "@/components/landing/hero"
 import { HowItWorks } from "@/components/landing/how-it-works"
 import { PromptPreview } from "@/components/landing/prompt-preview"
@@ -9,8 +12,20 @@ import { CTAFooter } from "@/components/landing/cta-footer"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { FluxFrameInlineAd } from "@/components/ads/FluxFrameInlineAd"
+import { smoothScrollWithBounce } from "@/lib/smooth-scroll"
 
 export default function HomePage() {
+  // Handle hash navigation when coming from other pages
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    if (hash) {
+      // Wait for page to load, then scroll
+      setTimeout(() => {
+        smoothScrollWithBounce(hash)
+      }, 100)
+    }
+  }, [])
+
   return (
     <>
       <Header />
