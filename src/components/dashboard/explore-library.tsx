@@ -696,8 +696,8 @@ export function ExploreLibrary() {
       {/* Results Count and Page Size Control */}
       <div className="flex items-center justify-between mb-6 bg-white rounded-xl p-4 border border-gray-200">
         <p className="text-sm text-gray-600">
-          Showing <span className="font-medium text-gray-900">{displayPrompts.length}</span> of <span className="font-medium text-gray-900">{totalCount}</span> prompts
-          {!features.canViewAllPrompts && subscription?.plan !== 'pro' && (
+          Showing <span className="font-medium text-gray-900">{timelineFilter === 'community' ? communityDisplayPrompts.length : displayPrompts.length}</span> of <span className="font-medium text-gray-900">{timelineFilter === 'community' ? finalTotalCount : totalCount}</span> prompts
+          {!features.canViewAllPrompts && subscription?.plan !== 'pro' && timelineFilter !== 'community' && (
             <span className="text-gray-500 ml-2">
               (Free users can only view details for 4 specific prompts)
             </span>
@@ -723,11 +723,6 @@ export function ExploreLibrary() {
             <option value={36}>36</option>
           </select>
         </div>
-      </div>
-
-      {/* FluxFrame Ad - Before Prompt Grid */}
-      <div className="mb-8">
-        <FluxFrameInlineAd />
       </div>
 
       {/* Prompt Grid */}
@@ -854,6 +849,11 @@ export function ExploreLibrary() {
           />
         </div>
       )}
+
+      {/* FluxFrame Ad - At the bottom */}
+      <div className="mt-12">
+        <FluxFrameInlineAd />
+      </div>
 
       {/* Side Sheet for Prompt Details */}
       <PromptSideSheet 
