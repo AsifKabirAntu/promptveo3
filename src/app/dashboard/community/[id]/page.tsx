@@ -476,6 +476,36 @@ export default function DashboardCommunityPromptDetail() {
           <Card className="p-6">
             <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="space-y-3">
+              {isPro ? (
+                <>
+                  <Button 
+                    onClick={handleCopy}
+                    className="w-full"
+                    variant="default"
+                  >
+                    <Copy className="w-4 h-4 mr-2" />
+                    {copied ? 'Copied!' : 'Copy Prompt'}
+                  </Button>
+                  <Button 
+                    onClick={() => {
+                      const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
+                      const url = URL.createObjectURL(blob)
+                      const a = document.createElement('a')
+                      a.href = url
+                      a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
+                      document.body.appendChild(a)
+                      a.click()
+                      document.body.removeChild(a)
+                      URL.revokeObjectURL(url)
+                    }}
+                    variant="outline"
+                    className="w-full"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download
+                  </Button>
+                </>
+              ) : null}
               <Button 
                 variant="outline" 
                 className="w-full"
