@@ -46,14 +46,6 @@ type UnifiedPrompt = (Prompt & { type: 'regular' }) | (TimelinePrompt & { type: 
 // Community Prompt Card Component
 function CommunityPromptCard({ prompt }: { prompt: CommunityPrompt }) {
   const router = useRouter()
-  
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    })
-  }
 
   return (
     <div className="group cursor-pointer" onClick={() => router.push(`/dashboard/community/${prompt.id}`)}>
@@ -139,10 +131,6 @@ function CommunityPromptCard({ prompt }: { prompt: CommunityPrompt }) {
                 <span>{prompt.likes_count}</span>
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
-            <span>{formatDate(prompt.created_at)}</span>
           </div>
         </div>
       </div>
