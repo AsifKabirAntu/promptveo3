@@ -27,20 +27,20 @@ export function Hero() {
             Product reveals, room transformations, timelines, ads, and more. Browse, remix, and export perfect JSON with zero guesswork.
           </p>
           <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-gray-700 sm:text-lg">
-            Browse our library of 700+ ready‑to‑use Veo 3 prompts.
+            Browse our library of 1000+ ready‑to‑use Veo 3 prompts.
           </p>
           
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/dashboard">
               <Button size="lg" className="px-6 sm:px-8 w-full sm:w-auto">
-                Explore 700+ Prompts
+                Explore 1000+ Prompts
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
             
             <Link href="#pricing">
               <Button variant="outline" size="lg" className="px-6 sm:px-8 w-full sm:w-auto">
-                Join Beta
+                Get Pro
               </Button>
             </Link>
           </div>

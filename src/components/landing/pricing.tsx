@@ -11,7 +11,7 @@ const plans = [
     description: "Perfect for getting started",
     features: [
       { name: "View 4 prompts", included: true },
-      { name: "Browse entire prompt library (700+ prompts)", included: true },
+      { name: "Browse entire prompt library (1000+ prompts)", included: true },
       { name: "Basic search and filters", included: true },
       { name: "JSON export for Veo 3", included: false },
       { name: "Save favorites", included: false },
@@ -28,7 +28,7 @@ const plans = [
     description: "Unlock unlimited access",
     features: [
       { name: "Unlimited prompt access", included: true },
-      { name: "Browse entire prompt library (700+ prompts)", included: true },
+      { name: "Browse entire prompt library (1000+ prompts)", included: true },
       { name: "Advanced search and filters", included: true },
       { name: "JSON export for Veo 3", included: true },
       { name: "Save favorites", included: true },

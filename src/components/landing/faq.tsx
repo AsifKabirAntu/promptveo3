@@ -29,7 +29,7 @@ const faqs = [
   {
     question: "How do I get started?",
     answer:
-      "Click Join Beta to create an account. Then explore the library, copy or download JSON prompts, and start generating videos in Veo 3.",
+      "Click Get Pro to create an account. Then explore the library, copy or download JSON prompts, and start generating videos in Veo 3.",
   },
 ]
 

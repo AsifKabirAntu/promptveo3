@@ -33,7 +33,7 @@ export function BlogCTA({
           
           {/* Main Content */}
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Want 700+ structured prompts you can remix?
+            Want 1000+ structured prompts you can remix?
           </h3>
           
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
