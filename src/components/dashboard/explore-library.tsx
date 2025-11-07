@@ -554,10 +554,11 @@ export function ExploreLibrary() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Professional Tab Navigation */}
+      {/* Compact Header with Tabs, Search, and Filters */}
       <div className="mb-6">
-        <div className="border-b border-gray-200">
-          <nav className="flex space-x-8 overflow-x-auto scrollbar-hide" aria-label="Tabs">
+        <div className="flex items-center justify-between gap-4 border-b border-gray-200">
+          {/* Tabs on the left */}
+          <nav className="flex space-x-6 overflow-x-auto scrollbar-hide" aria-label="Tabs">
             <button
               onClick={() => setTimelineFilter('all')}
               className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
@@ -566,14 +567,7 @@ export function ExploreLibrary() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              All Prompts
-              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
-                timelineFilter === 'all'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'bg-gray-100 text-gray-600'
-              }`}>
-                {regularPrompts.length + timelinePrompts.length + explodedPrompts.length}
-              </span>
+              All <span className={`ml-1.5 ${timelineFilter === 'all' ? 'text-blue-500' : 'text-gray-400'}`}>({regularPrompts.length + timelinePrompts.length + explodedPrompts.length})</span>
             </button>
             <button
               onClick={() => setTimelineFilter('with-timeline')}
@@ -583,14 +577,7 @@ export function ExploreLibrary() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              With Timeline
-              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
-                timelineFilter === 'with-timeline'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'bg-gray-100 text-gray-600'
-              }`}>
-                {timelinePrompts.length}
-              </span>
+              Timeline <span className={`ml-1.5 ${timelineFilter === 'with-timeline' ? 'text-blue-500' : 'text-gray-400'}`}>({timelinePrompts.length})</span>
             </button>
             <button
               onClick={() => setTimelineFilter('without-timeline')}
@@ -600,14 +587,7 @@ export function ExploreLibrary() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Without Timeline
-              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
-                timelineFilter === 'without-timeline'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'bg-gray-100 text-gray-600'
-              }`}>
-                {regularPrompts.length}
-              </span>
+              Regular <span className={`ml-1.5 ${timelineFilter === 'without-timeline' ? 'text-blue-500' : 'text-gray-400'}`}>({regularPrompts.length})</span>
             </button>
             <button
               onClick={() => setTimelineFilter('special')}
@@ -617,14 +597,7 @@ export function ExploreLibrary() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Special Build
-              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
-                timelineFilter === 'special'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'bg-gray-100 text-gray-600'
-              }`}>
-                {explodedPrompts.length}
-              </span>
+              Special <span className={`ml-1.5 ${timelineFilter === 'special' ? 'text-blue-500' : 'text-gray-400'}`}>({explodedPrompts.length})</span>
             </button>
             <button
               onClick={() => setTimelineFilter('community')}
@@ -634,84 +607,80 @@ export function ExploreLibrary() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              <Users className="w-4 h-4 mr-1.5" />
-              Community
-              <span className={`ml-2 py-0.5 px-2 rounded-full text-xs font-semibold ${
-                timelineFilter === 'community'
-                  ? 'bg-blue-100 text-blue-600'
-                  : 'bg-gray-100 text-gray-600'
-              }`}>
-                {communityPrompts.length}
-              </span>
+              <Users className="w-4 h-4 mr-1" />
+              Community <span className={`ml-1.5 ${timelineFilter === 'community' ? 'text-blue-500' : 'text-gray-400'}`}>({communityPrompts.length})</span>
             </button>
           </nav>
-        </div>
-      </div>
 
-      {/* Modern Search Bar */}
-      <div className="mb-6">
-        <div className="relative">
-          <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          <Input
-            placeholder="Search prompts by title or description..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-14 pr-6 py-6 text-base rounded-2xl bg-white shadow-sm border-gray-200 hover:shadow-md focus:shadow-md focus:border-blue-400 transition-all w-full"
-          />
-        </div>
-      </div>
-
-      {/* Modern Filter Section */}
-      <div className="mb-6 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-        <div 
-          className="flex items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
-          onClick={() => setFiltersExpanded(!filtersExpanded)}
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
-              <Filter className="w-5 h-5 text-blue-600" />
+          {/* Search and Filter on the right */}
+          <div className="flex items-center gap-2 pb-2">
+            {/* Compact Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Input
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 pr-3 py-2 text-sm rounded-lg bg-white border-gray-300 focus:border-blue-400 transition-all w-64"
+              />
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-900">Filters</h3>
+
+            {/* Compact Filter Button */}
+            <button
+              onClick={() => setFiltersExpanded(!filtersExpanded)}
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                selectedCategory
+                  ? 'bg-blue-50 text-blue-600 border border-blue-200'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              <Filter className="w-4 h-4" />
+              Filters
               {selectedCategory && (
-                <p className="text-xs text-gray-500 mt-0.5">1 filter active</p>
+                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
               )}
-            </div>
-          </div>
-          <div className={`transform transition-transform duration-200 ${filtersExpanded ? 'rotate-180' : ''}`}>
-            <ChevronDown className="w-5 h-5 text-gray-400" />
+            </button>
           </div>
         </div>
 
+        {/* Expandable Filter Panel */}
         {filtersExpanded && (
-          <div className="px-5 pb-5 border-t border-gray-100">
-            <div className="pt-5">
-              <label className="text-sm font-medium text-gray-700 mb-3 block">Category</label>
-              <div className="flex flex-wrap gap-2">
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between mb-3">
+              <label className="text-sm font-medium text-gray-700">Category</label>
+              {selectedCategory && (
                 <button
                   onClick={() => setSelectedCategory("")}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    selectedCategory === "" 
-                      ? "bg-blue-500 text-white shadow-sm" 
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedCategory("")}
+                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                  selectedCategory === "" 
+                    ? "bg-blue-500 text-white" 
+                    : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                }`}
+              >
+                All
+              </button>
+              {contextualFilters.categories.map(category => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                    selectedCategory === category 
+                      ? "bg-blue-500 text-white" 
+                      : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
                   }`}
                 >
-                  All Categories
+                  {category}
                 </button>
-                {contextualFilters.categories.map(category => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      selectedCategory === category 
-                        ? "bg-blue-500 text-white shadow-sm" 
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         )}
