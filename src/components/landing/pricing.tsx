@@ -23,7 +23,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$29",
+    price: "$49",
     period: " one-time",
     description: "Unlock unlimited access",
     features: [
@@ -35,10 +35,8 @@ const plans = [
       { name: "Remix prompts", included: true },
       { name: "Create custom prompts", included: true },
     ],
-    cta: "Get Early Bird Deal",
+    cta: "Get Pro Access",
     popular: true,
-    originalPrice: "$79",
-    savings: "Early Bird",
   },
 ]
 
@@ -76,14 +74,6 @@ export function Pricing() {
                   <span>{plan.name}</span>
                 </CardTitle>
                 <div className="mt-4">
-                  {plan.originalPrice && (
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-2xl text-gray-500 line-through">{plan.originalPrice}</span>
-                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200">
-                        {plan.savings}
-                      </Badge>
-                    </div>
-                  )}
                   <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
                   {plan.period && (
                     <span className="text-lg text-gray-600">{plan.period}</span>

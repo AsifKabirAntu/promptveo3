@@ -18,6 +18,8 @@ import { Footer } from '@/components/layout/footer'
 import { BlogCTA } from '@/components/blog/blog-cta'
 import { RelatedPrompts } from '@/components/community/related-prompts'
 import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
+import { useAuth } from '@/components/auth/auth-provider'
+import { Paywall } from '@/components/ui/paywall'
 
 interface CommunityPromptDetail {
   id: string
@@ -54,12 +56,16 @@ interface CommunityPromptDetail {
 export default function CommunityPromptDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const { user, features, subscription } = useAuth()
   const [prompt, setPrompt] = useState<CommunityPromptDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState(false)
   const [liked, setLiked] = useState(false)
   const [isLiking, setIsLiking] = useState(false)
   const supabase = createClientComponentClient()
+  
+  // Check if user has Pro access
+  const isPro = subscription?.plan === 'pro' || features?.canViewAllPrompts
 
   useEffect(() => {
     if (params.id) {
@@ -388,22 +394,24 @@ export default function CommunityPromptDetailPage() {
 
             {/* Prompt Content */}
             <Card className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold text-gray-900">Veo 3 Prompt</h3>
-                <div className="flex gap-2">
-                  <Button onClick={copyPrompt} variant="outline" size="sm">
-                    <Copy className="w-4 h-4 mr-2" />
-                    {copied ? 'Copied!' : 'Copy'}
-                  </Button>
-                  <Button onClick={downloadPrompt} variant="outline" size="sm">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download
-                  </Button>
-                </div>
-              </div>
-              
-              {/* Display clean Veo 3 prompt using parsed content */}
-              {(() => {
+              {isPro ? (
+                <>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-gray-900">Veo 3 Prompt</h3>
+                    <div className="flex gap-2">
+                      <Button onClick={copyPrompt} variant="outline" size="sm">
+                        <Copy className="w-4 h-4 mr-2" />
+                        {copied ? 'Copied!' : 'Copy'}
+                      </Button>
+                      <Button onClick={downloadPrompt} variant="outline" size="sm">
+                        <Download className="w-4 h-4 mr-2" />
+                        Download
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {/* Display clean Veo 3 prompt using parsed content */}
+                  {(() => {
                 // Priority: prompt_structure (JSON) > veo3_prompt (text) > full_prompt_text 
                 let cleanPrompt = null
                 let isJSON = false
@@ -509,14 +517,23 @@ export default function CommunityPromptDetailPage() {
                     </div>
                   )
                 }
-              })()}
-              
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                <p className="text-sm text-blue-800">
-                  <strong>How to use:</strong> Copy this prompt and paste it into your Veo 3 interface. 
-                  Adjust parameters as needed for your specific requirements.
-                </p>
-              </div>
+                  })()}
+                  
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                    <p className="text-sm text-blue-800">
+                      <strong>How to use:</strong> Copy this prompt and paste it into your Veo 3 interface. 
+                      Adjust parameters as needed for your specific requirements.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <Paywall 
+                  title="Unlock Community Prompts"
+                  description="Upgrade to Pro to access full Veo3 prompts from our community library. Get unlimited access to all prompts and features."
+                  feature="view community prompts"
+                  showUpgradeButton={true}
+                />
+              )}
             </Card>
 
             {/* Tags */}

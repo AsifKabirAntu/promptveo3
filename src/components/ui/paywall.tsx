@@ -89,14 +89,8 @@ export function Paywall({
             <Star className="h-4 w-4 text-white" />
             <span className="text-white font-semibold">Pro Plan</span>
           </div>
-          <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="text-lg text-gray-500 line-through">$79</span>
-            <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
-              Early Bird
-            </Badge>
-          </div>
-          <div className="mt-1">
-            <span className="text-2xl font-bold text-gray-900">$29</span>
+          <div className="mt-4">
+            <span className="text-3xl font-bold text-gray-900">$49</span>
             <span className="text-gray-600"> one-time</span>
           </div>
         </div>

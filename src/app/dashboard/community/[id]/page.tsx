@@ -14,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useAuth } from '@/components/auth/auth-provider'
 import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
+import { Paywall } from '@/components/ui/paywall'
 
 interface CommunityPromptDetail {
   id: string
@@ -50,7 +51,7 @@ interface CommunityPromptDetail {
 export default function DashboardCommunityPromptDetail() {
   const params = useParams()
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, features, subscription } = useAuth()
   const [prompt, setPrompt] = useState<CommunityPromptDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -58,6 +59,9 @@ export default function DashboardCommunityPromptDetail() {
   const [isLiked, setIsLiked] = useState(false)
   const [likesCount, setLikesCount] = useState(0)
   const [viewsCount, setViewsCount] = useState(0)
+  
+  // Check if user has Pro access
+  const isPro = subscription?.plan === 'pro' || features?.canViewAllPrompts
 
   useEffect(() => {
     if (params.id) {
@@ -281,31 +285,42 @@ export default function DashboardCommunityPromptDetail() {
         <div className="space-y-6">
           {/* Prompt Text */}
           <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-gray-900">Prompt Text</h3>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCopy}
-                className="flex items-center gap-1"
-              >
-                <Copy className="w-4 h-4" />
-                {copied ? 'Copied!' : 'Copy'}
-              </Button>
-            </div>
-            
-            <Textarea
-              value={prompt.veo3_prompt || prompt.full_prompt_text}
-              readOnly
-              className="min-h-[200px] resize-none bg-gray-50"
-            />
-            
-            <div className="mt-4 text-xs text-gray-500">
-              <div className="flex items-center justify-between">
-                <span>Free to use</span>
-                <span>{(prompt.veo3_prompt || prompt.full_prompt_text).length} characters</span>
-              </div>
-            </div>
+            {isPro ? (
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-semibold text-gray-900">Prompt Text</h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCopy}
+                    className="flex items-center gap-1"
+                  >
+                    <Copy className="w-4 h-4" />
+                    {copied ? 'Copied!' : 'Copy'}
+                  </Button>
+                </div>
+                
+                <Textarea
+                  value={prompt.veo3_prompt || prompt.full_prompt_text}
+                  readOnly
+                  className="min-h-[200px] resize-none bg-gray-50"
+                />
+                
+                <div className="mt-4 text-xs text-gray-500">
+                  <div className="flex items-center justify-between">
+                    <span>Pro access</span>
+                    <span>{(prompt.veo3_prompt || prompt.full_prompt_text).length} characters</span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Paywall 
+                title="Unlock Community Prompts"
+                description="Upgrade to Pro to access full Veo3 prompts from our community library. Get unlimited access to all prompts and features."
+                feature="view community prompts"
+                showUpgradeButton={true}
+              />
+            )}
           </Card>
 
           {/* Technical Details */}

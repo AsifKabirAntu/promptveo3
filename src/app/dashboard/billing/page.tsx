@@ -204,7 +204,7 @@ function BillingPageContent() {
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-gray-900">
-              {isPro ? '$29' : 'Free'}
+              {isPro ? '$49' : 'Free'}
             </div>
             {isPro && (
               <div className="text-sm text-gray-500">
@@ -226,27 +226,16 @@ function BillingPageContent() {
               <div className="grid gap-6 max-w-md mx-auto">
                 {/* Pro One-time */}
                 <div className="relative bg-white border border-blue-200 rounded-xl shadow-sm p-6 transition-all hover:shadow-md hover:border-blue-300 flex flex-col h-full">
-                  <div className="absolute top-0 right-0 -mt-3 -mr-3">
-                    <span className="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-                      Early Bird
-                    </span>
-                  </div>
                   <div>
                     <div className="flex justify-between items-start mb-4">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">Pro (One-time)</h3>
-                        <p className="text-gray-600 text-sm">Early bird special pricing</p>
+                        <p className="text-gray-600 text-sm">Lifetime access to all features</p>
                       </div>
                     </div>
                     
                     <div className="mb-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-xl text-gray-500 line-through">$79</span>
-                        <Badge variant="outline" className="bg-red-50 text-red-700 border-red-200 text-xs">
-                          Early Bird Special
-                        </Badge>
-                      </div>
-                      <div className="text-3xl font-bold text-gray-900">$29<span className="text-lg font-normal text-gray-600"> one-time</span></div>
+                      <div className="text-3xl font-bold text-gray-900">$49<span className="text-lg font-normal text-gray-600"> one-time</span></div>
                     </div>
                     
                     <ul className="space-y-3 mb-6">
@@ -334,7 +323,7 @@ function BillingPageContent() {
                         Pro One-time Purchase
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        $29.00
+                        $49.00
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
