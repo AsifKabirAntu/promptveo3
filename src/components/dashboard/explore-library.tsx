@@ -553,7 +553,7 @@ export function ExploreLibrary() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       {/* Compact Header with Tabs, Search, and Filters */}
       <div className="mb-6">
         <div className="flex items-center justify-between gap-4 border-b border-gray-200">

@@ -37,8 +37,8 @@ export function DashboardSidebar() {
           </Link>
         </div>
         
-        <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-          <nav className="mt-5 flex-1 space-y-1 px-2">
+        <div className="flex flex-1 flex-col overflow-y-auto pt-2 pb-4">
+          <nav className="mt-2 flex-1 space-y-1 px-2">
             {navigation.map((item) => {
               const isActive = pathname === item.href
               return (
