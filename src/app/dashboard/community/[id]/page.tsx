@@ -14,7 +14,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useAuth } from '@/components/auth/auth-provider'
 import { FluxFrameInlineAd } from '@/components/ads/FluxFrameInlineAd'
-import { Paywall } from '@/components/ui/paywall'
 import { RelatedCommunityPrompts } from '@/components/dashboard/related-community-prompts'
 
 interface CommunityPromptDetail {
@@ -52,7 +51,7 @@ interface CommunityPromptDetail {
 export default function DashboardCommunityPromptDetail() {
   const params = useParams()
   const router = useRouter()
-  const { user, features, subscription } = useAuth()
+  const { user } = useAuth()
   const [prompt, setPrompt] = useState<CommunityPromptDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -60,9 +59,6 @@ export default function DashboardCommunityPromptDetail() {
   const [isLiked, setIsLiked] = useState(false)
   const [likesCount, setLikesCount] = useState(0)
   const [viewsCount, setViewsCount] = useState(0)
-  
-  // Check if user has Pro access
-  const isPro = subscription?.plan === 'pro' || features?.canViewAllPrompts
 
   useEffect(() => {
     if (params.id) {
@@ -284,44 +280,42 @@ export default function DashboardCommunityPromptDetail() {
 
           {/* Prompt Content */}
           <Card className="p-6">
-            {isPro ? (
-              <>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">Veo 3 Prompt</h3>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleCopy}
-                      className="flex items-center gap-1"
-                    >
-                      <Copy className="w-4 h-4" />
-                      {copied ? 'Copied!' : 'Copy'}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
-                        const url = URL.createObjectURL(blob)
-                        const a = document.createElement('a')
-                        a.href = url
-                        a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
-                        document.body.appendChild(a)
-                        a.click()
-                        document.body.removeChild(a)
-                        URL.revokeObjectURL(url)
-                      }}
-                      className="flex items-center gap-1"
-                    >
-                      <Download className="w-4 h-4" />
-                      Download
-                    </Button>
-                  </div>
-                </div>
-                
-                {/* Display clean Veo 3 prompt using parsed content */}
-                {(() => {
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-gray-900">Veo 3 Prompt</h3>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopy}
+                  className="flex items-center gap-1"
+                >
+                  <Copy className="w-4 h-4" />
+                  {copied ? 'Copied!' : 'Copy'}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
+                    const url = URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
+                    document.body.appendChild(a)
+                    a.click()
+                    document.body.removeChild(a)
+                    URL.revokeObjectURL(url)
+                  }}
+                  className="flex items-center gap-1"
+                >
+                  <Download className="w-4 h-4" />
+                  Download
+                </Button>
+              </div>
+            </div>
+            
+            {/* Display clean Veo 3 prompt using parsed content */}
+            {(() => {
                   // Priority: prompt_structure (JSON) > veo3_prompt (text) > full_prompt_text 
                   let cleanPrompt = null
                   let isJSON = false
@@ -425,23 +419,14 @@ export default function DashboardCommunityPromptDetail() {
                       </div>
                     )
                   }
-                })()}
-                
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
-                  <p className="text-sm text-blue-800">
-                    <strong>How to use:</strong> Copy this prompt and paste it into your Veo 3 interface. 
-                    Adjust parameters as needed for your specific requirements.
-                  </p>
-                </div>
-              </>
-            ) : (
-              <Paywall 
-                title="Unlock Community Prompts"
-                description="Upgrade to Pro to access full Veo3 prompts from our community library. Get unlimited access to all prompts and features."
-                feature="view community prompts"
-                showUpgradeButton={true}
-              />
-            )}
+            })()}
+            
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <p className="text-sm text-blue-800">
+                <strong>How to use:</strong> Copy this prompt and paste it into your Veo 3 interface. 
+                Adjust parameters as needed for your specific requirements.
+              </p>
+            </div>
           </Card>
         </div>
 
@@ -477,36 +462,32 @@ export default function DashboardCommunityPromptDetail() {
           <Card className="p-6">
             <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="space-y-3">
-              {isPro ? (
-                <>
-                  <Button 
-                    onClick={handleCopy}
-                    className="w-full"
-                    variant="default"
-                  >
-                    <Copy className="w-4 h-4 mr-2" />
-                    {copied ? 'Copied!' : 'Copy Prompt'}
-                  </Button>
-                  <Button 
-                    onClick={() => {
-                      const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
-                      const url = URL.createObjectURL(blob)
-                      const a = document.createElement('a')
-                      a.href = url
-                      a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
-                      document.body.appendChild(a)
-                      a.click()
-                      document.body.removeChild(a)
-                      URL.revokeObjectURL(url)
-                    }}
-                    variant="outline"
-                    className="w-full"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download
-                  </Button>
-                </>
-              ) : null}
+              <Button 
+                onClick={handleCopy}
+                className="w-full"
+                variant="default"
+              >
+                <Copy className="w-4 h-4 mr-2" />
+                {copied ? 'Copied!' : 'Copy Prompt'}
+              </Button>
+              <Button 
+                onClick={() => {
+                  const blob = new Blob([prompt.veo3_prompt || prompt.full_prompt_text], { type: 'text/plain' })
+                  const url = URL.createObjectURL(blob)
+                  const a = document.createElement('a')
+                  a.href = url
+                  a.download = `${prompt.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-veo3-prompt.txt`
+                  document.body.appendChild(a)
+                  a.click()
+                  document.body.removeChild(a)
+                  URL.revokeObjectURL(url)
+                }}
+                variant="outline"
+                className="w-full"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download
+              </Button>
               <Button 
                 variant="outline" 
                 className="w-full"

@@ -64,43 +64,7 @@ export function BlogCTA({
           
           {/* Social Proof */}
           <div className="mt-8 flex items-center justify-center text-gray-500 text-sm">
-            <div className="flex items-center">
-              <div className="flex -space-x-2 mr-3">
-                <img 
-                  src="/avatars/creator-1.jpg" 
-                  alt="Creator profile" 
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%234F46E5'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='14' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E"
-                  }}
-                />
-                <img 
-                  src="/avatars/creator-2.jpg" 
-                  alt="Creator profile" 
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EC4899'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='14' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E"
-                  }}
-                />
-                <img 
-                  src="/avatars/creator-3.jpg" 
-                  alt="Creator profile" 
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2310B981'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='14' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E"
-                  }}
-                />
-                <img 
-                  src="/avatars/creator-4.jpg" 
-                  alt="Creator profile" 
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F59E0B'/%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='14' font-weight='bold'%3ED%3C/text%3E%3C/svg%3E"
-                  }}
-                />
-              </div>
-              <span>Join 1,000+ creators</span>
-            </div>
+            <span>Join 500+ creators</span>
           </div>
         </div>
       </div>
