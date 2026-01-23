@@ -74,7 +74,12 @@ export function Pricing() {
                   <span>{plan.name}</span>
                 </CardTitle>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                  <div className="flex items-center justify-center gap-3">
+                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                    {plan.popular && (
+                      <span className="text-xl text-gray-400 line-through">$49</span>
+                    )}
+                  </div>
                   {plan.period && (
                     <span className="text-lg text-gray-600">{plan.period}</span>
                   )}

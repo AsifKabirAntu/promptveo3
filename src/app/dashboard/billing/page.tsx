@@ -203,8 +203,13 @@ function BillingPageContent() {
             </div>
           </div>
           <div className="text-right">
-            <div className="text-2xl font-bold text-gray-900">
-              {isPro ? '$14.99' : 'Free'}
+            <div className="flex items-center justify-end gap-2">
+              <div className="text-2xl font-bold text-gray-900">
+                {isPro ? '$14.99' : 'Free'}
+              </div>
+              {isPro && (
+                <span className="text-lg text-gray-400 line-through">$49</span>
+              )}
             </div>
             {isPro && (
               <div className="text-sm text-gray-500">
@@ -235,7 +240,10 @@ function BillingPageContent() {
                     </div>
                     
                     <div className="mb-6">
-                      <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600"> one-time</span></div>
+                      <div className="flex items-center gap-3">
+                        <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600"> one-time</span></div>
+                        <span className="text-xl text-gray-400 line-through">$49</span>
+                      </div>
                     </div>
                     
                     <ul className="space-y-3 mb-6">

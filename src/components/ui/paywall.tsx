@@ -89,9 +89,12 @@ export function Paywall({
             <Star className="h-4 w-4 text-white" />
             <span className="text-white font-semibold">Pro Plan</span>
           </div>
-          <div className="mt-4">
-            <span className="text-3xl font-bold text-gray-900">$14.99</span>
-            <span className="text-gray-600"> one-time</span>
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <div>
+              <span className="text-3xl font-bold text-gray-900">$14.99</span>
+              <span className="text-gray-600"> one-time</span>
+            </div>
+            <span className="text-xl text-gray-400 line-through">$49</span>
           </div>
         </div>
 
