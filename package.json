@@ -64,7 +64,9 @@
     "remove-vertical-watermarks": "tsx scripts/remove-vertical-watermarks.ts",
     "remove-vertical-supabase": "tsx scripts/remove-vertical-watermarks-supabase.ts",
     "categorize-prompts": "tsx scripts/analyze-and-categorize-prompts.ts",
-    "export-prompts": "tsx scripts/export-prompts-to-pdf.ts"
+    "export-prompts": "tsx scripts/export-prompts-to-pdf.ts",
+    "test-price-email": "tsx scripts/test-price-email.ts",
+    "send-price-email": "tsx scripts/send-price-announcement-email.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
