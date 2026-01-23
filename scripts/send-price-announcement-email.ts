@@ -223,8 +223,9 @@ async function sendEmailBatch(users: Array<{ email: string; name?: string; id: s
         results.sent++
       }
       
-      // Small delay between individual emails (100ms)
-      await new Promise(resolve => setTimeout(resolve, 100))
+      // Delay between emails to respect rate limit (2 req/sec = 500ms minimum)
+      // Using 600ms to be safe (1.67 emails/sec)
+      await new Promise(resolve => setTimeout(resolve, 600))
       
     } catch (error: any) {
       console.error(`❌ Exception sending to ${user.email}:`, error.message)
