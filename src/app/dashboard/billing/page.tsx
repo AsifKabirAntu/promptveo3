@@ -204,7 +204,7 @@ function BillingPageContent() {
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-gray-900">
-              {isPro ? '$49' : 'Free'}
+              {isPro ? '$14.99' : 'Free'}
             </div>
             {isPro && (
               <div className="text-sm text-gray-500">
@@ -235,7 +235,7 @@ function BillingPageContent() {
                     </div>
                     
                     <div className="mb-6">
-                      <div className="text-3xl font-bold text-gray-900">$49<span className="text-lg font-normal text-gray-600"> one-time</span></div>
+                      <div className="text-3xl font-bold text-gray-900">$14.99<span className="text-lg font-normal text-gray-600"> one-time</span></div>
                     </div>
                     
                     <ul className="space-y-3 mb-6">
@@ -323,7 +323,7 @@ function BillingPageContent() {
                         Pro One-time Purchase
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        $49.00
+                        $14.99
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">

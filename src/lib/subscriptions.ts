@@ -216,7 +216,7 @@ export function getPlanDisplayName(plan: SubscriptionPlan): string {
 export function getPlanPrice(plan: SubscriptionPlan, interval: 'month' | 'year' = 'month'): string {
   switch (plan) {
     case 'pro':
-      return '$49'
+      return '$14.99'
     case 'free':
       return '$0'
     default:

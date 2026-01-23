@@ -4,6 +4,7 @@ import "./globals.css"
 import { AuthProvider } from '@/components/auth/auth-provider'
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/next'
+import { PriceAnnouncementBanner } from '@/components/ui/price-announcement-banner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -50,6 +51,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#A855F7" />
       </head>
       <body suppressHydrationWarning={true} className={inter.className}>
+        <PriceAnnouncementBanner />
         <AuthProvider>
           {children}
           <Toaster richColors position="top-center" />

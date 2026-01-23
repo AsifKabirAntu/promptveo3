@@ -90,7 +90,7 @@ export function Paywall({
             <span className="text-white font-semibold">Pro Plan</span>
           </div>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-gray-900">$49</span>
+            <span className="text-3xl font-bold text-gray-900">$14.99</span>
             <span className="text-gray-600"> one-time</span>
           </div>
         </div>

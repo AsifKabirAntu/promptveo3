@@ -23,7 +23,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$49",
+    price: "$14.99",
     period: " one-time",
     description: "Unlock unlimited access",
     features: [
