@@ -17,6 +17,12 @@
  * - It will automatically continue from where it left off
  */
 
+import { config } from 'dotenv'
+import { resolve } from 'path'
+
+// Load .env.local file
+config({ path: resolve(process.cwd(), '.env.local') })
+
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
 

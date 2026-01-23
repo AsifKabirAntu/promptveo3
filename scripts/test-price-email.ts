@@ -4,6 +4,12 @@
  * Run: npm run test-price-email
  */
 
+import { config } from 'dotenv'
+import { resolve } from 'path'
+
+// Load .env.local file
+config({ path: resolve(process.cwd(), '.env.local') })
+
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
@@ -131,14 +137,6 @@ async function main() {
   
   if (!process.env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY is not set')
-  }
-  
-  if (TEST_EMAIL === 'asifkabir008@gmail.com') {
-    throw new Error('Please update TEST_EMAIL in the script with your actual email!')
-  }
-  
-  if (FROM_EMAIL === 'info@promptveo3.com') {
-    throw new Error('Please update FROM_EMAIL in the script with your verified domain!')
   }
   
   console.log(`From: ${FROM_NAME} <${FROM_EMAIL}>`)
