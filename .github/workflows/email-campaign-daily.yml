@@ -1,0 +1,47 @@
+name: Daily Email Campaign
+
+on:
+  schedule:
+    # Run every day at 10 AM EST (15:00 UTC)
+    - cron: '0 15 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  send-emails:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run email campaign
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npm run send-price-campaign
+      
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '❌ Email Campaign Failed',
+              body: `The daily email campaign failed to run. Please check the workflow logs.\n\nRun: ${{ github.run_id }}`,
+              labels: ['bug', 'email-campaign']
+            })
+            console.log('Created issue:', issue.data.html_url)

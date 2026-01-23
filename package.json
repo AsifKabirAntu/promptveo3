@@ -66,7 +66,8 @@
     "categorize-prompts": "tsx scripts/analyze-and-categorize-prompts.ts",
     "export-prompts": "tsx scripts/export-prompts-to-pdf.ts",
     "test-price-email": "tsx scripts/test-price-email.ts",
-    "send-price-email": "tsx scripts/send-price-announcement-email.ts"
+    "send-price-email": "tsx scripts/send-price-announcement-email.ts",
+    "send-price-campaign": "tsx scripts/send-price-campaign-auto.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
@@ -96,6 +97,7 @@
     "react-dom": "^18",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
+    "resend": "^6.8.0",
     "sonner": "^1.4.0",
     "stripe": "^18.4.0",
     "tailwind-merge": "^2.2.1",

@@ -8,9 +8,9 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
 
-const FROM_EMAIL = 'team@yourdomain.com' // Update this!
+const FROM_EMAIL = 'info@promptveo3.com' // Update this!
 const FROM_NAME = 'PromptVeo3 Team'
-const TEST_EMAIL = 'your-email@example.com' // Update this to your email!
+const TEST_EMAIL = 'asifkabir008@gmail.com' // Update this to your email!
 
 const getEmailHTML = (userName?: string) => `
 <!DOCTYPE html>
@@ -133,11 +133,11 @@ async function main() {
     throw new Error('RESEND_API_KEY is not set')
   }
   
-  if (TEST_EMAIL === 'your-email@example.com') {
+  if (TEST_EMAIL === 'asifkabir008@gmail.com') {
     throw new Error('Please update TEST_EMAIL in the script with your actual email!')
   }
   
-  if (FROM_EMAIL === 'team@yourdomain.com') {
+  if (FROM_EMAIL === 'info@promptveo3.com') {
     throw new Error('Please update FROM_EMAIL in the script with your verified domain!')
   }
   
