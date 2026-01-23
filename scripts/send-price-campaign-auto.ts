@@ -60,7 +60,7 @@ const getEmailHTML = (userName?: string) => `
           <!-- Header Banner -->
           <tr>
             <td style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 30px 40px; text-align: center;">
-              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">🎉 Special Pricing Alert!</h1>
+              <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold;">New Pricing Update</h1>
             </td>
           </tr>
           
@@ -70,11 +70,11 @@ const getEmailHTML = (userName?: string) => `
               ${userName ? `<p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px;">Hi ${userName},</p>` : ''}
               
               <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px;">
-                We have some <strong>exciting news</strong> for you! 🎊
+                We wanted to let you know about an update to our Pro plan pricing.
               </p>
               
               <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 30px;">
-                For a <strong>limited time only</strong>, we've dropped our Pro plan pricing from <span style="text-decoration: line-through; color: #9ca3af;">$49</span> to just:
+                We've adjusted our Pro plan pricing from <span style="text-decoration: line-through; color: #9ca3af;">$49</span> to:
               </p>
               
               <!-- Price Box -->
@@ -88,7 +88,7 @@ const getEmailHTML = (userName?: string) => `
               </table>
               
               <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 30px;">
-                That's a <strong style="color: #2563eb;">70% savings!</strong> Get unlimited access to:
+                This includes unlimited access to:
               </p>
               
               <!-- Features List -->
@@ -132,7 +132,7 @@ const getEmailHTML = (userName?: string) => `
               </table>
               
               <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin: 30px 0 0; text-align: center;">
-                ⏰ This is a limited-time offer. Lock in your lifetime access today!
+                Upgrade anytime to get lifetime access to all Pro features.
               </p>
             </td>
           </tr>
@@ -247,7 +247,7 @@ async function sendEmailBatch(users: Array<{ email: string; name?: string; id: s
       const { data, error } = await resend.emails.send({
         from: `${FROM_NAME} <${FROM_EMAIL}>`,
         to: user.email,
-        subject: '🎉 Special Offer: Pro Plan Now Just $14.99 (Limited Time!)',
+        subject: 'New pricing for PromptVeo3 Pro - Now $14.99',
         html: getEmailHTML(user.name),
         text: getEmailText(user.name),
         tags: [
