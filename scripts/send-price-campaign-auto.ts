@@ -180,22 +180,25 @@ Questions? Reply to this email or visit https://promptveo3.com
 async function getUsersNotSentYet() {
   console.log('📥 Fetching users who haven\'t received this campaign yet...')
   
-  // Get all users with confirmed emails
-  const { data: authData, error: authError } = await supabase.auth.admin.listUsers()
+  // Get all users from profiles table
+  const { data: profilesData, error: profilesError } = await supabase
+    .from('profiles')
+    .select('id, email, name')
+    .not('email', 'is', null) // Exclude users without email
   
-  if (authError) {
-    throw new Error(`Failed to fetch users: ${authError.message}`)
+  if (profilesError) {
+    throw new Error(`Failed to fetch users from profiles: ${profilesError.message}`)
   }
   
-  const allUsers = authData.users
-    .filter(user => user.email && user.email_confirmed_at)
+  const allUsers = profilesData
+    .filter(user => user.email) // Extra safety check
     .map(user => ({
       email: user.email!,
-      name: user.user_metadata?.full_name || user.user_metadata?.name || undefined,
+      name: user.name || undefined,
       id: user.id
     }))
   
-  console.log(`✅ Found ${allUsers.length} users with confirmed emails`)
+  console.log(`✅ Found ${allUsers.length} users with emails`)
   
   // Get users who already SUCCESSFULLY received this campaign (exclude failed emails for retry)
   const { data: sentData, error: sentError } = await supabase
