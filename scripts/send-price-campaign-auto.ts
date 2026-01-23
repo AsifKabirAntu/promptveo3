@@ -197,11 +197,12 @@ async function getUsersNotSentYet() {
   
   console.log(`✅ Found ${allUsers.length} users with confirmed emails`)
   
-  // Get users who already received this campaign
+  // Get users who already SUCCESSFULLY received this campaign (exclude failed emails for retry)
   const { data: sentData, error: sentError } = await supabase
     .from('email_campaigns')
     .select('user_email')
     .eq('campaign_name', CAMPAIGN_NAME)
+    .eq('status', 'sent') // Only exclude successful sends, retry failed ones
   
   if (sentError && sentError.code !== 'PGRST116') { // PGRST116 = table doesn't exist yet
     console.warn('⚠️  Warning fetching sent emails:', sentError.message)
@@ -209,7 +210,7 @@ async function getUsersNotSentYet() {
   }
   
   const sentEmails = new Set(sentData?.map(r => r.user_email) || [])
-  console.log(`📧 Already sent to ${sentEmails.size} users in this campaign`)
+  console.log(`📧 Successfully sent to ${sentEmails.size} users (failed emails will be retried)`)
   
   // Filter out users who already received the email
   const usersToSend = allUsers.filter(user => !sentEmails.has(user.email))
